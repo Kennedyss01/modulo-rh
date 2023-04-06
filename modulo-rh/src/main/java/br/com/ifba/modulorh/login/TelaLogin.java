@@ -32,10 +32,13 @@ public class TelaLogin extends javax.swing.JFrame {
         btnCriarConta = new javax.swing.JButton();
         pnlLogin = new javax.swing.JPanel();
         lblFazerLogin = new javax.swing.JLabel();
-        txtUsuario = new javax.swing.JTextField();
-        txtSenha = new javax.swing.JTextField();
         lblEsqueceuASenha = new javax.swing.JLabel();
         btnEntrar = new javax.swing.JButton();
+        pnlTextFields = new javax.swing.JPanel();
+        lblUsuario = new javax.swing.JLabel();
+        lblSenha = new javax.swing.JLabel();
+        txtUsuario = new javax.swing.JTextField();
+        txtSenha = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(900, 600));
@@ -75,9 +78,14 @@ public class TelaLogin extends javax.swing.JFrame {
         btnCriarConta.setForeground(new java.awt.Color(255, 255, 255));
         btnCriarConta.setText("Criar conta");
         btnCriarConta.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 2, true));
-        btnCriarConta.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnCriarConta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnCriarConta.setFocusPainted(false);
         btnCriarConta.setFocusable(false);
+        btnCriarConta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCriarContaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlLateralLayout = new javax.swing.GroupLayout(pnlLateral);
         pnlLateral.setLayout(pnlLateralLayout);
@@ -89,7 +97,7 @@ public class TelaLogin extends javax.swing.JFrame {
                     .addComponent(txaBemVindo, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblModuloRH)
                     .addComponent(btnCriarConta, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(60, Short.MAX_VALUE))
+                .addContainerGap(63, Short.MAX_VALUE))
         );
         pnlLateralLayout.setVerticalGroup(
             pnlLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -107,38 +115,80 @@ public class TelaLogin extends javax.swing.JFrame {
 
         pnlLogin.setBackground(new java.awt.Color(255, 255, 255));
         pnlLogin.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 4, true));
-        pnlLogin.setMaximumSize(new java.awt.Dimension(380, 320));
+        pnlLogin.setMaximumSize(new java.awt.Dimension(388, 340));
+        pnlLogin.setPreferredSize(new java.awt.Dimension(388, 340));
 
         lblFazerLogin.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        lblFazerLogin.setForeground(new java.awt.Color(0, 0, 0));
         lblFazerLogin.setText("Fazer Login");
 
-        txtUsuario.setText("  Usuário");
-        txtUsuario.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        txtUsuario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtUsuarioActionPerformed(evt);
-            }
-        });
-
-        txtSenha.setText("  Senha");
-        txtSenha.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        txtSenha.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtSenhaActionPerformed(evt);
-            }
-        });
-
+        lblEsqueceuASenha.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblEsqueceuASenha.setForeground(new java.awt.Color(0, 0, 0));
         lblEsqueceuASenha.setText("Esqueceu a senha?");
+        lblEsqueceuASenha.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblEsqueceuASenhaMouseClicked(evt);
+            }
+        });
 
         btnEntrar.setBackground(new java.awt.Color(71, 19, 35));
+        btnEntrar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnEntrar.setForeground(new java.awt.Color(255, 255, 255));
         btnEntrar.setText("ENTRAR");
         btnEntrar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        btnEntrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnEntrar.setFocusPainted(false);
+        btnEntrar.setFocusable(false);
+        btnEntrar.setMaximumSize(new java.awt.Dimension(266, 40));
+        btnEntrar.setMinimumSize(new java.awt.Dimension(266, 40));
+        btnEntrar.setPreferredSize(new java.awt.Dimension(266, 40));
         btnEntrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEntrarActionPerformed(evt);
             }
         });
+
+        pnlTextFields.setBackground(new java.awt.Color(255, 255, 255));
+        pnlTextFields.setMaximumSize(new java.awt.Dimension(360, 130));
+        pnlTextFields.setPreferredSize(new java.awt.Dimension(360, 130));
+        pnlTextFields.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblUsuario.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblUsuario.setForeground(new java.awt.Color(0, 0, 0));
+        lblUsuario.setText("Usuário");
+        pnlTextFields.add(lblUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 80, 30));
+
+        lblSenha.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblSenha.setForeground(new java.awt.Color(0, 0, 0));
+        lblSenha.setText("Senha");
+        pnlTextFields.add(lblSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 80, 30));
+
+        txtUsuario.setBackground(new java.awt.Color(255, 255, 255));
+        txtUsuario.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txtUsuario.setForeground(new java.awt.Color(0, 0, 0));
+        txtUsuario.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        txtUsuario.setMaximumSize(new java.awt.Dimension(320, 50));
+        txtUsuario.setMinimumSize(new java.awt.Dimension(320, 50));
+        txtUsuario.setPreferredSize(new java.awt.Dimension(320, 50));
+        txtUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtUsuarioKeyPressed(evt);
+            }
+        });
+        pnlTextFields.add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
+
+        txtSenha.setBackground(new java.awt.Color(255, 255, 255));
+        txtSenha.setForeground(new java.awt.Color(0, 0, 0));
+        txtSenha.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        txtSenha.setMaximumSize(new java.awt.Dimension(320, 50));
+        txtSenha.setMinimumSize(new java.awt.Dimension(320, 50));
+        txtSenha.setPreferredSize(new java.awt.Dimension(320, 50));
+        txtSenha.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtSenhaKeyPressed(evt);
+            }
+        });
+        pnlTextFields.add(txtSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, -1, -1));
 
         javax.swing.GroupLayout pnlLoginLayout = new javax.swing.GroupLayout(pnlLogin);
         pnlLogin.setLayout(pnlLoginLayout);
@@ -147,38 +197,34 @@ public class TelaLogin extends javax.swing.JFrame {
             .addGroup(pnlLoginLayout.createSequentialGroup()
                 .addGroup(pnlLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlLoginLayout.createSequentialGroup()
-                        .addGap(43, 43, 43)
-                        .addGroup(pnlLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(50, 50, 50)
+                        .addComponent(btnEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(pnlLoginLayout.createSequentialGroup()
-                        .addGap(92, 92, 92)
-                        .addComponent(btnEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(116, 116, 116)
+                        .addComponent(lblFazerLogin))
                     .addGroup(pnlLoginLayout.createSequentialGroup()
-                        .addGap(133, 133, 133)
+                        .addGap(122, 122, 122)
                         .addComponent(lblEsqueceuASenha))
                     .addGroup(pnlLoginLayout.createSequentialGroup()
-                        .addGap(119, 119, 119)
-                        .addComponent(lblFazerLogin)))
-                .addContainerGap(48, Short.MAX_VALUE))
+                        .addContainerGap()
+                        .addComponent(pnlTextFields, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
         pnlLoginLayout.setVerticalGroup(
             pnlLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlLoginLayout.createSequentialGroup()
-                .addGap(33, 33, 33)
+                .addGap(22, 22, 22)
                 .addComponent(lblFazerLogin)
-                .addGap(40, 40, 40)
-                .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(31, 31, 31)
+                .addComponent(pnlTextFields, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblEsqueceuASenha)
-                .addGap(18, 18, 18)
-                .addComponent(btnEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addGap(24, 24, 24)
+                .addComponent(btnEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(64, 64, 64))
         );
 
-        pnlContainer.add(pnlLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 110, 380, 320));
+        pnlContainer.add(pnlLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 110, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -196,16 +242,8 @@ public class TelaLogin extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtUsuarioActionPerformed
-
-    private void txtSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSenhaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtSenhaActionPerformed
-
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
-        Usuario usuario = new Usuario(txtUsuario.getText(), txtSenha.getText());
+        Usuario usuario = new Usuario(txtUsuario.getText(), String.valueOf(txtSenha.getPassword()));
         if(serviceUsuario.validarLogin(usuario)){
             JOptionPane.showMessageDialog(null, "Dados Válidos", "Validando Login", JOptionPane.INFORMATION_MESSAGE);
         }
@@ -213,6 +251,34 @@ public class TelaLogin extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Dados inválidos", "Validando Login", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_btnEntrarActionPerformed
+
+    private void txtSenhaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSenhaKeyPressed
+        if (String.valueOf(txtSenha.getPassword()).trim().isEmpty()) {
+            lblSenha.setVisible(true);
+        } else {
+             lblSenha.setVisible(false);
+        }
+    }//GEN-LAST:event_txtSenhaKeyPressed
+
+    private void btnCriarContaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCriarContaActionPerformed
+        
+        
+        
+    }//GEN-LAST:event_btnCriarContaActionPerformed
+
+    private void lblEsqueceuASenhaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblEsqueceuASenhaMouseClicked
+    
+        
+        
+    }//GEN-LAST:event_lblEsqueceuASenhaMouseClicked
+
+    private void txtUsuarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsuarioKeyPressed
+        if (txtUsuario.getText().trim().isEmpty()) {
+            lblUsuario.setVisible(true);
+        } else {
+             lblUsuario.setVisible(false);
+        }
+    }//GEN-LAST:event_txtUsuarioKeyPressed
 
     /**
      * @param args the command line arguments
@@ -250,11 +316,14 @@ public class TelaLogin extends javax.swing.JFrame {
     private javax.swing.JLabel lblEsqueceuASenha;
     private javax.swing.JLabel lblFazerLogin;
     private javax.swing.JLabel lblModuloRH;
+    private javax.swing.JLabel lblSenha;
+    private javax.swing.JLabel lblUsuario;
     private javax.swing.JPanel pnlContainer;
     private javax.swing.JPanel pnlLateral;
     private javax.swing.JPanel pnlLogin;
+    private javax.swing.JPanel pnlTextFields;
     private javax.swing.JTextArea txaBemVindo;
-    private javax.swing.JTextField txtSenha;
+    private javax.swing.JPasswordField txtSenha;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 }

@@ -23,11 +23,7 @@ public class ServiceUsuario implements IServiceUsuario {
         if (usuarios.isEmpty()) {
             return false;
         }
-        Usuario usuarioBd = usuarios.get(0);
-        if (!usuarioBd.getNomeUsuario().equals(usuario.getNomeUsuario())) {
-            return false;
-        }
-        return usuarioBd.getSenha().equals(usuario.getSenha());
+        return usuarios.get(0).getSenha().equals(usuario.getSenha());
     }
     
 }
