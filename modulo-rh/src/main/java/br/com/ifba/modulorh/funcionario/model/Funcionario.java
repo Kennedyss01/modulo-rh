@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 
 /**
  *
- * @author kaioe
+ * @author Kaio
  */
 @Entity
 @Data

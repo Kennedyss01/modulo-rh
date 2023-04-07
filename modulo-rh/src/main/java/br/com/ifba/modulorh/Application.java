@@ -1,5 +1,6 @@
 package br.com.ifba.modulorh;
 
+import br.com.ifba.modulorh.funcionario.view.TelaCadastroFuncionario;
 import br.com.ifba.modulorh.login.TelaLogin;
 import br.com.ifba.modulorh.usuario.view.TelaCadastroUsuario;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -15,5 +16,7 @@ public class Application {
          //telaLogin.setVisible(true);    
          TelaCadastroUsuario telaCadastroUsuario = context.getBean(TelaCadastroUsuario.class);
          telaCadastroUsuario.setVisible(true);
+         TelaCadastroFuncionario TelaCadastroFuncionario = context.getBean(TelaCadastroFuncionario.class);
+         TelaCadastroFuncionario.setVisible(true);
      }
 }

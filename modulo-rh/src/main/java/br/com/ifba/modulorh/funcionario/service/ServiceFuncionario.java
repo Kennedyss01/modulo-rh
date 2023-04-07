@@ -44,7 +44,7 @@ public class ServiceFuncionario implements IServiceFuncionario{
     }
 
     @Override
-    public Funcionario updateCurso(Funcionario funcionario) {
+    public Funcionario updateFuncionario(Funcionario funcionario) {
         if(funcionario == null){
             throw new BusinessException(FUNCIONARIO_NULL);
         }
@@ -55,7 +55,7 @@ public class ServiceFuncionario implements IServiceFuncionario{
     }
 
     @Override
-    public void deleteCurso(Funcionario funcionario) {
+    public void deleteFuncionario(Funcionario funcionario) {
         if(funcionario == null){
             throw new BusinessException(FUNCIONARIO_NULL);
         }

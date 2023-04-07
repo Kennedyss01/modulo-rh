@@ -19,8 +19,8 @@ public interface IFacade {
     
      //========================Funcionario========================//
     Funcionario saveFuncionario(Funcionario funcionario);
-    Funcionario updateCurso(Funcionario funcionario);
-    void deleteCurso(Funcionario funcionario);
+    Funcionario updateFuncionario(Funcionario funcionario);
+    void deleteFuncionario(Funcionario funcionario);
     List<Funcionario> getAllFuncionario();
     Funcionario findById(Long id);
     boolean existsByCpf(String cpf);

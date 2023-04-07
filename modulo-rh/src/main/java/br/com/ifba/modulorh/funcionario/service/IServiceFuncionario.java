@@ -9,13 +9,13 @@ import java.util.List;
 
 /**
  *
- * @author kaioe
+ * @author Kaio
  */
 public interface IServiceFuncionario {
     
     public Funcionario saveFuncionario(Funcionario funcionario);
-    public Funcionario updateCurso(Funcionario funcionario);
-    public void deleteCurso(Funcionario funcionario);
+    public Funcionario updateFuncionario(Funcionario funcionario);
+    public void deleteFuncionario(Funcionario funcionario);
     public List<Funcionario> getAllFuncionario();
     public Funcionario findById(Long id);
     public boolean existsByCpf(String cpf);

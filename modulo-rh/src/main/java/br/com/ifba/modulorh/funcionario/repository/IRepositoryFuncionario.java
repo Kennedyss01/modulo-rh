@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 
 /**
  *
- * @author kaioe
+ * @author Kaio
  */
 @Repository
 public interface IRepositoryFuncionario extends JpaRepository<Funcionario, Long>{

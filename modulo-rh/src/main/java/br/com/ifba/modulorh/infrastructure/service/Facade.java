@@ -44,41 +44,41 @@ public class Facade implements IFacade {
     
     //========================Funcionario========================//
     @Autowired
-    private IServiceFuncionario serviceCadastroFuncionario;
+    private IServiceFuncionario serviceFuncionario;
     
     @Override
     public Funcionario saveFuncionario(Funcionario funcionario) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return serviceFuncionario.saveFuncionario(funcionario);
     }
 
     @Override
-    public Funcionario updateCurso(Funcionario funcionario) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public Funcionario updateFuncionario(Funcionario funcionario) {
+        return serviceFuncionario.updateFuncionario(funcionario);
     }
 
     @Override
-    public void deleteCurso(Funcionario funcionario) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void deleteFuncionario(Funcionario funcionario) {
+        serviceFuncionario.deleteFuncionario(funcionario);
     }
 
     @Override
     public List<Funcionario> getAllFuncionario() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return serviceFuncionario.getAllFuncionario();
     }
 
     @Override
     public Funcionario findById(Long id) {
-        return serviceCadastroFuncionario.findById(id);
+        return serviceFuncionario.findById(id);
     }
 
     @Override
     public boolean existsByCpf(String cpf) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return serviceFuncionario.existsByCpf(cpf);
     }
 
     @Override
     public boolean existsByEmail(String email) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return serviceFuncionario.existsByEmail(email);
     }
     
 }

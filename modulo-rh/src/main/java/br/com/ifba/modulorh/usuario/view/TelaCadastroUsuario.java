@@ -261,7 +261,8 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
         if (validarCampos()) {
             Usuario usuario = getUsuario();
-            
+            Funcionario funcionario = facade.findById(1L);
+            usuario.setFuncionario(funcionario);
             try {
                 facade.salvarUsuario(usuario);
 
