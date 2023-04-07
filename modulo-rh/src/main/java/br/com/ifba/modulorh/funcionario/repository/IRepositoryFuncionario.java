@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
  * @author kaioe
  */
 @Repository
-public interface IRepositoryCadastroFuncionario extends JpaRepository<Funcionario, Long>{
+public interface IRepositoryFuncionario extends JpaRepository<Funcionario, Long>{
 
     boolean existsByCpf(String cpf);
     boolean existsByEmail(String email);

@@ -4,16 +4,18 @@
  */
 package br.com.ifba.modulorh.funcionario.service;
 import br.com.ifba.modulorh.funcionario.model.Funcionario;
-import br.com.ifba.modulorh.funcionario.repository.IRepositoryCadastroFuncionario;
 import br.com.ifba.modulorh.infrastructure.exception.BusinessException;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import br.com.ifba.modulorh.funcionario.repository.IRepositoryFuncionario;
 
 /**
  *
- * @author kaioe
+ * @author Kaio
  */
-public class ServiceCadastroFuncionario implements IServiceCadastroFuncionario{
+@Service
+public class ServiceFuncionario implements IServiceFuncionario{
     
     public final static String FUNCIONARIO_NULL = "Dados do Funcionario nao preenchidos";
     public final static String FUNCIONARIO_EXISTE = "Funcionario ja existente no Banco de dados";
@@ -22,7 +24,7 @@ public class ServiceCadastroFuncionario implements IServiceCadastroFuncionario{
     public final static String EMAIL_EXISTE = "Email ja existente no Banco de dados";
     
     @Autowired
-     private IRepositoryCadastroFuncionario cadastroFuncionario;
+     private IRepositoryFuncionario cadastroFuncionario;
     
     @Override
     public Funcionario saveFuncionario(Funcionario funcionario) {

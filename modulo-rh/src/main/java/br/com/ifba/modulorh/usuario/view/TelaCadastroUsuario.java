@@ -1,5 +1,6 @@
 package br.com.ifba.modulorh.usuario.view;
 
+import br.com.ifba.modulorh.funcionario.model.Funcionario;
 import br.com.ifba.modulorh.infrastructure.service.IFacade;
 import br.com.ifba.modulorh.usuario.model.Usuario;
 import javax.swing.JOptionPane;
@@ -262,10 +263,13 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
             Usuario usuario = getUsuario();
             
             try {
+                facade.salvarUsuario(usuario);
+
             } catch (Exception e) {
+                 JOptionPane.showMessageDialog(null, "Erro ao salvar no banco de dados!", 
+                    "Erro ao salvar no banco: " + e.getMessage(),JOptionPane.INFORMATION_MESSAGE);
             }
-            
-        }        
+        }
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     private void txtUsuarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsuarioKeyPressed

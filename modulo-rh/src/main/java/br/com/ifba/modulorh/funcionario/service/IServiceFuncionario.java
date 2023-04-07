@@ -11,7 +11,7 @@ import java.util.List;
  *
  * @author kaioe
  */
-public interface IServiceCadastroFuncionario {
+public interface IServiceFuncionario {
     
     public Funcionario saveFuncionario(Funcionario funcionario);
     public Funcionario updateCurso(Funcionario funcionario);

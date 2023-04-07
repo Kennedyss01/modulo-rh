@@ -10,5 +10,8 @@ public interface IServiceUsuario {
     
     boolean validarLogin(Usuario usuario);
     void salvarUsuario(Usuario usuario);
+    void atualizarUsuario(Usuario usuario);
+    void deletarUsuario(Usuario usuario);
+    Usuario getById(Long id);
     
 }

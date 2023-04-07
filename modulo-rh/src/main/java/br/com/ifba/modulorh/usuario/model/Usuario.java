@@ -1,11 +1,13 @@
 package br.com.ifba.modulorh.usuario.model;
 
+import br.com.ifba.modulorh.funcionario.model.Funcionario;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -27,6 +29,9 @@ public class Usuario implements Serializable {
     private String nomeUsuario;
     private String senha;
     private String tipo;
+    
+    @OneToOne
+    private Funcionario funcionario;
     
     public Usuario(String nomeUsuario, String senha) {
         this.nomeUsuario = nomeUsuario;

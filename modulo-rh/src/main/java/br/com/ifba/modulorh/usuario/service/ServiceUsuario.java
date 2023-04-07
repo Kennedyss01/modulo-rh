@@ -1,6 +1,5 @@
 package br.com.ifba.modulorh.usuario.service;
 
-import br.com.ifba.modulorh.infrastructure.exception.BusinessException;
 import br.com.ifba.modulorh.usuario.model.Usuario;
 import br.com.ifba.modulorh.usuario.repository.IRepositoryUsuario;
 import java.util.List;
@@ -14,8 +13,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class ServiceUsuario implements IServiceUsuario {
 
-    private final static String USUARIO_NULL = "Usuário null";
-    
     @Autowired
     private IRepositoryUsuario repositoryUsuario;
     
@@ -30,12 +27,21 @@ public class ServiceUsuario implements IServiceUsuario {
     }
 
     @Override
-    public void salvarUsuario(Usuario usuario) {
-         if(usuario == null){
-            throw new BusinessException(USUARIO_NULL);
-         }
-         
+    public void salvarUsuario(Usuario usuario) {         
          repositoryUsuario.save(usuario);
+    }
+
+    @Override
+    public void atualizarUsuario(Usuario usuario) {
+    }
+
+    @Override
+    public void deletarUsuario(Usuario usuario) {
+    }
+
+    @Override
+    public Usuario getById(Long id) {
+        return repositoryUsuario.getReferenceById(id);
     }
     
 }
