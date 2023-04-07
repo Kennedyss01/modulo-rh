@@ -119,11 +119,9 @@ public class TelaLogin extends javax.swing.JFrame {
         pnlLogin.setPreferredSize(new java.awt.Dimension(388, 340));
 
         lblFazerLogin.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        lblFazerLogin.setForeground(new java.awt.Color(0, 0, 0));
         lblFazerLogin.setText("Fazer Login");
 
         lblEsqueceuASenha.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lblEsqueceuASenha.setForeground(new java.awt.Color(0, 0, 0));
         lblEsqueceuASenha.setText("Esqueceu a senha?");
         lblEsqueceuASenha.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -154,18 +152,14 @@ public class TelaLogin extends javax.swing.JFrame {
         pnlTextFields.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblUsuario.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lblUsuario.setForeground(new java.awt.Color(0, 0, 0));
         lblUsuario.setText("Usuário");
         pnlTextFields.add(lblUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 80, 30));
 
         lblSenha.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lblSenha.setForeground(new java.awt.Color(0, 0, 0));
         lblSenha.setText("Senha");
         pnlTextFields.add(lblSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 80, 30));
 
-        txtUsuario.setBackground(new java.awt.Color(255, 255, 255));
         txtUsuario.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        txtUsuario.setForeground(new java.awt.Color(0, 0, 0));
         txtUsuario.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
         txtUsuario.setMaximumSize(new java.awt.Dimension(320, 50));
         txtUsuario.setMinimumSize(new java.awt.Dimension(320, 50));
@@ -177,8 +171,6 @@ public class TelaLogin extends javax.swing.JFrame {
         });
         pnlTextFields.add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
 
-        txtSenha.setBackground(new java.awt.Color(255, 255, 255));
-        txtSenha.setForeground(new java.awt.Color(0, 0, 0));
         txtSenha.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
         txtSenha.setMaximumSize(new java.awt.Dimension(320, 50));
         txtSenha.setMinimumSize(new java.awt.Dimension(320, 50));
