@@ -1,7 +1,7 @@
 package br.com.ifba.modulorh.login;
 
+import br.com.ifba.modulorh.infrastructure.service.IFacade;
 import br.com.ifba.modulorh.usuario.model.Usuario;
-import br.com.ifba.modulorh.usuario.service.IServiceUsuario;
 import javax.swing.JOptionPane;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 public class TelaLogin extends javax.swing.JFrame {
     
     @Autowired
-    private IServiceUsuario serviceUsuario;
+    private IFacade facade;
     
     public TelaLogin() {
         initComponents();
@@ -28,8 +28,6 @@ public class TelaLogin extends javax.swing.JFrame {
         pnlContainer = new javax.swing.JPanel();
         pnlLateral = new javax.swing.JPanel();
         lblModuloRH = new javax.swing.JLabel();
-        txaBemVindo = new javax.swing.JTextArea();
-        btnCriarConta = new javax.swing.JButton();
         pnlLogin = new javax.swing.JPanel();
         lblFazerLogin = new javax.swing.JLabel();
         lblEsqueceuASenha = new javax.swing.JLabel();
@@ -63,52 +61,21 @@ public class TelaLogin extends javax.swing.JFrame {
         lblModuloRH.setForeground(new java.awt.Color(255, 255, 255));
         lblModuloRH.setText("Módulo RH");
 
-        txaBemVindo.setBackground(new java.awt.Color(26, 81, 107));
-        txaBemVindo.setColumns(20);
-        txaBemVindo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        txaBemVindo.setForeground(new java.awt.Color(255, 255, 255));
-        txaBemVindo.setRows(5);
-        txaBemVindo.setText("Bem-vindo(a), \nnão tem uma conta?");
-        txaBemVindo.setAutoscrolls(false);
-        txaBemVindo.setDisabledTextColor(new java.awt.Color(255, 255, 255));
-        txaBemVindo.setEnabled(false);
-
-        btnCriarConta.setBackground(new java.awt.Color(26, 81, 107));
-        btnCriarConta.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnCriarConta.setForeground(new java.awt.Color(255, 255, 255));
-        btnCriarConta.setText("Criar conta");
-        btnCriarConta.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 2, true));
-        btnCriarConta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnCriarConta.setFocusPainted(false);
-        btnCriarConta.setFocusable(false);
-        btnCriarConta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCriarContaActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout pnlLateralLayout = new javax.swing.GroupLayout(pnlLateral);
         pnlLateral.setLayout(pnlLateralLayout);
         pnlLateralLayout.setHorizontalGroup(
             pnlLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlLateralLayout.createSequentialGroup()
                 .addGap(46, 46, 46)
-                .addGroup(pnlLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txaBemVindo, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblModuloRH)
-                    .addComponent(btnCriarConta, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(63, Short.MAX_VALUE))
+                .addComponent(lblModuloRH)
+                .addContainerGap(60, Short.MAX_VALUE))
         );
         pnlLateralLayout.setVerticalGroup(
             pnlLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlLateralLayout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addComponent(lblModuloRH)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txaBemVindo, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnCriarConta, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(425, Short.MAX_VALUE))
+                .addContainerGap(528, Short.MAX_VALUE))
         );
 
         pnlContainer.add(pnlLateral, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -244,7 +211,7 @@ public class TelaLogin extends javax.swing.JFrame {
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
         Usuario usuario = new Usuario(txtUsuario.getText(), String.valueOf(txtSenha.getPassword()));
-        if(serviceUsuario.validarLogin(usuario)){
+        if(facade.validarLoginUsuario(usuario)){
             JOptionPane.showMessageDialog(null, "Dados Válidos", "Validando Login", JOptionPane.INFORMATION_MESSAGE);
         }
         else{
@@ -260,15 +227,8 @@ public class TelaLogin extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtSenhaKeyPressed
 
-    private void btnCriarContaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCriarContaActionPerformed
-        
-        
-        
-    }//GEN-LAST:event_btnCriarContaActionPerformed
-
     private void lblEsqueceuASenhaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblEsqueceuASenhaMouseClicked
     
-        
         
     }//GEN-LAST:event_lblEsqueceuASenhaMouseClicked
 
@@ -311,7 +271,6 @@ public class TelaLogin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCriarConta;
     private javax.swing.JButton btnEntrar;
     private javax.swing.JLabel lblEsqueceuASenha;
     private javax.swing.JLabel lblFazerLogin;
@@ -322,7 +281,6 @@ public class TelaLogin extends javax.swing.JFrame {
     private javax.swing.JPanel pnlLateral;
     private javax.swing.JPanel pnlLogin;
     private javax.swing.JPanel pnlTextFields;
-    private javax.swing.JTextArea txaBemVindo;
     private javax.swing.JPasswordField txtSenha;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables

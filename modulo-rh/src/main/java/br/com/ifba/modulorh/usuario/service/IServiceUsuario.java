@@ -9,5 +9,6 @@ import br.com.ifba.modulorh.usuario.model.Usuario;
 public interface IServiceUsuario {
     
     boolean validarLogin(Usuario usuario);
+    void salvarUsuario(Usuario usuario);
     
 }
