@@ -1,6 +1,5 @@
 package br.com.ifba.modulorh.usuario.view;
 
-import br.com.ifba.modulorh.funcionario.model.Funcionario;
 import br.com.ifba.modulorh.infrastructure.service.IFacade;
 import br.com.ifba.modulorh.usuario.model.Usuario;
 import javax.swing.JOptionPane;
@@ -24,18 +23,26 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
     
     private boolean validarCampos() {
         if (txtUsuario.getText().trim().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Nome de usuário está vazio!", 
-                    "Insira o usuário e tente novamente!",JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Insira o usuário e tente novamente!", 
+                    "Nome de usuário está vazio!",JOptionPane.ERROR_MESSAGE);
             return false;
         }
+        
        if (String.valueOf(txtSenha.getPassword()).trim().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Senha está vazia!", 
-                    "Insira a senha e tente novamente!",JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Insira a senha e tente novamente!", 
+                    "Senha está vazia!",JOptionPane.ERROR_MESSAGE);
             return false;
         }
+       
+       if (!(String.valueOf(txtConfirmarSenha.getPassword()).equals(String.valueOf(txtSenha.getPassword())))) {
+            JOptionPane.showMessageDialog(null, "As senhas informadas não correspondem, tente novamente!", 
+                    "Senhas não correspondem!",JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+       
         if (!chkGestor.isSelected() && !chkFuncionario.isSelected()) {
-            JOptionPane.showMessageDialog(null, "Nenhum tipo selecionado!", 
-                    "Selecione o tipo de usuário!",JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Selecione o tipo de usuário!", 
+                    "Nenhum tipo selecionado!",JOptionPane.ERROR_MESSAGE);
             return false;
         }
        return true;
@@ -64,8 +71,10 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
         pnlTextFields = new javax.swing.JPanel();
         lblUsuario = new javax.swing.JLabel();
         lblSenha = new javax.swing.JLabel();
+        lblConfirmarSenha = new javax.swing.JLabel();
         txtUsuario = new javax.swing.JTextField();
         txtSenha = new javax.swing.JPasswordField();
+        txtConfirmarSenha = new javax.swing.JPasswordField();
         chkGestor = new javax.swing.JCheckBox();
         chkFuncionario = new javax.swing.JCheckBox();
 
@@ -113,11 +122,9 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
         pnlCadastroUsuario.setPreferredSize(new java.awt.Dimension(388, 340));
 
         lblCadastroDeUsuario.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        lblCadastroDeUsuario.setForeground(new java.awt.Color(0, 0, 0));
         lblCadastroDeUsuario.setText("Cadastro de Usuário");
 
         lblEscolhaCadastro.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lblEscolhaCadastro.setForeground(new java.awt.Color(0, 0, 0));
         lblEscolhaCadastro.setText("Escolha o tipo de usuário:");
 
         btnCadastrar.setBackground(new java.awt.Color(71, 19, 35));
@@ -143,18 +150,18 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
         pnlTextFields.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblUsuario.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lblUsuario.setForeground(new java.awt.Color(0, 0, 0));
         lblUsuario.setText("Usuário");
         pnlTextFields.add(lblUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 80, 30));
 
         lblSenha.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lblSenha.setForeground(new java.awt.Color(0, 0, 0));
         lblSenha.setText("Senha");
         pnlTextFields.add(lblSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 80, 30));
 
-        txtUsuario.setBackground(new java.awt.Color(255, 255, 255));
+        lblConfirmarSenha.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblConfirmarSenha.setText("Confirmar a senha");
+        pnlTextFields.add(lblConfirmarSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, -1, 30));
+
         txtUsuario.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        txtUsuario.setForeground(new java.awt.Color(0, 0, 0));
         txtUsuario.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
         txtUsuario.setMaximumSize(new java.awt.Dimension(320, 50));
         txtUsuario.setMinimumSize(new java.awt.Dimension(320, 50));
@@ -166,8 +173,7 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
         });
         pnlTextFields.add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
 
-        txtSenha.setBackground(new java.awt.Color(255, 255, 255));
-        txtSenha.setForeground(new java.awt.Color(0, 0, 0));
+        txtSenha.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         txtSenha.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
         txtSenha.setMaximumSize(new java.awt.Dimension(320, 50));
         txtSenha.setMinimumSize(new java.awt.Dimension(320, 50));
@@ -179,8 +185,17 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
         });
         pnlTextFields.add(txtSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, -1, -1));
 
+        txtConfirmarSenha.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        txtConfirmarSenha.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        txtConfirmarSenha.setPreferredSize(new java.awt.Dimension(350, 50));
+        txtConfirmarSenha.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtConfirmarSenhaKeyPressed(evt);
+            }
+        });
+        pnlTextFields.add(txtConfirmarSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 320, -1));
+
         chkGestor.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        chkGestor.setForeground(new java.awt.Color(0, 0, 0));
         chkGestor.setText("Gestor");
         chkGestor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -189,7 +204,6 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
         });
 
         chkFuncionario.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        chkFuncionario.setForeground(new java.awt.Color(0, 0, 0));
         chkFuncionario.setText("Funcionário");
         chkFuncionario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -227,20 +241,20 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
             .addGroup(pnlCadastroUsuarioLayout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addComponent(lblCadastroDeUsuario)
-                .addGap(34, 34, 34)
-                .addComponent(pnlTextFields, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
+                .addComponent(pnlTextFields, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblEscolhaCadastro)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlCadastroUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(chkGestor)
                     .addComponent(chkFuncionario))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(22, 22, 22))
+                .addGap(35, 35, 35))
         );
 
-        pnlContainer.add(pnlCadastroUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 110, -1, 380));
+        pnlContainer.add(pnlCadastroUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 90, -1, 430));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -261,14 +275,11 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
         if (validarCampos()) {
             Usuario usuario = getUsuario();
-            Funcionario funcionario = facade.findById(1L);
-            usuario.setFuncionario(funcionario);
             try {
-                facade.salvarUsuario(usuario);
-
+                facade.saveUsuario(usuario);
             } catch (Exception e) {
-                 JOptionPane.showMessageDialog(null, "Erro ao salvar no banco de dados!", 
-                    "Erro ao salvar no banco: " + e.getMessage(),JOptionPane.INFORMATION_MESSAGE);
+                 JOptionPane.showMessageDialog(null, "Erro ao salvar no banco: " + e.getMessage(), 
+                    "Erro ao salvar no banco de dados!",JOptionPane.INFORMATION_MESSAGE);
             }
         }
     }//GEN-LAST:event_btnCadastrarActionPerformed
@@ -305,6 +316,14 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_chkFuncionarioActionPerformed
 
+    private void txtConfirmarSenhaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtConfirmarSenhaKeyPressed
+        if (String.valueOf(txtConfirmarSenha.getPassword()).trim().isEmpty()) {
+            lblConfirmarSenha.setVisible(true);
+        } else {
+            lblConfirmarSenha.setVisible(false);
+        }
+    }//GEN-LAST:event_txtConfirmarSenhaKeyPressed
+
     /**
      * @param args the command line arguments
      */
@@ -340,6 +359,7 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
     private javax.swing.JCheckBox chkFuncionario;
     private javax.swing.JCheckBox chkGestor;
     private javax.swing.JLabel lblCadastroDeUsuario;
+    private javax.swing.JLabel lblConfirmarSenha;
     private javax.swing.JLabel lblEscolhaCadastro;
     private javax.swing.JLabel lblModuloRH;
     private javax.swing.JLabel lblSenha;
@@ -348,6 +368,7 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
     private javax.swing.JPanel pnlContainer;
     private javax.swing.JPanel pnlLateral;
     private javax.swing.JPanel pnlTextFields;
+    private javax.swing.JPasswordField txtConfirmarSenha;
     private javax.swing.JPasswordField txtSenha;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables

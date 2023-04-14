@@ -1,5 +1,6 @@
 package br.com.ifba.modulorh.usuario.service;
 
+import br.com.ifba.modulorh.infrastructure.exception.BusinessException;
 import br.com.ifba.modulorh.usuario.model.Usuario;
 import br.com.ifba.modulorh.usuario.repository.IRepositoryUsuario;
 import java.util.List;
@@ -12,7 +13,11 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class ServiceUsuario implements IServiceUsuario {
-
+    
+     private final static String USUARIO_NULL = "Os dados do usuário não foram preenchidos.";
+     private final static String USUARIO_JA_EXISTE = "O usuário informado já existe no sistema.";
+     private final static String USUARIO_NAO_EXISTE = "O usuário informado não existe no sistema.";
+     
     @Autowired
     private IRepositoryUsuario repositoryUsuario;
     
@@ -27,20 +32,40 @@ public class ServiceUsuario implements IServiceUsuario {
     }
 
     @Override
-    public void salvarUsuario(Usuario usuario) {         
+    public void saveUsuario(Usuario usuario) {
+        if (usuario == null) {
+            throw new BusinessException(USUARIO_NULL);
+        }
+        if (repositoryUsuario.existsByNomeUsuario(usuario.getNomeUsuario())) {
+            throw new BusinessException(USUARIO_JA_EXISTE);
+        }
          repositoryUsuario.save(usuario);
     }
 
     @Override
-    public void atualizarUsuario(Usuario usuario) {
+    public void updateUsuario(Usuario usuario) {
+        if (usuario == null) {
+            throw new BusinessException(USUARIO_NULL);
+        }
+        if (repositoryUsuario.existsByNomeUsuario(usuario.getNomeUsuario()) == false) {
+            throw new BusinessException(USUARIO_NAO_EXISTE);
+        }
+         repositoryUsuario.save(usuario);
     }
 
     @Override
-    public void deletarUsuario(Usuario usuario) {
+    public void deleteUsuario(Usuario usuario) {
+         if (usuario == null) {
+            throw new BusinessException(USUARIO_NULL);
+        }
+        if (repositoryUsuario.existsByNomeUsuario(usuario.getNomeUsuario()) == false) {
+            throw new BusinessException(USUARIO_NAO_EXISTE);
+        }
+        repositoryUsuario.delete(usuario);
     }
 
     @Override
-    public Usuario getById(Long id) {
+    public Usuario findById(Long id) {
         return repositoryUsuario.getReferenceById(id);
     }
     

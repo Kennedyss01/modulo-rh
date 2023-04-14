@@ -12,17 +12,17 @@ public interface IFacade {
     
     //========================Usuario========================//
     boolean validarLoginUsuario(Usuario usuairo);
-    void salvarUsuario(Usuario usuario);
-    void atualizarUsuario(Usuario usuario);
-    void deletarUsuario(Usuario usuario);
-    Usuario getById(Long id);
+    void saveUsuario(Usuario usuario);
+    void updateUsuario(Usuario usuario);
+    void deleteUsuario(Usuario usuario);
+    Usuario findUsuarioById(Long id);
     
      //========================Funcionario========================//
     Funcionario saveFuncionario(Funcionario funcionario);
     Funcionario updateFuncionario(Funcionario funcionario);
     void deleteFuncionario(Funcionario funcionario);
     List<Funcionario> getAllFuncionario();
-    Funcionario findById(Long id);
+    Funcionario findFuncionarioById(Long id);
     boolean existsByCpf(String cpf);
     boolean existsByEmail(String email);
     

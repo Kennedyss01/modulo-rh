@@ -2,6 +2,7 @@ package br.com.ifba.modulorh.funcionario.view;
 
 import br.com.ifba.modulorh.funcionario.model.Funcionario;
 import br.com.ifba.modulorh.infrastructure.service.IFacade;
+import br.com.ifba.modulorh.usuario.model.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -315,6 +316,10 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
         Funcionario funcionario = new Funcionario(txtNome.getText(), txtDataDeNascimento.getText(), txtCpf.getText(), txtEndereco.getText(), 
                 txtTelefone.getText(), txtEmail.getText(), txtSalario.getText(), txtStatus.getText(), txtDataDeEntrada.getText());
+        
+        Usuario u = facade.findUsuarioById(1L);
+        funcionario.setUsuario(u);
+        
         facade.saveFuncionario(funcionario);
     }//GEN-LAST:event_btnCadastrarActionPerformed
 

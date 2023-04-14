@@ -17,6 +17,7 @@ public class Facade implements IFacade {
 
     
     //========================Usuario========================//
+    @Autowired
     private IServiceUsuario serviceUsuario;
     
     @Override
@@ -25,21 +26,21 @@ public class Facade implements IFacade {
     }
 
     @Override
-    public void salvarUsuario(Usuario usuario) {
-        serviceUsuario.salvarUsuario(usuario);
+    public void saveUsuario(Usuario usuario) {
+        serviceUsuario.saveUsuario(usuario);
     }
     
     @Override
-    public void atualizarUsuario(Usuario usuario) {
+    public void updateUsuario(Usuario usuario) {
     }
 
     @Override
-    public void deletarUsuario(Usuario usuario) {
+    public void deleteUsuario(Usuario usuario) {
     }
 
     @Override
-    public Usuario getById(Long id) {
-        return serviceUsuario.getById(id);
+    public Usuario findUsuarioById(Long id) {
+        return serviceUsuario.findById(id);
     }
     
     //========================Funcionario========================//
@@ -67,7 +68,7 @@ public class Facade implements IFacade {
     }
 
     @Override
-    public Funcionario findById(Long id) {
+    public Funcionario findFuncionarioById(Long id) {
         return serviceFuncionario.findById(id);
     }
 

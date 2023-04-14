@@ -2,8 +2,10 @@ package br.com.ifba.modulorh.usuario.model;
 
 import br.com.ifba.modulorh.funcionario.model.Funcionario;
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -30,7 +32,7 @@ public class Usuario implements Serializable {
     private String senha;
     private String tipo;
     
-    @OneToOne
+    @OneToOne(mappedBy = "usuario", fetch = FetchType.LAZY, cascade = {CascadeType.MERGE})
     private Funcionario funcionario;
     
     public Usuario(String nomeUsuario, String senha) {
