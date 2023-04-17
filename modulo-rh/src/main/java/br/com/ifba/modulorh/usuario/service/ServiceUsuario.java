@@ -17,29 +17,33 @@ public class ServiceUsuario implements IServiceUsuario {
      private final static String USUARIO_NULL = "Os dados do usuário não foram preenchidos.";
      private final static String USUARIO_JA_EXISTE = "O usuário informado já existe no sistema.";
      private final static String USUARIO_NAO_EXISTE = "O usuário informado não existe no sistema.";
+     private final static String SENHA_INCORRETA = "A senha informada está incorreta.";
      
     @Autowired
     private IRepositoryUsuario repositoryUsuario;
     
     @Override
-    public boolean validarLogin(Usuario usuario) {
+    public Usuario validarLogin(Usuario usuario) {
         List<Usuario> usuarios = 
                 repositoryUsuario.findByNomeUsuario(usuario.getNomeUsuario());
         if (usuarios.isEmpty()) {
-            return false;
+            throw new BusinessException(USUARIO_NAO_EXISTE);
         }
-        return usuarios.get(0).getSenha().equals(usuario.getSenha());
+        if (usuarios.get(0).getSenha().equals(usuario.getSenha()) == false) {
+            throw new BusinessException(SENHA_INCORRETA);
+        }
+        return usuarios.get(0);
     }
 
     @Override
-    public void saveUsuario(Usuario usuario) {
+    public Usuario saveUsuario(Usuario usuario) {
         if (usuario == null) {
             throw new BusinessException(USUARIO_NULL);
         }
         if (repositoryUsuario.existsByNomeUsuario(usuario.getNomeUsuario())) {
             throw new BusinessException(USUARIO_JA_EXISTE);
         }
-         repositoryUsuario.save(usuario);
+         return repositoryUsuario.save(usuario);
     }
 
     @Override

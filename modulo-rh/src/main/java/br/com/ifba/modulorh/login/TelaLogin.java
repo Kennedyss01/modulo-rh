@@ -1,5 +1,7 @@
 package br.com.ifba.modulorh.login;
 
+import br.com.ifba.modulorh.homescreen.TelaHomescreenFuncionario;
+import br.com.ifba.modulorh.homescreen.TelaHomescreenGestor;
 import br.com.ifba.modulorh.infrastructure.service.IFacade;
 import br.com.ifba.modulorh.usuario.model.Usuario;
 import javax.swing.JOptionPane;
@@ -15,6 +17,10 @@ public class TelaLogin extends javax.swing.JFrame {
     
     @Autowired
     private IFacade facade;
+    @Autowired
+    private TelaHomescreenFuncionario homescreenFuncionario;
+    @Autowired
+    private TelaHomescreenGestor homescreenGestor;
     
     public TelaLogin() {
         initComponents();
@@ -203,11 +209,18 @@ public class TelaLogin extends javax.swing.JFrame {
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
         Usuario usuario = new Usuario(txtUsuario.getText(), String.valueOf(txtSenha.getPassword()));
-        if(facade.validarLoginUsuario(usuario)){
-            JOptionPane.showMessageDialog(null, "Dados Válidos", "Validando Login", JOptionPane.INFORMATION_MESSAGE);
-        }
-        else{
-            JOptionPane.showMessageDialog(null, "Dados inválidos", "Validando Login", JOptionPane.INFORMATION_MESSAGE);
+        try {
+            usuario = facade.validarLoginUsuario(usuario);
+            
+            if (usuario.getTipo().equals("Funcionário")) {
+                homescreenFuncionario.setVisible(true);
+            } else {
+                homescreenGestor.setVisible(true);
+            }
+            this.setVisible(false);
+        } catch (Exception err) {
+            JOptionPane.showMessageDialog(null, 
+                   err.getMessage(), "Erro ao realizar login", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnEntrarActionPerformed
 
@@ -221,7 +234,6 @@ public class TelaLogin extends javax.swing.JFrame {
 
     private void lblEsqueceuASenhaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblEsqueceuASenhaMouseClicked
     
-        
     }//GEN-LAST:event_lblEsqueceuASenhaMouseClicked
 
     private void txtUsuarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsuarioKeyPressed

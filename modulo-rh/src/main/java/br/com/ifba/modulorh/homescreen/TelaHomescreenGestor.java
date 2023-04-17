@@ -15,6 +15,8 @@ public class TelaHomescreenGestor extends javax.swing.JFrame {
 
     @Autowired
     private IFacade facade;
+    @Autowired
+    private TelaCadastroFuncionario cadastroFuncionario;
     private Usuario usuario;
     /**
      * Creates new form TelaHomescreenFuncionario
@@ -23,8 +25,8 @@ public class TelaHomescreenGestor extends javax.swing.JFrame {
         initComponents();
     }
     
-    public TelaHomescreenGestor(Usuario usr) {
-        usuario = usr;
+    public void definirGestor(Usuario usuario) {
+        this.usuario = usuario;
     }
 
     /**
@@ -69,7 +71,6 @@ public class TelaHomescreenGestor extends javax.swing.JFrame {
         btnSair.setBackground(new java.awt.Color(26, 81, 107));
         btnSair.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnSair.setForeground(new java.awt.Color(255, 255, 255));
-        btnSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ifba/modulorh/imagens/sair-16x16.png"))); // NOI18N
         btnSair.setText("SAIR");
         btnSair.setBorder(null);
 
@@ -113,7 +114,6 @@ public class TelaHomescreenGestor extends javax.swing.JFrame {
         btnCadastrarFuncionario.setBackground(new java.awt.Color(71, 19, 35));
         btnCadastrarFuncionario.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnCadastrarFuncionario.setForeground(new java.awt.Color(255, 255, 255));
-        btnCadastrarFuncionario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ifba/modulorh/imagens/cadastrar-funcionario-32x32.png"))); // NOI18N
         btnCadastrarFuncionario.setText("CADASTRAR FUNCIONÁRIO");
         btnCadastrarFuncionario.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
         btnCadastrarFuncionario.addActionListener(new java.awt.event.ActionListener() {
@@ -125,7 +125,6 @@ public class TelaHomescreenGestor extends javax.swing.JFrame {
         btnAvaliarPerformance.setBackground(new java.awt.Color(71, 19, 35));
         btnAvaliarPerformance.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnAvaliarPerformance.setForeground(new java.awt.Color(255, 255, 255));
-        btnAvaliarPerformance.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ifba/modulorh/imagens/avaliar-performance-32x32.png"))); // NOI18N
         btnAvaliarPerformance.setText("AVALIAR PERFORMANCE");
         btnAvaliarPerformance.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
         btnAvaliarPerformance.addActionListener(new java.awt.event.ActionListener() {
@@ -137,7 +136,6 @@ public class TelaHomescreenGestor extends javax.swing.JFrame {
         btnImprimirRelatorioFuncionario.setBackground(new java.awt.Color(71, 19, 35));
         btnImprimirRelatorioFuncionario.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnImprimirRelatorioFuncionario.setForeground(new java.awt.Color(255, 255, 255));
-        btnImprimirRelatorioFuncionario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ifba/modulorh/imagens/imprimir-relatorio-funcionario-32x32.png"))); // NOI18N
         btnImprimirRelatorioFuncionario.setText("<html>IMPRIMIR RELATÓRIO DE<br>FUNCIONÁRIO</html>");
         btnImprimirRelatorioFuncionario.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
         btnImprimirRelatorioFuncionario.addActionListener(new java.awt.event.ActionListener() {
@@ -149,7 +147,6 @@ public class TelaHomescreenGestor extends javax.swing.JFrame {
         btnImprimirRelatorioAvaliacaoProdutividade.setBackground(new java.awt.Color(71, 19, 35));
         btnImprimirRelatorioAvaliacaoProdutividade.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnImprimirRelatorioAvaliacaoProdutividade.setForeground(new java.awt.Color(255, 255, 255));
-        btnImprimirRelatorioAvaliacaoProdutividade.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ifba/modulorh/imagens/imprimir-relatorio-avaliacao-produtividade-32x32.png"))); // NOI18N
         btnImprimirRelatorioAvaliacaoProdutividade.setText("<html>IMPRIMIR RELATÓRIO DE<br>AVALIAÇÃO DE<br>PRODUTIVIDADE</html>");
         btnImprimirRelatorioAvaliacaoProdutividade.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
         btnImprimirRelatorioAvaliacaoProdutividade.addActionListener(new java.awt.event.ActionListener() {
@@ -161,7 +158,6 @@ public class TelaHomescreenGestor extends javax.swing.JFrame {
         btnImprimirRelatorioPonto.setBackground(new java.awt.Color(71, 19, 35));
         btnImprimirRelatorioPonto.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnImprimirRelatorioPonto.setForeground(new java.awt.Color(255, 255, 255));
-        btnImprimirRelatorioPonto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ifba/modulorh/imagens/imprimir-relatorio-ponto-32x32.png"))); // NOI18N
         btnImprimirRelatorioPonto.setText("<html>IMPRIMIR RELATÓRIO DE<br>PONTO</html>");
         btnImprimirRelatorioPonto.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
         btnImprimirRelatorioPonto.addActionListener(new java.awt.event.ActionListener() {
@@ -245,9 +241,7 @@ public class TelaHomescreenGestor extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCadastrarFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarFuncionarioActionPerformed
-        // TODO add your handling code here:
-        TelaCadastroFuncionario telaCadFunc = new TelaCadastroFuncionario();
-        telaCadFunc.setVisible(true);
+        cadastroFuncionario.setVisible(true);
     }//GEN-LAST:event_btnCadastrarFuncionarioActionPerformed
 
     private void btnAvaliarPerformanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAvaliarPerformanceActionPerformed

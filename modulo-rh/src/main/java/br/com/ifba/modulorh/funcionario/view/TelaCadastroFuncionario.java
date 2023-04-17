@@ -3,7 +3,9 @@ package br.com.ifba.modulorh.funcionario.view;
 import br.com.ifba.modulorh.funcionario.model.Funcionario;
 import br.com.ifba.modulorh.infrastructure.service.IFacade;
 import br.com.ifba.modulorh.usuario.model.Usuario;
+import br.com.ifba.modulorh.usuario.view.TelaCadastroUsuario;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 /**
@@ -15,11 +17,20 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
 
     @Autowired
     private IFacade facade;
+    @Autowired @Lazy
+    private TelaCadastroUsuario cadastroUsuario;
+    private Funcionario funcionario;
     
     public TelaCadastroFuncionario() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
+    public void finalizarCadastro(Usuario usuario) {
+        funcionario.setUsuario(usuario);
+        facade.saveFuncionario(funcionario);
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -314,13 +325,12 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
-        Funcionario funcionario = new Funcionario(txtNome.getText(), txtDataDeNascimento.getText(), txtCpf.getText(), txtEndereco.getText(), 
+        funcionario = new Funcionario(txtNome.getText(), txtDataDeNascimento.getText(), txtCpf.getText(), txtEndereco.getText(), 
                 txtTelefone.getText(), txtEmail.getText(), txtSalario.getText(), txtStatus.getText(), txtDataDeEntrada.getText());
         
-        Usuario u = facade.findUsuarioById(1L);
-        funcionario.setUsuario(u);
-        
-        facade.saveFuncionario(funcionario);
+        cadastroUsuario.setVisible(true);
+        cadastroUsuario.setUsuario(txtCpf.getText());        
+        this.setVisible(false);
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     private void txtDataDeNascimentoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDataDeNascimentoKeyPressed
