@@ -73,6 +73,7 @@ public class TelaHomescreenGestor extends javax.swing.JFrame {
         btnSair.setBackground(new java.awt.Color(26, 81, 107));
         btnSair.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnSair.setForeground(new java.awt.Color(255, 255, 255));
+        btnSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ifba/modulorh/imagens/sair-16x16.png"))); // NOI18N
         btnSair.setText("SAIR");
         btnSair.setBorder(null);
         btnSair.addActionListener(new java.awt.event.ActionListener() {
