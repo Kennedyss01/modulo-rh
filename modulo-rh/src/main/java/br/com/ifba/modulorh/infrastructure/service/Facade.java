@@ -21,13 +21,13 @@ public class Facade implements IFacade {
     private IServiceUsuario serviceUsuario;
     
     @Override
-    public boolean validarLoginUsuario(Usuario usuairo) {
+    public Usuario validarLoginUsuario(Usuario usuairo) {
         return serviceUsuario.validarLogin(usuairo);
     }
 
     @Override
-    public void saveUsuario(Usuario usuario) {
-        serviceUsuario.saveUsuario(usuario);
+    public Usuario saveUsuario(Usuario usuario) {
+        return serviceUsuario.saveUsuario(usuario);
     }
     
     @Override
@@ -80,6 +80,11 @@ public class Facade implements IFacade {
     @Override
     public boolean existsByEmail(String email) {
         return serviceFuncionario.existsByEmail(email);
+    }
+
+    @Override
+    public Funcionario findFuncionarioByUsuarioId(Long id) {
+        return serviceFuncionario.findByUsuarioId(id);
     }
     
 }

@@ -24,23 +24,23 @@ public class ServiceFuncionario implements IServiceFuncionario{
     public final static String EMAIL_EXISTE = "Email ja existente no Banco de dados";
     
     @Autowired
-     private IRepositoryFuncionario cadastroFuncionario;
+     private IRepositoryFuncionario repositoryFuncionario;
     
     @Override
     public Funcionario saveFuncionario(Funcionario funcionario) {
         if(funcionario == null){
             throw new BusinessException(FUNCIONARIO_NULL);
         }
-        if(cadastroFuncionario.existsById(funcionario.getId()) == true){
+        if(repositoryFuncionario.existsById(funcionario.getId()) == true){
             throw new BusinessException(FUNCIONARIO_EXISTE);
         } 
-        if(cadastroFuncionario.existsByCpf(funcionario.getCpf()) == true){
+        if(repositoryFuncionario.existsByCpf(funcionario.getCpf()) == true){
             throw new BusinessException(CPF_EXISTE);
         }
-        if(cadastroFuncionario.existsByEmail(funcionario.getEmail()) == true){
+        if(repositoryFuncionario.existsByEmail(funcionario.getEmail()) == true){
             throw new BusinessException(EMAIL_EXISTE);
         } 
-            return cadastroFuncionario.save(funcionario);
+            return repositoryFuncionario.save(funcionario);
     }
 
     @Override
@@ -48,10 +48,10 @@ public class ServiceFuncionario implements IServiceFuncionario{
         if(funcionario == null){
             throw new BusinessException(FUNCIONARIO_NULL);
         }
-        if(cadastroFuncionario.existsById(funcionario.getId()) == false){
+        if(repositoryFuncionario.existsById(funcionario.getId()) == false){
             throw new BusinessException(FUNCIONARIO_NAO_EXISTE);
         } 
-            return cadastroFuncionario.save(funcionario);
+            return repositoryFuncionario.save(funcionario);
     }
 
     @Override
@@ -59,8 +59,8 @@ public class ServiceFuncionario implements IServiceFuncionario{
         if(funcionario == null){
             throw new BusinessException(FUNCIONARIO_NULL);
         }
-        if(this.cadastroFuncionario.existsById(funcionario.getId()) == true) {
-            this.cadastroFuncionario.delete(funcionario);
+        if(this.repositoryFuncionario.existsById(funcionario.getId()) == true) {
+            this.repositoryFuncionario.delete(funcionario);
             return;
         }
             throw new BusinessException(FUNCIONARIO_NAO_EXISTE);    
@@ -68,12 +68,12 @@ public class ServiceFuncionario implements IServiceFuncionario{
 
     @Override
     public List<Funcionario> getAllFuncionario() {
-        return this.cadastroFuncionario.findAll();    
+        return this.repositoryFuncionario.findAll();    
     }
     
     @Override
     public Funcionario findById(Long id) {
-        return cadastroFuncionario.getReferenceById(id);
+        return repositoryFuncionario.getReferenceById(id);
     }  
 
     @Override
@@ -83,7 +83,7 @@ public class ServiceFuncionario implements IServiceFuncionario{
         } else if(cpf.isEmpty()) {
             throw new BusinessException("O Campo CPF esta vazio");
         } else {
-            return cadastroFuncionario.existsByCpf(cpf);
+            return repositoryFuncionario.existsByCpf(cpf);
         }
     }    
     
@@ -94,8 +94,13 @@ public class ServiceFuncionario implements IServiceFuncionario{
         } else if(email.isEmpty()) {
             throw new BusinessException("O Campo Email esta vazio");
         } else {
-            return cadastroFuncionario.existsByCpf(email);
+            return repositoryFuncionario.existsByCpf(email);
         }
+    }
+
+    @Override
+    public Funcionario findByUsuarioId(Long id) {
+        return repositoryFuncionario.findByUsuarioId(id).get(0);
     }
     
 }

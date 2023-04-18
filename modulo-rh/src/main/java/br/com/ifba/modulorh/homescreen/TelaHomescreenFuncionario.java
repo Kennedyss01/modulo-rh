@@ -2,6 +2,7 @@ package br.com.ifba.modulorh.homescreen;
 
 import br.com.ifba.modulorh.funcionario.model.Funcionario;
 import br.com.ifba.modulorh.infrastructure.service.IFacade;
+import br.com.ifba.modulorh.usuario.model.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -15,17 +16,17 @@ public class TelaHomescreenFuncionario extends javax.swing.JFrame {
     @Autowired
     private IFacade facade;
     private Funcionario funcionario;
-    /**
-     * Creates new form TelaHomescreenFuncionario
-     */
+   
     public TelaHomescreenFuncionario() {
         initComponents();
+        setLocationRelativeTo(null);
     }
     
-    public TelaHomescreenFuncionario(Funcionario func) {
-        funcionario = func;
+    public void definirFuncionario(Usuario usuario) {
+        funcionario = facade.findFuncionarioByUsuarioId(usuario.getId());
+        System.out.println(funcionario.toString());
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -65,7 +66,6 @@ public class TelaHomescreenFuncionario extends javax.swing.JFrame {
         btnSair.setBackground(new java.awt.Color(26, 81, 107));
         btnSair.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnSair.setForeground(new java.awt.Color(255, 255, 255));
-        btnSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ifba/modulorh/imagens/sair-16x16.png"))); // NOI18N
         btnSair.setText("SAIR");
         btnSair.setBorder(null);
 
@@ -109,7 +109,6 @@ public class TelaHomescreenFuncionario extends javax.swing.JFrame {
         btnRegistrarPonto.setBackground(new java.awt.Color(71, 19, 35));
         btnRegistrarPonto.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnRegistrarPonto.setForeground(new java.awt.Color(255, 255, 255));
-        btnRegistrarPonto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ifba/modulorh/imagens/registrar-ponto-32x32.png"))); // NOI18N
         btnRegistrarPonto.setText("REGISTRAR PONTO");
         btnRegistrarPonto.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
         btnRegistrarPonto.addActionListener(new java.awt.event.ActionListener() {
@@ -121,7 +120,6 @@ public class TelaHomescreenFuncionario extends javax.swing.JFrame {
         btnCadastrarCurriculo.setBackground(new java.awt.Color(71, 19, 35));
         btnCadastrarCurriculo.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnCadastrarCurriculo.setForeground(new java.awt.Color(255, 255, 255));
-        btnCadastrarCurriculo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ifba/modulorh/imagens/cadastrar-curriculo-32x32.png"))); // NOI18N
         btnCadastrarCurriculo.setText("CADASTRAR CURRÍCULO");
         btnCadastrarCurriculo.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
         btnCadastrarCurriculo.addActionListener(new java.awt.event.ActionListener() {

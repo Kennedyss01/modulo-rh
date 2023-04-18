@@ -11,8 +11,8 @@ import java.util.List;
 public interface IFacade {
     
     //========================Usuario========================//
-    boolean validarLoginUsuario(Usuario usuairo);
-    void saveUsuario(Usuario usuario);
+    Usuario validarLoginUsuario(Usuario usuairo);
+    Usuario saveUsuario(Usuario usuario);
     void updateUsuario(Usuario usuario);
     void deleteUsuario(Usuario usuario);
     Usuario findUsuarioById(Long id);
@@ -25,5 +25,6 @@ public interface IFacade {
     Funcionario findFuncionarioById(Long id);
     boolean existsByCpf(String cpf);
     boolean existsByEmail(String email);
+    Funcionario findFuncionarioByUsuarioId(Long id);
     
 }

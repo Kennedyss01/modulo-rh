@@ -1,9 +1,11 @@
 package br.com.ifba.modulorh.usuario.view;
 
+import br.com.ifba.modulorh.funcionario.view.TelaCadastroFuncionario;
 import br.com.ifba.modulorh.infrastructure.service.IFacade;
 import br.com.ifba.modulorh.usuario.model.Usuario;
 import javax.swing.JOptionPane;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 /**
@@ -15,10 +17,17 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
 
     @Autowired
     private IFacade facade;
+    @Autowired @Lazy
+    private TelaCadastroFuncionario cadastroFuncionario;
     
     public TelaCadastroUsuario() {
         initComponents();
         setLocationRelativeTo(null);
+    }
+    
+    public void setUsuario(String usuario) {
+        txtUsuario.setText(usuario);
+        lblUsuario.setVisible(false);
     }
     
     private boolean validarCampos() {
@@ -276,7 +285,9 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
         if (validarCampos()) {
             Usuario usuario = getUsuario();
             try {
-                facade.saveUsuario(usuario);
+                usuario = facade.saveUsuario(usuario);
+                this.setVisible(false);
+                cadastroFuncionario.finalizarCadastro(usuario);
             } catch (Exception e) {
                  JOptionPane.showMessageDialog(null, "Erro ao salvar no banco: " + e.getMessage(), 
                     "Erro ao salvar no banco de dados!",JOptionPane.INFORMATION_MESSAGE);

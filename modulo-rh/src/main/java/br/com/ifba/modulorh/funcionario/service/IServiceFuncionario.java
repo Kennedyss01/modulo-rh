@@ -20,4 +20,6 @@ public interface IServiceFuncionario {
     public Funcionario findById(Long id);
     public boolean existsByCpf(String cpf);
     public boolean existsByEmail(String email);
+    public Funcionario findByUsuarioId(Long id);
+    
 }
