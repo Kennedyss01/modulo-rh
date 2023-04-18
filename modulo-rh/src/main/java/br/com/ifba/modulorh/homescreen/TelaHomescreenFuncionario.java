@@ -109,6 +109,7 @@ public class TelaHomescreenFuncionario extends javax.swing.JFrame {
         btnRegistrarPonto.setBackground(new java.awt.Color(71, 19, 35));
         btnRegistrarPonto.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnRegistrarPonto.setForeground(new java.awt.Color(255, 255, 255));
+        btnRegistrarPonto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ifba/modulorh/imagens/registrar-ponto-32x32.png"))); // NOI18N
         btnRegistrarPonto.setText("REGISTRAR PONTO");
         btnRegistrarPonto.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
         btnRegistrarPonto.addActionListener(new java.awt.event.ActionListener() {
@@ -120,6 +121,7 @@ public class TelaHomescreenFuncionario extends javax.swing.JFrame {
         btnCadastrarCurriculo.setBackground(new java.awt.Color(71, 19, 35));
         btnCadastrarCurriculo.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnCadastrarCurriculo.setForeground(new java.awt.Color(255, 255, 255));
+        btnCadastrarCurriculo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ifba/modulorh/imagens/cadastrar-curriculo-32x32.png"))); // NOI18N
         btnCadastrarCurriculo.setText("CADASTRAR CURRÍCULO");
         btnCadastrarCurriculo.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
         btnCadastrarCurriculo.addActionListener(new java.awt.event.ActionListener() {
