@@ -4,6 +4,7 @@ import br.com.ifba.modulorh.funcionario.model.Funcionario;
 import br.com.ifba.modulorh.infrastructure.service.IFacade;
 import br.com.ifba.modulorh.usuario.model.Usuario;
 import br.com.ifba.modulorh.usuario.view.TelaCadastroUsuario;
+import javax.swing.JOptionPane;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
@@ -27,9 +28,15 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
     }
 
     public void finalizarCadastro(Usuario usuario) {
-        funcionario.setUsuario(usuario);
-        facade.saveFuncionario(funcionario);
+        try{
+            funcionario.setUsuario(usuario);
+            facade.saveFuncionario(funcionario);
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(null, "Erro ao salvar no banco: " + e.getMessage(), 
+                    "Erro ao salvar no banco de dados!",JOptionPane.INFORMATION_MESSAGE);
+        }
     }
+        
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
