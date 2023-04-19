@@ -28,20 +28,20 @@ public class Usuario implements Serializable {
     private long id;
     
     @Column(unique = true)
-    private String nomeUsuario;
+    private String login;
     private String senha;
     private String tipo;
     
     @OneToOne(mappedBy = "usuario", fetch = FetchType.LAZY, cascade = {CascadeType.MERGE})
     private Funcionario funcionario;
     
-    public Usuario(String nomeUsuario, String senha) {
-        this.nomeUsuario = nomeUsuario;
+    public Usuario(String login, String senha) {
+        this.login = login;
         this.senha = senha;
     }
     
-    public Usuario(String nomeUsuario, String senha, String tipo) {
-        this.nomeUsuario = nomeUsuario;
+    public Usuario(String login, String senha, String tipo) {
+        this.login = login;
         this.senha = senha;
         this.tipo = tipo;
     }

@@ -25,7 +25,7 @@ public class ServiceUsuario implements IServiceUsuario {
     @Override
     public Usuario validarLogin(Usuario usuario) {
         List<Usuario> usuarios = 
-                repositoryUsuario.findByNomeUsuario(usuario.getNomeUsuario());
+                repositoryUsuario.findByLogin(usuario.getLogin());
         if (usuarios.isEmpty()) {
             throw new BusinessException(USUARIO_NAO_EXISTE);
         }
@@ -40,10 +40,10 @@ public class ServiceUsuario implements IServiceUsuario {
         if (usuario == null) {
             throw new BusinessException(USUARIO_NULL);
         }
-        if (repositoryUsuario.existsByNomeUsuario(usuario.getNomeUsuario())) {
+        if (repositoryUsuario.existsByLogin(usuario.getLogin())) {
             throw new BusinessException(USUARIO_JA_EXISTE);
         }
-         return repositoryUsuario.save(usuario);
+        return repositoryUsuario.save(usuario);
     }
 
     @Override
@@ -51,7 +51,7 @@ public class ServiceUsuario implements IServiceUsuario {
         if (usuario == null) {
             throw new BusinessException(USUARIO_NULL);
         }
-        if (repositoryUsuario.existsByNomeUsuario(usuario.getNomeUsuario()) == false) {
+        if (repositoryUsuario.existsByLogin(usuario.getLogin()) == false) {
             throw new BusinessException(USUARIO_NAO_EXISTE);
         }
          repositoryUsuario.save(usuario);
@@ -62,7 +62,7 @@ public class ServiceUsuario implements IServiceUsuario {
          if (usuario == null) {
             throw new BusinessException(USUARIO_NULL);
         }
-        if (repositoryUsuario.existsByNomeUsuario(usuario.getNomeUsuario()) == false) {
+        if (repositoryUsuario.existsByLogin(usuario.getLogin()) == false) {
             throw new BusinessException(USUARIO_NAO_EXISTE);
         }
         repositoryUsuario.delete(usuario);

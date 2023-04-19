@@ -214,10 +214,14 @@ public class TelaLogin extends javax.swing.JFrame {
             
             if (usuario.getTipo().equals("Funcionário")) {
                 homescreenFuncionario.setVisible(true);
+                homescreenFuncionario.definirFuncionario(usuario);
             } else {
                 homescreenGestor.setVisible(true);
+                homescreenGestor.definirGestor(usuario);
             }
             this.setVisible(false);
+            txtUsuario.setText("");
+            txtSenha.setText("");
         } catch (Exception err) {
             JOptionPane.showMessageDialog(null, 
                    err.getMessage(), "Erro ao realizar login", JOptionPane.ERROR_MESSAGE);
