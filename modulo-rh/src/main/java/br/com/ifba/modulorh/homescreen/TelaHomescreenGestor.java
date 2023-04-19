@@ -19,7 +19,9 @@ public class TelaHomescreenGestor extends javax.swing.JFrame {
     @Autowired
     private IFacade facade;
     @Autowired
-    private TelaCadastroFuncionario cadastroFuncionario;
+    private TelaCadastroFuncionario telaCadastroFuncionario;
+    @Autowired
+    private TelaCadastroUsuario telaCadastroUsuario;
     @Autowired @Lazy
     private TelaLogin telaLogin;
     private Usuario usuario;
@@ -266,9 +268,7 @@ public class TelaHomescreenGestor extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCadastrarFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarFuncionarioActionPerformed
-        // TODO add your handling code here:
-        TelaCadastroFuncionario telaCadFunc = new TelaCadastroFuncionario();
-        telaCadFunc.setVisible(true);
+        telaCadastroFuncionario.setVisible(true);
     }//GEN-LAST:event_btnCadastrarFuncionarioActionPerformed
 
     private void btnAvaliarPerformanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAvaliarPerformanceActionPerformed
@@ -288,14 +288,11 @@ public class TelaHomescreenGestor extends javax.swing.JFrame {
     }//GEN-LAST:event_btnImprimirRelatorioPontoActionPerformed
 
     private void btnCadastrarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarUsuarioActionPerformed
-        // TODO add your handling code here:
-        TelaCadastroUsuario telaCadUsr = new TelaCadastroUsuario();
-        telaCadUsr.setVisible(true);
+        telaCadastroUsuario.setVisible(true);
     }//GEN-LAST:event_btnCadastrarUsuarioActionPerformed
 
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
-        TelaLogin telaLgn = new TelaLogin();
-        telaLgn.setVisible(true);
+        telaLogin.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnSairActionPerformed
 

@@ -207,8 +207,7 @@ public class TelaHomescreenFuncionario extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCadastrarCurriculoActionPerformed
 
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
-        TelaLogin telaLgn = new TelaLogin();
-        telaLgn.setVisible(true);
+        telaLogin.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnSairActionPerformed
 

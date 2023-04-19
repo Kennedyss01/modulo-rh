@@ -3,7 +3,6 @@ package br.com.ifba.modulorh.usuario.view;
 import br.com.ifba.modulorh.funcionario.view.TelaCadastroFuncionario;
 import br.com.ifba.modulorh.infrastructure.service.IFacade;
 import br.com.ifba.modulorh.usuario.model.Usuario;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
@@ -19,12 +18,11 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
     @Autowired
     private IFacade facade;
     @Autowired @Lazy
-    private TelaCadastroFuncionario cadastroFuncionario;
+    private TelaCadastroFuncionario telaCadastroFuncionario;
     
     public TelaCadastroUsuario() {
         initComponents();
         setLocationRelativeTo(null);
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
     
     public void setUsuario(String usuario) {
@@ -289,10 +287,10 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
             try {
                 usuario = facade.saveUsuario(usuario);
                 this.setVisible(false);
-                cadastroFuncionario.finalizarCadastro(usuario);
+                telaCadastroFuncionario.finalizarCadastro(usuario);
             } catch (Exception e) {
                  JOptionPane.showMessageDialog(null, "Erro ao salvar no banco: " + e.getMessage(), 
-                    "Erro ao salvar no banco de dados!",JOptionPane.INFORMATION_MESSAGE);
+                    "Erro ao salvar no banco de dados!",JOptionPane.ERROR_MESSAGE);
             }
         }
     }//GEN-LAST:event_btnCadastrarActionPerformed
