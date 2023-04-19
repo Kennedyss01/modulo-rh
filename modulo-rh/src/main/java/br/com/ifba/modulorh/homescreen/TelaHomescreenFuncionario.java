@@ -4,6 +4,7 @@ import br.com.ifba.modulorh.funcionario.model.Funcionario;
 import br.com.ifba.modulorh.infrastructure.service.IFacade;
 import br.com.ifba.modulorh.login.TelaLogin;
 import br.com.ifba.modulorh.usuario.model.Usuario;
+import br.com.ifba.modulorh.usuario.view.TelaAlterarSenha;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
@@ -19,6 +20,8 @@ public class TelaHomescreenFuncionario extends javax.swing.JFrame {
     private IFacade facade;
     @Autowired @Lazy
     private TelaLogin telaLogin;
+    @Autowired
+    private TelaAlterarSenha telaAlterarSenha;
     private Funcionario funcionario;
    
     public TelaHomescreenFuncionario() {
@@ -41,6 +44,7 @@ public class TelaHomescreenFuncionario extends javax.swing.JFrame {
         lblBemVindo = new javax.swing.JLabel();
         btnSair = new javax.swing.JButton();
         lblInfoFuncionario = new javax.swing.JLabel();
+        btnAlterarSenha = new javax.swing.JButton();
         pnlMenu = new javax.swing.JPanel();
         lblMenu = new javax.swing.JLabel();
         btnRegistrarPonto = new javax.swing.JButton();
@@ -78,6 +82,18 @@ public class TelaHomescreenFuncionario extends javax.swing.JFrame {
         lblInfoFuncionario.setForeground(new java.awt.Color(255, 255, 255));
         lblInfoFuncionario.setText("Usuário: ---");
 
+        btnAlterarSenha.setBackground(new java.awt.Color(26, 81, 107));
+        btnAlterarSenha.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnAlterarSenha.setForeground(new java.awt.Color(255, 255, 255));
+        btnAlterarSenha.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/senha-16x16.png"))); // NOI18N
+        btnAlterarSenha.setText("ALTERAR SENHA");
+        btnAlterarSenha.setBorder(null);
+        btnAlterarSenha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAlterarSenhaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnlLateralLayout = new javax.swing.GroupLayout(pnlLateral);
         pnlLateral.setLayout(pnlLateralLayout);
         pnlLateralLayout.setHorizontalGroup(
@@ -86,10 +102,13 @@ public class TelaHomescreenFuncionario extends javax.swing.JFrame {
                 .addGap(42, 42, 42)
                 .addGroup(pnlLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblInfoFuncionario)
-                    .addComponent(btnSair, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblBemVindo)
-                    .addComponent(lblLateral))
-                .addContainerGap(57, Short.MAX_VALUE))
+                    .addComponent(lblLateral)
+                    .addGroup(pnlLateralLayout.createSequentialGroup()
+                        .addComponent(btnSair, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnAlterarSenha)))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
         pnlLateralLayout.setVerticalGroup(
             pnlLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -101,7 +120,9 @@ public class TelaHomescreenFuncionario extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblInfoFuncionario)
                 .addGap(18, 18, 18)
-                .addComponent(btnSair, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(pnlLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSair, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAlterarSenha))
                 .addGap(33, 33, 33))
         );
 
@@ -171,7 +192,7 @@ public class TelaHomescreenFuncionario extends javax.swing.JFrame {
                 .addComponent(pnlLateral, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(74, 74, 74)
                 .addComponent(pnlMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 86, Short.MAX_VALUE))
+                .addGap(0, 118, Short.MAX_VALUE))
         );
         pnlContainerLayout.setVerticalGroup(
             pnlContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -211,6 +232,11 @@ public class TelaHomescreenFuncionario extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_btnSairActionPerformed
 
+    private void btnAlterarSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarSenhaActionPerformed
+        telaAlterarSenha.setVisible(true);
+        telaAlterarSenha.setUsuario(this.funcionario.getUsuario());
+    }//GEN-LAST:event_btnAlterarSenhaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -247,6 +273,7 @@ public class TelaHomescreenFuncionario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAlterarSenha;
     private javax.swing.JButton btnCadastrarCurriculo;
     private javax.swing.JButton btnRegistrarPonto;
     private javax.swing.JButton btnSair;

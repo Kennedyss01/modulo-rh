@@ -32,6 +32,7 @@ public class Facade implements IFacade {
     
     @Override
     public void updateUsuario(Usuario usuario) {
+        serviceUsuario.updateUsuario(usuario);
     }
 
     @Override
