@@ -144,7 +144,7 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/br/com/ifba/modulorh/imagens/sair-16x16.png"/>
+                  <Image iconType="3" name="/imagens/sair-16x16.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="SAIR"/>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -256,7 +256,7 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/br/com/ifba/modulorh/imagens/cadastrar-usuario-32x32.png"/>
+                  <Image iconType="3" name="/imagens/cadastrar-usuario-32x32.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="CADASTRAR USU&#xc1;RIO"/>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -281,7 +281,7 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/br/com/ifba/modulorh/imagens/cadastrar-funcionario-32x32.png"/>
+                  <Image iconType="3" name="/imagens/cadastrar-funcionario-32x32.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="CADASTRAR FUNCION&#xc1;RIO"/>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -306,7 +306,7 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/br/com/ifba/modulorh/imagens/avaliar-performance-32x32.png"/>
+                  <Image iconType="3" name="/imagens/avaliar-performance-32x32.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="AVALIAR PERFORMANCE"/>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -331,7 +331,7 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/br/com/ifba/modulorh/imagens/imprimir-relatorio-funcionario-32x32.png"/>
+                  <Image iconType="3" name="/imagens/imprimir-relatorio-funcionario-32x32.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="&lt;html&gt;IMPRIMIR RELAT&#xd3;RIO DE&lt;br&gt;FUNCION&#xc1;RIO&lt;/html&gt;"/>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -356,7 +356,7 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/br/com/ifba/modulorh/imagens/imprimir-relatorio-avaliacao-produtividade-32x32.png"/>
+                  <Image iconType="3" name="/imagens/imprimir-relatorio-avaliacao-produtividade-32x32.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="&lt;html&gt;IMPRIMIR RELAT&#xd3;RIO DE&lt;br&gt;AVALIA&#xc7;&#xc3;O DE&lt;br&gt;PRODUTIVIDADE&lt;/html&gt;"/>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -381,7 +381,7 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/br/com/ifba/modulorh/imagens/imprimir-relatorio-ponto-32x32.png"/>
+                  <Image iconType="3" name="/imagens/imprimir-relatorio-ponto-32x32.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="&lt;html&gt;IMPRIMIR RELAT&#xd3;RIO DE&lt;br&gt;PONTO&lt;/html&gt;"/>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
