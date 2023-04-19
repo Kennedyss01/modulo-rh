@@ -266,7 +266,9 @@ public class TelaHomescreenGestor extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCadastrarFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarFuncionarioActionPerformed
-        cadastroFuncionario.setVisible(true);
+        // TODO add your handling code here:
+        TelaCadastroFuncionario telaCadFunc = new TelaCadastroFuncionario();
+        telaCadFunc.setVisible(true);
     }//GEN-LAST:event_btnCadastrarFuncionarioActionPerformed
 
     private void btnAvaliarPerformanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAvaliarPerformanceActionPerformed
@@ -292,7 +294,8 @@ public class TelaHomescreenGestor extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCadastrarUsuarioActionPerformed
 
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
-        telaLogin.setVisible(true);
+        TelaLogin telaLgn = new TelaLogin();
+        telaLgn.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnSairActionPerformed
 
