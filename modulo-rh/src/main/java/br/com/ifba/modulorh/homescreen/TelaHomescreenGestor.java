@@ -3,6 +3,7 @@ package br.com.ifba.modulorh.homescreen;
 import br.com.ifba.modulorh.usuario.model.Usuario;
 import br.com.ifba.modulorh.usuario.view.TelaCadastroUsuario;
 import br.com.ifba.modulorh.funcionario.view.TelaCadastroFuncionario;
+import br.com.ifba.modulorh.funcionario.view.TelaDeListarFuncionarios;
 import br.com.ifba.modulorh.infrastructure.service.IFacade;
 import br.com.ifba.modulorh.login.TelaLogin;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,8 @@ public class TelaHomescreenGestor extends javax.swing.JFrame {
     private TelaCadastroFuncionario telaCadastroFuncionario;
     @Autowired
     private TelaCadastroUsuario telaCadastroUsuario;
+    @Autowired
+    private TelaDeListarFuncionarios telaDeListarFuncionarios;
     @Autowired @Lazy
     private TelaLogin telaLogin;
     private Usuario usuario;
@@ -54,6 +57,7 @@ public class TelaHomescreenGestor extends javax.swing.JFrame {
         btnImprimirRelatorioFuncionario = new javax.swing.JButton();
         btnImprimirRelatorioAvaliacaoProdutividade = new javax.swing.JButton();
         btnImprimirRelatorioPonto = new javax.swing.JButton();
+        btnListarFuncionarios = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1028, 599));
@@ -107,7 +111,7 @@ public class TelaHomescreenGestor extends javax.swing.JFrame {
                 .addComponent(lblLateral)
                 .addGap(73, 73, 73)
                 .addComponent(lblBemVindo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 338, Short.MAX_VALUE)
                 .addComponent(lblInfoGestor)
                 .addGap(18, 18, 18)
                 .addComponent(btnSair, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -192,6 +196,18 @@ public class TelaHomescreenGestor extends javax.swing.JFrame {
             }
         });
 
+        btnListarFuncionarios.setBackground(new java.awt.Color(71, 19, 35));
+        btnListarFuncionarios.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnListarFuncionarios.setForeground(new java.awt.Color(255, 255, 255));
+        btnListarFuncionarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/cadastrar-funcionario-32x32.png"))); // NOI18N
+        btnListarFuncionarios.setText("LISTAR FUNCIONÁRIOS");
+        btnListarFuncionarios.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        btnListarFuncionarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnListarFuncionariosActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnlMenuLayout = new javax.swing.GroupLayout(pnlMenu);
         pnlMenu.setLayout(pnlMenuLayout);
         pnlMenuLayout.setHorizontalGroup(
@@ -206,7 +222,8 @@ public class TelaHomescreenGestor extends javax.swing.JFrame {
                         .addGroup(pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(btnImprimirRelatorioAvaliacaoProdutividade, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnAvaliarPerformance, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnCadastrarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnCadastrarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnListarFuncionarios, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnImprimirRelatorioFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -231,7 +248,9 @@ public class TelaHomescreenGestor extends javax.swing.JFrame {
                 .addGroup(pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btnImprimirRelatorioPonto, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnImprimirRelatorioAvaliacaoProdutividade, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(79, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnListarFuncionarios, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout pnlContainerLayout = new javax.swing.GroupLayout(pnlContainer);
@@ -250,7 +269,7 @@ public class TelaHomescreenGestor extends javax.swing.JFrame {
             .addGroup(pnlContainerLayout.createSequentialGroup()
                 .addGap(59, 59, 59)
                 .addComponent(pnlMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(57, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -296,6 +315,10 @@ public class TelaHomescreenGestor extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_btnSairActionPerformed
 
+    private void btnListarFuncionariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarFuncionariosActionPerformed
+        telaDeListarFuncionarios.setVisible(true);
+    }//GEN-LAST:event_btnListarFuncionariosActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -339,6 +362,7 @@ public class TelaHomescreenGestor extends javax.swing.JFrame {
     private javax.swing.JButton btnImprimirRelatorioAvaliacaoProdutividade;
     private javax.swing.JButton btnImprimirRelatorioFuncionario;
     private javax.swing.JButton btnImprimirRelatorioPonto;
+    private javax.swing.JButton btnListarFuncionarios;
     private javax.swing.JButton btnSair;
     private javax.swing.JLabel lblBemVindo;
     private javax.swing.JLabel lblInfoGestor;

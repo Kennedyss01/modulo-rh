@@ -1,6 +1,7 @@
 package br.com.ifba.modulorh.usuario.view;
 
 import br.com.ifba.modulorh.funcionario.view.TelaCadastroFuncionario;
+import br.com.ifba.modulorh.funcionario.view.TelaDeListarFuncionarios;
 import br.com.ifba.modulorh.infrastructure.service.IFacade;
 import br.com.ifba.modulorh.usuario.model.Usuario;
 import javax.swing.JOptionPane;
@@ -19,6 +20,8 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
     private IFacade facade;
     @Autowired @Lazy
     private TelaCadastroFuncionario telaCadastroFuncionario;
+    @Autowired
+    private TelaDeListarFuncionarios telaDeListarFuncionarios; 
     
     public TelaCadastroUsuario() {
         initComponents();
@@ -293,6 +296,7 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
                     "Erro ao salvar no banco de dados!",JOptionPane.ERROR_MESSAGE);
             }
         }
+        telaDeListarFuncionarios.exibirDados();
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     private void txtUsuarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsuarioKeyPressed

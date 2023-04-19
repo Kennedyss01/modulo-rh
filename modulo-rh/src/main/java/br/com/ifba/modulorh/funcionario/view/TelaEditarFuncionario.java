@@ -1,8 +1,11 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ */
 package br.com.ifba.modulorh.funcionario.view;
 
 import br.com.ifba.modulorh.funcionario.model.Funcionario;
 import br.com.ifba.modulorh.infrastructure.service.IFacade;
-import br.com.ifba.modulorh.usuario.model.Usuario;
 import br.com.ifba.modulorh.usuario.view.TelaCadastroUsuario;
 import javax.swing.JOptionPane;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,40 +17,43 @@ import org.springframework.stereotype.Component;
  * @author Kaio
  */
 @Component
-public class TelaCadastroFuncionario extends javax.swing.JFrame {
+public class TelaEditarFuncionario extends javax.swing.JFrame {
 
     @Autowired
     private IFacade facade;
     @Autowired @Lazy
-    private TelaCadastroUsuario telaCadastroUsuario;
+    private TelaCadastroUsuario cadastroUsuario;
+    @Autowired @Lazy
+    private TelaDeListarFuncionarios telaDeListarFuncionarios; 
     private Funcionario funcionario;
     
-    public TelaCadastroFuncionario() {
+    public TelaEditarFuncionario() {
         initComponents();
         setLocationRelativeTo(null);
     }
 
-    public void finalizarCadastro(Usuario usuario) {
-        try{
-            funcionario.setUsuario(usuario);
-            facade.saveFuncionario(funcionario);
-        }catch (Exception e){
-            JOptionPane.showMessageDialog(null, "Erro ao salvar no banco: " + e.getMessage(), 
-                    "Erro ao salvar no banco de dados!",JOptionPane.ERROR_MESSAGE);
-        }
+    public void passandoDados(Funcionario funcionario){
+        txtNome.setText(funcionario.getNome());
+        txtDataDeNascimento.setText(funcionario.getDataDeNascimento());
+        txtCpf.setText(funcionario.getCpf());
+        txtEndereco.setText(funcionario.getEndereco());
+        txtTelefone.setText(funcionario.getTelefone());
+        txtEmail.setText(funcionario.getEmail());
+        txtSalario.setText(funcionario.getSalario());
+        txtStatus.setText(funcionario.getStatus());
+        txtDataDeEntrada.setText(funcionario.getDataDeEntrada());
+        this.funcionario = funcionario;
     }
-        
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        pnlContainer = new javax.swing.JPanel();
-        pnlLateral = new javax.swing.JPanel();
-        lblModuloRH = new javax.swing.JLabel();
-        pnlLogin = new javax.swing.JPanel();
-        lblFazerLogin = new javax.swing.JLabel();
-        btnCadastrar = new javax.swing.JButton();
+        pnlContainer4 = new javax.swing.JPanel();
+        pnlLateral4 = new javax.swing.JPanel();
+        lblModuloRH4 = new javax.swing.JLabel();
+        pnlLogin2 = new javax.swing.JPanel();
+        lblEditarFuncionario = new javax.swing.JLabel();
+        btnEditar = new javax.swing.JButton();
         pnlTextFields = new javax.swing.JPanel();
         lblNome = new javax.swing.JLabel();
         lblDataDeNascimento = new javax.swing.JLabel();
@@ -68,66 +74,66 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
         txtStatus = new javax.swing.JTextField();
         txtDataDeEntrada = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        pnlContainer.setBackground(new java.awt.Color(255, 255, 255));
-        pnlContainer.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 0, 0, 0, new java.awt.Color(0, 0, 0)));
-        pnlContainer.setMaximumSize(new java.awt.Dimension(900, 600));
-        pnlContainer.setMinimumSize(new java.awt.Dimension(900, 600));
-        pnlContainer.setName(""); // NOI18N
-        pnlContainer.setPreferredSize(new java.awt.Dimension(900, 600));
-        pnlContainer.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlContainer4.setBackground(new java.awt.Color(255, 255, 255));
+        pnlContainer4.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 0, 0, 0, new java.awt.Color(0, 0, 0)));
+        pnlContainer4.setMaximumSize(new java.awt.Dimension(900, 600));
+        pnlContainer4.setMinimumSize(new java.awt.Dimension(900, 600));
+        pnlContainer4.setName(""); // NOI18N
+        pnlContainer4.setPreferredSize(new java.awt.Dimension(900, 600));
+        pnlContainer4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        pnlLateral.setBackground(new java.awt.Color(26, 81, 107));
-        pnlLateral.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 0, 0, 0, new java.awt.Color(0, 0, 0)));
-        pnlLateral.setMaximumSize(new java.awt.Dimension(300, 600));
-        pnlLateral.setPreferredSize(new java.awt.Dimension(300, 600));
+        pnlLateral4.setBackground(new java.awt.Color(26, 81, 107));
+        pnlLateral4.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 0, 0, 0, new java.awt.Color(0, 0, 0)));
+        pnlLateral4.setMaximumSize(new java.awt.Dimension(300, 600));
+        pnlLateral4.setPreferredSize(new java.awt.Dimension(300, 600));
 
-        lblModuloRH.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        lblModuloRH.setForeground(new java.awt.Color(255, 255, 255));
-        lblModuloRH.setText("Módulo RH");
+        lblModuloRH4.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        lblModuloRH4.setForeground(new java.awt.Color(255, 255, 255));
+        lblModuloRH4.setText("Módulo RH");
 
-        javax.swing.GroupLayout pnlLateralLayout = new javax.swing.GroupLayout(pnlLateral);
-        pnlLateral.setLayout(pnlLateralLayout);
-        pnlLateralLayout.setHorizontalGroup(
-            pnlLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlLateralLayout.createSequentialGroup()
+        javax.swing.GroupLayout pnlLateral4Layout = new javax.swing.GroupLayout(pnlLateral4);
+        pnlLateral4.setLayout(pnlLateral4Layout);
+        pnlLateral4Layout.setHorizontalGroup(
+            pnlLateral4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlLateral4Layout.createSequentialGroup()
                 .addGap(46, 46, 46)
-                .addComponent(lblModuloRH)
+                .addComponent(lblModuloRH4)
                 .addContainerGap(60, Short.MAX_VALUE))
         );
-        pnlLateralLayout.setVerticalGroup(
-            pnlLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlLateralLayout.createSequentialGroup()
+        pnlLateral4Layout.setVerticalGroup(
+            pnlLateral4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlLateral4Layout.createSequentialGroup()
                 .addGap(22, 22, 22)
-                .addComponent(lblModuloRH)
+                .addComponent(lblModuloRH4)
                 .addContainerGap(528, Short.MAX_VALUE))
         );
 
-        pnlContainer.add(pnlLateral, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        pnlContainer4.add(pnlLateral4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        pnlLogin.setBackground(new java.awt.Color(255, 255, 255));
-        pnlLogin.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 4, true));
-        pnlLogin.setMaximumSize(new java.awt.Dimension(388, 340));
-        pnlLogin.setPreferredSize(new java.awt.Dimension(388, 340));
+        pnlLogin2.setBackground(new java.awt.Color(255, 255, 255));
+        pnlLogin2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 4, true));
+        pnlLogin2.setMaximumSize(new java.awt.Dimension(388, 340));
+        pnlLogin2.setPreferredSize(new java.awt.Dimension(388, 340));
 
-        lblFazerLogin.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        lblFazerLogin.setText("Cadastro de Funcionário");
+        lblEditarFuncionario.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        lblEditarFuncionario.setText("Editar Funcionário");
 
-        btnCadastrar.setBackground(new java.awt.Color(71, 19, 35));
-        btnCadastrar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnCadastrar.setForeground(new java.awt.Color(255, 255, 255));
-        btnCadastrar.setText("Cadastrar");
-        btnCadastrar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        btnCadastrar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnCadastrar.setFocusPainted(false);
-        btnCadastrar.setFocusable(false);
-        btnCadastrar.setMaximumSize(new java.awt.Dimension(266, 40));
-        btnCadastrar.setMinimumSize(new java.awt.Dimension(266, 40));
-        btnCadastrar.setPreferredSize(new java.awt.Dimension(266, 40));
-        btnCadastrar.addActionListener(new java.awt.event.ActionListener() {
+        btnEditar.setBackground(new java.awt.Color(71, 19, 35));
+        btnEditar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnEditar.setForeground(new java.awt.Color(255, 255, 255));
+        btnEditar.setText("Editar");
+        btnEditar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        btnEditar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnEditar.setFocusPainted(false);
+        btnEditar.setFocusable(false);
+        btnEditar.setMaximumSize(new java.awt.Dimension(266, 40));
+        btnEditar.setMinimumSize(new java.awt.Dimension(266, 40));
+        btnEditar.setPreferredSize(new java.awt.Dimension(266, 40));
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCadastrarActionPerformed(evt);
+                btnEditarActionPerformed(evt);
             }
         });
 
@@ -280,36 +286,36 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
         });
         pnlTextFields.add(txtDataDeEntrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 410, -1, 40));
 
-        javax.swing.GroupLayout pnlLoginLayout = new javax.swing.GroupLayout(pnlLogin);
-        pnlLogin.setLayout(pnlLoginLayout);
-        pnlLoginLayout.setHorizontalGroup(
-            pnlLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlLoginLayout.createSequentialGroup()
-                .addGroup(pnlLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlLoginLayout.createSequentialGroup()
+        javax.swing.GroupLayout pnlLogin2Layout = new javax.swing.GroupLayout(pnlLogin2);
+        pnlLogin2.setLayout(pnlLogin2Layout);
+        pnlLogin2Layout.setHorizontalGroup(
+            pnlLogin2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlLogin2Layout.createSequentialGroup()
+                .addGroup(pnlLogin2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlLogin2Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(pnlTextFields, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnlLoginLayout.createSequentialGroup()
-                        .addGap(48, 48, 48)
-                        .addComponent(lblFazerLogin))
-                    .addGroup(pnlLoginLayout.createSequentialGroup()
+                    .addGroup(pnlLogin2Layout.createSequentialGroup()
                         .addGap(51, 51, 51)
-                        .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnlLogin2Layout.createSequentialGroup()
+                        .addGap(81, 81, 81)
+                        .addComponent(lblEditarFuncionario)))
                 .addContainerGap(14, Short.MAX_VALUE))
         );
-        pnlLoginLayout.setVerticalGroup(
-            pnlLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlLoginLayout.createSequentialGroup()
+        pnlLogin2Layout.setVerticalGroup(
+            pnlLogin2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlLogin2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblFazerLogin)
+                .addComponent(lblEditarFuncionario)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnlTextFields, javax.swing.GroupLayout.DEFAULT_SIZE, 470, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12))
         );
 
-        pnlContainer.add(pnlLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 10, -1, 580));
+        pnlContainer4.add(pnlLogin2, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 10, -1, 580));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -317,28 +323,41 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(pnlContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pnlContainer4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(pnlContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pnlContainer4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
-        funcionario = new Funcionario(txtNome.getText(), txtDataDeNascimento.getText(), txtCpf.getText(), txtEndereco.getText(), 
-                txtTelefone.getText(), txtEmail.getText(), txtSalario.getText(), txtStatus.getText(), txtDataDeEntrada.getText());
-        
-        telaCadastroUsuario.setVisible(true);
-        telaCadastroUsuario.setUsuario(txtCpf.getText());  
-        this.setVisible(false);
-    }//GEN-LAST:event_btnCadastrarActionPerformed
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+        try{
+            Funcionario funcionarioEditado = new Funcionario(txtNome.getText(), txtDataDeNascimento.getText(), txtCpf.getText(), txtEndereco.getText(),
+            txtTelefone.getText(), txtEmail.getText(), txtSalario.getText(), txtStatus.getText(), txtDataDeEntrada.getText());
+            funcionarioEditado.setId(funcionario.getId());
+            facade.updateFuncionario(funcionarioEditado);
+            telaDeListarFuncionarios.exibirDados();
+            this.setVisible(false);
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(null, "Erro ao Editar no banco: " + e.getMessage(), 
+                    "Erro ao Editar no banco de dados!",JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnEditarActionPerformed
+
+    private void txtNomeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNomeKeyPressed
+        if(txtNome.getText().trim().isEmpty()){
+            lblNome.setVisible(true);
+        }else{
+            lblNome.setVisible(false);
+        }
+    }//GEN-LAST:event_txtNomeKeyPressed
 
     private void txtDataDeNascimentoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDataDeNascimentoKeyPressed
         if(txtDataDeNascimento.getText().trim().isEmpty()){
@@ -348,13 +367,13 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtDataDeNascimentoKeyPressed
 
-    private void txtDataDeEntradaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDataDeEntradaKeyPressed
-        if(txtDataDeEntrada.getText().trim().isEmpty()){
-            lblDataDeEntrada.setVisible(true);
+    private void txtCpfKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCpfKeyPressed
+        if(txtCpf.getText().trim().isEmpty()){
+            lblCpf.setVisible(true);
         }else{
-            lblDataDeEntrada.setVisible(false);
+            lblCpf.setVisible(false);
         }
-    }//GEN-LAST:event_txtDataDeEntradaKeyPressed
+    }//GEN-LAST:event_txtCpfKeyPressed
 
     private void txtEnderecoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEnderecoKeyPressed
         if(txtEndereco.getText().trim().isEmpty()){
@@ -396,21 +415,13 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtStatusKeyPressed
 
-    private void txtNomeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNomeKeyPressed
-        if(txtNome.getText().trim().isEmpty()){
-            lblNome.setVisible(true);
+    private void txtDataDeEntradaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDataDeEntradaKeyPressed
+        if(txtDataDeEntrada.getText().trim().isEmpty()){
+            lblDataDeEntrada.setVisible(true);
         }else{
-            lblNome.setVisible(false);
+            lblDataDeEntrada.setVisible(false);
         }
-    }//GEN-LAST:event_txtNomeKeyPressed
-
-    private void txtCpfKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCpfKeyPressed
-        if(txtCpf.getText().trim().isEmpty()){
-            lblCpf.setVisible(true);
-        }else{
-            lblCpf.setVisible(false);
-        }
-    }//GEN-LAST:event_txtCpfKeyPressed
+    }//GEN-LAST:event_txtDataDeEntradaKeyPressed
 
     /**
      * @param args the command line arguments
@@ -429,40 +440,41 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaCadastroFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaEditarFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaCadastroFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaEditarFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaCadastroFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaEditarFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaCadastroFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaEditarFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaCadastroFuncionario().setVisible(true);
+                new TelaEditarFuncionario().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCadastrar;
+    private javax.swing.JButton btnEditar;
     private javax.swing.JLabel lblCpf;
     private javax.swing.JLabel lblDataDeEntrada;
     private javax.swing.JLabel lblDataDeNascimento;
+    private javax.swing.JLabel lblEditarFuncionario;
     private javax.swing.JLabel lblEmail;
     private javax.swing.JLabel lblEndereco;
-    private javax.swing.JLabel lblFazerLogin;
-    private javax.swing.JLabel lblModuloRH;
+    private javax.swing.JLabel lblModuloRH4;
     private javax.swing.JLabel lblNome;
     private javax.swing.JLabel lblSalario;
     private javax.swing.JLabel lblStatus;
     private javax.swing.JLabel lblTelefone;
-    private javax.swing.JPanel pnlContainer;
-    private javax.swing.JPanel pnlLateral;
-    private javax.swing.JPanel pnlLogin;
+    private javax.swing.JPanel pnlContainer4;
+    private javax.swing.JPanel pnlLateral4;
+    private javax.swing.JPanel pnlLogin2;
     private javax.swing.JPanel pnlTextFields;
     private javax.swing.JTextField txtCpf;
     private javax.swing.JTextField txtDataDeEntrada;

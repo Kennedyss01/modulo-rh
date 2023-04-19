@@ -15,7 +15,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface IRepositoryCurriculo extends JpaRepository<Curriculo, String>{
 
-    List<Curriculo> findByCurriculoNome(String nome);
+    List<Curriculo> findByNome(String nome);
     boolean existsByEmail(String email);
     
 }

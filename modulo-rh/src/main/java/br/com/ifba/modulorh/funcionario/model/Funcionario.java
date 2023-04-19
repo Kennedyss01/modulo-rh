@@ -35,7 +35,7 @@ public class Funcionario implements Serializable{
     private String status;
     private String dataDeEntrada;
     
-    @OneToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE})
+    @OneToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE,CascadeType.REMOVE})
     private Usuario usuario;
 
     public Funcionario(String nome, String dataDeNascimento, String cpf, String endereco, String telefone, String email, String salario, String status, String dataDeEntrada) {
