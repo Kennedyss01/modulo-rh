@@ -74,7 +74,8 @@ public class TelaEditarFuncionario extends javax.swing.JFrame {
         txtStatus = new javax.swing.JTextField();
         txtDataDeEntrada = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Editar Funcionário");
 
         pnlContainer4.setBackground(new java.awt.Color(255, 255, 255));
         pnlContainer4.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 0, 0, 0, new java.awt.Color(0, 0, 0)));
@@ -125,7 +126,7 @@ public class TelaEditarFuncionario extends javax.swing.JFrame {
         btnEditar.setForeground(new java.awt.Color(255, 255, 255));
         btnEditar.setText("Editar");
         btnEditar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        btnEditar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnEditar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnEditar.setFocusPainted(false);
         btnEditar.setFocusable(false);
         btnEditar.setMaximumSize(new java.awt.Dimension(266, 40));

@@ -54,7 +54,8 @@ public class TelaDeListarFuncionarios extends javax.swing.JFrame {
         btnCadastrar = new javax.swing.JButton();
         btnEditar1 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Listar Funcionários");
 
         pnlContainer.setBackground(new java.awt.Color(255, 255, 255));
         pnlContainer.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 0, 0, 0, new java.awt.Color(0, 0, 0)));
@@ -126,7 +127,7 @@ public class TelaDeListarFuncionarios extends javax.swing.JFrame {
         btnExcluir.setForeground(new java.awt.Color(255, 255, 255));
         btnExcluir.setText("Excluir");
         btnExcluir.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        btnExcluir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnExcluir.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnExcluir.setFocusPainted(false);
         btnExcluir.setFocusable(false);
         btnExcluir.setMaximumSize(new java.awt.Dimension(266, 40));
@@ -143,7 +144,7 @@ public class TelaDeListarFuncionarios extends javax.swing.JFrame {
         btnCadastrar.setForeground(new java.awt.Color(255, 255, 255));
         btnCadastrar.setText("Cadastrar");
         btnCadastrar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        btnCadastrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnCadastrar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnCadastrar.setFocusPainted(false);
         btnCadastrar.setFocusable(false);
         btnCadastrar.setMaximumSize(new java.awt.Dimension(266, 40));
@@ -160,7 +161,7 @@ public class TelaDeListarFuncionarios extends javax.swing.JFrame {
         btnEditar1.setForeground(new java.awt.Color(255, 255, 255));
         btnEditar1.setText("Editar");
         btnEditar1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        btnEditar1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnEditar1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnEditar1.setFocusPainted(false);
         btnEditar1.setFocusable(false);
         btnEditar1.setMaximumSize(new java.awt.Dimension(266, 40));
