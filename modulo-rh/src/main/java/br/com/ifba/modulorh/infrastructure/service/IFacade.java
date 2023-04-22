@@ -16,6 +16,7 @@ public interface IFacade {
     void updateUsuario(Usuario usuario);
     void deleteUsuario(Usuario usuario);
     Usuario findUsuarioById(Long id);
+    Long countUsuarioByTipo(String tipo);
     
      //========================Funcionario========================//
     Funcionario saveFuncionario(Funcionario funcionario);

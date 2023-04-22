@@ -32,7 +32,7 @@ public class Usuario implements Serializable {
     private String senha;
     private String tipo;
     
-    @OneToOne(mappedBy = "usuario", fetch = FetchType.LAZY, cascade = {CascadeType.MERGE})
+    @OneToOne(mappedBy = "usuario", fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.REMOVE})
     private Funcionario funcionario;
     
     public Usuario(String login, String senha) {

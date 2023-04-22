@@ -4,6 +4,8 @@ import br.com.ifba.modulorh.homescreen.TelaHomescreenFuncionario;
 import br.com.ifba.modulorh.homescreen.TelaHomescreenGestor;
 import br.com.ifba.modulorh.infrastructure.service.IFacade;
 import br.com.ifba.modulorh.usuario.model.Usuario;
+import br.com.ifba.modulorh.usuario.view.TelaCadastroUsuario;
+import javax.annotation.PostConstruct;
 import javax.swing.JOptionPane;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -21,12 +23,35 @@ public class TelaLogin extends javax.swing.JFrame {
     private TelaHomescreenFuncionario homescreenFuncionario;
     @Autowired
     private TelaHomescreenGestor homescreenGestor;
+    @Autowired
+    private TelaCadastroUsuario telaCadastroUsuario;
     
     public TelaLogin() {
         initComponents();
         setLocationRelativeTo(null);
     }
-
+    
+    @PostConstruct
+    private void verficarExistenciaDeGestores() {
+        try {
+            Long contagem = facade.countUsuarioByTipo("Gestor");
+      
+            if (contagem == 0) {
+                telaCadastroUsuario.setCadastroFuncionario(false);
+                telaCadastroUsuario.selecionarGestor();
+                telaCadastroUsuario.setVisible(true);
+            } 
+        } catch (Exception err) {
+            JOptionPane.showMessageDialog(null, 
+                   err.getMessage(), "Erro ao realizar contagem de usuários", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    private void limparCampos() {
+        txtUsuario.setText("");
+        txtSenha.setText("");
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -46,6 +71,7 @@ public class TelaLogin extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Login");
+        setAutoRequestFocus(false);
         setMaximumSize(new java.awt.Dimension(900, 600));
         setMinimumSize(new java.awt.Dimension(900, 600));
         setPreferredSize(new java.awt.Dimension(900, 600));
@@ -138,9 +164,12 @@ public class TelaLogin extends javax.swing.JFrame {
         txtUsuario.setMaximumSize(new java.awt.Dimension(320, 50));
         txtUsuario.setMinimumSize(new java.awt.Dimension(320, 50));
         txtUsuario.setPreferredSize(new java.awt.Dimension(320, 50));
-        txtUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtUsuarioKeyPressed(evt);
+        txtUsuario.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtUsuarioFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtUsuarioFocusLost(evt);
             }
         });
         pnlTextFields.add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
@@ -149,9 +178,12 @@ public class TelaLogin extends javax.swing.JFrame {
         txtSenha.setMaximumSize(new java.awt.Dimension(320, 50));
         txtSenha.setMinimumSize(new java.awt.Dimension(320, 50));
         txtSenha.setPreferredSize(new java.awt.Dimension(320, 50));
-        txtSenha.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtSenhaKeyPressed(evt);
+        txtSenha.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtSenhaFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtSenhaFocusLost(evt);
             }
         });
         pnlTextFields.add(txtSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, -1, -1));
@@ -221,33 +253,36 @@ public class TelaLogin extends javax.swing.JFrame {
                 homescreenGestor.definirGestor(usuario);
             }
             this.setVisible(false);
-            txtUsuario.setText("");
-            txtSenha.setText("");
+            limparCampos();
         } catch (Exception err) {
             JOptionPane.showMessageDialog(null, 
                    err.getMessage(), "Erro ao realizar login", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnEntrarActionPerformed
 
-    private void txtSenhaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSenhaKeyPressed
-        if (String.valueOf(txtSenha.getPassword()).trim().isEmpty()) {
-            lblSenha.setVisible(true);
-        } else {
-             lblSenha.setVisible(false);
-        }
-    }//GEN-LAST:event_txtSenhaKeyPressed
-
     private void lblEsqueceuASenhaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblEsqueceuASenhaMouseClicked
     
     }//GEN-LAST:event_lblEsqueceuASenhaMouseClicked
 
-    private void txtUsuarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsuarioKeyPressed
+    private void txtUsuarioFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUsuarioFocusGained
+        lblUsuario.setVisible(false);
+    }//GEN-LAST:event_txtUsuarioFocusGained
+
+    private void txtUsuarioFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUsuarioFocusLost
         if (txtUsuario.getText().trim().isEmpty()) {
             lblUsuario.setVisible(true);
-        } else {
-             lblUsuario.setVisible(false);
         }
-    }//GEN-LAST:event_txtUsuarioKeyPressed
+    }//GEN-LAST:event_txtUsuarioFocusLost
+
+    private void txtSenhaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtSenhaFocusGained
+        lblSenha.setVisible(false);
+    }//GEN-LAST:event_txtSenhaFocusGained
+
+    private void txtSenhaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtSenhaFocusLost
+        if (String.valueOf(txtSenha.getPassword()).trim().isEmpty()) {
+            lblSenha.setVisible(true);
+        }
+    }//GEN-LAST:event_txtSenhaFocusLost
 
     /**
      * @param args the command line arguments

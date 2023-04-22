@@ -13,5 +13,6 @@ public interface IServiceUsuario {
     void updateUsuario(Usuario usuario);
     void deleteUsuario(Usuario usuario);
     Usuario findById(Long id);
+    Long countUsuarioByTipo(String tipo);
     
 }

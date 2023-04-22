@@ -338,6 +338,7 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
         
         telaCadastroUsuario.setVisible(true);
         telaCadastroUsuario.setUsuario(txtCpf.getText());  
+        telaCadastroUsuario.setCadastroFuncionario(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnCadastrarActionPerformed
 

@@ -72,5 +72,10 @@ public class ServiceUsuario implements IServiceUsuario {
     public Usuario findById(Long id) {
         return repositoryUsuario.getReferenceById(id);
     }
+
+    @Override
+    public Long countUsuarioByTipo(String tipo) {
+        return repositoryUsuario.countByTipo(tipo);
+    }
     
 }

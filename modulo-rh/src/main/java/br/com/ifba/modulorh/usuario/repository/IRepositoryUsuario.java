@@ -14,5 +14,6 @@ public interface IRepositoryUsuario extends JpaRepository<Usuario, Long> {
     
     List<Usuario> findByLogin(String login);
     boolean existsByLogin(String login);
+    Long countByTipo(String tipo);
     
 }

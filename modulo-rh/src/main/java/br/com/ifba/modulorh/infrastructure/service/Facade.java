@@ -44,6 +44,11 @@ public class Facade implements IFacade {
         return serviceUsuario.findById(id);
     }
     
+    @Override
+    public Long countUsuarioByTipo(String tipo) {
+        return serviceUsuario.countUsuarioByTipo(tipo);
+    }
+    
     //========================Funcionario========================//
     @Autowired
     private IServiceFuncionario serviceFuncionario;

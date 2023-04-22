@@ -22,6 +22,7 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
     private TelaCadastroFuncionario telaCadastroFuncionario;
     @Autowired
     private TelaDeListarFuncionarios telaDeListarFuncionarios; 
+    private boolean cadastroFuncionario;
     
     public TelaCadastroUsuario() {
         initComponents();
@@ -32,6 +33,15 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
         txtUsuario.setText(usuario);
         lblUsuario.setVisible(false);
     }
+    
+    public void selecionarGestor() {
+        chkGestor.setSelected(true);
+        chkFuncionario.setEnabled(false);
+    }
+    
+    public void setCadastroFuncionario(boolean cadastroFuncionario) {
+        this.cadastroFuncionario = cadastroFuncionario;
+    } 
     
     private boolean validarCampos() {
         if (txtUsuario.getText().trim().isEmpty()) {
@@ -58,6 +68,14 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
             return false;
         }
        return true;
+    }
+    
+    private void limparCampos() {
+        chkGestor.setSelected(false);
+        chkFuncionario.setSelected(false);
+        txtUsuario.setText("");
+        txtSenha.setText("");
+        txtConfirmarSenha.setText("");
     }
     
     private Usuario getUsuario() {
@@ -92,6 +110,8 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro de Usuário");
+        setAutoRequestFocus(false);
+        setResizable(false);
 
         pnlContainer.setBackground(new java.awt.Color(255, 255, 255));
         pnlContainer.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 0, 0, 0, new java.awt.Color(0, 0, 0)));
@@ -179,9 +199,12 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
         txtUsuario.setMaximumSize(new java.awt.Dimension(320, 50));
         txtUsuario.setMinimumSize(new java.awt.Dimension(320, 50));
         txtUsuario.setPreferredSize(new java.awt.Dimension(320, 50));
-        txtUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtUsuarioKeyPressed(evt);
+        txtUsuario.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtUsuarioFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtUsuarioFocusLost(evt);
             }
         });
         pnlTextFields.add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
@@ -191,9 +214,12 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
         txtSenha.setMaximumSize(new java.awt.Dimension(320, 50));
         txtSenha.setMinimumSize(new java.awt.Dimension(320, 50));
         txtSenha.setPreferredSize(new java.awt.Dimension(320, 50));
-        txtSenha.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtSenhaKeyPressed(evt);
+        txtSenha.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtSenhaFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtSenhaFocusLost(evt);
             }
         });
         pnlTextFields.add(txtSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, -1, -1));
@@ -201,9 +227,12 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
         txtConfirmarSenha.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         txtConfirmarSenha.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
         txtConfirmarSenha.setPreferredSize(new java.awt.Dimension(350, 50));
-        txtConfirmarSenha.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtConfirmarSenhaKeyPressed(evt);
+        txtConfirmarSenha.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtConfirmarSenhaFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtConfirmarSenhaFocusLost(evt);
             }
         });
         pnlTextFields.add(txtConfirmarSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 320, -1));
@@ -291,7 +320,10 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
             try {
                 usuario = facade.saveUsuario(usuario);
                 this.setVisible(false);
-                telaCadastroFuncionario.finalizarCadastro(usuario);
+                if (cadastroFuncionario == true) {
+                    telaCadastroFuncionario.finalizarCadastro(usuario);
+                }
+                limparCampos();
             } catch (Exception e) {
                  JOptionPane.showMessageDialog(null, "Erro ao salvar no banco: " + e.getMessage(), 
                     "Erro ao salvar no banco de dados!",JOptionPane.ERROR_MESSAGE);
@@ -299,22 +331,6 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
         }
         telaDeListarFuncionarios.exibirDados();
     }//GEN-LAST:event_btnCadastrarActionPerformed
-
-    private void txtUsuarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsuarioKeyPressed
-        if (txtUsuario.getText().trim().isEmpty()) {
-            lblUsuario.setVisible(true);
-        } else {
-            lblUsuario.setVisible(false);
-        }
-    }//GEN-LAST:event_txtUsuarioKeyPressed
-
-    private void txtSenhaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSenhaKeyPressed
-        if (String.valueOf(txtSenha.getPassword()).trim().isEmpty()) {
-            lblSenha.setVisible(true);
-        } else {
-            lblSenha.setVisible(false);
-        }
-    }//GEN-LAST:event_txtSenhaKeyPressed
 
     private void chkGestorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkGestorActionPerformed
         if (chkGestor.isSelected()) {
@@ -332,13 +348,35 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_chkFuncionarioActionPerformed
 
-    private void txtConfirmarSenhaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtConfirmarSenhaKeyPressed
+    private void txtUsuarioFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUsuarioFocusGained
+        lblUsuario.setVisible(false);
+    }//GEN-LAST:event_txtUsuarioFocusGained
+
+    private void txtUsuarioFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUsuarioFocusLost
+        if (txtUsuario.getText().trim().isEmpty()) {
+            lblUsuario.setVisible(true);
+        }
+    }//GEN-LAST:event_txtUsuarioFocusLost
+
+    private void txtSenhaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtSenhaFocusGained
+        lblSenha.setVisible(false);
+    }//GEN-LAST:event_txtSenhaFocusGained
+
+    private void txtSenhaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtSenhaFocusLost
+        if (String.valueOf(txtSenha.getPassword()).trim().isEmpty()) {
+            lblSenha.setVisible(true);
+        }
+    }//GEN-LAST:event_txtSenhaFocusLost
+
+    private void txtConfirmarSenhaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtConfirmarSenhaFocusGained
+        lblConfirmarSenha.setVisible(false);
+    }//GEN-LAST:event_txtConfirmarSenhaFocusGained
+
+    private void txtConfirmarSenhaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtConfirmarSenhaFocusLost
         if (String.valueOf(txtConfirmarSenha.getPassword()).trim().isEmpty()) {
             lblConfirmarSenha.setVisible(true);
-        } else {
-            lblConfirmarSenha.setVisible(false);
         }
-    }//GEN-LAST:event_txtConfirmarSenhaKeyPressed
+    }//GEN-LAST:event_txtConfirmarSenhaFocusLost
 
     /**
      * @param args the command line arguments

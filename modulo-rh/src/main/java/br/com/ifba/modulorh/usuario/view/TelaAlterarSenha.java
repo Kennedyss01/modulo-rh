@@ -47,6 +47,12 @@ public class TelaAlterarSenha extends javax.swing.JFrame {
        return true;
     }
     
+    private void limparCampos() {
+        txtSenhaAtual.setText("");
+        txtNovaSenha.setText("");
+        txtConfirmarSenha.setText("");
+    }
+    
  
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -68,6 +74,8 @@ public class TelaAlterarSenha extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Alterar Senha");
+        setAutoRequestFocus(false);
+        setResizable(false);
 
         pnlContainer.setBackground(new java.awt.Color(255, 255, 255));
         pnlContainer.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 0, 0, 0, new java.awt.Color(0, 0, 0)));
@@ -153,9 +161,12 @@ public class TelaAlterarSenha extends javax.swing.JFrame {
         txtSenhaAtual.setMaximumSize(new java.awt.Dimension(320, 50));
         txtSenhaAtual.setMinimumSize(new java.awt.Dimension(320, 50));
         txtSenhaAtual.setPreferredSize(new java.awt.Dimension(320, 50));
-        txtSenhaAtual.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtSenhaAtualKeyPressed(evt);
+        txtSenhaAtual.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtSenhaAtualFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtSenhaAtualFocusLost(evt);
             }
         });
         pnlTextFields.add(txtSenhaAtual, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
@@ -165,9 +176,12 @@ public class TelaAlterarSenha extends javax.swing.JFrame {
         txtNovaSenha.setMaximumSize(new java.awt.Dimension(320, 50));
         txtNovaSenha.setMinimumSize(new java.awt.Dimension(320, 50));
         txtNovaSenha.setPreferredSize(new java.awt.Dimension(320, 50));
-        txtNovaSenha.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtNovaSenhaKeyPressed(evt);
+        txtNovaSenha.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtNovaSenhaFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtNovaSenhaFocusLost(evt);
             }
         });
         pnlTextFields.add(txtNovaSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, -1, -1));
@@ -175,9 +189,12 @@ public class TelaAlterarSenha extends javax.swing.JFrame {
         txtConfirmarSenha.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         txtConfirmarSenha.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
         txtConfirmarSenha.setPreferredSize(new java.awt.Dimension(350, 50));
-        txtConfirmarSenha.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtConfirmarSenhaKeyPressed(evt);
+        txtConfirmarSenha.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtConfirmarSenhaFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtConfirmarSenhaFocusLost(evt);
             }
         });
         pnlTextFields.add(txtConfirmarSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 320, -1));
@@ -235,6 +252,7 @@ public class TelaAlterarSenha extends javax.swing.JFrame {
             try {
                 facade.updateUsuario(this.usuario);
                 this.setVisible(false);
+                limparCampos();
             } catch (Exception e) {
                  JOptionPane.showMessageDialog(null, "Erro ao atualizar no banco: " + e.getMessage(), 
                     "Erro ao atualizar no banco de dados!",JOptionPane.ERROR_MESSAGE);
@@ -242,29 +260,35 @@ public class TelaAlterarSenha extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnAtualizarActionPerformed
 
-    private void txtNovaSenhaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNovaSenhaKeyPressed
-        if (String.valueOf(txtNovaSenha.getPassword()).trim().isEmpty()) {
-            lblNovaSenha.setVisible(true);
-        } else {
-            lblNovaSenha.setVisible(false);
-        }
-    }//GEN-LAST:event_txtNovaSenhaKeyPressed
+    private void txtSenhaAtualFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtSenhaAtualFocusGained
+        lblSenhaAtual.setVisible(false);
+    }//GEN-LAST:event_txtSenhaAtualFocusGained
 
-    private void txtConfirmarSenhaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtConfirmarSenhaKeyPressed
-        if (String.valueOf(txtConfirmarSenha.getPassword()).trim().isEmpty()) {
-            lblConfirmarSenha.setVisible(true);
-        } else {
-            lblConfirmarSenha.setVisible(false);
-        }
-    }//GEN-LAST:event_txtConfirmarSenhaKeyPressed
-
-    private void txtSenhaAtualKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSenhaAtualKeyPressed
+    private void txtSenhaAtualFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtSenhaAtualFocusLost
         if (String.valueOf(txtSenhaAtual.getPassword()).trim().isEmpty()) {
             lblSenhaAtual.setVisible(true);
-        } else {
-            lblSenhaAtual.setVisible(false);
         }
-    }//GEN-LAST:event_txtSenhaAtualKeyPressed
+    }//GEN-LAST:event_txtSenhaAtualFocusLost
+
+    private void txtNovaSenhaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNovaSenhaFocusGained
+       lblNovaSenha.setVisible(false);
+    }//GEN-LAST:event_txtNovaSenhaFocusGained
+
+    private void txtNovaSenhaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNovaSenhaFocusLost
+        if (String.valueOf(txtNovaSenha.getPassword()).trim().isEmpty()) {
+            lblNovaSenha.setVisible(true);
+        } 
+    }//GEN-LAST:event_txtNovaSenhaFocusLost
+
+    private void txtConfirmarSenhaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtConfirmarSenhaFocusGained
+        lblConfirmarSenha.setVisible(false);
+    }//GEN-LAST:event_txtConfirmarSenhaFocusGained
+
+    private void txtConfirmarSenhaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtConfirmarSenhaFocusLost
+        if (String.valueOf(txtConfirmarSenha.getPassword()).trim().isEmpty()) {
+            lblConfirmarSenha.setVisible(true);
+        } 
+    }//GEN-LAST:event_txtConfirmarSenhaFocusLost
 
     /**
      * @param args the command line arguments
