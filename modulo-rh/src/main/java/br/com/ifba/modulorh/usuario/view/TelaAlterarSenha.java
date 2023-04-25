@@ -2,6 +2,7 @@ package br.com.ifba.modulorh.usuario.view;
 
 import br.com.ifba.modulorh.infrastructure.service.IFacade;
 import br.com.ifba.modulorh.usuario.model.Usuario;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -16,6 +17,8 @@ public class TelaAlterarSenha extends javax.swing.JFrame {
     @Autowired
     private IFacade facade;
     private Usuario usuario;
+    
+    ImageIcon icone = new ImageIcon("./src/main/resources/imagens/senha-16x16.png");
     
     public TelaAlterarSenha() {
         initComponents();
@@ -75,6 +78,7 @@ public class TelaAlterarSenha extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Alterar Senha");
         setAutoRequestFocus(false);
+        setIconImage(icone.getImage());
         setResizable(false);
 
         pnlContainer.setBackground(new java.awt.Color(255, 255, 255));

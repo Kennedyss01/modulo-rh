@@ -6,6 +6,7 @@ import br.com.ifba.modulorh.funcionario.view.TelaCadastroFuncionario;
 import br.com.ifba.modulorh.funcionario.view.TelaDeListarFuncionarios;
 import br.com.ifba.modulorh.infrastructure.service.IFacade;
 import br.com.ifba.modulorh.login.TelaLogin;
+import javax.swing.ImageIcon;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
@@ -28,6 +29,8 @@ public class TelaHomescreenGestor extends javax.swing.JFrame {
     @Autowired @Lazy
     private TelaLogin telaLogin;
     private Usuario usuario;
+    
+    ImageIcon icone = new ImageIcon("./src/main/resources/imagens/tela-inicial-32x32.png");
 
     public TelaHomescreenGestor() {
         initComponents();
@@ -61,6 +64,7 @@ public class TelaHomescreenGestor extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Tela Inicial do Gestor");
+        setIconImage(icone.getImage());
         setMinimumSize(new java.awt.Dimension(1028, 599));
 
         pnlContainer.setBackground(new java.awt.Color(255, 255, 255));

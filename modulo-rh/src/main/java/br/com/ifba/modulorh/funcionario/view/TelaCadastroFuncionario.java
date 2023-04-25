@@ -4,6 +4,7 @@ import br.com.ifba.modulorh.funcionario.model.Funcionario;
 import br.com.ifba.modulorh.infrastructure.service.IFacade;
 import br.com.ifba.modulorh.usuario.model.Usuario;
 import br.com.ifba.modulorh.usuario.view.TelaCadastroUsuario;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
@@ -21,6 +22,8 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
     @Autowired @Lazy
     private TelaCadastroUsuario telaCadastroUsuario;
     private Funcionario funcionario;
+    
+    ImageIcon icone = new ImageIcon("./src/main/resources/imagens/cadastrar-funcionario-32x32.png");
     
     public TelaCadastroFuncionario() {
         initComponents();
@@ -70,6 +73,7 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro de Funcionário");
+        setIconImage(icone.getImage());
 
         pnlContainer.setBackground(new java.awt.Color(255, 255, 255));
         pnlContainer.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 0, 0, 0, new java.awt.Color(0, 0, 0)));

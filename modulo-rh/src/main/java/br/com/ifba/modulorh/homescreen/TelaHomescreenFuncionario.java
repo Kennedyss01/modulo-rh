@@ -5,6 +5,7 @@ import br.com.ifba.modulorh.infrastructure.service.IFacade;
 import br.com.ifba.modulorh.login.TelaLogin;
 import br.com.ifba.modulorh.usuario.model.Usuario;
 import br.com.ifba.modulorh.usuario.view.TelaAlterarSenha;
+import javax.swing.ImageIcon;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
@@ -23,6 +24,8 @@ public class TelaHomescreenFuncionario extends javax.swing.JFrame {
     @Autowired
     private TelaAlterarSenha telaAlterarSenha;
     private Funcionario funcionario;
+    
+    ImageIcon icone = new ImageIcon("./src/main/resources/imagens/tela-inicial-32x32.png");
    
     public TelaHomescreenFuncionario() {
         initComponents();
@@ -52,6 +55,7 @@ public class TelaHomescreenFuncionario extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Tela Inicial do Funcionário");
+        setIconImage(icone.getImage());
         setMinimumSize(new java.awt.Dimension(881, 599));
 
         pnlContainer.setBackground(new java.awt.Color(255, 255, 255));

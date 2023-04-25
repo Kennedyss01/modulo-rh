@@ -9,6 +9,7 @@ import br.com.ifba.modulorh.infrastructure.service.Facade;
 import br.com.ifba.modulorh.infrastructure.service.IFacade;
 import java.util.List;
 import javax.annotation.PostConstruct;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,8 @@ public class TelaDeListarFuncionarios extends javax.swing.JFrame {
     private TelaCadastroFuncionario telaCadastroFuncionario;
     @Autowired
     private TelaEditarFuncionario telaEditarFuncionario;
+    
+    ImageIcon icone = new ImageIcon("./src/main/resources/imagens/listar-funcionarios-32x32.png");
     
     public TelaDeListarFuncionarios() {
         initComponents();
@@ -56,6 +59,7 @@ public class TelaDeListarFuncionarios extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Listar Funcionários");
+        setIconImage(icone.getImage());
 
         pnlContainer.setBackground(new java.awt.Color(255, 255, 255));
         pnlContainer.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 0, 0, 0, new java.awt.Color(0, 0, 0)));
