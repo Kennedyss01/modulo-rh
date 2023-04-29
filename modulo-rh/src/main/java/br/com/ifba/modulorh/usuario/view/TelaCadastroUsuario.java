@@ -76,6 +76,8 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
     private void limparCampos() {
         chkGestor.setSelected(false);
         chkFuncionario.setSelected(false);
+        chkFuncionario.setEnabled(true);
+        chkGestor.setEnabled(true);
         txtUsuario.setText("");
         txtSenha.setText("");
         txtConfirmarSenha.setText("");
