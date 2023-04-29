@@ -82,17 +82,15 @@ public class TelaAlterarSenha extends javax.swing.JFrame {
         setResizable(false);
 
         pnlContainer.setBackground(new java.awt.Color(255, 255, 255));
-        pnlContainer.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 0, 0, 0, new java.awt.Color(0, 0, 0)));
+        pnlContainer.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         pnlContainer.setMaximumSize(new java.awt.Dimension(900, 600));
         pnlContainer.setMinimumSize(new java.awt.Dimension(900, 600));
         pnlContainer.setName(""); // NOI18N
         pnlContainer.setPreferredSize(new java.awt.Dimension(900, 600));
-        pnlContainer.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         pnlLateral.setBackground(new java.awt.Color(26, 81, 107));
-        pnlLateral.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 0, 0, 0, new java.awt.Color(0, 0, 0)));
-        pnlLateral.setMaximumSize(new java.awt.Dimension(300, 600));
-        pnlLateral.setPreferredSize(new java.awt.Dimension(300, 600));
+        pnlLateral.setMaximumSize(new java.awt.Dimension(293, 595));
+        pnlLateral.setPreferredSize(new java.awt.Dimension(293, 595));
 
         lblModuloRH.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         lblModuloRH.setForeground(new java.awt.Color(255, 255, 255));
@@ -105,17 +103,15 @@ public class TelaAlterarSenha extends javax.swing.JFrame {
             .addGroup(pnlLateralLayout.createSequentialGroup()
                 .addGap(46, 46, 46)
                 .addComponent(lblModuloRH)
-                .addContainerGap(60, Short.MAX_VALUE))
+                .addContainerGap(53, Short.MAX_VALUE))
         );
         pnlLateralLayout.setVerticalGroup(
             pnlLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlLateralLayout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addComponent(lblModuloRH)
-                .addContainerGap(528, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-
-        pnlContainer.add(pnlLateral, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pnlAlterarSenha.setBackground(new java.awt.Color(255, 255, 255));
         pnlAlterarSenha.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 4, true));
@@ -232,7 +228,24 @@ public class TelaAlterarSenha extends javax.swing.JFrame {
                 .addGap(29, 29, 29))
         );
 
-        pnlContainer.add(pnlAlterarSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 130, -1, -1));
+        javax.swing.GroupLayout pnlContainerLayout = new javax.swing.GroupLayout(pnlContainer);
+        pnlContainer.setLayout(pnlContainerLayout);
+        pnlContainerLayout.setHorizontalGroup(
+            pnlContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlContainerLayout.createSequentialGroup()
+                .addComponent(pnlLateral, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 116, Short.MAX_VALUE)
+                .addComponent(pnlAlterarSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(99, 99, 99))
+        );
+        pnlContainerLayout.setVerticalGroup(
+            pnlContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(pnlLateral, javax.swing.GroupLayout.DEFAULT_SIZE, 596, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlContainerLayout.createSequentialGroup()
+                .addContainerGap(121, Short.MAX_VALUE)
+                .addComponent(pnlAlterarSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(115, 115, 115))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
