@@ -51,10 +51,10 @@ public class TelaEditarFuncionario extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        pnlContainer4 = new javax.swing.JPanel();
-        pnlLateral4 = new javax.swing.JPanel();
-        lblModuloRH4 = new javax.swing.JLabel();
-        pnlLogin2 = new javax.swing.JPanel();
+        pnlContainer = new javax.swing.JPanel();
+        pnlLateral = new javax.swing.JPanel();
+        lblModuloRH = new javax.swing.JLabel();
+        pnlEditarFuncionario = new javax.swing.JPanel();
         lblEditarFuncionario = new javax.swing.JLabel();
         btnEditar = new javax.swing.JButton();
         pnlTextFields = new javax.swing.JPanel();
@@ -80,47 +80,45 @@ public class TelaEditarFuncionario extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Editar Funcionário");
         setIconImage(icone.getImage());
+        setMinimumSize(new java.awt.Dimension(912, 612));
+        setResizable(false);
 
-        pnlContainer4.setBackground(new java.awt.Color(255, 255, 255));
-        pnlContainer4.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 0, 0, 0, new java.awt.Color(0, 0, 0)));
-        pnlContainer4.setMaximumSize(new java.awt.Dimension(900, 600));
-        pnlContainer4.setMinimumSize(new java.awt.Dimension(900, 600));
-        pnlContainer4.setName(""); // NOI18N
-        pnlContainer4.setPreferredSize(new java.awt.Dimension(900, 600));
-        pnlContainer4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlContainer.setBackground(new java.awt.Color(255, 255, 255));
+        pnlContainer.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        pnlContainer.setMaximumSize(new java.awt.Dimension(900, 600));
+        pnlContainer.setMinimumSize(new java.awt.Dimension(900, 600));
+        pnlContainer.setName(""); // NOI18N
+        pnlContainer.setPreferredSize(new java.awt.Dimension(900, 600));
 
-        pnlLateral4.setBackground(new java.awt.Color(26, 81, 107));
-        pnlLateral4.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 0, 0, 0, new java.awt.Color(0, 0, 0)));
-        pnlLateral4.setMaximumSize(new java.awt.Dimension(300, 600));
-        pnlLateral4.setPreferredSize(new java.awt.Dimension(300, 600));
+        pnlLateral.setBackground(new java.awt.Color(26, 81, 107));
+        pnlLateral.setMinimumSize(new java.awt.Dimension(293, 595));
+        pnlLateral.setPreferredSize(new java.awt.Dimension(293, 595));
 
-        lblModuloRH4.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        lblModuloRH4.setForeground(new java.awt.Color(255, 255, 255));
-        lblModuloRH4.setText("Módulo RH");
+        lblModuloRH.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        lblModuloRH.setForeground(new java.awt.Color(255, 255, 255));
+        lblModuloRH.setText("Módulo RH");
 
-        javax.swing.GroupLayout pnlLateral4Layout = new javax.swing.GroupLayout(pnlLateral4);
-        pnlLateral4.setLayout(pnlLateral4Layout);
-        pnlLateral4Layout.setHorizontalGroup(
-            pnlLateral4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlLateral4Layout.createSequentialGroup()
-                .addGap(46, 46, 46)
-                .addComponent(lblModuloRH4)
-                .addContainerGap(60, Short.MAX_VALUE))
+        javax.swing.GroupLayout pnlLateralLayout = new javax.swing.GroupLayout(pnlLateral);
+        pnlLateral.setLayout(pnlLateralLayout);
+        pnlLateralLayout.setHorizontalGroup(
+            pnlLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlLateralLayout.createSequentialGroup()
+                .addGap(42, 42, 42)
+                .addComponent(lblModuloRH)
+                .addContainerGap(57, Short.MAX_VALUE))
         );
-        pnlLateral4Layout.setVerticalGroup(
-            pnlLateral4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlLateral4Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(lblModuloRH4)
-                .addContainerGap(528, Short.MAX_VALUE))
+        pnlLateralLayout.setVerticalGroup(
+            pnlLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlLateralLayout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(lblModuloRH)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        pnlContainer4.add(pnlLateral4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
-
-        pnlLogin2.setBackground(new java.awt.Color(255, 255, 255));
-        pnlLogin2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 4, true));
-        pnlLogin2.setMaximumSize(new java.awt.Dimension(388, 340));
-        pnlLogin2.setPreferredSize(new java.awt.Dimension(388, 340));
+        pnlEditarFuncionario.setBackground(new java.awt.Color(255, 255, 255));
+        pnlEditarFuncionario.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 4, true));
+        pnlEditarFuncionario.setMaximumSize(new java.awt.Dimension(388, 340));
+        pnlEditarFuncionario.setPreferredSize(new java.awt.Dimension(388, 340));
 
         lblEditarFuncionario.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         lblEditarFuncionario.setText("Editar Funcionário");
@@ -291,26 +289,26 @@ public class TelaEditarFuncionario extends javax.swing.JFrame {
         });
         pnlTextFields.add(txtDataDeEntrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 410, -1, 40));
 
-        javax.swing.GroupLayout pnlLogin2Layout = new javax.swing.GroupLayout(pnlLogin2);
-        pnlLogin2.setLayout(pnlLogin2Layout);
-        pnlLogin2Layout.setHorizontalGroup(
-            pnlLogin2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlLogin2Layout.createSequentialGroup()
-                .addGroup(pnlLogin2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlLogin2Layout.createSequentialGroup()
+        javax.swing.GroupLayout pnlEditarFuncionarioLayout = new javax.swing.GroupLayout(pnlEditarFuncionario);
+        pnlEditarFuncionario.setLayout(pnlEditarFuncionarioLayout);
+        pnlEditarFuncionarioLayout.setHorizontalGroup(
+            pnlEditarFuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlEditarFuncionarioLayout.createSequentialGroup()
+                .addGroup(pnlEditarFuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlEditarFuncionarioLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(pnlTextFields, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnlLogin2Layout.createSequentialGroup()
+                    .addGroup(pnlEditarFuncionarioLayout.createSequentialGroup()
                         .addGap(51, 51, 51)
                         .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnlLogin2Layout.createSequentialGroup()
+                    .addGroup(pnlEditarFuncionarioLayout.createSequentialGroup()
                         .addGap(81, 81, 81)
                         .addComponent(lblEditarFuncionario)))
                 .addContainerGap(14, Short.MAX_VALUE))
         );
-        pnlLogin2Layout.setVerticalGroup(
-            pnlLogin2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlLogin2Layout.createSequentialGroup()
+        pnlEditarFuncionarioLayout.setVerticalGroup(
+            pnlEditarFuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlEditarFuncionarioLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblEditarFuncionario)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -320,23 +318,34 @@ public class TelaEditarFuncionario extends javax.swing.JFrame {
                 .addGap(12, 12, 12))
         );
 
-        pnlContainer4.add(pnlLogin2, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 10, -1, 580));
+        javax.swing.GroupLayout pnlContainerLayout = new javax.swing.GroupLayout(pnlContainer);
+        pnlContainer.setLayout(pnlContainerLayout);
+        pnlContainerLayout.setHorizontalGroup(
+            pnlContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlContainerLayout.createSequentialGroup()
+                .addComponent(pnlLateral, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(110, 110, 110)
+                .addComponent(pnlEditarFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(117, Short.MAX_VALUE))
+        );
+        pnlContainerLayout.setVerticalGroup(
+            pnlContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlContainerLayout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(pnlEditarFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 580, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(18, Short.MAX_VALUE))
+            .addComponent(pnlLateral, javax.swing.GroupLayout.DEFAULT_SIZE, 608, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(pnlContainer4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(pnlContainer, javax.swing.GroupLayout.DEFAULT_SIZE, 912, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(pnlContainer4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addComponent(pnlContainer, javax.swing.GroupLayout.DEFAULT_SIZE, 612, Short.MAX_VALUE)
         );
 
         pack();
@@ -472,14 +481,14 @@ public class TelaEditarFuncionario extends javax.swing.JFrame {
     private javax.swing.JLabel lblEditarFuncionario;
     private javax.swing.JLabel lblEmail;
     private javax.swing.JLabel lblEndereco;
-    private javax.swing.JLabel lblModuloRH4;
+    private javax.swing.JLabel lblModuloRH;
     private javax.swing.JLabel lblNome;
     private javax.swing.JLabel lblSalario;
     private javax.swing.JLabel lblStatus;
     private javax.swing.JLabel lblTelefone;
-    private javax.swing.JPanel pnlContainer4;
-    private javax.swing.JPanel pnlLateral4;
-    private javax.swing.JPanel pnlLogin2;
+    private javax.swing.JPanel pnlContainer;
+    private javax.swing.JPanel pnlEditarFuncionario;
+    private javax.swing.JPanel pnlLateral;
     private javax.swing.JPanel pnlTextFields;
     private javax.swing.JTextField txtCpf;
     private javax.swing.JTextField txtDataDeEntrada;

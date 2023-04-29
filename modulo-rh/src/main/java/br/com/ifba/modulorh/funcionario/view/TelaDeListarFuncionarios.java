@@ -48,31 +48,31 @@ public class TelaDeListarFuncionarios extends javax.swing.JFrame {
         pnlContainer = new javax.swing.JPanel();
         pnlLateral = new javax.swing.JPanel();
         lblModuloRH = new javax.swing.JLabel();
-        pnlLogin = new javax.swing.JPanel();
-        pnlTextFields = new javax.swing.JPanel();
-        lblFuncionáriosExistentes = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
+        pnlCampo = new javax.swing.JPanel();
+        pnlFuncionarios = new javax.swing.JPanel();
+        pnlTabela = new javax.swing.JPanel();
+        jScrollPane = new javax.swing.JScrollPane();
         tblFuncionarios = new javax.swing.JTable();
-        btnExcluir = new javax.swing.JButton();
+        pnlBotoes = new javax.swing.JPanel();
         btnCadastrar = new javax.swing.JButton();
-        btnEditar1 = new javax.swing.JButton();
+        btnEditar = new javax.swing.JButton();
+        btnExcluir = new javax.swing.JButton();
+        lblFuncionariosExistentes = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Listar Funcionários");
         setIconImage(icone.getImage());
+        setMinimumSize(new java.awt.Dimension(912, 612));
 
         pnlContainer.setBackground(new java.awt.Color(255, 255, 255));
-        pnlContainer.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 0, 0, 0, new java.awt.Color(0, 0, 0)));
-        pnlContainer.setMaximumSize(new java.awt.Dimension(900, 600));
+        pnlContainer.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         pnlContainer.setMinimumSize(new java.awt.Dimension(900, 600));
         pnlContainer.setName(""); // NOI18N
         pnlContainer.setPreferredSize(new java.awt.Dimension(900, 600));
-        pnlContainer.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         pnlLateral.setBackground(new java.awt.Color(26, 81, 107));
-        pnlLateral.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 0, 0, 0, new java.awt.Color(0, 0, 0)));
-        pnlLateral.setMaximumSize(new java.awt.Dimension(300, 600));
-        pnlLateral.setPreferredSize(new java.awt.Dimension(300, 600));
+        pnlLateral.setMinimumSize(new java.awt.Dimension(293, 595));
+        pnlLateral.setPreferredSize(new java.awt.Dimension(293, 595));
 
         lblModuloRH.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         lblModuloRH.setForeground(new java.awt.Color(255, 255, 255));
@@ -83,33 +83,32 @@ public class TelaDeListarFuncionarios extends javax.swing.JFrame {
         pnlLateralLayout.setHorizontalGroup(
             pnlLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlLateralLayout.createSequentialGroup()
-                .addGap(46, 46, 46)
+                .addGap(45, 45, 45)
                 .addComponent(lblModuloRH)
-                .addContainerGap(60, Short.MAX_VALUE))
+                .addContainerGap(54, Short.MAX_VALUE))
         );
         pnlLateralLayout.setVerticalGroup(
             pnlLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlLateralLayout.createSequentialGroup()
-                .addGap(22, 22, 22)
+                .addGap(21, 21, 21)
                 .addComponent(lblModuloRH)
-                .addContainerGap(528, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        pnlContainer.add(pnlLateral, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        pnlCampo.setBackground(new java.awt.Color(255, 255, 255));
 
-        pnlLogin.setBackground(new java.awt.Color(255, 255, 255));
-        pnlLogin.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 4, true));
-        pnlLogin.setMaximumSize(new java.awt.Dimension(388, 340));
-        pnlLogin.setPreferredSize(new java.awt.Dimension(388, 340));
+        pnlFuncionarios.setBackground(new java.awt.Color(255, 255, 255));
+        pnlFuncionarios.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 4, true));
+        pnlFuncionarios.setMinimumSize(new java.awt.Dimension(388, 340));
+        pnlFuncionarios.setPreferredSize(new java.awt.Dimension(388, 340));
 
-        pnlTextFields.setBackground(new java.awt.Color(255, 255, 255));
-        pnlTextFields.setMaximumSize(new java.awt.Dimension(360, 130));
-        pnlTextFields.setPreferredSize(new java.awt.Dimension(360, 130));
-        pnlTextFields.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlTabela.setBackground(new java.awt.Color(255, 255, 255));
+        pnlTabela.setMinimumSize(new java.awt.Dimension(360, 130));
+        pnlTabela.setPreferredSize(new java.awt.Dimension(360, 130));
 
-        lblFuncionáriosExistentes.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        lblFuncionáriosExistentes.setText("Funcionários Existentes");
-        pnlTextFields.add(lblFuncionáriosExistentes, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 0, -1, -1));
+        jScrollPane.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        jScrollPane.setMinimumSize(new java.awt.Dimension(549, 427));
+        jScrollPane.setPreferredSize(new java.awt.Dimension(549, 427));
 
         tblFuncionarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -122,26 +121,30 @@ public class TelaDeListarFuncionarios extends javax.swing.JFrame {
                 "ID", "Nome", "CPF", "Salário"
             }
         ));
-        jScrollPane2.setViewportView(tblFuncionarios);
+        tblFuncionarios.setMaximumSize(new java.awt.Dimension(2147483647, 2147483647));
+        tblFuncionarios.setMinimumSize(new java.awt.Dimension(559, 427));
+        tblFuncionarios.setPreferredSize(new java.awt.Dimension(559, 427));
+        jScrollPane.setViewportView(tblFuncionarios);
 
-        pnlTextFields.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, -1, -1));
+        javax.swing.GroupLayout pnlTabelaLayout = new javax.swing.GroupLayout(pnlTabela);
+        pnlTabela.setLayout(pnlTabelaLayout);
+        pnlTabelaLayout.setHorizontalGroup(
+            pnlTabelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlTabelaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 559, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        pnlTabelaLayout.setVerticalGroup(
+            pnlTabelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlTabelaLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(20, 20, 20))
+        );
 
-        btnExcluir.setBackground(new java.awt.Color(71, 19, 35));
-        btnExcluir.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnExcluir.setForeground(new java.awt.Color(255, 255, 255));
-        btnExcluir.setText("Excluir");
-        btnExcluir.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        btnExcluir.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnExcluir.setFocusPainted(false);
-        btnExcluir.setFocusable(false);
-        btnExcluir.setMaximumSize(new java.awt.Dimension(266, 40));
-        btnExcluir.setMinimumSize(new java.awt.Dimension(266, 40));
-        btnExcluir.setPreferredSize(new java.awt.Dimension(266, 40));
-        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnExcluirActionPerformed(evt);
-            }
-        });
+        pnlBotoes.setBackground(new java.awt.Color(255, 255, 255));
+        pnlBotoes.setForeground(new java.awt.Color(255, 255, 255));
 
         btnCadastrar.setBackground(new java.awt.Color(71, 19, 35));
         btnCadastrar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -151,81 +154,142 @@ public class TelaDeListarFuncionarios extends javax.swing.JFrame {
         btnCadastrar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnCadastrar.setFocusPainted(false);
         btnCadastrar.setFocusable(false);
-        btnCadastrar.setMaximumSize(new java.awt.Dimension(266, 40));
-        btnCadastrar.setMinimumSize(new java.awt.Dimension(266, 40));
-        btnCadastrar.setPreferredSize(new java.awt.Dimension(266, 40));
+        btnCadastrar.setMaximumSize(new java.awt.Dimension(120, 40));
+        btnCadastrar.setPreferredSize(new java.awt.Dimension(120, 40));
         btnCadastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCadastrarActionPerformed(evt);
             }
         });
 
-        btnEditar1.setBackground(new java.awt.Color(71, 19, 35));
-        btnEditar1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnEditar1.setForeground(new java.awt.Color(255, 255, 255));
-        btnEditar1.setText("Editar");
-        btnEditar1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        btnEditar1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnEditar1.setFocusPainted(false);
-        btnEditar1.setFocusable(false);
-        btnEditar1.setMaximumSize(new java.awt.Dimension(266, 40));
-        btnEditar1.setMinimumSize(new java.awt.Dimension(266, 40));
-        btnEditar1.setPreferredSize(new java.awt.Dimension(266, 40));
-        btnEditar1.addActionListener(new java.awt.event.ActionListener() {
+        btnEditar.setBackground(new java.awt.Color(71, 19, 35));
+        btnEditar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnEditar.setForeground(new java.awt.Color(255, 255, 255));
+        btnEditar.setText("Editar");
+        btnEditar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        btnEditar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnEditar.setFocusPainted(false);
+        btnEditar.setFocusable(false);
+        btnEditar.setMaximumSize(new java.awt.Dimension(120, 40));
+        btnEditar.setPreferredSize(new java.awt.Dimension(120, 40));
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditar1ActionPerformed(evt);
+                btnEditarActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout pnlLoginLayout = new javax.swing.GroupLayout(pnlLogin);
-        pnlLogin.setLayout(pnlLoginLayout);
-        pnlLoginLayout.setHorizontalGroup(
-            pnlLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlLoginLayout.createSequentialGroup()
+        btnExcluir.setBackground(new java.awt.Color(71, 19, 35));
+        btnExcluir.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnExcluir.setForeground(new java.awt.Color(255, 255, 255));
+        btnExcluir.setText("Excluir");
+        btnExcluir.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        btnExcluir.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnExcluir.setFocusPainted(false);
+        btnExcluir.setFocusable(false);
+        btnExcluir.setMaximumSize(new java.awt.Dimension(120, 40));
+        btnExcluir.setPreferredSize(new java.awt.Dimension(120, 40));
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pnlBotoesLayout = new javax.swing.GroupLayout(pnlBotoes);
+        pnlBotoes.setLayout(pnlBotoesLayout);
+        pnlBotoesLayout.setHorizontalGroup(
+            pnlBotoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlBotoesLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pnlLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlLoginLayout.createSequentialGroup()
-                        .addComponent(pnlTextFields, javax.swing.GroupLayout.DEFAULT_SIZE, 520, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addGroup(pnlLoginLayout.createSequentialGroup()
-                        .addGap(42, 42, 42)
-                        .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(42, 42, 42)
-                        .addComponent(btnEditar1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(34, 34, 34))))
+                .addComponent(btnCadastrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(51, 51, 51)
+                .addComponent(btnEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(46, 46, 46)
+                .addComponent(btnExcluir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
-        pnlLoginLayout.setVerticalGroup(
-            pnlLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlLoginLayout.createSequentialGroup()
-                .addGap(44, 44, 44)
-                .addComponent(pnlTextFields, javax.swing.GroupLayout.DEFAULT_SIZE, 470, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(pnlLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnEditar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        pnlBotoesLayout.setVerticalGroup(
+            pnlBotoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlBotoesLayout.createSequentialGroup()
+                .addGroup(pnlBotoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnExcluir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnCadastrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, 0))
+        );
+
+        lblFuncionariosExistentes.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        lblFuncionariosExistentes.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblFuncionariosExistentes.setText("Funcionários Existentes");
+
+        javax.swing.GroupLayout pnlFuncionariosLayout = new javax.swing.GroupLayout(pnlFuncionarios);
+        pnlFuncionarios.setLayout(pnlFuncionariosLayout);
+        pnlFuncionariosLayout.setHorizontalGroup(
+            pnlFuncionariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlFuncionariosLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlFuncionariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblFuncionariosExistentes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pnlTabela, javax.swing.GroupLayout.DEFAULT_SIZE, 571, Short.MAX_VALUE)
+                    .addComponent(pnlBotoes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        pnlFuncionariosLayout.setVerticalGroup(
+            pnlFuncionariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlFuncionariosLayout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addComponent(lblFuncionariosExistentes, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(pnlTabela, javax.swing.GroupLayout.DEFAULT_SIZE, 451, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(pnlBotoes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15))
+        );
+
+        javax.swing.GroupLayout pnlCampoLayout = new javax.swing.GroupLayout(pnlCampo);
+        pnlCampo.setLayout(pnlCampoLayout);
+        pnlCampoLayout.setHorizontalGroup(
+            pnlCampoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlCampoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(pnlFuncionarios, javax.swing.GroupLayout.DEFAULT_SIZE, 591, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        pnlCampoLayout.setVerticalGroup(
+            pnlCampoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlCampoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(pnlFuncionarios, javax.swing.GroupLayout.DEFAULT_SIZE, 584, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        pnlContainer.add(pnlLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(338, 10, 540, 580));
+        javax.swing.GroupLayout pnlContainerLayout = new javax.swing.GroupLayout(pnlContainer);
+        pnlContainer.setLayout(pnlContainerLayout);
+        pnlContainerLayout.setHorizontalGroup(
+            pnlContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlContainerLayout.createSequentialGroup()
+                .addComponent(pnlLateral, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(pnlCampo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        pnlContainerLayout.setVerticalGroup(
+            pnlContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(pnlLateral, javax.swing.GroupLayout.DEFAULT_SIZE, 608, Short.MAX_VALUE)
+            .addGroup(pnlContainerLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(pnlCampo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(pnlContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(pnlContainer, javax.swing.GroupLayout.DEFAULT_SIZE, 912, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(pnlContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addComponent(pnlContainer, javax.swing.GroupLayout.DEFAULT_SIZE, 612, Short.MAX_VALUE)
         );
 
         pack();
@@ -249,13 +313,13 @@ public class TelaDeListarFuncionarios extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnExcluirActionPerformed
 
-    private void btnEditar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditar1ActionPerformed
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         int linha = tblFuncionarios.getSelectedRow();
         Long id = (Long) tblFuncionarios.getValueAt(linha, 0);
         Funcionario funcionario = facade.findFuncionarioById(id);
         telaEditarFuncionario.passandoDados(funcionario);
         telaEditarFuncionario.setVisible(true);
-    }//GEN-LAST:event_btnEditar1ActionPerformed
+    }//GEN-LAST:event_btnEditarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -297,15 +361,17 @@ public class TelaDeListarFuncionarios extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCadastrar;
-    private javax.swing.JButton btnEditar1;
+    private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnExcluir;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JLabel lblFuncionáriosExistentes;
+    private javax.swing.JScrollPane jScrollPane;
+    private javax.swing.JLabel lblFuncionariosExistentes;
     private javax.swing.JLabel lblModuloRH;
+    private javax.swing.JPanel pnlBotoes;
+    private javax.swing.JPanel pnlCampo;
     private javax.swing.JPanel pnlContainer;
+    private javax.swing.JPanel pnlFuncionarios;
     private javax.swing.JPanel pnlLateral;
-    private javax.swing.JPanel pnlLogin;
-    private javax.swing.JPanel pnlTextFields;
+    private javax.swing.JPanel pnlTabela;
     private javax.swing.JTable tblFuncionarios;
     // End of variables declaration//GEN-END:variables
     

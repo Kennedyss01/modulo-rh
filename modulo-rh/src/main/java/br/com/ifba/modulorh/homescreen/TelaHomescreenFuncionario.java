@@ -48,6 +48,7 @@ public class TelaHomescreenFuncionario extends javax.swing.JFrame {
         btnSair = new javax.swing.JButton();
         lblInfoFuncionario = new javax.swing.JLabel();
         btnAlterarSenha = new javax.swing.JButton();
+        pnlCampo = new javax.swing.JPanel();
         pnlMenu = new javax.swing.JPanel();
         lblMenu = new javax.swing.JLabel();
         btnRegistrarPonto = new javax.swing.JButton();
@@ -131,10 +132,15 @@ public class TelaHomescreenFuncionario extends javax.swing.JFrame {
                 .addGap(33, 33, 33))
         );
 
+        pnlCampo.setBackground(new java.awt.Color(255, 255, 255));
+        pnlCampo.setMinimumSize(new java.awt.Dimension(528, 557));
+
         pnlMenu.setBackground(new java.awt.Color(255, 255, 255));
         pnlMenu.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(244, 244, 244), 4, true));
+        pnlMenu.setMinimumSize(new java.awt.Dimension(516, 426));
 
         lblMenu.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        lblMenu.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblMenu.setText("Tela inicial");
 
         btnRegistrarPonto.setBackground(new java.awt.Color(71, 19, 35));
@@ -166,27 +172,43 @@ public class TelaHomescreenFuncionario extends javax.swing.JFrame {
         pnlMenuLayout.setHorizontalGroup(
             pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlMenuLayout.createSequentialGroup()
-                .addContainerGap(116, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(lblMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlMenuLayout.createSequentialGroup()
+                .addGap(121, 121, 121)
                 .addGroup(pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlMenuLayout.createSequentialGroup()
-                        .addGroup(pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnCadastrarCurriculo, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnRegistrarPonto, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(102, 102, 102))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlMenuLayout.createSequentialGroup()
-                        .addComponent(lblMenu)
-                        .addGap(175, 175, 175))))
+                    .addComponent(btnCadastrarCurriculo, javax.swing.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE)
+                    .addComponent(btnRegistrarPonto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(112, 112, 112))
         );
         pnlMenuLayout.setVerticalGroup(
             pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlMenuLayout.createSequentialGroup()
                 .addGap(60, 60, 60)
                 .addComponent(lblMenu)
-                .addGap(53, 53, 53)
-                .addComponent(btnRegistrarPonto, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(60, 60, 60)
+                .addComponent(btnRegistrarPonto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(32, 32, 32)
-                .addComponent(btnCadastrarCurriculo, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(97, Short.MAX_VALUE))
+                .addComponent(btnCadastrarCurriculo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(127, 127, 127))
+        );
+
+        javax.swing.GroupLayout pnlCampoLayout = new javax.swing.GroupLayout(pnlCampo);
+        pnlCampo.setLayout(pnlCampoLayout);
+        pnlCampoLayout.setHorizontalGroup(
+            pnlCampoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlCampoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(pnlMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        pnlCampoLayout.setVerticalGroup(
+            pnlCampoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlCampoLayout.createSequentialGroup()
+                .addGap(68, 68, 68)
+                .addComponent(pnlMenu, javax.swing.GroupLayout.DEFAULT_SIZE, 508, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout pnlContainerLayout = new javax.swing.GroupLayout(pnlContainer);
@@ -195,17 +217,17 @@ public class TelaHomescreenFuncionario extends javax.swing.JFrame {
             pnlContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlContainerLayout.createSequentialGroup()
                 .addComponent(pnlLateral, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43)
-                .addComponent(pnlMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 40, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(pnlCampo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(12, 12, 12))
         );
         pnlContainerLayout.setVerticalGroup(
             pnlContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(pnlLateral, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(pnlContainerLayout.createSequentialGroup()
-                .addGap(83, 83, 83)
-                .addComponent(pnlMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(88, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(pnlCampo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -286,6 +308,7 @@ public class TelaHomescreenFuncionario extends javax.swing.JFrame {
     private javax.swing.JLabel lblInfoFuncionario;
     private javax.swing.JLabel lblLateral;
     private javax.swing.JLabel lblMenu;
+    private javax.swing.JPanel pnlCampo;
     private javax.swing.JPanel pnlContainer;
     private javax.swing.JPanel pnlLateral;
     private javax.swing.JPanel pnlMenu;
