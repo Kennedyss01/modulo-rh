@@ -5,6 +5,12 @@ import br.com.ifba.modulorh.infrastructure.service.IFacade;
 import br.com.ifba.modulorh.login.TelaLogin;
 import br.com.ifba.modulorh.usuario.model.Usuario;
 import br.com.ifba.modulorh.usuario.view.TelaAlterarSenha;
+import java.awt.Font;
+import java.awt.FontFormatException;
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
@@ -25,9 +31,17 @@ public class TelaHomescreenFuncionario extends javax.swing.JFrame {
     private TelaAlterarSenha telaAlterarSenha;
     private Funcionario funcionario;
     
-    ImageIcon icone = new ImageIcon("./src/main/resources/imagens/tela-inicial-32x32.png");
+    ImageIcon icone = new ImageIcon("./src/main/resources/imagens/rh.png");
+    Font fonteMaior;
+    Font fonteNormal;
    
-    public TelaHomescreenFuncionario() {
+    public TelaHomescreenFuncionario() throws FontFormatException, IOException {
+        this.fonteMaior = Font.createFont(Font.TRUETYPE_FONT,
+                new File("./src/main/resources/fontes/Poppins/Poppins-Bold.ttf"))
+                .deriveFont(Font.PLAIN, 28);
+        this.fonteNormal = Font.createFont(Font.TRUETYPE_FONT,
+                new File("./src/main/resources/fontes/Poppins/Poppins-Regular.ttf"))
+                .deriveFont(Font.PLAIN, 16);
         initComponents();
         setLocationRelativeTo(null);
     }
@@ -64,16 +78,16 @@ public class TelaHomescreenFuncionario extends javax.swing.JFrame {
 
         pnlLateral.setBackground(new java.awt.Color(26, 81, 107));
 
-        lblLateral.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        lblLateral.setFont(fonteMaior);
         lblLateral.setForeground(new java.awt.Color(255, 255, 255));
         lblLateral.setText("Módulo RH");
 
-        lblBemVindo.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblBemVindo.setFont(fonteNormal);
         lblBemVindo.setForeground(new java.awt.Color(255, 255, 255));
         lblBemVindo.setText("Seja bem-vindo, funcionário!");
 
         btnSair.setBackground(new java.awt.Color(26, 81, 107));
-        btnSair.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnSair.setFont(fonteNormal);
         btnSair.setForeground(new java.awt.Color(255, 255, 255));
         btnSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/sair-16x16.png"))); // NOI18N
         btnSair.setText("SAIR");
@@ -84,12 +98,12 @@ public class TelaHomescreenFuncionario extends javax.swing.JFrame {
             }
         });
 
-        lblInfoFuncionario.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblInfoFuncionario.setFont(fonteNormal);
         lblInfoFuncionario.setForeground(new java.awt.Color(255, 255, 255));
         lblInfoFuncionario.setText("Usuário: ---");
 
         btnAlterarSenha.setBackground(new java.awt.Color(26, 81, 107));
-        btnAlterarSenha.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnAlterarSenha.setFont(fonteNormal);
         btnAlterarSenha.setForeground(new java.awt.Color(255, 255, 255));
         btnAlterarSenha.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/senha-16x16.png"))); // NOI18N
         btnAlterarSenha.setText("ALTERAR SENHA");
@@ -123,7 +137,7 @@ public class TelaHomescreenFuncionario extends javax.swing.JFrame {
                 .addComponent(lblLateral)
                 .addGap(73, 73, 73)
                 .addComponent(lblBemVindo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 338, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 374, Short.MAX_VALUE)
                 .addComponent(lblInfoFuncionario)
                 .addGap(18, 18, 18)
                 .addGroup(pnlLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -139,12 +153,12 @@ public class TelaHomescreenFuncionario extends javax.swing.JFrame {
         pnlMenu.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(244, 244, 244), 4, true));
         pnlMenu.setMinimumSize(new java.awt.Dimension(516, 426));
 
-        lblMenu.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        lblMenu.setFont(fonteMaior);
         lblMenu.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblMenu.setText("Tela inicial");
 
         btnRegistrarPonto.setBackground(new java.awt.Color(71, 19, 35));
-        btnRegistrarPonto.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnRegistrarPonto.setFont(fonteNormal);
         btnRegistrarPonto.setForeground(new java.awt.Color(255, 255, 255));
         btnRegistrarPonto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/registrar-ponto-32x32.png"))); // NOI18N
         btnRegistrarPonto.setText("REGISTRAR PONTO");
@@ -156,7 +170,7 @@ public class TelaHomescreenFuncionario extends javax.swing.JFrame {
         });
 
         btnCadastrarCurriculo.setBackground(new java.awt.Color(71, 19, 35));
-        btnCadastrarCurriculo.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnCadastrarCurriculo.setFont(fonteNormal);
         btnCadastrarCurriculo.setForeground(new java.awt.Color(255, 255, 255));
         btnCadastrarCurriculo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/cadastrar-curriculo-32x32.png"))); // NOI18N
         btnCadastrarCurriculo.setText("CADASTRAR CURRÍCULO");
@@ -178,7 +192,7 @@ public class TelaHomescreenFuncionario extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlMenuLayout.createSequentialGroup()
                 .addGap(121, 121, 121)
                 .addGroup(pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnCadastrarCurriculo, javax.swing.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE)
+                    .addComponent(btnCadastrarCurriculo, javax.swing.GroupLayout.DEFAULT_SIZE, 286, Short.MAX_VALUE)
                     .addComponent(btnRegistrarPonto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(112, 112, 112))
         );
@@ -207,7 +221,7 @@ public class TelaHomescreenFuncionario extends javax.swing.JFrame {
             pnlCampoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlCampoLayout.createSequentialGroup()
                 .addGap(68, 68, 68)
-                .addComponent(pnlMenu, javax.swing.GroupLayout.DEFAULT_SIZE, 508, Short.MAX_VALUE)
+                .addComponent(pnlMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -294,7 +308,13 @@ public class TelaHomescreenFuncionario extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaHomescreenFuncionario().setVisible(true);
+                try {
+                    new TelaHomescreenFuncionario().setVisible(true);
+                } catch (FontFormatException ex) {
+                    Logger.getLogger(TelaHomescreenFuncionario.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IOException ex) {
+                    Logger.getLogger(TelaHomescreenFuncionario.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
