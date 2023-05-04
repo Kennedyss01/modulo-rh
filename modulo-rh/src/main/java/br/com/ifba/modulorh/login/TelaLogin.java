@@ -166,11 +166,11 @@ public class TelaLogin extends javax.swing.JFrame {
 
         lblUsuario.setFont(fonteNormal);
         lblUsuario.setText("Usuário");
-        pnlTextFields.add(lblUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 80, 30));
+        pnlTextFields.add(lblUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 310, 30));
 
         lblSenha.setFont(fonteNormal);
         lblSenha.setText("Senha");
-        pnlTextFields.add(lblSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 80, 30));
+        pnlTextFields.add(lblSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 310, 30));
 
         txtUsuario.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         txtUsuario.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));

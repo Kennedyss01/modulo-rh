@@ -7,7 +7,13 @@ package br.com.ifba.modulorh.funcionario.view;
 import br.com.ifba.modulorh.funcionario.model.Funcionario;
 import br.com.ifba.modulorh.infrastructure.service.Facade;
 import br.com.ifba.modulorh.infrastructure.service.IFacade;
+import java.awt.Font;
+import java.awt.FontFormatException;
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -29,9 +35,21 @@ public class TelaDeListarFuncionarios extends javax.swing.JFrame {
     @Autowired
     private TelaEditarFuncionario telaEditarFuncionario;
     
-    ImageIcon icone = new ImageIcon("./src/main/resources/imagens/listar-funcionarios-32x32.png");
+    ImageIcon icone = new ImageIcon("./src/main/resources/imagens/rh.png");
+    Font fonteMaior;
+    Font fonteNormal;
+    Font fonteMenor;
     
-    public TelaDeListarFuncionarios() {
+    public TelaDeListarFuncionarios() throws FontFormatException, IOException {
+        this.fonteMaior = Font.createFont(Font.TRUETYPE_FONT,
+                new File("./src/main/resources/fontes/Poppins/Poppins-Bold.ttf"))
+                .deriveFont(Font.PLAIN, 28);
+        this.fonteNormal = Font.createFont(Font.TRUETYPE_FONT,
+                new File("./src/main/resources/fontes/Poppins/Poppins-Regular.ttf"))
+                .deriveFont(Font.PLAIN, 16);
+        this.fonteMenor = Font.createFont(Font.TRUETYPE_FONT,
+                new File("./src/main/resources/fontes/Poppins/Poppins-SemiBold.ttf"))
+                .deriveFont(Font.PLAIN, 14);
         initComponents();
         setLocationRelativeTo(null);
     }
@@ -74,7 +92,7 @@ public class TelaDeListarFuncionarios extends javax.swing.JFrame {
         pnlLateral.setMinimumSize(new java.awt.Dimension(293, 595));
         pnlLateral.setPreferredSize(new java.awt.Dimension(293, 595));
 
-        lblModuloRH.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        lblModuloRH.setFont(fonteMaior);
         lblModuloRH.setForeground(new java.awt.Color(255, 255, 255));
         lblModuloRH.setText("Módulo RH");
 
@@ -85,7 +103,7 @@ public class TelaDeListarFuncionarios extends javax.swing.JFrame {
             .addGroup(pnlLateralLayout.createSequentialGroup()
                 .addGap(45, 45, 45)
                 .addComponent(lblModuloRH)
-                .addContainerGap(54, Short.MAX_VALUE))
+                .addContainerGap(187, Short.MAX_VALUE))
         );
         pnlLateralLayout.setVerticalGroup(
             pnlLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -110,6 +128,7 @@ public class TelaDeListarFuncionarios extends javax.swing.JFrame {
         jScrollPane.setMinimumSize(new java.awt.Dimension(549, 427));
         jScrollPane.setPreferredSize(new java.awt.Dimension(549, 427));
 
+        tblFuncionarios.setFont(fonteMenor);
         tblFuncionarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -147,7 +166,7 @@ public class TelaDeListarFuncionarios extends javax.swing.JFrame {
         pnlBotoes.setForeground(new java.awt.Color(255, 255, 255));
 
         btnCadastrar.setBackground(new java.awt.Color(71, 19, 35));
-        btnCadastrar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnCadastrar.setFont(fonteNormal);
         btnCadastrar.setForeground(new java.awt.Color(255, 255, 255));
         btnCadastrar.setText("Cadastrar");
         btnCadastrar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
@@ -163,7 +182,7 @@ public class TelaDeListarFuncionarios extends javax.swing.JFrame {
         });
 
         btnEditar.setBackground(new java.awt.Color(71, 19, 35));
-        btnEditar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnEditar.setFont(fonteNormal);
         btnEditar.setForeground(new java.awt.Color(255, 255, 255));
         btnEditar.setText("Editar");
         btnEditar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
@@ -179,7 +198,7 @@ public class TelaDeListarFuncionarios extends javax.swing.JFrame {
         });
 
         btnExcluir.setBackground(new java.awt.Color(71, 19, 35));
-        btnExcluir.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnExcluir.setFont(fonteNormal);
         btnExcluir.setForeground(new java.awt.Color(255, 255, 255));
         btnExcluir.setText("Excluir");
         btnExcluir.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
@@ -217,7 +236,7 @@ public class TelaDeListarFuncionarios extends javax.swing.JFrame {
                 .addGap(0, 0, 0))
         );
 
-        lblFuncionariosExistentes.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        lblFuncionariosExistentes.setFont(fonteMaior);
         lblFuncionariosExistentes.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblFuncionariosExistentes.setText("Funcionários Existentes");
 
@@ -354,7 +373,13 @@ public class TelaDeListarFuncionarios extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaDeListarFuncionarios().setVisible(true);
+                try {
+                    new TelaDeListarFuncionarios().setVisible(true);
+                } catch (FontFormatException ex) {
+                    Logger.getLogger(TelaDeListarFuncionarios.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IOException ex) {
+                    Logger.getLogger(TelaDeListarFuncionarios.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
