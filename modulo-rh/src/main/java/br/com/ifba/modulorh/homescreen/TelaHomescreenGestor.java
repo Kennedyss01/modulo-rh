@@ -6,6 +6,12 @@ import br.com.ifba.modulorh.funcionario.view.TelaCadastroFuncionario;
 import br.com.ifba.modulorh.funcionario.view.TelaDeListarFuncionarios;
 import br.com.ifba.modulorh.infrastructure.service.IFacade;
 import br.com.ifba.modulorh.login.TelaLogin;
+import java.awt.Font;
+import java.awt.FontFormatException;
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
@@ -30,9 +36,17 @@ public class TelaHomescreenGestor extends javax.swing.JFrame {
     private TelaLogin telaLogin;
     private Usuario usuario;
     
-    ImageIcon icone = new ImageIcon("./src/main/resources/imagens/tela-inicial-32x32.png");
+    ImageIcon icone = new ImageIcon("./src/main/resources/imagens/rh.png");
+    Font fonteMaior;
+    Font fonteNormal;
 
-    public TelaHomescreenGestor() {
+    public TelaHomescreenGestor() throws FontFormatException, IOException {
+        this.fonteMaior = Font.createFont(Font.TRUETYPE_FONT,
+                new File("./src/main/resources/fontes/Poppins/Poppins-Bold.ttf"))
+                .deriveFont(Font.PLAIN, 28);
+        this.fonteNormal = Font.createFont(Font.TRUETYPE_FONT,
+                new File("./src/main/resources/fontes/Poppins/Poppins-Regular.ttf"))
+                .deriveFont(Font.PLAIN, 16);
         initComponents();
         setLocationRelativeTo(null);
     }
@@ -74,16 +88,16 @@ public class TelaHomescreenGestor extends javax.swing.JFrame {
 
         pnlLateral.setBackground(new java.awt.Color(26, 81, 107));
 
-        lblLateral.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        lblLateral.setFont(fonteMaior);
         lblLateral.setForeground(new java.awt.Color(255, 255, 255));
         lblLateral.setText("Módulo RH");
 
-        lblBemVindo.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblBemVindo.setFont(fonteNormal);
         lblBemVindo.setForeground(new java.awt.Color(255, 255, 255));
         lblBemVindo.setText("Seja bem-vindo, gestor!");
 
         btnSair.setBackground(new java.awt.Color(26, 81, 107));
-        btnSair.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnSair.setFont(fonteNormal);
         btnSair.setForeground(new java.awt.Color(255, 255, 255));
         btnSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/sair-16x16.png"))); // NOI18N
         btnSair.setText("SAIR");
@@ -94,7 +108,7 @@ public class TelaHomescreenGestor extends javax.swing.JFrame {
             }
         });
 
-        lblInfoGestor.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblInfoGestor.setFont(fonteNormal);
         lblInfoGestor.setForeground(new java.awt.Color(255, 255, 255));
         lblInfoGestor.setText("Usuário: ---");
 
@@ -118,7 +132,7 @@ public class TelaHomescreenGestor extends javax.swing.JFrame {
                 .addComponent(lblLateral)
                 .addGap(73, 73, 73)
                 .addComponent(lblBemVindo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 338, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 374, Short.MAX_VALUE)
                 .addComponent(lblInfoGestor)
                 .addGap(18, 18, 18)
                 .addComponent(btnSair, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -130,12 +144,12 @@ public class TelaHomescreenGestor extends javax.swing.JFrame {
         pnlMenu.setBackground(new java.awt.Color(255, 255, 255));
         pnlMenu.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(244, 244, 244), 4, true));
 
-        lblMenu.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        lblMenu.setFont(fonteMaior);
         lblMenu.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblMenu.setText("Tela inicial");
 
         btnCadastrarUsuario.setBackground(new java.awt.Color(71, 19, 35));
-        btnCadastrarUsuario.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnCadastrarUsuario.setFont(fonteNormal);
         btnCadastrarUsuario.setForeground(new java.awt.Color(255, 255, 255));
         btnCadastrarUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/cadastrar-usuario-32x32.png"))); // NOI18N
         btnCadastrarUsuario.setText("CADASTRAR USUÁRIO");
@@ -150,7 +164,7 @@ public class TelaHomescreenGestor extends javax.swing.JFrame {
         });
 
         btnCadastrarFuncionario.setBackground(new java.awt.Color(71, 19, 35));
-        btnCadastrarFuncionario.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnCadastrarFuncionario.setFont(fonteNormal);
         btnCadastrarFuncionario.setForeground(new java.awt.Color(255, 255, 255));
         btnCadastrarFuncionario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/cadastrar-funcionario-32x32.png"))); // NOI18N
         btnCadastrarFuncionario.setText("CADASTRAR FUNCIONÁRIO");
@@ -165,7 +179,7 @@ public class TelaHomescreenGestor extends javax.swing.JFrame {
         });
 
         btnAvaliarPerformance.setBackground(new java.awt.Color(71, 19, 35));
-        btnAvaliarPerformance.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnAvaliarPerformance.setFont(fonteNormal);
         btnAvaliarPerformance.setForeground(new java.awt.Color(255, 255, 255));
         btnAvaliarPerformance.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/avaliar-performance-32x32.png"))); // NOI18N
         btnAvaliarPerformance.setText("AVALIAR PERFORMANCE");
@@ -180,10 +194,10 @@ public class TelaHomescreenGestor extends javax.swing.JFrame {
         });
 
         btnImprimirRelatorioFuncionario.setBackground(new java.awt.Color(71, 19, 35));
-        btnImprimirRelatorioFuncionario.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnImprimirRelatorioFuncionario.setFont(fonteNormal);
         btnImprimirRelatorioFuncionario.setForeground(new java.awt.Color(255, 255, 255));
         btnImprimirRelatorioFuncionario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/imprimir-relatorio-funcionario-32x32.png"))); // NOI18N
-        btnImprimirRelatorioFuncionario.setText("<html>IMPRIMIR RELATÓRIO DE<br>FUNCIONÁRIO</html>");
+        btnImprimirRelatorioFuncionario.setText("RELATÓRIO DE FUNCIONÁRIO");
         btnImprimirRelatorioFuncionario.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
         btnImprimirRelatorioFuncionario.setMaximumSize(new java.awt.Dimension(245, 64));
         btnImprimirRelatorioFuncionario.setMinimumSize(new java.awt.Dimension(245, 64));
@@ -195,10 +209,10 @@ public class TelaHomescreenGestor extends javax.swing.JFrame {
         });
 
         btnImprimirRelatorioAvaliacaoProdutividade.setBackground(new java.awt.Color(71, 19, 35));
-        btnImprimirRelatorioAvaliacaoProdutividade.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnImprimirRelatorioAvaliacaoProdutividade.setFont(fonteNormal);
         btnImprimirRelatorioAvaliacaoProdutividade.setForeground(new java.awt.Color(255, 255, 255));
         btnImprimirRelatorioAvaliacaoProdutividade.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/imprimir-relatorio-avaliacao-produtividade-32x32.png"))); // NOI18N
-        btnImprimirRelatorioAvaliacaoProdutividade.setText("<html>IMPRIMIR RELATÓRIO DE<br>AVALIAÇÃO DE<br>PRODUTIVIDADE</html>");
+        btnImprimirRelatorioAvaliacaoProdutividade.setText("REL. DE AVAL. DE PRODUTIVIDADE");
         btnImprimirRelatorioAvaliacaoProdutividade.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
         btnImprimirRelatorioAvaliacaoProdutividade.setMaximumSize(new java.awt.Dimension(245, 64));
         btnImprimirRelatorioAvaliacaoProdutividade.setMinimumSize(new java.awt.Dimension(245, 64));
@@ -210,10 +224,10 @@ public class TelaHomescreenGestor extends javax.swing.JFrame {
         });
 
         btnImprimirRelatorioPonto.setBackground(new java.awt.Color(71, 19, 35));
-        btnImprimirRelatorioPonto.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnImprimirRelatorioPonto.setFont(fonteNormal);
         btnImprimirRelatorioPonto.setForeground(new java.awt.Color(255, 255, 255));
         btnImprimirRelatorioPonto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/imprimir-relatorio-ponto-32x32.png"))); // NOI18N
-        btnImprimirRelatorioPonto.setText("<html>IMPRIMIR RELATÓRIO DE<br>PONTO</html>");
+        btnImprimirRelatorioPonto.setText("RELATÓRIO DE PONTO");
         btnImprimirRelatorioPonto.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
         btnImprimirRelatorioPonto.setMaximumSize(new java.awt.Dimension(245, 64));
         btnImprimirRelatorioPonto.setMinimumSize(new java.awt.Dimension(245, 64));
@@ -225,7 +239,7 @@ public class TelaHomescreenGestor extends javax.swing.JFrame {
         });
 
         btnListarFuncionarios.setBackground(new java.awt.Color(71, 19, 35));
-        btnListarFuncionarios.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnListarFuncionarios.setFont(fonteNormal);
         btnListarFuncionarios.setForeground(new java.awt.Color(255, 255, 255));
         btnListarFuncionarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/listar-funcionarios-32x32.png"))); // NOI18N
         btnListarFuncionarios.setText("LISTAR FUNCIONÁRIOS");
@@ -261,7 +275,7 @@ public class TelaHomescreenGestor extends javax.swing.JFrame {
                 .addGroup(pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlMenuLayout.createSequentialGroup()
                         .addGroup(pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnImprimirRelatorioAvaliacaoProdutividade, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE)
+                            .addComponent(btnImprimirRelatorioAvaliacaoProdutividade, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE)
                             .addComponent(btnAvaliarPerformance, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnCadastrarUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnListarFuncionarios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -269,7 +283,7 @@ public class TelaHomescreenGestor extends javax.swing.JFrame {
                         .addComponent(pnlDivisoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(22, 22, 22)
                         .addGroup(pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnCadastrarFuncionario, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
+                            .addComponent(btnCadastrarFuncionario, javax.swing.GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE)
                             .addComponent(btnImprimirRelatorioPonto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnImprimirRelatorioFuncionario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addComponent(lblMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -414,7 +428,13 @@ public class TelaHomescreenGestor extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaHomescreenGestor().setVisible(true);
+                try {
+                    new TelaHomescreenGestor().setVisible(true);
+                } catch (FontFormatException ex) {
+                    Logger.getLogger(TelaHomescreenGestor.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IOException ex) {
+                    Logger.getLogger(TelaHomescreenGestor.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
