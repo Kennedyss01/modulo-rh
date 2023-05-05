@@ -5,7 +5,14 @@ import br.com.ifba.modulorh.homescreen.TelaHomescreenGestor;
 import br.com.ifba.modulorh.infrastructure.service.IFacade;
 import br.com.ifba.modulorh.usuario.model.Usuario;
 import br.com.ifba.modulorh.usuario.view.TelaCadastroUsuario;
+import java.awt.Font;
+import java.awt.FontFormatException;
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -26,7 +33,17 @@ public class TelaLogin extends javax.swing.JFrame {
     @Autowired
     private TelaCadastroUsuario telaCadastroUsuario;
     
-    public TelaLogin() {
+    ImageIcon icone = new ImageIcon("./src/main/resources/imagens/rh.png");
+    Font fonteMaior;
+    Font fonteNormal;
+    
+    public TelaLogin() throws FontFormatException, IOException {
+        this.fonteMaior = Font.createFont(Font.TRUETYPE_FONT,
+                new File("./src/main/resources/fontes/Poppins/Poppins-Bold.ttf"))
+                .deriveFont(Font.PLAIN, 28);
+        this.fonteNormal = Font.createFont(Font.TRUETYPE_FONT,
+                new File("./src/main/resources/fontes/Poppins/Poppins-Regular.ttf"))
+                .deriveFont(Font.PLAIN, 16);
         initComponents();
         setLocationRelativeTo(null);
     }
@@ -72,6 +89,7 @@ public class TelaLogin extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Login");
         setAutoRequestFocus(false);
+        setIconImage(icone.getImage());
         setResizable(false);
 
         pnlContainer.setBackground(new java.awt.Color(255, 255, 255));
@@ -84,7 +102,7 @@ public class TelaLogin extends javax.swing.JFrame {
         pnlLateral.setMinimumSize(new java.awt.Dimension(293, 595));
         pnlLateral.setPreferredSize(new java.awt.Dimension(293, 595));
 
-        lblModuloRH.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        lblModuloRH.setFont(fonteMaior);
         lblModuloRH.setForeground(new java.awt.Color(255, 255, 255));
         lblModuloRH.setText("Módulo RH");
 
@@ -95,7 +113,7 @@ public class TelaLogin extends javax.swing.JFrame {
             .addGroup(pnlLateralLayout.createSequentialGroup()
                 .addGap(42, 42, 42)
                 .addComponent(lblModuloRH)
-                .addContainerGap(57, Short.MAX_VALUE))
+                .addContainerGap(190, Short.MAX_VALUE))
         );
         pnlLateralLayout.setVerticalGroup(
             pnlLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -110,12 +128,13 @@ public class TelaLogin extends javax.swing.JFrame {
         pnlLogin.setMaximumSize(new java.awt.Dimension(388, 340));
         pnlLogin.setPreferredSize(new java.awt.Dimension(388, 340));
 
-        lblFazerLogin.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        lblFazerLogin.setFont(fonteMaior);
         lblFazerLogin.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblFazerLogin.setText("Fazer Login");
 
-        lblEsqueceuASenha.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblEsqueceuASenha.setFont(fonteNormal);
         lblEsqueceuASenha.setForeground(new java.awt.Color(26, 81, 107));
+        lblEsqueceuASenha.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblEsqueceuASenha.setText("Esqueceu a senha?");
         lblEsqueceuASenha.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -124,7 +143,7 @@ public class TelaLogin extends javax.swing.JFrame {
         });
 
         btnEntrar.setBackground(new java.awt.Color(71, 19, 35));
-        btnEntrar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnEntrar.setFont(fonteNormal);
         btnEntrar.setForeground(new java.awt.Color(255, 255, 255));
         btnEntrar.setText("ENTRAR");
         btnEntrar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
@@ -145,13 +164,13 @@ public class TelaLogin extends javax.swing.JFrame {
         pnlTextFields.setPreferredSize(new java.awt.Dimension(360, 130));
         pnlTextFields.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblUsuario.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblUsuario.setFont(fonteNormal);
         lblUsuario.setText("Usuário");
-        pnlTextFields.add(lblUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 80, 30));
+        pnlTextFields.add(lblUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 310, 30));
 
-        lblSenha.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblSenha.setFont(fonteNormal);
         lblSenha.setText("Senha");
-        pnlTextFields.add(lblSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 80, 30));
+        pnlTextFields.add(lblSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 310, 30));
 
         txtUsuario.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         txtUsuario.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
@@ -191,16 +210,15 @@ public class TelaLogin extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(pnlLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlLoginLayout.createSequentialGroup()
+                        .addComponent(lblEsqueceuASenha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(pnlLoginLayout.createSequentialGroup()
                         .addComponent(pnlTextFields, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(14, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlLoginLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(54, 54, 54))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlLoginLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblEsqueceuASenha)
-                .addGap(128, 128, 128))
         );
         pnlLoginLayout.setVerticalGroup(
             pnlLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -318,7 +336,13 @@ public class TelaLogin extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaLogin().setVisible(true);
+                try {
+                    new TelaLogin().setVisible(true);
+                } catch (FontFormatException ex) {
+                    Logger.getLogger(TelaLogin.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IOException ex) {
+                    Logger.getLogger(TelaLogin.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

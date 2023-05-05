@@ -7,6 +7,12 @@ package br.com.ifba.modulorh.funcionario.view;
 import br.com.ifba.modulorh.funcionario.model.Funcionario;
 import br.com.ifba.modulorh.infrastructure.service.IFacade;
 import br.com.ifba.modulorh.usuario.view.TelaCadastroUsuario;
+import java.awt.Font;
+import java.awt.FontFormatException;
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,9 +34,17 @@ public class TelaEditarFuncionario extends javax.swing.JFrame {
     private TelaDeListarFuncionarios telaDeListarFuncionarios; 
     private Funcionario funcionario;
     
-    ImageIcon icone = new ImageIcon("./src/main/resources/imagens/cadastrar-funcionario-32x32.png");
+    ImageIcon icone = new ImageIcon("./src/main/resources/imagens/rh.png");
+    Font fonteMaior;
+    Font fonteNormal;
     
-    public TelaEditarFuncionario() {
+    public TelaEditarFuncionario() throws FontFormatException, IOException {
+        this.fonteMaior = Font.createFont(Font.TRUETYPE_FONT,
+                new File("./src/main/resources/fontes/Poppins/Poppins-Bold.ttf"))
+                .deriveFont(Font.PLAIN, 28);
+        this.fonteNormal = Font.createFont(Font.TRUETYPE_FONT,
+                new File("./src/main/resources/fontes/Poppins/Poppins-Regular.ttf"))
+                .deriveFont(Font.PLAIN, 16);
         initComponents();
         setLocationRelativeTo(null);
     }
@@ -94,7 +108,7 @@ public class TelaEditarFuncionario extends javax.swing.JFrame {
         pnlLateral.setMinimumSize(new java.awt.Dimension(293, 595));
         pnlLateral.setPreferredSize(new java.awt.Dimension(293, 595));
 
-        lblModuloRH.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        lblModuloRH.setFont(fonteMaior);
         lblModuloRH.setForeground(new java.awt.Color(255, 255, 255));
         lblModuloRH.setText("Módulo RH");
 
@@ -105,7 +119,7 @@ public class TelaEditarFuncionario extends javax.swing.JFrame {
             .addGroup(pnlLateralLayout.createSequentialGroup()
                 .addGap(42, 42, 42)
                 .addComponent(lblModuloRH)
-                .addContainerGap(57, Short.MAX_VALUE))
+                .addContainerGap(190, Short.MAX_VALUE))
         );
         pnlLateralLayout.setVerticalGroup(
             pnlLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -120,11 +134,12 @@ public class TelaEditarFuncionario extends javax.swing.JFrame {
         pnlEditarFuncionario.setMaximumSize(new java.awt.Dimension(388, 340));
         pnlEditarFuncionario.setPreferredSize(new java.awt.Dimension(388, 340));
 
-        lblEditarFuncionario.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        lblEditarFuncionario.setFont(fonteMaior);
+        lblEditarFuncionario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblEditarFuncionario.setText("Editar Funcionário");
 
         btnEditar.setBackground(new java.awt.Color(71, 19, 35));
-        btnEditar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnEditar.setFont(fonteNormal);
         btnEditar.setForeground(new java.awt.Color(255, 255, 255));
         btnEditar.setText("Editar");
         btnEditar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
@@ -145,39 +160,39 @@ public class TelaEditarFuncionario extends javax.swing.JFrame {
         pnlTextFields.setPreferredSize(new java.awt.Dimension(360, 130));
         pnlTextFields.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblNome.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblNome.setFont(fonteNormal);
         lblNome.setText("Nome");
         pnlTextFields.add(lblNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 80, 20));
 
-        lblDataDeNascimento.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblDataDeNascimento.setFont(fonteNormal);
         lblDataDeNascimento.setText("Data de Nascimento");
-        pnlTextFields.add(lblDataDeNascimento, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 150, 20));
+        pnlTextFields.add(lblDataDeNascimento, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 280, 20));
 
-        lblCpf.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblCpf.setFont(fonteNormal);
         lblCpf.setText("CPF");
         pnlTextFields.add(lblCpf, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 80, 20));
 
-        lblEndereco.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblEndereco.setFont(fonteNormal);
         lblEndereco.setText("Endereço");
         pnlTextFields.add(lblEndereco, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 80, 20));
 
-        lblTelefone.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblTelefone.setFont(fonteNormal);
         lblTelefone.setText("Telefone");
         pnlTextFields.add(lblTelefone, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 80, 20));
 
-        lblEmail.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblEmail.setFont(fonteNormal);
         lblEmail.setText("Email");
         pnlTextFields.add(lblEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, 80, 20));
 
-        lblSalario.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblSalario.setFont(fonteNormal);
         lblSalario.setText("Salário");
         pnlTextFields.add(lblSalario, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 320, 80, 20));
 
-        lblStatus.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblStatus.setFont(fonteNormal);
         lblStatus.setText("Status");
         pnlTextFields.add(lblStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 370, 80, 20));
 
-        lblDataDeEntrada.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblDataDeEntrada.setFont(fonteNormal);
         lblDataDeEntrada.setText("Data de entrada na empresa");
         pnlTextFields.add(lblDataDeEntrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 420, 290, 20));
 
@@ -296,15 +311,18 @@ public class TelaEditarFuncionario extends javax.swing.JFrame {
             .addGroup(pnlEditarFuncionarioLayout.createSequentialGroup()
                 .addGroup(pnlEditarFuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlEditarFuncionarioLayout.createSequentialGroup()
+                        .addGroup(pnlEditarFuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pnlEditarFuncionarioLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(pnlTextFields, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(pnlEditarFuncionarioLayout.createSequentialGroup()
+                                .addGap(51, 51, 51)
+                                .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 8, Short.MAX_VALUE))
+                    .addGroup(pnlEditarFuncionarioLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(pnlTextFields, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnlEditarFuncionarioLayout.createSequentialGroup()
-                        .addGap(51, 51, 51)
-                        .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnlEditarFuncionarioLayout.createSequentialGroup()
-                        .addGap(81, 81, 81)
-                        .addComponent(lblEditarFuncionario)))
-                .addContainerGap(14, Short.MAX_VALUE))
+                        .addComponent(lblEditarFuncionario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         pnlEditarFuncionarioLayout.setVerticalGroup(
             pnlEditarFuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -312,7 +330,7 @@ public class TelaEditarFuncionario extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(lblEditarFuncionario)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pnlTextFields, javax.swing.GroupLayout.DEFAULT_SIZE, 470, Short.MAX_VALUE)
+                .addComponent(pnlTextFields, javax.swing.GroupLayout.DEFAULT_SIZE, 486, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12))
@@ -468,7 +486,13 @@ public class TelaEditarFuncionario extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaEditarFuncionario().setVisible(true);
+                try {
+                    new TelaEditarFuncionario().setVisible(true);
+                } catch (FontFormatException ex) {
+                    Logger.getLogger(TelaEditarFuncionario.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IOException ex) {
+                    Logger.getLogger(TelaEditarFuncionario.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
