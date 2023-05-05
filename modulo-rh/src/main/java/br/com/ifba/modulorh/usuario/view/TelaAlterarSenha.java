@@ -2,6 +2,12 @@ package br.com.ifba.modulorh.usuario.view;
 
 import br.com.ifba.modulorh.infrastructure.service.IFacade;
 import br.com.ifba.modulorh.usuario.model.Usuario;
+import java.awt.Font;
+import java.awt.FontFormatException;
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,9 +24,17 @@ public class TelaAlterarSenha extends javax.swing.JFrame {
     private IFacade facade;
     private Usuario usuario;
     
-    ImageIcon icone = new ImageIcon("./src/main/resources/imagens/senha-16x16.png");
+    ImageIcon icone = new ImageIcon("./src/main/resources/imagens/rh.png");
+    Font fonteMaior;
+    Font fonteNormal;
     
-    public TelaAlterarSenha() {
+    public TelaAlterarSenha() throws FontFormatException, IOException {
+        this.fonteMaior = Font.createFont(Font.TRUETYPE_FONT,
+                new File("./src/main/resources/fontes/Poppins/Poppins-Bold.ttf"))
+                .deriveFont(Font.PLAIN, 28);
+        this.fonteNormal = Font.createFont(Font.TRUETYPE_FONT,
+                new File("./src/main/resources/fontes/Poppins/Poppins-Regular.ttf"))
+                .deriveFont(Font.PLAIN, 16);
         initComponents();
         setLocationRelativeTo(null);
     }
@@ -92,7 +106,7 @@ public class TelaAlterarSenha extends javax.swing.JFrame {
         pnlLateral.setMaximumSize(new java.awt.Dimension(293, 595));
         pnlLateral.setPreferredSize(new java.awt.Dimension(293, 595));
 
-        lblModuloRH.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        lblModuloRH.setFont(fonteMaior);
         lblModuloRH.setForeground(new java.awt.Color(255, 255, 255));
         lblModuloRH.setText("Módulo RH");
 
@@ -103,7 +117,7 @@ public class TelaAlterarSenha extends javax.swing.JFrame {
             .addGroup(pnlLateralLayout.createSequentialGroup()
                 .addGap(46, 46, 46)
                 .addComponent(lblModuloRH)
-                .addContainerGap(53, Short.MAX_VALUE))
+                .addContainerGap(186, Short.MAX_VALUE))
         );
         pnlLateralLayout.setVerticalGroup(
             pnlLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -119,11 +133,12 @@ public class TelaAlterarSenha extends javax.swing.JFrame {
         pnlAlterarSenha.setPreferredSize(new java.awt.Dimension(388, 360));
         pnlAlterarSenha.setRequestFocusEnabled(false);
 
-        lblAlterarSenha.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        lblAlterarSenha.setFont(fonteMaior);
+        lblAlterarSenha.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblAlterarSenha.setText("Alterar Senha");
 
         btnAtualizar.setBackground(new java.awt.Color(71, 19, 35));
-        btnAtualizar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnAtualizar.setFont(fonteNormal);
         btnAtualizar.setForeground(new java.awt.Color(255, 255, 255));
         btnAtualizar.setText("Atualizar");
         btnAtualizar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
@@ -144,17 +159,17 @@ public class TelaAlterarSenha extends javax.swing.JFrame {
         pnlTextFields.setPreferredSize(new java.awt.Dimension(360, 130));
         pnlTextFields.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblSenhaAtual.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblSenhaAtual.setFont(fonteNormal);
         lblSenhaAtual.setText("Senha atual");
-        pnlTextFields.add(lblSenhaAtual, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 80, 30));
+        pnlTextFields.add(lblSenhaAtual, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 300, 30));
 
-        lblNovaSenha.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblNovaSenha.setFont(fonteNormal);
         lblNovaSenha.setText("Nova senha");
-        pnlTextFields.add(lblNovaSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 80, 30));
+        pnlTextFields.add(lblNovaSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 300, 30));
 
-        lblConfirmarSenha.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblConfirmarSenha.setFont(fonteNormal);
         lblConfirmarSenha.setText("Confirmar a senha");
-        pnlTextFields.add(lblConfirmarSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, -1, 30));
+        pnlTextFields.add(lblConfirmarSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 300, 30));
 
         txtSenhaAtual.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         txtSenhaAtual.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
@@ -204,17 +219,15 @@ public class TelaAlterarSenha extends javax.swing.JFrame {
         pnlAlterarSenhaLayout.setHorizontalGroup(
             pnlAlterarSenhaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlAlterarSenhaLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(pnlAlterarSenhaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlAlterarSenhaLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(pnlTextFields, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnlAlterarSenhaLayout.createSequentialGroup()
-                        .addGap(103, 103, 103)
-                        .addComponent(lblAlterarSenha))
-                    .addGroup(pnlAlterarSenhaLayout.createSequentialGroup()
-                        .addGap(55, 55, 55)
-                        .addComponent(btnAtualizar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(14, Short.MAX_VALUE))
+                    .addComponent(pnlTextFields, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 368, Short.MAX_VALUE)
+                    .addComponent(lblAlterarSenha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+            .addGroup(pnlAlterarSenhaLayout.createSequentialGroup()
+                .addGap(54, 54, 54)
+                .addComponent(btnAtualizar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlAlterarSenhaLayout.setVerticalGroup(
             pnlAlterarSenhaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -222,10 +235,10 @@ public class TelaAlterarSenha extends javax.swing.JFrame {
                 .addGap(19, 19, 19)
                 .addComponent(lblAlterarSenha)
                 .addGap(26, 26, 26)
-                .addComponent(pnlTextFields, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(pnlTextFields, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(btnAtualizar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29))
+                .addGap(17, 17, 17))
         );
 
         javax.swing.GroupLayout pnlContainerLayout = new javax.swing.GroupLayout(pnlContainer);
@@ -333,7 +346,13 @@ public class TelaAlterarSenha extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaAlterarSenha().setVisible(true);
+                try {
+                    new TelaAlterarSenha().setVisible(true);
+                } catch (FontFormatException ex) {
+                    Logger.getLogger(TelaAlterarSenha.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IOException ex) {
+                    Logger.getLogger(TelaAlterarSenha.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

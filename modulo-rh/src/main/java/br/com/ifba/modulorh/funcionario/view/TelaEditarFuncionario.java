@@ -162,39 +162,39 @@ public class TelaEditarFuncionario extends javax.swing.JFrame {
 
         lblNome.setFont(fonteNormal);
         lblNome.setText("Nome");
-        pnlTextFields.add(lblNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 80, 20));
+        pnlTextFields.add(lblNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 300, 20));
 
         lblDataDeNascimento.setFont(fonteNormal);
         lblDataDeNascimento.setText("Data de Nascimento");
-        pnlTextFields.add(lblDataDeNascimento, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 280, 20));
+        pnlTextFields.add(lblDataDeNascimento, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 300, 20));
 
         lblCpf.setFont(fonteNormal);
         lblCpf.setText("CPF");
-        pnlTextFields.add(lblCpf, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 80, 20));
+        pnlTextFields.add(lblCpf, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 300, 20));
 
         lblEndereco.setFont(fonteNormal);
         lblEndereco.setText("Endereço");
-        pnlTextFields.add(lblEndereco, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 80, 20));
+        pnlTextFields.add(lblEndereco, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 300, 20));
 
         lblTelefone.setFont(fonteNormal);
         lblTelefone.setText("Telefone");
-        pnlTextFields.add(lblTelefone, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 80, 20));
+        pnlTextFields.add(lblTelefone, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 300, 20));
 
         lblEmail.setFont(fonteNormal);
         lblEmail.setText("Email");
-        pnlTextFields.add(lblEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, 80, 20));
+        pnlTextFields.add(lblEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, 300, 20));
 
         lblSalario.setFont(fonteNormal);
         lblSalario.setText("Salário");
-        pnlTextFields.add(lblSalario, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 320, 80, 20));
+        pnlTextFields.add(lblSalario, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 320, 300, 20));
 
         lblStatus.setFont(fonteNormal);
         lblStatus.setText("Status");
-        pnlTextFields.add(lblStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 370, 80, 20));
+        pnlTextFields.add(lblStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 370, 300, 20));
 
         lblDataDeEntrada.setFont(fonteNormal);
         lblDataDeEntrada.setText("Data de entrada na empresa");
-        pnlTextFields.add(lblDataDeEntrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 420, 290, 20));
+        pnlTextFields.add(lblDataDeEntrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 420, 300, 20));
 
         txtNome.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         txtNome.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));

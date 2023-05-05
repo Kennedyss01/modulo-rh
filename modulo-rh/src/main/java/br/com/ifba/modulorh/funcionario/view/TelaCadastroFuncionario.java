@@ -155,7 +155,7 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
 
         lblNome.setFont(fonteNormal);
         lblNome.setText("Nome");
-        pnlTextFields.add(lblNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 80, 20));
+        pnlTextFields.add(lblNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 290, 20));
 
         lblDataDeNascimento.setFont(fonteNormal);
         lblDataDeNascimento.setText("Data de Nascimento");
@@ -163,27 +163,27 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
 
         lblCpf.setFont(fonteNormal);
         lblCpf.setText("CPF");
-        pnlTextFields.add(lblCpf, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 80, 20));
+        pnlTextFields.add(lblCpf, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 290, 20));
 
         lblEndereco.setFont(fonteNormal);
         lblEndereco.setText("Endereço");
-        pnlTextFields.add(lblEndereco, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 80, 20));
+        pnlTextFields.add(lblEndereco, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 290, 20));
 
         lblTelefone.setFont(fonteNormal);
         lblTelefone.setText("Telefone");
-        pnlTextFields.add(lblTelefone, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 80, 20));
+        pnlTextFields.add(lblTelefone, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 290, 20));
 
         lblEmail.setFont(fonteNormal);
         lblEmail.setText("Email");
-        pnlTextFields.add(lblEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, 80, 20));
+        pnlTextFields.add(lblEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, 290, 20));
 
         lblSalario.setFont(fonteNormal);
         lblSalario.setText("Salário");
-        pnlTextFields.add(lblSalario, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 320, 80, 20));
+        pnlTextFields.add(lblSalario, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 320, 290, 20));
 
         lblStatus.setFont(fonteNormal);
         lblStatus.setText("Status");
-        pnlTextFields.add(lblStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 370, 80, 20));
+        pnlTextFields.add(lblStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 370, 290, 20));
 
         lblDataDeEntrada.setFont(fonteNormal);
         lblDataDeEntrada.setText("Data de entrada na empresa");
@@ -199,7 +199,7 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
                 txtNomeKeyPressed(evt);
             }
         });
-        pnlTextFields.add(txtNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, 40));
+        pnlTextFields.add(txtNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 310, 40));
 
         txtDataDeNascimento.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         txtDataDeNascimento.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
@@ -211,7 +211,7 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
                 txtDataDeNascimentoKeyPressed(evt);
             }
         });
-        pnlTextFields.add(txtDataDeNascimento, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, 40));
+        pnlTextFields.add(txtDataDeNascimento, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 310, 40));
 
         txtCpf.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         txtCpf.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
@@ -223,7 +223,7 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
                 txtCpfKeyPressed(evt);
             }
         });
-        pnlTextFields.add(txtCpf, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, -1, 40));
+        pnlTextFields.add(txtCpf, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 310, 40));
 
         txtEndereco.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         txtEndereco.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
@@ -235,7 +235,7 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
                 txtEnderecoKeyPressed(evt);
             }
         });
-        pnlTextFields.add(txtEndereco, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, -1, 40));
+        pnlTextFields.add(txtEndereco, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 310, 40));
 
         txtTelefone.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         txtTelefone.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
@@ -247,7 +247,7 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
                 txtTelefoneKeyPressed(evt);
             }
         });
-        pnlTextFields.add(txtTelefone, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, -1, 40));
+        pnlTextFields.add(txtTelefone, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 310, 40));
 
         txtEmail.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         txtEmail.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
@@ -259,7 +259,7 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
                 txtEmailKeyPressed(evt);
             }
         });
-        pnlTextFields.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, -1, 40));
+        pnlTextFields.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, 310, 40));
 
         txtSalario.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         txtSalario.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
@@ -271,7 +271,7 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
                 txtSalarioKeyPressed(evt);
             }
         });
-        pnlTextFields.add(txtSalario, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 310, -1, 40));
+        pnlTextFields.add(txtSalario, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 310, 310, 40));
 
         txtStatus.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         txtStatus.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
@@ -283,7 +283,7 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
                 txtStatusKeyPressed(evt);
             }
         });
-        pnlTextFields.add(txtStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 360, -1, 40));
+        pnlTextFields.add(txtStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 360, 310, 40));
 
         txtDataDeEntrada.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         txtDataDeEntrada.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
@@ -295,7 +295,7 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
                 txtDataDeEntradaKeyPressed(evt);
             }
         });
-        pnlTextFields.add(txtDataDeEntrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 410, -1, 40));
+        pnlTextFields.add(txtDataDeEntrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 410, 310, 40));
 
         javax.swing.GroupLayout pnlLoginLayout = new javax.swing.GroupLayout(pnlLogin);
         pnlLogin.setLayout(pnlLoginLayout);
