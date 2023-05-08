@@ -1,5 +1,7 @@
 package br.com.ifba.modulorh.infrastructure.service;
 
+import br.com.ifba.modulorh.adicionais.model.Adicional;
+import br.com.ifba.modulorh.adicionais.service.IServiceAdicional;
 import br.com.ifba.modulorh.funcionario.model.Funcionario;
 import br.com.ifba.modulorh.usuario.model.Usuario;
 import br.com.ifba.modulorh.usuario.service.IServiceUsuario;
@@ -92,5 +94,35 @@ public class Facade implements IFacade {
     public Funcionario findFuncionarioByUsuarioId(Long id) {
         return serviceFuncionario.findByUsuarioId(id);
     }
+ 
+    //========================Adicional========================//
+    
+    @Autowired
+    private IServiceAdicional serviceAdicional;
+    
+    @Override
+    public Adicional saveAdicional(Adicional adicional) {
+        return serviceAdicional.saveAdicional(adicional);
+    }
+
+    @Override
+    public Adicional updateAdicional(Adicional adicional) {
+        return serviceAdicional.updateAdicional(adicional);
+    }
+
+    @Override
+    public void deleteAdicional(Adicional adicional) {  
+        serviceAdicional.deleteAdicional(adicional);
+    }
+
+    @Override
+    public List<Adicional> getAllAdicional() {
+        return serviceAdicional.getAllAdicional();    
+    }
+    
+    @Override
+    public Adicional findById(Long id) {
+        return serviceAdicional.findById(id);
+    }  
     
 }

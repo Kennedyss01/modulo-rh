@@ -5,6 +5,7 @@
 package br.com.ifba.modulorh.funcionario.view;
 
 import br.com.ifba.modulorh.funcionario.model.Funcionario;
+import br.com.ifba.modulorh.homescreen.TelaHomescreenGestor;
 import br.com.ifba.modulorh.infrastructure.service.Facade;
 import br.com.ifba.modulorh.infrastructure.service.IFacade;
 import java.awt.Font;
@@ -19,6 +20,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 /**
@@ -34,6 +36,8 @@ public class TelaDeListarFuncionarios extends javax.swing.JFrame {
     private TelaCadastroFuncionario telaCadastroFuncionario;
     @Autowired
     private TelaEditarFuncionario telaEditarFuncionario;
+    @Autowired @Lazy
+    private TelaHomescreenGestor telaHomescreenGestor;
     
     ImageIcon icone = new ImageIcon("./src/main/resources/imagens/rh.png");
     Font fonteMaior;
@@ -66,6 +70,7 @@ public class TelaDeListarFuncionarios extends javax.swing.JFrame {
         pnlContainer = new javax.swing.JPanel();
         pnlLateral = new javax.swing.JPanel();
         lblModuloRH = new javax.swing.JLabel();
+        btnInicio = new javax.swing.JButton();
         pnlCampo = new javax.swing.JPanel();
         pnlFuncionarios = new javax.swing.JPanel();
         pnlTabela = new javax.swing.JPanel();
@@ -96,21 +101,45 @@ public class TelaDeListarFuncionarios extends javax.swing.JFrame {
         lblModuloRH.setForeground(new java.awt.Color(255, 255, 255));
         lblModuloRH.setText("Módulo RH");
 
+        btnInicio.setBackground(new java.awt.Color(26, 81, 107));
+        btnInicio.setFont(fonteNormal);
+        btnInicio.setForeground(new java.awt.Color(255, 255, 255));
+        btnInicio.setText("Inicio");
+        btnInicio.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 2, true));
+        btnInicio.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnInicio.setFocusPainted(false);
+        btnInicio.setFocusable(false);
+        btnInicio.setMaximumSize(new java.awt.Dimension(266, 40));
+        btnInicio.setMinimumSize(new java.awt.Dimension(266, 40));
+        btnInicio.setPreferredSize(new java.awt.Dimension(266, 40));
+        btnInicio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInicioActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnlLateralLayout = new javax.swing.GroupLayout(pnlLateral);
         pnlLateral.setLayout(pnlLateralLayout);
         pnlLateralLayout.setHorizontalGroup(
             pnlLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlLateralLayout.createSequentialGroup()
-                .addGap(45, 45, 45)
-                .addComponent(lblModuloRH)
-                .addContainerGap(187, Short.MAX_VALUE))
+                .addGroup(pnlLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlLateralLayout.createSequentialGroup()
+                        .addGap(45, 45, 45)
+                        .addComponent(lblModuloRH))
+                    .addGroup(pnlLateralLayout.createSequentialGroup()
+                        .addGap(86, 86, 86)
+                        .addComponent(btnInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(97, Short.MAX_VALUE))
         );
         pnlLateralLayout.setVerticalGroup(
             pnlLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlLateralLayout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(lblModuloRH)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(42, 42, 42))
         );
 
         pnlCampo.setBackground(new java.awt.Color(255, 255, 255));
@@ -316,6 +345,7 @@ public class TelaDeListarFuncionarios extends javax.swing.JFrame {
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
         telaCadastroFuncionario.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
@@ -337,8 +367,14 @@ public class TelaDeListarFuncionarios extends javax.swing.JFrame {
         Long id = (Long) tblFuncionarios.getValueAt(linha, 0);
         Funcionario funcionario = facade.findFuncionarioById(id);
         telaEditarFuncionario.passandoDados(funcionario);
+        this.setVisible(false);
         telaEditarFuncionario.setVisible(true);
     }//GEN-LAST:event_btnEditarActionPerformed
+
+    private void btnInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioActionPerformed
+        this.setVisible(false);
+        telaHomescreenGestor.setVisible(true);
+    }//GEN-LAST:event_btnInicioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -388,6 +424,7 @@ public class TelaDeListarFuncionarios extends javax.swing.JFrame {
     private javax.swing.JButton btnCadastrar;
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnExcluir;
+    private javax.swing.JButton btnInicio;
     private javax.swing.JScrollPane jScrollPane;
     private javax.swing.JLabel lblFuncionariosExistentes;
     private javax.swing.JLabel lblModuloRH;

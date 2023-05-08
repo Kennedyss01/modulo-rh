@@ -1,5 +1,6 @@
 package br.com.ifba.modulorh.infrastructure.service;
 
+import br.com.ifba.modulorh.adicionais.model.Adicional;
 import br.com.ifba.modulorh.funcionario.model.Funcionario;
 import br.com.ifba.modulorh.usuario.model.Usuario;
 import java.util.List;
@@ -27,5 +28,12 @@ public interface IFacade {
     boolean existsByCpf(String cpf);
     boolean existsByEmail(String email);
     Funcionario findFuncionarioByUsuarioId(Long id);
+    
+    //========================Adicional========================//
+    public Adicional saveAdicional(Adicional adicional);
+    public Adicional updateAdicional(Adicional adicional);
+    public void deleteAdicional(Adicional adicional);
+    public List<Adicional> getAllAdicional();
+    public Adicional findById(Long id);
     
 }
