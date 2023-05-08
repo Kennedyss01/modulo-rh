@@ -353,6 +353,7 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
             try {
                 usuario = facade.saveUsuario(usuario);
                 this.setVisible(false);
+                telaDeListarFuncionarios.setVisible(true);
                 if (cadastroFuncionario == true) {
                     telaCadastroFuncionario.finalizarCadastro(usuario);
                 }

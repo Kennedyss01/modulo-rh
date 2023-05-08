@@ -29,14 +29,15 @@ public class Funcionario implements Serializable{
     private String endereco;
     private String telefone;
     private String email;
-    private String salario;
+    private float salario;
     private String status;
     private String dataDeEntrada;
     
-    @OneToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.REMOVE}, orphanRemoval = true)
+    @OneToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.REMOVE})
     private Usuario usuario;
 
-    public Funcionario(String nome, String dataDeNascimento, String cpf, String endereco, String telefone, String email, String salario, String status, String dataDeEntrada) {
+    public Funcionario(String nome, String dataDeNascimento, String cpf, String endereco, String telefone, 
+    String email, float salario, String status, String dataDeEntrada) {
         this.nome = nome;
         this.dataDeNascimento = dataDeNascimento;
         this.cpf = cpf;
