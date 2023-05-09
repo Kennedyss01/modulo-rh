@@ -1,8 +1,8 @@
 package br.com.ifba.modulorh.homescreen;
 
 import br.com.ifba.modulorh.adicionais.view.TelaDeListarAdicionais;
+import br.com.ifba.modulorh.desconto.view.TelaDeListarDescontos;
 import br.com.ifba.modulorh.usuario.model.Usuario;
-import br.com.ifba.modulorh.usuario.view.TelaCadastroUsuario;
 import br.com.ifba.modulorh.funcionario.view.TelaCadastroFuncionario;
 import br.com.ifba.modulorh.funcionario.view.TelaDeListarFuncionarios;
 import br.com.ifba.modulorh.infrastructure.service.IFacade;
@@ -30,7 +30,7 @@ public class TelaHomescreenGestor extends javax.swing.JFrame {
     @Autowired
     private TelaCadastroFuncionario telaCadastroFuncionario;
     @Autowired
-    private TelaCadastroUsuario telaCadastroUsuario;
+    private TelaDeListarDescontos telaDeListarDescontos;
     @Autowired
     private TelaDeListarFuncionarios telaDeListarFuncionarios;
     @Autowired
@@ -72,7 +72,7 @@ public class TelaHomescreenGestor extends javax.swing.JFrame {
         pnlCampo = new javax.swing.JPanel();
         pnlMenu = new javax.swing.JPanel();
         lblMenu = new javax.swing.JLabel();
-        btnCadastrarUsuario = new javax.swing.JButton();
+        btnListarDescontos = new javax.swing.JButton();
         btnCadastrarFuncionario = new javax.swing.JButton();
         btnAvaliarPerformance = new javax.swing.JButton();
         btnImprimirRelatorioFuncionario = new javax.swing.JButton();
@@ -152,18 +152,18 @@ public class TelaHomescreenGestor extends javax.swing.JFrame {
         lblMenu.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblMenu.setText("Tela inicial");
 
-        btnCadastrarUsuario.setBackground(new java.awt.Color(71, 19, 35));
-        btnCadastrarUsuario.setFont(fonteNormal);
-        btnCadastrarUsuario.setForeground(new java.awt.Color(255, 255, 255));
-        btnCadastrarUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/cadastrar-usuario-32x32.png"))); // NOI18N
-        btnCadastrarUsuario.setText("CADASTRAR USUÁRIO");
-        btnCadastrarUsuario.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        btnCadastrarUsuario.setMaximumSize(new java.awt.Dimension(245, 64));
-        btnCadastrarUsuario.setMinimumSize(new java.awt.Dimension(245, 64));
-        btnCadastrarUsuario.setPreferredSize(new java.awt.Dimension(245, 64));
-        btnCadastrarUsuario.addActionListener(new java.awt.event.ActionListener() {
+        btnListarDescontos.setBackground(new java.awt.Color(71, 19, 35));
+        btnListarDescontos.setFont(fonteNormal);
+        btnListarDescontos.setForeground(new java.awt.Color(255, 255, 255));
+        btnListarDescontos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/cadastrar-usuario-32x32.png"))); // NOI18N
+        btnListarDescontos.setText("LISTAR DESCONTOS");
+        btnListarDescontos.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        btnListarDescontos.setMaximumSize(new java.awt.Dimension(245, 64));
+        btnListarDescontos.setMinimumSize(new java.awt.Dimension(245, 64));
+        btnListarDescontos.setPreferredSize(new java.awt.Dimension(245, 64));
+        btnListarDescontos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCadastrarUsuarioActionPerformed(evt);
+                btnListarDescontosActionPerformed(evt);
             }
         });
 
@@ -299,7 +299,7 @@ public class TelaHomescreenGestor extends javax.swing.JFrame {
                         .addGroup(pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(btnImprimirRelatorioAvaliacaoProdutividade, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 317, Short.MAX_VALUE)
                             .addComponent(btnAvaliarPerformance, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnCadastrarUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnListarDescontos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnListarFuncionarios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addComponent(pnlDivisoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -320,7 +320,7 @@ public class TelaHomescreenGestor extends javax.swing.JFrame {
                     .addGroup(pnlMenuLayout.createSequentialGroup()
                         .addGroup(pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnCadastrarFuncionario, javax.swing.GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE)
-                            .addComponent(btnCadastrarUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(btnListarDescontos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnAvaliarPerformance, javax.swing.GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE)
@@ -389,6 +389,7 @@ public class TelaHomescreenGestor extends javax.swing.JFrame {
 
     private void btnCadastrarFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarFuncionarioActionPerformed
         telaCadastroFuncionario.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btnCadastrarFuncionarioActionPerformed
 
     private void btnAvaliarPerformanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAvaliarPerformanceActionPerformed
@@ -407,9 +408,10 @@ public class TelaHomescreenGestor extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnImprimirRelatorioPontoActionPerformed
 
-    private void btnCadastrarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarUsuarioActionPerformed
-        telaCadastroUsuario.setVisible(true);
-    }//GEN-LAST:event_btnCadastrarUsuarioActionPerformed
+    private void btnListarDescontosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarDescontosActionPerformed
+        telaDeListarDescontos.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnListarDescontosActionPerformed
 
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
         telaLogin.setVisible(true);
@@ -418,10 +420,12 @@ public class TelaHomescreenGestor extends javax.swing.JFrame {
 
     private void btnListarAdicionaisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarAdicionaisActionPerformed
         telaDeListarAdicionais.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btnListarAdicionaisActionPerformed
 
     private void btnListarFuncionariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarFuncionariosActionPerformed
         telaDeListarFuncionarios.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btnListarFuncionariosActionPerformed
 
     /**
@@ -469,11 +473,11 @@ public class TelaHomescreenGestor extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAvaliarPerformance;
     private javax.swing.JButton btnCadastrarFuncionario;
-    private javax.swing.JButton btnCadastrarUsuario;
     private javax.swing.JButton btnImprimirRelatorioAvaliacaoProdutividade;
     private javax.swing.JButton btnImprimirRelatorioFuncionario;
     private javax.swing.JButton btnImprimirRelatorioPonto;
     private javax.swing.JButton btnListarAdicionais;
+    private javax.swing.JButton btnListarDescontos;
     private javax.swing.JButton btnListarFuncionarios;
     private javax.swing.JButton btnSair;
     private javax.swing.JLabel lblBemVindo;

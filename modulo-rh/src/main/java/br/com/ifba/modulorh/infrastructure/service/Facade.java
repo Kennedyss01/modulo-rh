@@ -2,6 +2,8 @@ package br.com.ifba.modulorh.infrastructure.service;
 
 import br.com.ifba.modulorh.adicionais.model.Adicional;
 import br.com.ifba.modulorh.adicionais.service.IServiceAdicional;
+import br.com.ifba.modulorh.desconto.model.Desconto;
+import br.com.ifba.modulorh.desconto.service.IServiceDesconto;
 import br.com.ifba.modulorh.funcionario.model.Funcionario;
 import br.com.ifba.modulorh.usuario.model.Usuario;
 import br.com.ifba.modulorh.usuario.service.IServiceUsuario;
@@ -39,6 +41,7 @@ public class Facade implements IFacade {
 
     @Override
     public void deleteUsuario(Usuario usuario) {
+        serviceUsuario.deleteUsuario(usuario);
     }
 
     @Override
@@ -123,6 +126,36 @@ public class Facade implements IFacade {
     @Override
     public Adicional findById(Long id) {
         return serviceAdicional.findById(id);
-    }  
+    }
+    
+    
+    //========================Desconto========================//
+    @Autowired
+    private IServiceDesconto serviceDesconto;
+        
+    @Override
+    public Desconto saveDesconto(Desconto desconto) {
+        return serviceDesconto.saveDesconto(desconto);
+    }
+
+    @Override
+    public void updateDesconto(Desconto desconto) {
+        serviceDesconto.updateDesconto(desconto);
+    }
+
+    @Override
+    public void deleteDesconto(Desconto desconto) {
+        serviceDesconto.deleteDesconto(desconto);
+    }
+
+    @Override
+    public Desconto findDescontoById(Long id) {
+        return serviceDesconto.findById(id);
+    }
+
+    @Override
+    public List<Desconto> getAllDescontos() {
+        return serviceDesconto.getAllDescontos();
+    }
     
 }

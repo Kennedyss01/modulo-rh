@@ -1,6 +1,7 @@
 package br.com.ifba.modulorh.desconto.service;
 
 import br.com.ifba.modulorh.desconto.model.Desconto;
+import java.util.List;
 
 /**
  *
@@ -12,5 +13,6 @@ public interface IServiceDesconto {
     void updateDesconto(Desconto desconto);
     void deleteDesconto(Desconto desconto);
     Desconto findById(Long id);
+    List<Desconto> getAllDescontos();
     
 }

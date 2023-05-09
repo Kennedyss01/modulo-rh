@@ -3,6 +3,7 @@ package br.com.ifba.modulorh.desconto.service;
 import br.com.ifba.modulorh.desconto.model.Desconto;
 import br.com.ifba.modulorh.desconto.repository.IRepositoryDesconto;
 import br.com.ifba.modulorh.infrastructure.exception.BusinessException;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,8 +37,8 @@ public class ServiceDesconto implements IServiceDesconto {
          if (desconto == null) {
             throw new BusinessException(DESCONTO_NULL);
         }
-        if (repositoryDesconto.existsByNome(desconto.getNome()) == false) {
-            throw new BusinessException(DESCONTO_NAO_EXISTE);
+        if (repositoryDesconto.existsByNome(desconto.getNome())) {
+            throw new BusinessException(DESCONTO_JA_EXISTE);
         }
         repositoryDesconto.save(desconto);
     }
@@ -56,6 +57,11 @@ public class ServiceDesconto implements IServiceDesconto {
     @Override
     public Desconto findById(Long id) {
         return repositoryDesconto.getReferenceById(id);
+    }
+
+    @Override
+    public List<Desconto> getAllDescontos() {
+        return repositoryDesconto.findAll();
     }
     
 }

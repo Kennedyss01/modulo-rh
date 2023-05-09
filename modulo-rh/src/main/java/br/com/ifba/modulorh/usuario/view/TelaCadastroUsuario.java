@@ -2,7 +2,9 @@ package br.com.ifba.modulorh.usuario.view;
 
 import br.com.ifba.modulorh.funcionario.view.TelaCadastroFuncionario;
 import br.com.ifba.modulorh.funcionario.view.TelaDeListarFuncionarios;
+import br.com.ifba.modulorh.homescreen.TelaHomescreenGestor;
 import br.com.ifba.modulorh.infrastructure.service.IFacade;
+import br.com.ifba.modulorh.login.TelaLogin;
 import br.com.ifba.modulorh.usuario.model.Usuario;
 import java.awt.Font;
 import java.awt.FontFormatException;
@@ -26,7 +28,11 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
     @Autowired
     private IFacade facade;
     @Autowired @Lazy
+    private TelaLogin telaDeLogin;
+    @Autowired @Lazy
     private TelaCadastroFuncionario telaCadastroFuncionario;
+    @Autowired @Lazy
+    private TelaHomescreenGestor telaHomescreenGestor;
     @Autowired
     private TelaDeListarFuncionarios telaDeListarFuncionarios; 
     private boolean cadastroFuncionario;
@@ -48,7 +54,6 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
     
     public void setUsuario(String usuario) {
         txtUsuario.setText(usuario);
-        lblUsuario.setVisible(false);
     }
     
     public void selecionarGestor() {
@@ -113,12 +118,12 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
         pnlContainer = new javax.swing.JPanel();
         pnlLateral = new javax.swing.JPanel();
         lblModuloRH = new javax.swing.JLabel();
+        btnInicio = new javax.swing.JButton();
         pnlCadastroUsuario = new javax.swing.JPanel();
         lblCadastroDeUsuario = new javax.swing.JLabel();
         lblEscolhaCadastro = new javax.swing.JLabel();
         btnCadastrar = new javax.swing.JButton();
         pnlTextFields = new javax.swing.JPanel();
-        lblUsuario = new javax.swing.JLabel();
         lblSenha = new javax.swing.JLabel();
         lblConfirmarSenha = new javax.swing.JLabel();
         txtUsuario = new javax.swing.JTextField();
@@ -149,21 +154,45 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
         lblModuloRH.setForeground(new java.awt.Color(255, 255, 255));
         lblModuloRH.setText("Módulo RH");
 
+        btnInicio.setBackground(new java.awt.Color(26, 81, 107));
+        btnInicio.setFont(fonteNormal);
+        btnInicio.setForeground(new java.awt.Color(255, 255, 255));
+        btnInicio.setText("Inicio");
+        btnInicio.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 2, true));
+        btnInicio.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnInicio.setFocusPainted(false);
+        btnInicio.setFocusable(false);
+        btnInicio.setMaximumSize(new java.awt.Dimension(266, 40));
+        btnInicio.setMinimumSize(new java.awt.Dimension(266, 40));
+        btnInicio.setPreferredSize(new java.awt.Dimension(266, 40));
+        btnInicio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInicioActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnlLateralLayout = new javax.swing.GroupLayout(pnlLateral);
         pnlLateral.setLayout(pnlLateralLayout);
         pnlLateralLayout.setHorizontalGroup(
             pnlLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlLateralLayout.createSequentialGroup()
-                .addGap(46, 46, 46)
-                .addComponent(lblModuloRH)
-                .addContainerGap(186, Short.MAX_VALUE))
+                .addGroup(pnlLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlLateralLayout.createSequentialGroup()
+                        .addGap(46, 46, 46)
+                        .addComponent(lblModuloRH))
+                    .addGroup(pnlLateralLayout.createSequentialGroup()
+                        .addGap(86, 86, 86)
+                        .addComponent(btnInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(97, Short.MAX_VALUE))
         );
         pnlLateralLayout.setVerticalGroup(
             pnlLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlLateralLayout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addComponent(lblModuloRH)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(54, 54, 54))
         );
 
         pnlCadastroUsuario.setBackground(new java.awt.Color(255, 255, 255));
@@ -201,10 +230,6 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
         pnlTextFields.setPreferredSize(new java.awt.Dimension(360, 130));
         pnlTextFields.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblUsuario.setFont(fonteNormal);
-        lblUsuario.setText("Usuário");
-        pnlTextFields.add(lblUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 80, 30));
-
         lblSenha.setFont(fonteNormal);
         lblSenha.setText("Senha");
         pnlTextFields.add(lblSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 80, 30));
@@ -214,6 +239,7 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
         pnlTextFields.add(lblConfirmarSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, -1, 30));
 
         txtUsuario.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txtUsuario.setText("Usuário");
         txtUsuario.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
         txtUsuario.setMaximumSize(new java.awt.Dimension(320, 50));
         txtUsuario.setMinimumSize(new java.awt.Dimension(320, 50));
@@ -355,9 +381,13 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
             try {
                 usuario = facade.saveUsuario(usuario);
                 this.setVisible(false);
-                telaDeListarFuncionarios.setVisible(true);
+                
                 if (cadastroFuncionario == true) {
                     telaCadastroFuncionario.finalizarCadastro(usuario);
+                    telaDeListarFuncionarios.setVisible(true);
+                    telaDeListarFuncionarios.exibirDados();
+                } else {
+                    telaDeLogin.setVisible(true);
                 }
                 limparCampos();
             } catch (Exception e) {
@@ -365,7 +395,6 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
                     "Erro ao salvar no banco de dados!",JOptionPane.ERROR_MESSAGE);
             }
         }
-        telaDeListarFuncionarios.exibirDados();
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     private void chkGestorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkGestorActionPerformed
@@ -385,12 +414,14 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_chkFuncionarioActionPerformed
 
     private void txtUsuarioFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUsuarioFocusGained
-        lblUsuario.setVisible(false);
+       if (txtUsuario.getText().equals("Usuário")) {
+            txtUsuario.setText("");
+        }
     }//GEN-LAST:event_txtUsuarioFocusGained
 
     private void txtUsuarioFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUsuarioFocusLost
         if (txtUsuario.getText().trim().isEmpty()) {
-            lblUsuario.setVisible(true);
+           txtUsuario.setText("Usuário");
         }
     }//GEN-LAST:event_txtUsuarioFocusLost
 
@@ -413,6 +444,13 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
             lblConfirmarSenha.setVisible(true);
         }
     }//GEN-LAST:event_txtConfirmarSenhaFocusLost
+
+    private void btnInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioActionPerformed
+        if (cadastroFuncionario == true) {
+            this.setVisible(false);
+            telaHomescreenGestor.setVisible(true);
+        }
+    }//GEN-LAST:event_btnInicioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -452,6 +490,7 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCadastrar;
+    private javax.swing.JButton btnInicio;
     private javax.swing.JCheckBox chkFuncionario;
     private javax.swing.JCheckBox chkGestor;
     private javax.swing.JLabel lblCadastroDeUsuario;
@@ -459,7 +498,6 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
     private javax.swing.JLabel lblEscolhaCadastro;
     private javax.swing.JLabel lblModuloRH;
     private javax.swing.JLabel lblSenha;
-    private javax.swing.JLabel lblUsuario;
     private javax.swing.JPanel pnlCadastroUsuario;
     private javax.swing.JPanel pnlContainer;
     private javax.swing.JPanel pnlLateral;

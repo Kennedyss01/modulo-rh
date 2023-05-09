@@ -1,5 +1,6 @@
 package br.com.ifba.modulorh.usuario.view;
 
+import br.com.ifba.modulorh.homescreen.TelaHomescreenFuncionario;
 import br.com.ifba.modulorh.infrastructure.service.IFacade;
 import br.com.ifba.modulorh.usuario.model.Usuario;
 import java.awt.Font;
@@ -11,6 +12,7 @@ import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 /**
@@ -22,6 +24,8 @@ public class TelaAlterarSenha extends javax.swing.JFrame {
 
     @Autowired
     private IFacade facade;
+    @Autowired @Lazy
+    private TelaHomescreenFuncionario homeScreenFuncionario;
     private Usuario usuario;
     
     ImageIcon icone = new ImageIcon("./src/main/resources/imagens/rh.png");
@@ -78,6 +82,7 @@ public class TelaAlterarSenha extends javax.swing.JFrame {
         pnlContainer = new javax.swing.JPanel();
         pnlLateral = new javax.swing.JPanel();
         lblModuloRH = new javax.swing.JLabel();
+        btnInicio = new javax.swing.JButton();
         pnlAlterarSenha = new javax.swing.JPanel();
         lblAlterarSenha = new javax.swing.JLabel();
         btnAtualizar = new javax.swing.JButton();
@@ -110,21 +115,45 @@ public class TelaAlterarSenha extends javax.swing.JFrame {
         lblModuloRH.setForeground(new java.awt.Color(255, 255, 255));
         lblModuloRH.setText("Módulo RH");
 
+        btnInicio.setBackground(new java.awt.Color(26, 81, 107));
+        btnInicio.setFont(fonteNormal);
+        btnInicio.setForeground(new java.awt.Color(255, 255, 255));
+        btnInicio.setText("Inicio");
+        btnInicio.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 2, true));
+        btnInicio.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnInicio.setFocusPainted(false);
+        btnInicio.setFocusable(false);
+        btnInicio.setMaximumSize(new java.awt.Dimension(266, 40));
+        btnInicio.setMinimumSize(new java.awt.Dimension(266, 40));
+        btnInicio.setPreferredSize(new java.awt.Dimension(266, 40));
+        btnInicio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInicioActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnlLateralLayout = new javax.swing.GroupLayout(pnlLateral);
         pnlLateral.setLayout(pnlLateralLayout);
         pnlLateralLayout.setHorizontalGroup(
             pnlLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlLateralLayout.createSequentialGroup()
-                .addGap(46, 46, 46)
-                .addComponent(lblModuloRH)
-                .addContainerGap(186, Short.MAX_VALUE))
+                .addGroup(pnlLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlLateralLayout.createSequentialGroup()
+                        .addGap(46, 46, 46)
+                        .addComponent(lblModuloRH))
+                    .addGroup(pnlLateralLayout.createSequentialGroup()
+                        .addGap(83, 83, 83)
+                        .addComponent(btnInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(100, Short.MAX_VALUE))
         );
         pnlLateralLayout.setVerticalGroup(
             pnlLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlLateralLayout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addComponent(lblModuloRH)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(42, 42, 42))
         );
 
         pnlAlterarSenha.setBackground(new java.awt.Color(255, 255, 255));
@@ -283,6 +312,7 @@ public class TelaAlterarSenha extends javax.swing.JFrame {
                 facade.updateUsuario(this.usuario);
                 this.setVisible(false);
                 limparCampos();
+                homeScreenFuncionario.setVisible(true);
             } catch (Exception e) {
                  JOptionPane.showMessageDialog(null, "Erro ao atualizar no banco: " + e.getMessage(), 
                     "Erro ao atualizar no banco de dados!",JOptionPane.ERROR_MESSAGE);
@@ -319,6 +349,11 @@ public class TelaAlterarSenha extends javax.swing.JFrame {
             lblConfirmarSenha.setVisible(true);
         } 
     }//GEN-LAST:event_txtConfirmarSenhaFocusLost
+
+    private void btnInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioActionPerformed
+        this.setVisible(false);
+        homeScreenFuncionario.setVisible(true);
+    }//GEN-LAST:event_btnInicioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -359,6 +394,7 @@ public class TelaAlterarSenha extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAtualizar;
+    private javax.swing.JButton btnInicio;
     private javax.swing.JLabel lblAlterarSenha;
     private javax.swing.JLabel lblConfirmarSenha;
     private javax.swing.JLabel lblModuloRH;

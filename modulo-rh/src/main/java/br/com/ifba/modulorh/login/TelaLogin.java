@@ -61,7 +61,7 @@ public class TelaLogin extends javax.swing.JFrame {
         } catch (Exception err) {
             JOptionPane.showMessageDialog(null, 
                    err.getMessage(), "Erro ao realizar contagem de usuários", JOptionPane.ERROR_MESSAGE);
-        }
+        } 
     }
     
     private void limparCampos() {
@@ -81,7 +81,6 @@ public class TelaLogin extends javax.swing.JFrame {
         lblEsqueceuASenha = new javax.swing.JLabel();
         btnEntrar = new javax.swing.JButton();
         pnlTextFields = new javax.swing.JPanel();
-        lblUsuario = new javax.swing.JLabel();
         lblSenha = new javax.swing.JLabel();
         txtUsuario = new javax.swing.JTextField();
         txtSenha = new javax.swing.JPasswordField();
@@ -164,15 +163,12 @@ public class TelaLogin extends javax.swing.JFrame {
         pnlTextFields.setPreferredSize(new java.awt.Dimension(360, 130));
         pnlTextFields.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblUsuario.setFont(fonteNormal);
-        lblUsuario.setText("Usuário");
-        pnlTextFields.add(lblUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 300, 30));
-
         lblSenha.setFont(fonteNormal);
         lblSenha.setText("Senha");
         pnlTextFields.add(lblSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 300, 30));
 
         txtUsuario.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txtUsuario.setText("Usuário");
         txtUsuario.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
         txtUsuario.setMaximumSize(new java.awt.Dimension(320, 50));
         txtUsuario.setMinimumSize(new java.awt.Dimension(320, 50));
@@ -291,12 +287,14 @@ public class TelaLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_lblEsqueceuASenhaMouseClicked
 
     private void txtUsuarioFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUsuarioFocusGained
-        lblUsuario.setVisible(false);
+        if (txtUsuario.getText().equals("Usuário")) {
+            txtUsuario.setText("");
+        }
     }//GEN-LAST:event_txtUsuarioFocusGained
 
     private void txtUsuarioFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUsuarioFocusLost
         if (txtUsuario.getText().trim().isEmpty()) {
-            lblUsuario.setVisible(true);
+           txtUsuario.setText("Usuário");
         }
     }//GEN-LAST:event_txtUsuarioFocusLost
 
@@ -352,7 +350,6 @@ public class TelaLogin extends javax.swing.JFrame {
     private javax.swing.JLabel lblFazerLogin;
     private javax.swing.JLabel lblModuloRH;
     private javax.swing.JLabel lblSenha;
-    private javax.swing.JLabel lblUsuario;
     private javax.swing.JPanel pnlContainer;
     private javax.swing.JPanel pnlLateral;
     private javax.swing.JPanel pnlLogin;
