@@ -2,6 +2,8 @@ package br.com.ifba.modulorh.infrastructure.service;
 
 import br.com.ifba.modulorh.adicionais.model.Adicional;
 import br.com.ifba.modulorh.adicionais.service.IServiceAdicional;
+import br.com.ifba.modulorh.curriculo.model.Curriculo;
+import br.com.ifba.modulorh.curriculo.service.IServiceCurriculo;
 import br.com.ifba.modulorh.desconto.model.Desconto;
 import br.com.ifba.modulorh.desconto.service.IServiceDesconto;
 import br.com.ifba.modulorh.funcionario.model.Funcionario;
@@ -157,5 +159,35 @@ public class Facade implements IFacade {
     public List<Desconto> getAllDescontos() {
         return serviceDesconto.getAllDescontos();
     }
+    
+    //========================Curriculo========================//
+    @Autowired
+    private IServiceCurriculo serviceCurriculo;
+
+    @Override
+    public Curriculo saveCurriculo(Curriculo curriculo) {
+        return serviceCurriculo.saveCurriculo(curriculo);
+    }
+
+    @Override
+    public Curriculo updateCurriculo(Curriculo curriculo) {
+       return serviceCurriculo.updateCurriculo(curriculo);
+    }
+
+    @Override
+    public void deleteCurriculo(Curriculo curriculo) {
+        serviceCurriculo.deleteCurriculo(curriculo);
+    }
+
+    @Override
+    public List<Curriculo> getAllCurriculo() {
+        return serviceCurriculo.getAllCurriculo();
+    }
+
+    @Override
+    public Curriculo findByNome(String nome) {
+        return serviceCurriculo.findByNome(nome);
+    }
+    
     
 }

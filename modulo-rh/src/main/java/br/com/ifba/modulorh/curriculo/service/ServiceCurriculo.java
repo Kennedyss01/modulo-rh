@@ -6,6 +6,7 @@ package br.com.ifba.modulorh.curriculo.service;
 
 import br.com.ifba.modulorh.curriculo.model.Curriculo;
 import br.com.ifba.modulorh.curriculo.repository.IRepositoryCurriculo;
+import br.com.ifba.modulorh.infrastructure.exception.BusinessException;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,27 +28,45 @@ public class ServiceCurriculo implements IServiceCurriculo{
     
     @Override
     public Curriculo saveCurriculo(Curriculo curriculo) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if(curriculo == null){
+            throw new BusinessException(CURRICULO_NULL);
+        }
+        if(repositoryCurriculo.existsByEmail(curriculo.getEmail()) == true){
+            throw new BusinessException(CURRICULO_EXISTE);
+        }  
+            return repositoryCurriculo.save(curriculo);
     }
 
     @Override
     public Curriculo updateCurriculo(Curriculo curriculo) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if(curriculo == null){
+            throw new BusinessException(CURRICULO_NULL);
+        }
+        if(repositoryCurriculo.existsByEmail(curriculo.getEmail()) == false){
+            throw new BusinessException(CURRICULO_NAO_EXISTE);
+        }
+            return repositoryCurriculo.save(curriculo);
     }
 
     @Override
     public void deleteCurriculo(Curriculo curriculo) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+         if(curriculo == null){
+            throw new BusinessException(CURRICULO_NULL);
+        }
+        if(this.repositoryCurriculo.existsById(curriculo.getEmail()) == false) {
+            throw new BusinessException(CURRICULO_NAO_EXISTE);   
+        }
+        repositoryCurriculo.delete(repositoryCurriculo.getReferenceById(curriculo.getEmail()));
     }
 
     @Override
     public List<Curriculo> getAllCurriculo() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return this.repositoryCurriculo.findAll(); 
     }
 
     @Override
     public Curriculo findByNome(String nome) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return repositoryCurriculo.findByNome(nome).get(0);
     }
     
 }

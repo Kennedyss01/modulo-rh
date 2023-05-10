@@ -4,6 +4,7 @@ import br.com.ifba.modulorh.adicionais.model.Adicional;
 import br.com.ifba.modulorh.desconto.model.Desconto;
 import br.com.ifba.modulorh.funcionario.model.Funcionario;
 import br.com.ifba.modulorh.usuario.model.Usuario;
+import br.com.ifba.modulorh.curriculo.model.Curriculo;
 import java.util.List;
 
 /**
@@ -43,5 +44,12 @@ public interface IFacade {
     void deleteDesconto(Desconto desconto);
     Desconto findDescontoById(Long id);
     List<Desconto> getAllDescontos();
+    
+    //========================Curriculo========================//
+    Curriculo saveCurriculo(Curriculo curriculo);
+    Curriculo updateCurriculo (Curriculo curriculo);
+    void deleteCurriculo (Curriculo curriculo);
+    List<Curriculo> getAllCurriculo();
+    Curriculo findByNome(String nome);
     
 }
