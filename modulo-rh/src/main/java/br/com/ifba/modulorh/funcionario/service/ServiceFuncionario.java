@@ -50,7 +50,7 @@ public class ServiceFuncionario implements IServiceFuncionario{
         }
         if(repositoryFuncionario.existsById(funcionario.getId()) == false){
             throw new BusinessException(FUNCIONARIO_NAO_EXISTE);
-        } 
+        }
             return repositoryFuncionario.save(funcionario);
     }
 
@@ -59,11 +59,10 @@ public class ServiceFuncionario implements IServiceFuncionario{
         if(funcionario == null){
             throw new BusinessException(FUNCIONARIO_NULL);
         }
-        if(this.repositoryFuncionario.existsById(funcionario.getId()) == true) {
-            this.repositoryFuncionario.delete(funcionario);
-            return;
+        if(this.repositoryFuncionario.existsById(funcionario.getId()) == false) {
+            throw new BusinessException(FUNCIONARIO_NAO_EXISTE);   
         }
-            throw new BusinessException(FUNCIONARIO_NAO_EXISTE);    
+        repositoryFuncionario.delete(repositoryFuncionario.getReferenceById(funcionario.getId()));
 }
 
     @Override

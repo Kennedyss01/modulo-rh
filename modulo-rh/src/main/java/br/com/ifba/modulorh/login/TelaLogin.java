@@ -64,9 +64,10 @@ public class TelaLogin extends javax.swing.JFrame {
         } 
     }
     
-    private void limparCampos() {
-        txtUsuario.setText("");
+    public void limparCampos() {
+        txtUsuario.setText("Usuário");
         txtSenha.setText("");
+        lblSenha.setVisible(true);
     }
     
     @SuppressWarnings("unchecked")

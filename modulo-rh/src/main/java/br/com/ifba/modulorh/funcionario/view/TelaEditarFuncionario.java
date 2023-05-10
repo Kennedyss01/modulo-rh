@@ -1,13 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package br.com.ifba.modulorh.funcionario.view;
 
 import br.com.ifba.modulorh.funcionario.model.Funcionario;
 import br.com.ifba.modulorh.homescreen.TelaHomescreenGestor;
 import br.com.ifba.modulorh.infrastructure.service.IFacade;
-import br.com.ifba.modulorh.usuario.view.TelaCadastroUsuario;
 import java.awt.Font;
 import java.awt.FontFormatException;
 import java.io.File;
@@ -29,8 +24,6 @@ public class TelaEditarFuncionario extends javax.swing.JFrame {
 
     @Autowired
     private IFacade facade;
-    @Autowired @Lazy
-    private TelaCadastroUsuario cadastroUsuario;
     @Autowired @Lazy
     private TelaDeListarFuncionarios telaDeListarFuncionarios; 
     private Funcionario funcionario;
@@ -64,6 +57,7 @@ public class TelaEditarFuncionario extends javax.swing.JFrame {
         txtDataDeEntrada.setText(funcionario.getDataDeEntrada());
         this.funcionario = funcionario;
     }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -74,7 +68,6 @@ public class TelaEditarFuncionario extends javax.swing.JFrame {
         btnInicio = new javax.swing.JButton();
         pnlEditarFuncionario = new javax.swing.JPanel();
         lblEditarFuncionario = new javax.swing.JLabel();
-        btnEditar = new javax.swing.JButton();
         pnlTextFields = new javax.swing.JPanel();
         txtDataDeEntrada = new javax.swing.JTextField();
         txtStatus = new javax.swing.JTextField();
@@ -85,6 +78,7 @@ public class TelaEditarFuncionario extends javax.swing.JFrame {
         txtCpf = new javax.swing.JTextField();
         txtDataDeNascimento = new javax.swing.JTextField();
         txtNome = new javax.swing.JTextField();
+        btnEditar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Editar Funcionário");
@@ -157,23 +151,6 @@ public class TelaEditarFuncionario extends javax.swing.JFrame {
         lblEditarFuncionario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblEditarFuncionario.setText("Editar Funcionário");
 
-        btnEditar.setBackground(new java.awt.Color(71, 19, 35));
-        btnEditar.setFont(fonteNormal);
-        btnEditar.setForeground(new java.awt.Color(255, 255, 255));
-        btnEditar.setText("Editar");
-        btnEditar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        btnEditar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnEditar.setFocusPainted(false);
-        btnEditar.setFocusable(false);
-        btnEditar.setMaximumSize(new java.awt.Dimension(266, 40));
-        btnEditar.setMinimumSize(new java.awt.Dimension(266, 40));
-        btnEditar.setPreferredSize(new java.awt.Dimension(266, 40));
-        btnEditar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditarActionPerformed(evt);
-            }
-        });
-
         pnlTextFields.setBackground(new java.awt.Color(255, 255, 255));
         pnlTextFields.setMaximumSize(new java.awt.Dimension(360, 130));
         pnlTextFields.setPreferredSize(new java.awt.Dimension(360, 130));
@@ -193,7 +170,7 @@ public class TelaEditarFuncionario extends javax.swing.JFrame {
                 txtDataDeEntradaFocusLost(evt);
             }
         });
-        pnlTextFields.add(txtDataDeEntrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 420, -1, 40));
+        pnlTextFields.add(txtDataDeEntrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 400, -1, 40));
 
         txtStatus.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         txtStatus.setText("Status");
@@ -209,7 +186,7 @@ public class TelaEditarFuncionario extends javax.swing.JFrame {
                 txtStatusFocusLost(evt);
             }
         });
-        pnlTextFields.add(txtStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 370, -1, 40));
+        pnlTextFields.add(txtStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 350, -1, 40));
 
         txtSalario.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         txtSalario.setText("Salário");
@@ -225,7 +202,7 @@ public class TelaEditarFuncionario extends javax.swing.JFrame {
                 txtSalarioFocusLost(evt);
             }
         });
-        pnlTextFields.add(txtSalario, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, -1, 40));
+        pnlTextFields.add(txtSalario, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, -1, 40));
 
         txtEmail.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         txtEmail.setText("Email");
@@ -241,7 +218,7 @@ public class TelaEditarFuncionario extends javax.swing.JFrame {
                 txtEmailFocusLost(evt);
             }
         });
-        pnlTextFields.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, -1, 40));
+        pnlTextFields.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, -1, 40));
 
         txtTelefone.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         txtTelefone.setText("Telefone");
@@ -257,7 +234,7 @@ public class TelaEditarFuncionario extends javax.swing.JFrame {
                 txtTelefoneFocusLost(evt);
             }
         });
-        pnlTextFields.add(txtTelefone, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, -1, 40));
+        pnlTextFields.add(txtTelefone, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, -1, 40));
 
         txtEndereco.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         txtEndereco.setText("Endereço");
@@ -273,7 +250,7 @@ public class TelaEditarFuncionario extends javax.swing.JFrame {
                 txtEnderecoFocusLost(evt);
             }
         });
-        pnlTextFields.add(txtEndereco, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, -1, 40));
+        pnlTextFields.add(txtEndereco, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, -1, 40));
 
         txtCpf.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         txtCpf.setText("CPF");
@@ -289,7 +266,7 @@ public class TelaEditarFuncionario extends javax.swing.JFrame {
                 txtCpfFocusLost(evt);
             }
         });
-        pnlTextFields.add(txtCpf, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, -1, 40));
+        pnlTextFields.add(txtCpf, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, -1, 40));
 
         txtDataDeNascimento.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         txtDataDeNascimento.setText("Data de Nascimento");
@@ -305,7 +282,7 @@ public class TelaEditarFuncionario extends javax.swing.JFrame {
                 txtDataDeNascimentoFocusLost(evt);
             }
         });
-        pnlTextFields.add(txtDataDeNascimento, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, -1, 40));
+        pnlTextFields.add(txtDataDeNascimento, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, -1, 40));
 
         txtNome.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         txtNome.setText("Nome");
@@ -321,27 +298,41 @@ public class TelaEditarFuncionario extends javax.swing.JFrame {
                 txtNomeFocusLost(evt);
             }
         });
-        pnlTextFields.add(txtNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, 40));
+        pnlTextFields.add(txtNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, -1, 40));
+
+        btnEditar.setBackground(new java.awt.Color(71, 19, 35));
+        btnEditar.setFont(fonteNormal);
+        btnEditar.setForeground(new java.awt.Color(255, 255, 255));
+        btnEditar.setText("Editar");
+        btnEditar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        btnEditar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnEditar.setFocusPainted(false);
+        btnEditar.setFocusable(false);
+        btnEditar.setMaximumSize(new java.awt.Dimension(266, 40));
+        btnEditar.setMinimumSize(new java.awt.Dimension(266, 40));
+        btnEditar.setPreferredSize(new java.awt.Dimension(266, 40));
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlEditarFuncionarioLayout = new javax.swing.GroupLayout(pnlEditarFuncionario);
         pnlEditarFuncionario.setLayout(pnlEditarFuncionarioLayout);
         pnlEditarFuncionarioLayout.setHorizontalGroup(
             pnlEditarFuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlEditarFuncionarioLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(pnlEditarFuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblEditarFuncionario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(pnlEditarFuncionarioLayout.createSequentialGroup()
-                        .addGroup(pnlEditarFuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(pnlEditarFuncionarioLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(pnlTextFields, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(pnlEditarFuncionarioLayout.createSequentialGroup()
-                                .addGap(51, 51, 51)
-                                .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 8, Short.MAX_VALUE))
-                    .addGroup(pnlEditarFuncionarioLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(lblEditarFuncionario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(pnlTextFields, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 8, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(pnlEditarFuncionarioLayout.createSequentialGroup()
+                .addGap(57, 57, 57)
+                .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlEditarFuncionarioLayout.setVerticalGroup(
             pnlEditarFuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -349,10 +340,10 @@ public class TelaEditarFuncionario extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(lblEditarFuncionario)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pnlTextFields, javax.swing.GroupLayout.PREFERRED_SIZE, 486, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pnlTextFields, javax.swing.GroupLayout.PREFERRED_SIZE, 454, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout pnlContainerLayout = new javax.swing.GroupLayout(pnlContainer);
@@ -390,9 +381,12 @@ public class TelaEditarFuncionario extends javax.swing.JFrame {
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         try{
-            Funcionario funcionarioEditado = new Funcionario(txtNome.getText(), txtDataDeNascimento.getText(), txtCpf.getText(), txtEndereco.getText(),
-            txtTelefone.getText(), txtEmail.getText(), Float.parseFloat(txtSalario.getText()), txtStatus.getText(), txtDataDeEntrada.getText());
+            Funcionario funcionarioEditado = new Funcionario(txtNome.getText(), txtDataDeNascimento.getText(), txtCpf.getText(), txtEndereco.getText(), 
+                txtTelefone.getText(), txtEmail.getText(), Float.parseFloat(txtSalario.getText()), txtStatus.getText(), txtDataDeEntrada.getText());
+            
             funcionarioEditado.setId(funcionario.getId());
+            funcionarioEditado.setUsuario(facade.findUsuarioById(funcionario.getUsuario().getId()));
+            
             facade.updateFuncionario(funcionarioEditado);
             telaDeListarFuncionarios.exibirDados();
             telaDeListarFuncionarios.setVisible(true);
@@ -410,92 +404,92 @@ public class TelaEditarFuncionario extends javax.swing.JFrame {
 
     private void txtNomeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNomeFocusLost
         if(txtNome.getText().trim().isEmpty())
-        txtNome.setText("Nome");
+            txtNome.setText("Nome");
     }//GEN-LAST:event_txtNomeFocusLost
 
     private void txtNomeFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNomeFocusGained
         if(txtNome.getText().equals("Nome"))
-        txtNome.setText("");
+            txtNome.setText("");
     }//GEN-LAST:event_txtNomeFocusGained
 
     private void txtDataDeNascimentoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDataDeNascimentoFocusLost
         if(txtDataDeNascimento.getText().trim().isEmpty())
-        txtDataDeNascimento.setText("Data de Nascimento");
+            txtDataDeNascimento.setText("Data de Nascimento");
     }//GEN-LAST:event_txtDataDeNascimentoFocusLost
 
     private void txtDataDeNascimentoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDataDeNascimentoFocusGained
         if(txtDataDeNascimento.getText().equals("Data de Nascimento"))
-        txtDataDeNascimento.setText("");
+            txtDataDeNascimento.setText("");
     }//GEN-LAST:event_txtDataDeNascimentoFocusGained
 
     private void txtCpfFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCpfFocusLost
         if(txtCpf.getText().trim().isEmpty())
-        txtCpf.setText("CPF");
+            txtCpf.setText("CPF");
     }//GEN-LAST:event_txtCpfFocusLost
 
     private void txtCpfFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCpfFocusGained
         if(txtCpf.getText().equals("CPF"))
-        txtCpf.setText("");
+            txtCpf.setText("");
     }//GEN-LAST:event_txtCpfFocusGained
 
     private void txtEnderecoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEnderecoFocusLost
         if(txtEndereco.getText().trim().isEmpty())
-        txtEndereco.setText("Endereço");
+            txtEndereco.setText("Endereço");
     }//GEN-LAST:event_txtEnderecoFocusLost
 
     private void txtEnderecoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEnderecoFocusGained
         if(txtEndereco.getText().equals("Endereço"))
-        txtEndereco.setText("");
+            txtEndereco.setText("");
     }//GEN-LAST:event_txtEnderecoFocusGained
 
     private void txtTelefoneFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTelefoneFocusLost
         if(txtTelefone.getText().trim().isEmpty())
-        txtTelefone.setText("Telefone");
+            txtTelefone.setText("Telefone");
     }//GEN-LAST:event_txtTelefoneFocusLost
 
     private void txtTelefoneFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTelefoneFocusGained
         if(txtTelefone.getText().equals("Telefone"))
-        txtTelefone.setText("");
+            txtTelefone.setText("");
     }//GEN-LAST:event_txtTelefoneFocusGained
 
     private void txtEmailFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEmailFocusLost
         if(txtEmail.getText().trim().isEmpty())
-        txtEmail.setText("Email");
+            txtEmail.setText("Email");
     }//GEN-LAST:event_txtEmailFocusLost
 
     private void txtEmailFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEmailFocusGained
         if(txtEmail.getText().equals("Email"))
-        txtEmail.setText("");
+            txtEmail.setText("");
     }//GEN-LAST:event_txtEmailFocusGained
 
     private void txtSalarioFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtSalarioFocusLost
         if(txtSalario.getText().trim().isEmpty())
-        txtSalario.setText("Salário");
+            txtSalario.setText("Salário");
     }//GEN-LAST:event_txtSalarioFocusLost
 
     private void txtSalarioFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtSalarioFocusGained
         if(txtSalario.getText().equals("Salário"))
-        txtSalario.setText("");
+            txtSalario.setText("");
     }//GEN-LAST:event_txtSalarioFocusGained
 
     private void txtStatusFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtStatusFocusLost
         if(txtStatus.getText().trim().isEmpty())
-        txtStatus.setText("Status");
+            txtStatus.setText("Status");
     }//GEN-LAST:event_txtStatusFocusLost
 
     private void txtStatusFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtStatusFocusGained
         if(txtStatus.getText().equals("Status"))
-        txtStatus.setText("");
+            txtStatus.setText("");
     }//GEN-LAST:event_txtStatusFocusGained
 
     private void txtDataDeEntradaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDataDeEntradaFocusLost
         if(txtDataDeEntrada.getText().trim().isEmpty())
-        txtDataDeEntrada.setText("Data de entrada na empresa");
+            txtDataDeEntrada.setText("Data de entrada na empresa");
     }//GEN-LAST:event_txtDataDeEntradaFocusLost
 
     private void txtDataDeEntradaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDataDeEntradaFocusGained
         if(txtDataDeEntrada.getText().equals("Data de entrada na empresa"))
-        txtDataDeEntrada.setText("");
+            txtDataDeEntrada.setText("");
     }//GEN-LAST:event_txtDataDeEntradaFocusGained
 
     /**
