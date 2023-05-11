@@ -3,6 +3,7 @@ package br.com.ifba.modulorh.homescreen;
 import br.com.ifba.modulorh.funcionario.model.Funcionario;
 import br.com.ifba.modulorh.infrastructure.service.IFacade;
 import br.com.ifba.modulorh.login.TelaLogin;
+import br.com.ifba.modulorh.registrodeponto.view.TelaDeListarRegistroDePonto;
 import br.com.ifba.modulorh.usuario.model.Usuario;
 import br.com.ifba.modulorh.usuario.view.TelaAlterarSenha;
 import java.awt.Font;
@@ -25,11 +26,14 @@ public class TelaHomescreenFuncionario extends javax.swing.JFrame {
 
     @Autowired
     private IFacade facade;
+    @Autowired
+    private TelaDeListarRegistroDePonto telaDeListarRegistroDePonto;
     @Autowired @Lazy
     private TelaLogin telaLogin;
     @Autowired
     private TelaAlterarSenha telaAlterarSenha;
     private Funcionario funcionario;
+    private String cpf;
     
     ImageIcon icone = new ImageIcon("./src/main/resources/imagens/rh.png");
     Font fonteMaior;
@@ -49,6 +53,7 @@ public class TelaHomescreenFuncionario extends javax.swing.JFrame {
     public void definirFuncionario(Usuario usuario) {
         this.funcionario = facade.findFuncionarioByUsuarioId(usuario.getId());
         lblInfoFuncionario.setText("Usuário: " + funcionario.getNome());
+        this.cpf = this.funcionario.getCpf();
     }
     
     @SuppressWarnings("unchecked")
@@ -260,7 +265,9 @@ public class TelaHomescreenFuncionario extends javax.swing.JFrame {
 
     private void btnRegistrarPontoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarPontoActionPerformed
         // TODO add your handling code here:
-        // Ainda precisa da funcionalidade e tela de registrar ponto.
+        telaDeListarRegistroDePonto.passandoDados(cpf);
+        telaDeListarRegistroDePonto.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btnRegistrarPontoActionPerformed
 
     private void btnCadastrarCurriculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarCurriculoActionPerformed
