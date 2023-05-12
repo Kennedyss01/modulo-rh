@@ -80,23 +80,26 @@ public class TelaLogin extends javax.swing.JFrame {
         pnlLogin = new javax.swing.JPanel();
         lblFazerLogin = new javax.swing.JLabel();
         lblEsqueceuASenha = new javax.swing.JLabel();
-        btnEntrar = new javax.swing.JButton();
         pnlTextFields = new javax.swing.JPanel();
         lblSenha = new javax.swing.JLabel();
         txtUsuario = new javax.swing.JTextField();
         txtSenha = new javax.swing.JPasswordField();
+        btnEntrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Login");
         setAutoRequestFocus(false);
         setIconImage(icone.getImage());
+        setMaximumSize(new java.awt.Dimension(1100, 670));
+        setMinimumSize(new java.awt.Dimension(1100, 670));
         setResizable(false);
 
         pnlContainer.setBackground(new java.awt.Color(255, 255, 255));
         pnlContainer.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
-        pnlContainer.setMinimumSize(new java.awt.Dimension(900, 543));
+        pnlContainer.setMaximumSize(new java.awt.Dimension(1100, 670));
+        pnlContainer.setMinimumSize(new java.awt.Dimension(1100, 670));
         pnlContainer.setName(""); // NOI18N
-        pnlContainer.setPreferredSize(new java.awt.Dimension(900, 543));
+        pnlContainer.setPreferredSize(new java.awt.Dimension(1100, 670));
 
         pnlLateral.setBackground(new java.awt.Color(26, 81, 107));
         pnlLateral.setMinimumSize(new java.awt.Dimension(293, 595));
@@ -120,17 +123,20 @@ public class TelaLogin extends javax.swing.JFrame {
             .addGroup(pnlLateralLayout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(lblModuloRH)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(629, Short.MAX_VALUE))
         );
 
         pnlLogin.setBackground(new java.awt.Color(255, 255, 255));
         pnlLogin.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 4, true));
         pnlLogin.setMaximumSize(new java.awt.Dimension(388, 340));
         pnlLogin.setPreferredSize(new java.awt.Dimension(388, 340));
+        pnlLogin.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblFazerLogin.setFont(fonteMaior);
+        lblFazerLogin.setForeground(new java.awt.Color(0, 0, 0));
         lblFazerLogin.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblFazerLogin.setText("Fazer Login");
+        pnlLogin.add(lblFazerLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(4, 26, 380, -1));
 
         lblEsqueceuASenha.setFont(fonteNormal);
         lblEsqueceuASenha.setForeground(new java.awt.Color(26, 81, 107));
@@ -141,23 +147,7 @@ public class TelaLogin extends javax.swing.JFrame {
                 lblEsqueceuASenhaMouseClicked(evt);
             }
         });
-
-        btnEntrar.setBackground(new java.awt.Color(71, 19, 35));
-        btnEntrar.setFont(fonteNormal);
-        btnEntrar.setForeground(new java.awt.Color(255, 255, 255));
-        btnEntrar.setText("ENTRAR");
-        btnEntrar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        btnEntrar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnEntrar.setFocusPainted(false);
-        btnEntrar.setFocusable(false);
-        btnEntrar.setMaximumSize(new java.awt.Dimension(266, 40));
-        btnEntrar.setMinimumSize(new java.awt.Dimension(266, 40));
-        btnEntrar.setPreferredSize(new java.awt.Dimension(266, 40));
-        btnEntrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEntrarActionPerformed(evt);
-            }
-        });
+        pnlLogin.add(lblEsqueceuASenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 209, 368, -1));
 
         pnlTextFields.setBackground(new java.awt.Color(255, 255, 255));
         pnlTextFields.setMaximumSize(new java.awt.Dimension(360, 130));
@@ -198,37 +188,25 @@ public class TelaLogin extends javax.swing.JFrame {
         });
         pnlTextFields.add(txtSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 320, -1));
 
-        javax.swing.GroupLayout pnlLoginLayout = new javax.swing.GroupLayout(pnlLogin);
-        pnlLogin.setLayout(pnlLoginLayout);
-        pnlLoginLayout.setHorizontalGroup(
-            pnlLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblFazerLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(pnlLoginLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pnlLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlLoginLayout.createSequentialGroup()
-                        .addGap(0, 54, Short.MAX_VALUE)
-                        .addComponent(btnEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(54, 54, 54))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlLoginLayout.createSequentialGroup()
-                        .addGroup(pnlLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(pnlTextFields, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblEsqueceuASenha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap())))
-        );
-        pnlLoginLayout.setVerticalGroup(
-            pnlLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlLoginLayout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(lblFazerLogin)
-                .addGap(31, 31, 31)
-                .addComponent(pnlTextFields, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblEsqueceuASenha)
-                .addGap(18, 18, 18)
-                .addComponent(btnEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
+        pnlLogin.add(pnlTextFields, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 73, 368, -1));
+
+        btnEntrar.setBackground(new java.awt.Color(71, 19, 35));
+        btnEntrar.setFont(fonteNormal);
+        btnEntrar.setForeground(new java.awt.Color(255, 255, 255));
+        btnEntrar.setText("ENTRAR");
+        btnEntrar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        btnEntrar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnEntrar.setFocusPainted(false);
+        btnEntrar.setFocusable(false);
+        btnEntrar.setMaximumSize(new java.awt.Dimension(266, 40));
+        btnEntrar.setMinimumSize(new java.awt.Dimension(266, 40));
+        btnEntrar.setPreferredSize(new java.awt.Dimension(266, 40));
+        btnEntrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEntrarActionPerformed(evt);
+            }
+        });
+        pnlLogin.add(btnEntrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(62, 243, -1, -1));
 
         javax.swing.GroupLayout pnlContainerLayout = new javax.swing.GroupLayout(pnlContainer);
         pnlContainer.setLayout(pnlContainerLayout);
@@ -236,28 +214,26 @@ public class TelaLogin extends javax.swing.JFrame {
             pnlContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlContainerLayout.createSequentialGroup()
                 .addComponent(pnlLateral, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 114, Short.MAX_VALUE)
-                .addComponent(pnlLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(101, 101, 101))
+                .addGap(208, 208, 208)
+                .addComponent(pnlLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         pnlContainerLayout.setVerticalGroup(
             pnlContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlLateral, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(pnlLateral, javax.swing.GroupLayout.DEFAULT_SIZE, 666, Short.MAX_VALUE)
             .addGroup(pnlContainerLayout.createSequentialGroup()
-                .addGap(113, 113, 113)
-                .addComponent(pnlLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(142, Short.MAX_VALUE))
+                .addGap(166, 166, 166)
+                .addComponent(pnlLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(pnlContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlContainer, javax.swing.GroupLayout.DEFAULT_SIZE, 583, Short.MAX_VALUE)
+            .addComponent(pnlContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -271,9 +247,11 @@ public class TelaLogin extends javax.swing.JFrame {
             if (usuario.getTipo().equals("Funcionário")) {
                 homescreenFuncionario.setVisible(true);
                 homescreenFuncionario.definirFuncionario(usuario);
+                homescreenFuncionario.toFront();
             } else {
                 homescreenGestor.setVisible(true);
                 homescreenGestor.definirGestor(usuario);
+                homescreenGestor.toFront();
             }
             this.setVisible(false);
             limparCampos();
@@ -309,9 +287,6 @@ public class TelaLogin extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtSenhaFocusLost
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -329,9 +304,7 @@ public class TelaLogin extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(TelaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-
-        /* Create and display the form */
+        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {

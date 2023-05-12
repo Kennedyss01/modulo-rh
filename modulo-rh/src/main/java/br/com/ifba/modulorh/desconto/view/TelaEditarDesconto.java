@@ -52,23 +52,26 @@ public class TelaEditarDesconto extends javax.swing.JFrame {
         pnlLateral = new javax.swing.JPanel();
         lblModuloRH = new javax.swing.JLabel();
         btnInicio = new javax.swing.JButton();
-        pnlLogin = new javax.swing.JPanel();
-        lblEditarAdicional = new javax.swing.JLabel();
+        pnlEditarDesconto = new javax.swing.JPanel();
+        lblEditarDesconto = new javax.swing.JLabel();
         btnEditar = new javax.swing.JButton();
         pnlTextFields = new javax.swing.JPanel();
         txtNome = new javax.swing.JTextField();
         txtValorFixoOuPercentual = new javax.swing.JTextField();
         chkPercentual = new javax.swing.JCheckBox();
         chkValorFixo = new javax.swing.JCheckBox();
-        lblEscolhaTipoDeAdicional = new javax.swing.JLabel();
+        lblEscolhaTipoDesconto = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Editar Desconto");
+        setMaximumSize(new java.awt.Dimension(1100, 670));
+        setMinimumSize(new java.awt.Dimension(1100, 670));
+        setResizable(false);
 
         pnlContainer.setBackground(new java.awt.Color(255, 255, 255));
         pnlContainer.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
-        pnlContainer.setMaximumSize(new java.awt.Dimension(900, 600));
-        pnlContainer.setMinimumSize(new java.awt.Dimension(900, 600));
+        pnlContainer.setMaximumSize(new java.awt.Dimension(1100, 670));
+        pnlContainer.setMinimumSize(new java.awt.Dimension(1100, 670));
         pnlContainer.setName(""); // NOI18N
 
         pnlLateral.setBackground(new java.awt.Color(26, 81, 107));
@@ -105,9 +108,9 @@ public class TelaEditarDesconto extends javax.swing.JFrame {
                         .addGap(42, 42, 42)
                         .addComponent(lblModuloRH))
                     .addGroup(pnlLateralLayout.createSequentialGroup()
-                        .addGap(83, 83, 83)
+                        .addGap(79, 79, 79)
                         .addComponent(btnInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(112, Short.MAX_VALUE))
+                .addContainerGap(116, Short.MAX_VALUE))
         );
         pnlLateralLayout.setVerticalGroup(
             pnlLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -116,17 +119,20 @@ public class TelaEditarDesconto extends javax.swing.JFrame {
                 .addComponent(lblModuloRH)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40))
+                .addGap(76, 76, 76))
         );
 
-        pnlLogin.setBackground(new java.awt.Color(255, 255, 255));
-        pnlLogin.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 4, true));
-        pnlLogin.setMaximumSize(new java.awt.Dimension(388, 340));
-        pnlLogin.setPreferredSize(new java.awt.Dimension(388, 340));
+        pnlEditarDesconto.setBackground(new java.awt.Color(255, 255, 255));
+        pnlEditarDesconto.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 4, true));
+        pnlEditarDesconto.setMaximumSize(new java.awt.Dimension(388, 340));
+        pnlEditarDesconto.setPreferredSize(new java.awt.Dimension(388, 340));
+        pnlEditarDesconto.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblEditarAdicional.setFont(fonteMaior);
-        lblEditarAdicional.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblEditarAdicional.setText("Editar Desconto");
+        lblEditarDesconto.setFont(fonteMaior);
+        lblEditarDesconto.setForeground(new java.awt.Color(0, 0, 0));
+        lblEditarDesconto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblEditarDesconto.setText("Editar Desconto");
+        pnlEditarDesconto.add(lblEditarDesconto, new org.netbeans.lib.awtextra.AbsoluteConstraints(4, 18, 366, 32));
 
         btnEditar.setBackground(new java.awt.Color(71, 19, 35));
         btnEditar.setFont(fonteNormal);
@@ -144,6 +150,7 @@ public class TelaEditarDesconto extends javax.swing.JFrame {
                 btnEditarActionPerformed(evt);
             }
         });
+        pnlEditarDesconto.add(btnEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(55, 274, -1, -1));
 
         pnlTextFields.setBackground(new java.awt.Color(255, 255, 255));
         pnlTextFields.setMaximumSize(new java.awt.Dimension(360, 130));
@@ -182,6 +189,7 @@ public class TelaEditarDesconto extends javax.swing.JFrame {
         });
         pnlTextFields.add(txtValorFixoOuPercentual, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 310, 40));
 
+        chkPercentual.setForeground(new java.awt.Color(0, 0, 0));
         chkPercentual.setText("Percentual");
         chkPercentual.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -190,6 +198,7 @@ public class TelaEditarDesconto extends javax.swing.JFrame {
         });
         pnlTextFields.add(chkPercentual, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 170, -1, -1));
 
+        chkValorFixo.setForeground(new java.awt.Color(0, 0, 0));
         chkValorFixo.setText("Valor Fixo");
         chkValorFixo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -198,38 +207,11 @@ public class TelaEditarDesconto extends javax.swing.JFrame {
         });
         pnlTextFields.add(chkValorFixo, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 170, -1, -1));
 
-        lblEscolhaTipoDeAdicional.setText("Escolha o tipo de desconto:");
-        pnlTextFields.add(lblEscolhaTipoDeAdicional, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 140, -1, -1));
+        lblEscolhaTipoDesconto.setForeground(new java.awt.Color(0, 0, 0));
+        lblEscolhaTipoDesconto.setText("Escolha o tipo de desconto:");
+        pnlTextFields.add(lblEscolhaTipoDesconto, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 140, -1, -1));
 
-        javax.swing.GroupLayout pnlLoginLayout = new javax.swing.GroupLayout(pnlLogin);
-        pnlLogin.setLayout(pnlLoginLayout);
-        pnlLoginLayout.setHorizontalGroup(
-            pnlLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlLoginLayout.createSequentialGroup()
-                .addGroup(pnlLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlLoginLayout.createSequentialGroup()
-                        .addGroup(pnlLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(pnlLoginLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(pnlTextFields, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(pnlLoginLayout.createSequentialGroup()
-                                .addGap(51, 51, 51)
-                                .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(lblEditarAdicional, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        pnlLoginLayout.setVerticalGroup(
-            pnlLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlLoginLayout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addComponent(lblEditarAdicional, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pnlTextFields, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(16, 16, 16))
-        );
+        pnlEditarDesconto.add(pnlTextFields, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 56, -1, 200));
 
         javax.swing.GroupLayout pnlContainerLayout = new javax.swing.GroupLayout(pnlContainer);
         pnlContainer.setLayout(pnlContainerLayout);
@@ -237,17 +219,17 @@ public class TelaEditarDesconto extends javax.swing.JFrame {
             pnlContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlContainerLayout.createSequentialGroup()
                 .addComponent(pnlLateral, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(108, 108, 108)
-                .addComponent(pnlLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(115, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 211, Short.MAX_VALUE)
+                .addComponent(pnlEditarDesconto, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(200, 200, 200))
         );
         pnlContainerLayout.setVerticalGroup(
             pnlContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(pnlLateral, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(pnlContainerLayout.createSequentialGroup()
-                .addGap(131, 131, 131)
-                .addComponent(pnlLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(131, Short.MAX_VALUE))
+                .addGap(149, 149, 149)
+                .addComponent(pnlEditarDesconto, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(183, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -302,6 +284,7 @@ public class TelaEditarDesconto extends javax.swing.JFrame {
             facade.updateDesconto(desconto);
             this.setVisible(false);
             telaDeListarDescontos.setVisible(true);
+            telaDeListarDescontos.toFront();
             telaDeListarDescontos.exibirDados();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Erro ao Editar no banco: " + e.getMessage(), 
@@ -313,6 +296,7 @@ public class TelaEditarDesconto extends javax.swing.JFrame {
     private void btnInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioActionPerformed
         this.setVisible(false);
         telaHomescreenGestor.setVisible(true);
+        telaHomescreenGestor.toFront();
     }//GEN-LAST:event_btnInicioActionPerformed
 
     private void txtValorFixoOuPercentualFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtValorFixoOuPercentualFocusGained
@@ -393,12 +377,12 @@ public class TelaEditarDesconto extends javax.swing.JFrame {
     private javax.swing.JButton btnInicio;
     private javax.swing.JCheckBox chkPercentual;
     private javax.swing.JCheckBox chkValorFixo;
-    private javax.swing.JLabel lblEditarAdicional;
-    private javax.swing.JLabel lblEscolhaTipoDeAdicional;
+    private javax.swing.JLabel lblEditarDesconto;
+    private javax.swing.JLabel lblEscolhaTipoDesconto;
     private javax.swing.JLabel lblModuloRH;
     private javax.swing.JPanel pnlContainer;
+    private javax.swing.JPanel pnlEditarDesconto;
     private javax.swing.JPanel pnlLateral;
-    private javax.swing.JPanel pnlLogin;
     private javax.swing.JPanel pnlTextFields;
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtValorFixoOuPercentual;

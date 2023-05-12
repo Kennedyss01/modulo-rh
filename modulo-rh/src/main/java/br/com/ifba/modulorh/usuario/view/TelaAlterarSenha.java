@@ -98,14 +98,17 @@ public class TelaAlterarSenha extends javax.swing.JFrame {
         setTitle("Alterar Senha");
         setAutoRequestFocus(false);
         setIconImage(icone.getImage());
+        setMaximumSize(new java.awt.Dimension(1100, 670));
+        setMinimumSize(new java.awt.Dimension(1100, 670));
+        setPreferredSize(new java.awt.Dimension(1100, 670));
         setResizable(false);
 
         pnlContainer.setBackground(new java.awt.Color(255, 255, 255));
         pnlContainer.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
-        pnlContainer.setMaximumSize(new java.awt.Dimension(900, 600));
-        pnlContainer.setMinimumSize(new java.awt.Dimension(900, 600));
+        pnlContainer.setMaximumSize(new java.awt.Dimension(1100, 670));
+        pnlContainer.setMinimumSize(new java.awt.Dimension(1100, 670));
         pnlContainer.setName(""); // NOI18N
-        pnlContainer.setPreferredSize(new java.awt.Dimension(900, 600));
+        pnlContainer.setPreferredSize(new java.awt.Dimension(1100, 670));
 
         pnlLateral.setBackground(new java.awt.Color(26, 81, 107));
         pnlLateral.setMaximumSize(new java.awt.Dimension(293, 595));
@@ -142,18 +145,18 @@ public class TelaAlterarSenha extends javax.swing.JFrame {
                         .addGap(46, 46, 46)
                         .addComponent(lblModuloRH))
                     .addGroup(pnlLateralLayout.createSequentialGroup()
-                        .addGap(83, 83, 83)
+                        .addGap(82, 82, 82)
                         .addComponent(btnInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(100, Short.MAX_VALUE))
+                .addContainerGap(101, Short.MAX_VALUE))
         );
         pnlLateralLayout.setVerticalGroup(
             pnlLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlLateralLayout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addComponent(lblModuloRH)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 500, Short.MAX_VALUE)
                 .addComponent(btnInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(42, 42, 42))
+                .addGap(88, 88, 88))
         );
 
         pnlAlterarSenha.setBackground(new java.awt.Color(255, 255, 255));
@@ -161,10 +164,13 @@ public class TelaAlterarSenha extends javax.swing.JFrame {
         pnlAlterarSenha.setMaximumSize(new java.awt.Dimension(388, 360));
         pnlAlterarSenha.setPreferredSize(new java.awt.Dimension(388, 360));
         pnlAlterarSenha.setRequestFocusEnabled(false);
+        pnlAlterarSenha.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblAlterarSenha.setFont(fonteMaior);
+        lblAlterarSenha.setForeground(new java.awt.Color(0, 0, 0));
         lblAlterarSenha.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblAlterarSenha.setText("Alterar Senha");
+        pnlAlterarSenha.add(lblAlterarSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 368, -1));
 
         btnAtualizar.setBackground(new java.awt.Color(71, 19, 35));
         btnAtualizar.setFont(fonteNormal);
@@ -182,6 +188,7 @@ public class TelaAlterarSenha extends javax.swing.JFrame {
                 btnAtualizarActionPerformed(evt);
             }
         });
+        pnlAlterarSenha.add(btnAtualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 280, -1, -1));
 
         pnlTextFields.setBackground(new java.awt.Color(255, 255, 255));
         pnlTextFields.setMaximumSize(new java.awt.Dimension(360, 130));
@@ -243,32 +250,7 @@ public class TelaAlterarSenha extends javax.swing.JFrame {
         });
         pnlTextFields.add(txtConfirmarSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 320, -1));
 
-        javax.swing.GroupLayout pnlAlterarSenhaLayout = new javax.swing.GroupLayout(pnlAlterarSenha);
-        pnlAlterarSenha.setLayout(pnlAlterarSenhaLayout);
-        pnlAlterarSenhaLayout.setHorizontalGroup(
-            pnlAlterarSenhaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlAlterarSenhaLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pnlAlterarSenhaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pnlTextFields, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 368, Short.MAX_VALUE)
-                    .addComponent(lblAlterarSenha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-            .addGroup(pnlAlterarSenhaLayout.createSequentialGroup()
-                .addGap(54, 54, 54)
-                .addComponent(btnAtualizar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        pnlAlterarSenhaLayout.setVerticalGroup(
-            pnlAlterarSenhaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlAlterarSenhaLayout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(lblAlterarSenha)
-                .addGap(26, 26, 26)
-                .addComponent(pnlTextFields, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addComponent(btnAtualizar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(17, 17, 17))
-        );
+        pnlAlterarSenha.add(pnlTextFields, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 65, 368, 216));
 
         javax.swing.GroupLayout pnlContainerLayout = new javax.swing.GroupLayout(pnlContainer);
         pnlContainer.setLayout(pnlContainerLayout);
@@ -276,17 +258,17 @@ public class TelaAlterarSenha extends javax.swing.JFrame {
             pnlContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlContainerLayout.createSequentialGroup()
                 .addComponent(pnlLateral, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 116, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 211, Short.MAX_VALUE)
                 .addComponent(pnlAlterarSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(99, 99, 99))
+                .addGap(204, 204, 204))
         );
         pnlContainerLayout.setVerticalGroup(
             pnlContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlLateral, javax.swing.GroupLayout.DEFAULT_SIZE, 596, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlContainerLayout.createSequentialGroup()
-                .addContainerGap(121, Short.MAX_VALUE)
+            .addComponent(pnlLateral, javax.swing.GroupLayout.DEFAULT_SIZE, 666, Short.MAX_VALUE)
+            .addGroup(pnlContainerLayout.createSequentialGroup()
+                .addGap(134, 134, 134)
                 .addComponent(pnlAlterarSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(115, 115, 115))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -302,6 +284,8 @@ public class TelaAlterarSenha extends javax.swing.JFrame {
             .addComponent(pnlContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
+        getAccessibleContext().setAccessibleDescription("");
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -313,6 +297,7 @@ public class TelaAlterarSenha extends javax.swing.JFrame {
                 this.setVisible(false);
                 limparCampos();
                 homeScreenFuncionario.setVisible(true);
+                homeScreenFuncionario.toFront();
             } catch (Exception e) {
                  JOptionPane.showMessageDialog(null, "Erro ao atualizar no banco: " + e.getMessage(), 
                     "Erro ao atualizar no banco de dados!",JOptionPane.ERROR_MESSAGE);
@@ -353,11 +338,9 @@ public class TelaAlterarSenha extends javax.swing.JFrame {
     private void btnInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioActionPerformed
         this.setVisible(false);
         homeScreenFuncionario.setVisible(true);
+        homeScreenFuncionario.toFront();
     }//GEN-LAST:event_btnInicioActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -375,10 +358,7 @@ public class TelaAlterarSenha extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(TelaAlterarSenha.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
+        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {

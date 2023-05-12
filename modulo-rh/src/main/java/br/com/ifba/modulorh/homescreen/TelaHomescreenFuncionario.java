@@ -67,19 +67,23 @@ public class TelaHomescreenFuncionario extends javax.swing.JFrame {
         btnSair = new javax.swing.JButton();
         lblInfoFuncionario = new javax.swing.JLabel();
         btnAlterarSenha = new javax.swing.JButton();
-        pnlCampo = new javax.swing.JPanel();
         pnlMenu = new javax.swing.JPanel();
         lblMenu = new javax.swing.JLabel();
         btnRegistrarPonto = new javax.swing.JButton();
-        btnCadastrarCurriculo = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Tela Inicial do Funcionário");
         setIconImage(icone.getImage());
-        setMinimumSize(new java.awt.Dimension(881, 599));
+        setMaximumSize(new java.awt.Dimension(1100, 670));
+        setMinimumSize(new java.awt.Dimension(1100, 670));
+        setPreferredSize(new java.awt.Dimension(1100, 670));
+        setResizable(false);
 
         pnlContainer.setBackground(new java.awt.Color(255, 255, 255));
         pnlContainer.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        pnlContainer.setMaximumSize(new java.awt.Dimension(1100, 670));
+        pnlContainer.setMinimumSize(new java.awt.Dimension(1100, 670));
+        pnlContainer.setPreferredSize(new java.awt.Dimension(1100, 670));
 
         pnlLateral.setBackground(new java.awt.Color(26, 81, 107));
 
@@ -140,27 +144,27 @@ public class TelaHomescreenFuncionario extends javax.swing.JFrame {
             .addGroup(pnlLateralLayout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(lblLateral)
-                .addGap(73, 73, 73)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblBemVindo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 374, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 482, Short.MAX_VALUE)
                 .addComponent(lblInfoFuncionario)
                 .addGap(18, 18, 18)
                 .addGroup(pnlLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnAlterarSenha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnSair, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE))
-                .addGap(33, 33, 33))
+                    .addComponent(btnSair, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(67, 67, 67))
         );
 
-        pnlCampo.setBackground(new java.awt.Color(255, 255, 255));
-        pnlCampo.setMinimumSize(new java.awt.Dimension(528, 557));
-
         pnlMenu.setBackground(new java.awt.Color(255, 255, 255));
-        pnlMenu.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(244, 244, 244), 4, true));
+        pnlMenu.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 4, true));
         pnlMenu.setMinimumSize(new java.awt.Dimension(516, 426));
+        pnlMenu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblMenu.setFont(fonteMaior);
+        lblMenu.setForeground(new java.awt.Color(0, 0, 0));
         lblMenu.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblMenu.setText("Tela inicial");
+        lblMenu.setText("Tela Inicial");
+        pnlMenu.add(lblMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 10, 296, -1));
 
         btnRegistrarPonto.setBackground(new java.awt.Color(71, 19, 35));
         btnRegistrarPonto.setFont(fonteNormal);
@@ -173,62 +177,7 @@ public class TelaHomescreenFuncionario extends javax.swing.JFrame {
                 btnRegistrarPontoActionPerformed(evt);
             }
         });
-
-        btnCadastrarCurriculo.setBackground(new java.awt.Color(71, 19, 35));
-        btnCadastrarCurriculo.setFont(fonteNormal);
-        btnCadastrarCurriculo.setForeground(new java.awt.Color(255, 255, 255));
-        btnCadastrarCurriculo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/cadastrar-curriculo-32x32.png"))); // NOI18N
-        btnCadastrarCurriculo.setText("CADASTRAR CURRÍCULO");
-        btnCadastrarCurriculo.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        btnCadastrarCurriculo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCadastrarCurriculoActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout pnlMenuLayout = new javax.swing.GroupLayout(pnlMenu);
-        pnlMenu.setLayout(pnlMenuLayout);
-        pnlMenuLayout.setHorizontalGroup(
-            pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlMenuLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlMenuLayout.createSequentialGroup()
-                .addGap(121, 121, 121)
-                .addGroup(pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnCadastrarCurriculo, javax.swing.GroupLayout.DEFAULT_SIZE, 286, Short.MAX_VALUE)
-                    .addComponent(btnRegistrarPonto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(112, 112, 112))
-        );
-        pnlMenuLayout.setVerticalGroup(
-            pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlMenuLayout.createSequentialGroup()
-                .addGap(60, 60, 60)
-                .addComponent(lblMenu)
-                .addGap(60, 60, 60)
-                .addComponent(btnRegistrarPonto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(32, 32, 32)
-                .addComponent(btnCadastrarCurriculo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(127, 127, 127))
-        );
-
-        javax.swing.GroupLayout pnlCampoLayout = new javax.swing.GroupLayout(pnlCampo);
-        pnlCampo.setLayout(pnlCampoLayout);
-        pnlCampoLayout.setHorizontalGroup(
-            pnlCampoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlCampoLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(pnlMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        pnlCampoLayout.setVerticalGroup(
-            pnlCampoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlCampoLayout.createSequentialGroup()
-                .addGap(68, 68, 68)
-                .addComponent(pnlMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        pnlMenu.add(btnRegistrarPonto, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 90, 210, 50));
 
         javax.swing.GroupLayout pnlContainerLayout = new javax.swing.GroupLayout(pnlContainer);
         pnlContainer.setLayout(pnlContainerLayout);
@@ -236,17 +185,17 @@ public class TelaHomescreenFuncionario extends javax.swing.JFrame {
             pnlContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlContainerLayout.createSequentialGroup()
                 .addComponent(pnlLateral, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(pnlCampo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(12, 12, 12))
+                .addGap(201, 201, 201)
+                .addComponent(pnlMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(213, Short.MAX_VALUE))
         );
         pnlContainerLayout.setVerticalGroup(
             pnlContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(pnlLateral, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(pnlContainerLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(pnlCampo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(70, 70, 70)
+                .addComponent(pnlMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -257,45 +206,34 @@ public class TelaHomescreenFuncionario extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(pnlContainer, javax.swing.GroupLayout.DEFAULT_SIZE, 680, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegistrarPontoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarPontoActionPerformed
-        // TODO add your handling code here:
         telaDeListarRegistroDePonto.passandoDados(cpf);
         telaDeListarRegistroDePonto.setVisible(true);
         this.setVisible(false);
+        telaDeListarRegistroDePonto.toFront();
     }//GEN-LAST:event_btnRegistrarPontoActionPerformed
-
-    private void btnCadastrarCurriculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarCurriculoActionPerformed
-        // TODO add your handling code here:
-        // Ainda precisa da funcionalidade e tela de cadastrar currículo.
-    }//GEN-LAST:event_btnCadastrarCurriculoActionPerformed
 
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
         telaLogin.setVisible(true);
         telaLogin.limparCampos();
         this.setVisible(false);
+        telaLogin.toFront();
     }//GEN-LAST:event_btnSairActionPerformed
 
     private void btnAlterarSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarSenhaActionPerformed
         telaAlterarSenha.setVisible(true);
         telaAlterarSenha.setUsuario(this.funcionario.getUsuario());
         this.setVisible(false);
+        telaAlterarSenha.toFront();
     }//GEN-LAST:event_btnAlterarSenhaActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -312,9 +250,7 @@ public class TelaHomescreenFuncionario extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(TelaHomescreenFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-
-        /* Create and display the form */
+  
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
@@ -330,14 +266,12 @@ public class TelaHomescreenFuncionario extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAlterarSenha;
-    private javax.swing.JButton btnCadastrarCurriculo;
     private javax.swing.JButton btnRegistrarPonto;
     private javax.swing.JButton btnSair;
     private javax.swing.JLabel lblBemVindo;
     private javax.swing.JLabel lblInfoFuncionario;
     private javax.swing.JLabel lblLateral;
     private javax.swing.JLabel lblMenu;
-    private javax.swing.JPanel pnlCampo;
     private javax.swing.JPanel pnlContainer;
     private javax.swing.JPanel pnlLateral;
     private javax.swing.JPanel pnlMenu;

@@ -136,14 +136,16 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
         setTitle("Cadastro de Usuário");
         setAutoRequestFocus(false);
         setIconImage(icone.getImage());
+        setMaximumSize(new java.awt.Dimension(1100, 670));
+        setMinimumSize(new java.awt.Dimension(1100, 670));
         setResizable(false);
 
         pnlContainer.setBackground(new java.awt.Color(255, 255, 255));
         pnlContainer.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
-        pnlContainer.setMaximumSize(new java.awt.Dimension(900, 600));
-        pnlContainer.setMinimumSize(new java.awt.Dimension(900, 600));
+        pnlContainer.setMaximumSize(new java.awt.Dimension(1100, 670));
+        pnlContainer.setMinimumSize(new java.awt.Dimension(1100, 670));
         pnlContainer.setName(""); // NOI18N
-        pnlContainer.setPreferredSize(new java.awt.Dimension(900, 600));
+        pnlContainer.setPreferredSize(new java.awt.Dimension(1100, 670));
 
         pnlLateral.setBackground(new java.awt.Color(26, 81, 107));
         pnlLateral.setMaximumSize(new java.awt.Dimension(300, 600));
@@ -181,32 +183,37 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
                         .addGap(46, 46, 46)
                         .addComponent(lblModuloRH))
                     .addGroup(pnlLateralLayout.createSequentialGroup()
-                        .addGap(86, 86, 86)
+                        .addGap(81, 81, 81)
                         .addComponent(btnInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(97, Short.MAX_VALUE))
+                .addContainerGap(102, Short.MAX_VALUE))
         );
         pnlLateralLayout.setVerticalGroup(
             pnlLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlLateralLayout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addComponent(lblModuloRH)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 494, Short.MAX_VALUE)
                 .addComponent(btnInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(54, 54, 54))
+                .addGap(94, 94, 94))
         );
 
         pnlCadastroUsuario.setBackground(new java.awt.Color(255, 255, 255));
         pnlCadastroUsuario.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 4, true));
         pnlCadastroUsuario.setMaximumSize(new java.awt.Dimension(388, 340));
         pnlCadastroUsuario.setPreferredSize(new java.awt.Dimension(388, 340));
+        pnlCadastroUsuario.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblCadastroDeUsuario.setFont(fonteMaior);
+        lblCadastroDeUsuario.setForeground(new java.awt.Color(0, 0, 0));
         lblCadastroDeUsuario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblCadastroDeUsuario.setText("Cadastro de Usuário");
+        pnlCadastroUsuario.add(lblCadastroDeUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(4, 23, 380, -1));
 
         lblEscolhaCadastro.setFont(fonteNormal);
+        lblEscolhaCadastro.setForeground(new java.awt.Color(0, 0, 0));
         lblEscolhaCadastro.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblEscolhaCadastro.setText("Escolha o tipo de usuário:");
+        pnlCadastroUsuario.add(lblEscolhaCadastro, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 291, 368, -1));
 
         btnCadastrar.setBackground(new java.awt.Color(71, 19, 35));
         btnCadastrar.setFont(fonteNormal);
@@ -224,6 +231,7 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
                 btnCadastrarActionPerformed(evt);
             }
         });
+        pnlCadastroUsuario.add(btnCadastrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(64, 351, -1, -1));
 
         pnlTextFields.setBackground(new java.awt.Color(255, 255, 255));
         pnlTextFields.setMaximumSize(new java.awt.Dimension(360, 130));
@@ -282,8 +290,11 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
         });
         pnlTextFields.add(txtConfirmarSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 320, -1));
 
+        pnlCadastroUsuario.add(pnlTextFields, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 57, 368, 228));
+
         chkGestor.setBackground(new java.awt.Color(255, 255, 255));
         chkGestor.setFont(fonteNormal);
+        chkGestor.setForeground(new java.awt.Color(0, 0, 0));
         chkGestor.setText("Gestor");
         chkGestor.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         chkGestor.addActionListener(new java.awt.event.ActionListener() {
@@ -291,9 +302,11 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
                 chkGestorActionPerformed(evt);
             }
         });
+        pnlCadastroUsuario.add(chkGestor, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 313, 130, -1));
 
         chkFuncionario.setBackground(new java.awt.Color(255, 255, 255));
         chkFuncionario.setFont(fonteNormal);
+        chkFuncionario.setForeground(new java.awt.Color(0, 0, 0));
         chkFuncionario.setText("Funcionário");
         chkFuncionario.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkFuncionario.addActionListener(new java.awt.event.ActionListener() {
@@ -301,44 +314,7 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
                 chkFuncionarioActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout pnlCadastroUsuarioLayout = new javax.swing.GroupLayout(pnlCadastroUsuario);
-        pnlCadastroUsuario.setLayout(pnlCadastroUsuarioLayout);
-        pnlCadastroUsuarioLayout.setHorizontalGroup(
-            pnlCadastroUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCadastroUsuarioLayout.createSequentialGroup()
-                .addGap(0, 60, Short.MAX_VALUE)
-                .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(54, 54, 54))
-            .addComponent(lblCadastroDeUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(pnlCadastroUsuarioLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pnlCadastroUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblEscolhaCadastro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(pnlCadastroUsuarioLayout.createSequentialGroup()
-                        .addComponent(chkGestor, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(chkFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(pnlTextFields, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        pnlCadastroUsuarioLayout.setVerticalGroup(
-            pnlCadastroUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlCadastroUsuarioLayout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(lblCadastroDeUsuario)
-                .addGap(18, 18, 18)
-                .addComponent(pnlTextFields, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblEscolhaCadastro)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnlCadastroUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(chkGestor)
-                    .addComponent(chkFuncionario))
-                .addGap(18, 18, 18)
-                .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35))
-        );
+        pnlCadastroUsuario.add(chkFuncionario, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 313, 158, -1));
 
         javax.swing.GroupLayout pnlContainerLayout = new javax.swing.GroupLayout(pnlContainer);
         pnlContainer.setLayout(pnlContainerLayout);
@@ -346,17 +322,17 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
             pnlContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlContainerLayout.createSequentialGroup()
                 .addComponent(pnlLateral, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 109, Short.MAX_VALUE)
+                .addGap(207, 207, 207)
                 .addComponent(pnlCadastroUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(106, 106, 106))
+                .addContainerGap(208, Short.MAX_VALUE))
         );
         pnlContainerLayout.setVerticalGroup(
             pnlContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlLateral, javax.swing.GroupLayout.DEFAULT_SIZE, 596, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlContainerLayout.createSequentialGroup()
-                .addContainerGap(84, Short.MAX_VALUE)
+            .addComponent(pnlLateral, javax.swing.GroupLayout.DEFAULT_SIZE, 666, Short.MAX_VALUE)
+            .addGroup(pnlContainerLayout.createSequentialGroup()
+                .addGap(110, 110, 110)
                 .addComponent(pnlCadastroUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(82, 82, 82))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -385,9 +361,11 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
                 if (cadastroFuncionario == true) {
                     telaCadastroFuncionario.finalizarCadastro(usuario);
                     telaDeListarFuncionarios.setVisible(true);
+                    telaDeListarFuncionarios.toFront();
                     telaDeListarFuncionarios.exibirDados();
                 } else {
                     telaDeLogin.setVisible(true);
+                    telaDeLogin.toFront();
                 }
                 limparCampos();
             } catch (Exception e) {
@@ -449,12 +427,10 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
         if (cadastroFuncionario == true) {
             this.setVisible(false);
             telaHomescreenGestor.setVisible(true);
+            telaHomescreenGestor.toFront();
         }
     }//GEN-LAST:event_btnInicioActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -472,9 +448,7 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(TelaCadastroUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-
-        /* Create and display the form */
+        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {

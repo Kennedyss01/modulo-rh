@@ -13,6 +13,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import br.com.ifba.modulorh.funcionario.service.IServiceFuncionario;
+import br.com.ifba.modulorh.registrodeponto.model.RegistroDePonto;
+import br.com.ifba.modulorh.registrodeponto.service.IServiceRegistroDePonto;
 
 /**
  *
@@ -20,7 +22,6 @@ import br.com.ifba.modulorh.funcionario.service.IServiceFuncionario;
  */
 @Controller
 public class Facade implements IFacade {
-
     
     //========================Usuario========================//
     @Autowired
@@ -188,6 +189,39 @@ public class Facade implements IFacade {
     public Curriculo findByNome(String nome) {
         return serviceCurriculo.findByNome(nome);
     }
+
+     //========================Registro de Ponto========================//
+    @Autowired
+    private IServiceRegistroDePonto serviceRegistroPonto;
     
+    @Override
+    public RegistroDePonto saveRegistroDePonto(RegistroDePonto registroDePonto) {
+        return serviceRegistroPonto.saveRegistroDePonto(registroDePonto);
+    }
+
+    @Override
+    public RegistroDePonto updateRegistroDePonto(RegistroDePonto registroDePonto) {
+        return serviceRegistroPonto.updateRegistroDePonto(registroDePonto);
+    }
+
+    @Override
+    public void deleteRegistroDePonto(RegistroDePonto registroDePonto) {
+        serviceRegistroPonto.deleteRegistroDePonto(registroDePonto);
+    }
+
+    @Override
+    public List<RegistroDePonto> getAllRegistroDePonto() {
+        return serviceRegistroPonto.getAllRegistroDePonto();
+    }
+
+    @Override
+    public RegistroDePonto findPontoById(Long id) {
+        return serviceRegistroPonto.findById(id);
+    }
+
+    @Override
+    public List<RegistroDePonto> getAllRegistroDePontoByCpf(String cpf) {
+        return serviceRegistroPonto.getAllRegistroDePontoByCpf(cpf);
+    }
     
 }

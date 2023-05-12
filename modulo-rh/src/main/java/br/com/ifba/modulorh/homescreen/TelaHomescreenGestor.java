@@ -72,29 +72,34 @@ public class TelaHomescreenGestor extends javax.swing.JFrame {
         lblBemVindo = new javax.swing.JLabel();
         btnSair = new javax.swing.JButton();
         lblInfoGestor = new javax.swing.JLabel();
-        pnlCampo = new javax.swing.JPanel();
         pnlMenu = new javax.swing.JPanel();
         lblMenu = new javax.swing.JLabel();
         btnListarDescontos = new javax.swing.JButton();
-        btnCadastrarFuncionario = new javax.swing.JButton();
         btnAvaliarPerformance = new javax.swing.JButton();
-        btnImprimirRelatorioFuncionario = new javax.swing.JButton();
         btnImprimirRelatorioAvaliacaoProdutividade = new javax.swing.JButton();
         btnImprimirRelatorioPonto = new javax.swing.JButton();
         btnListarAdicionais = new javax.swing.JButton();
-        pnlDivisoria = new javax.swing.JPanel();
         btnListarFuncionarios = new javax.swing.JButton();
         btnCadastrarCurriculo = new javax.swing.JButton();
+        btnCadastrarFuncionario = new javax.swing.JButton();
+        btnImprimirRelatorioFuncionario = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Tela Inicial do Gestor");
         setIconImage(icone.getImage());
-        setMinimumSize(new java.awt.Dimension(1028, 599));
+        setMaximumSize(new java.awt.Dimension(1100, 670));
+        setMinimumSize(new java.awt.Dimension(1100, 670));
+        setPreferredSize(new java.awt.Dimension(1100, 670));
+        setResizable(false);
 
         pnlContainer.setBackground(new java.awt.Color(255, 255, 255));
         pnlContainer.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        pnlContainer.setMaximumSize(new java.awt.Dimension(1100, 670));
+        pnlContainer.setMinimumSize(new java.awt.Dimension(1100, 670));
+        pnlContainer.setPreferredSize(new java.awt.Dimension(1100, 670));
 
         pnlLateral.setBackground(new java.awt.Color(26, 81, 107));
+        pnlLateral.setPreferredSize(new java.awt.Dimension(284, 188));
 
         lblLateral.setFont(fonteMaior);
         lblLateral.setForeground(new java.awt.Color(255, 255, 255));
@@ -131,30 +136,31 @@ public class TelaHomescreenGestor extends javax.swing.JFrame {
                     .addComponent(btnSair, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblBemVindo)
                     .addComponent(lblLateral))
-                .addContainerGap(57, Short.MAX_VALUE))
+                .addContainerGap(117, Short.MAX_VALUE))
         );
         pnlLateralLayout.setVerticalGroup(
             pnlLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlLateralLayout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(lblLateral)
-                .addGap(73, 73, 73)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblBemVindo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 374, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 494, Short.MAX_VALUE)
                 .addComponent(lblInfoGestor)
                 .addGap(18, 18, 18)
                 .addComponent(btnSair, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33))
+                .addGap(55, 55, 55))
         );
 
-        pnlCampo.setBackground(new java.awt.Color(255, 255, 255));
-
         pnlMenu.setBackground(new java.awt.Color(255, 255, 255));
-        pnlMenu.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(244, 244, 244), 4, true));
+        pnlMenu.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 4, true));
+        pnlMenu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblMenu.setFont(fonteMaior);
+        lblMenu.setForeground(new java.awt.Color(0, 0, 0));
         lblMenu.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblMenu.setText("Tela inicial");
+        pnlMenu.add(lblMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 640, 30));
 
         btnListarDescontos.setBackground(new java.awt.Color(71, 19, 35));
         btnListarDescontos.setFont(fonteNormal);
@@ -170,21 +176,7 @@ public class TelaHomescreenGestor extends javax.swing.JFrame {
                 btnListarDescontosActionPerformed(evt);
             }
         });
-
-        btnCadastrarFuncionario.setBackground(new java.awt.Color(71, 19, 35));
-        btnCadastrarFuncionario.setFont(fonteNormal);
-        btnCadastrarFuncionario.setForeground(new java.awt.Color(255, 255, 255));
-        btnCadastrarFuncionario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/cadastrar-funcionario-32x32.png"))); // NOI18N
-        btnCadastrarFuncionario.setText("CADASTRAR FUNCIONÁRIO");
-        btnCadastrarFuncionario.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        btnCadastrarFuncionario.setMaximumSize(new java.awt.Dimension(245, 64));
-        btnCadastrarFuncionario.setMinimumSize(new java.awt.Dimension(245, 64));
-        btnCadastrarFuncionario.setPreferredSize(new java.awt.Dimension(245, 64));
-        btnCadastrarFuncionario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCadastrarFuncionarioActionPerformed(evt);
-            }
-        });
+        pnlMenu.add(btnListarDescontos, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 290, 60));
 
         btnAvaliarPerformance.setBackground(new java.awt.Color(71, 19, 35));
         btnAvaliarPerformance.setFont(fonteNormal);
@@ -200,21 +192,7 @@ public class TelaHomescreenGestor extends javax.swing.JFrame {
                 btnAvaliarPerformanceActionPerformed(evt);
             }
         });
-
-        btnImprimirRelatorioFuncionario.setBackground(new java.awt.Color(71, 19, 35));
-        btnImprimirRelatorioFuncionario.setFont(fonteNormal);
-        btnImprimirRelatorioFuncionario.setForeground(new java.awt.Color(255, 255, 255));
-        btnImprimirRelatorioFuncionario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/imprimir-relatorio-funcionario-32x32.png"))); // NOI18N
-        btnImprimirRelatorioFuncionario.setText("RELATÓRIO DE FUNCIONÁRIO");
-        btnImprimirRelatorioFuncionario.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        btnImprimirRelatorioFuncionario.setMaximumSize(new java.awt.Dimension(245, 64));
-        btnImprimirRelatorioFuncionario.setMinimumSize(new java.awt.Dimension(245, 64));
-        btnImprimirRelatorioFuncionario.setPreferredSize(new java.awt.Dimension(245, 64));
-        btnImprimirRelatorioFuncionario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnImprimirRelatorioFuncionarioActionPerformed(evt);
-            }
-        });
+        pnlMenu.add(btnAvaliarPerformance, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 290, 60));
 
         btnImprimirRelatorioAvaliacaoProdutividade.setBackground(new java.awt.Color(71, 19, 35));
         btnImprimirRelatorioAvaliacaoProdutividade.setFont(fonteNormal);
@@ -230,6 +208,7 @@ public class TelaHomescreenGestor extends javax.swing.JFrame {
                 btnImprimirRelatorioAvaliacaoProdutividadeActionPerformed(evt);
             }
         });
+        pnlMenu.add(btnImprimirRelatorioAvaliacaoProdutividade, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, 290, 60));
 
         btnImprimirRelatorioPonto.setBackground(new java.awt.Color(71, 19, 35));
         btnImprimirRelatorioPonto.setFont(fonteNormal);
@@ -245,6 +224,7 @@ public class TelaHomescreenGestor extends javax.swing.JFrame {
                 btnImprimirRelatorioPontoActionPerformed(evt);
             }
         });
+        pnlMenu.add(btnImprimirRelatorioPonto, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 230, 300, 60));
 
         btnListarAdicionais.setBackground(new java.awt.Color(71, 19, 35));
         btnListarAdicionais.setFont(fonteNormal);
@@ -260,19 +240,7 @@ public class TelaHomescreenGestor extends javax.swing.JFrame {
                 btnListarAdicionaisActionPerformed(evt);
             }
         });
-
-        pnlDivisoria.setBackground(new java.awt.Color(255, 255, 255));
-
-        javax.swing.GroupLayout pnlDivisoriaLayout = new javax.swing.GroupLayout(pnlDivisoria);
-        pnlDivisoria.setLayout(pnlDivisoriaLayout);
-        pnlDivisoriaLayout.setHorizontalGroup(
-            pnlDivisoriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 25, Short.MAX_VALUE)
-        );
-        pnlDivisoriaLayout.setVerticalGroup(
-            pnlDivisoriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 427, Short.MAX_VALUE)
-        );
+        pnlMenu.add(btnListarAdicionais, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 300, 300, 50));
 
         btnListarFuncionarios.setBackground(new java.awt.Color(71, 19, 35));
         btnListarFuncionarios.setFont(fonteNormal);
@@ -288,6 +256,7 @@ public class TelaHomescreenGestor extends javax.swing.JFrame {
                 btnListarFuncionariosActionPerformed(evt);
             }
         });
+        pnlMenu.add(btnListarFuncionarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, 290, 50));
 
         btnCadastrarCurriculo.setBackground(new java.awt.Color(71, 19, 35));
         btnCadastrarCurriculo.setFont(fonteNormal);
@@ -303,80 +272,39 @@ public class TelaHomescreenGestor extends javax.swing.JFrame {
                 btnCadastrarCurriculoActionPerformed(evt);
             }
         });
+        pnlMenu.add(btnCadastrarCurriculo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 360, 290, 50));
 
-        javax.swing.GroupLayout pnlMenuLayout = new javax.swing.GroupLayout(pnlMenu);
-        pnlMenu.setLayout(pnlMenuLayout);
-        pnlMenuLayout.setHorizontalGroup(
-            pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlMenuLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlMenuLayout.createSequentialGroup()
-                        .addComponent(lblMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addGroup(pnlMenuLayout.createSequentialGroup()
-                        .addGroup(pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(btnImprimirRelatorioAvaliacaoProdutividade, javax.swing.GroupLayout.DEFAULT_SIZE, 317, Short.MAX_VALUE)
-                            .addComponent(btnAvaliarPerformance, javax.swing.GroupLayout.DEFAULT_SIZE, 317, Short.MAX_VALUE)
-                            .addComponent(btnListarDescontos, javax.swing.GroupLayout.DEFAULT_SIZE, 317, Short.MAX_VALUE)
-                            .addComponent(btnListarFuncionarios, javax.swing.GroupLayout.DEFAULT_SIZE, 317, Short.MAX_VALUE)
-                            .addComponent(btnCadastrarCurriculo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(65, 65, 65)
-                        .addGroup(pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnCadastrarFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnImprimirRelatorioPonto, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnImprimirRelatorioFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnListarAdicionais, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(pnlDivisoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))))
-        );
-        pnlMenuLayout.setVerticalGroup(
-            pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlMenuLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblMenu, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pnlDivisoria, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(pnlMenuLayout.createSequentialGroup()
-                        .addGroup(pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnCadastrarFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnListarDescontos, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnAvaliarPerformance, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnImprimirRelatorioFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnImprimirRelatorioPonto, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnImprimirRelatorioAvaliacaoProdutividade, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnListarAdicionais, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnListarFuncionarios, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnCadastrarCurriculo, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
+        btnCadastrarFuncionario.setBackground(new java.awt.Color(71, 19, 35));
+        btnCadastrarFuncionario.setFont(fonteNormal);
+        btnCadastrarFuncionario.setForeground(new java.awt.Color(255, 255, 255));
+        btnCadastrarFuncionario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/cadastrar-funcionario-32x32.png"))); // NOI18N
+        btnCadastrarFuncionario.setText("CADASTRAR FUNCIONÁRIO");
+        btnCadastrarFuncionario.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        btnCadastrarFuncionario.setMaximumSize(new java.awt.Dimension(245, 64));
+        btnCadastrarFuncionario.setMinimumSize(new java.awt.Dimension(245, 64));
+        btnCadastrarFuncionario.setPreferredSize(new java.awt.Dimension(245, 64));
+        btnCadastrarFuncionario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCadastrarFuncionarioActionPerformed(evt);
+            }
+        });
+        pnlMenu.add(btnCadastrarFuncionario, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 90, 300, 60));
 
-        javax.swing.GroupLayout pnlCampoLayout = new javax.swing.GroupLayout(pnlCampo);
-        pnlCampo.setLayout(pnlCampoLayout);
-        pnlCampoLayout.setHorizontalGroup(
-            pnlCampoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlCampoLayout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addComponent(pnlMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(35, 35, 35))
-        );
-        pnlCampoLayout.setVerticalGroup(
-            pnlCampoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlCampoLayout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addComponent(pnlMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(38, 38, 38))
-        );
+        btnImprimirRelatorioFuncionario.setBackground(new java.awt.Color(71, 19, 35));
+        btnImprimirRelatorioFuncionario.setFont(fonteNormal);
+        btnImprimirRelatorioFuncionario.setForeground(new java.awt.Color(255, 255, 255));
+        btnImprimirRelatorioFuncionario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/imprimir-relatorio-funcionario-32x32.png"))); // NOI18N
+        btnImprimirRelatorioFuncionario.setText("RELATÓRIO DE FUNCIONÁRIO");
+        btnImprimirRelatorioFuncionario.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        btnImprimirRelatorioFuncionario.setMaximumSize(new java.awt.Dimension(245, 64));
+        btnImprimirRelatorioFuncionario.setMinimumSize(new java.awt.Dimension(245, 64));
+        btnImprimirRelatorioFuncionario.setPreferredSize(new java.awt.Dimension(245, 64));
+        btnImprimirRelatorioFuncionario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnImprimirRelatorioFuncionarioActionPerformed(evt);
+            }
+        });
+        pnlMenu.add(btnImprimirRelatorioFuncionario, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 160, 300, 60));
 
         javax.swing.GroupLayout pnlContainerLayout = new javax.swing.GroupLayout(pnlContainer);
         pnlContainer.setLayout(pnlContainerLayout);
@@ -384,17 +312,17 @@ public class TelaHomescreenGestor extends javax.swing.JFrame {
             pnlContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlContainerLayout.createSequentialGroup()
                 .addComponent(pnlLateral, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pnlCampo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
+                .addComponent(pnlMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 644, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(81, 81, 81))
         );
         pnlContainerLayout.setVerticalGroup(
             pnlContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlLateral, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(pnlLateral, javax.swing.GroupLayout.DEFAULT_SIZE, 676, Short.MAX_VALUE)
             .addGroup(pnlContainerLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(pnlCampo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(33, 33, 33)
+                .addComponent(pnlMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 580, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -405,7 +333,7 @@ public class TelaHomescreenGestor extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(pnlContainer, javax.swing.GroupLayout.DEFAULT_SIZE, 680, Short.MAX_VALUE)
         );
 
         pack();
@@ -414,6 +342,7 @@ public class TelaHomescreenGestor extends javax.swing.JFrame {
     private void btnCadastrarFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarFuncionarioActionPerformed
         telaCadastroFuncionario.setVisible(true);
         this.setVisible(false);
+        telaCadastroFuncionario.toFront();
     }//GEN-LAST:event_btnCadastrarFuncionarioActionPerformed
 
     private void btnAvaliarPerformanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAvaliarPerformanceActionPerformed
@@ -435,22 +364,26 @@ public class TelaHomescreenGestor extends javax.swing.JFrame {
     private void btnListarDescontosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarDescontosActionPerformed
         telaDeListarDescontos.setVisible(true);
         this.setVisible(false);
+        telaDeListarDescontos.toFront();
     }//GEN-LAST:event_btnListarDescontosActionPerformed
 
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
         telaLogin.setVisible(true);
         telaLogin.limparCampos();
         this.setVisible(false);
+        telaLogin.toFront();
     }//GEN-LAST:event_btnSairActionPerformed
 
     private void btnListarAdicionaisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarAdicionaisActionPerformed
         telaDeListarAdicionais.setVisible(true);
         this.setVisible(false);
+        telaDeListarAdicionais.toFront();
     }//GEN-LAST:event_btnListarAdicionaisActionPerformed
 
     private void btnListarFuncionariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarFuncionariosActionPerformed
         telaDeListarFuncionarios.setVisible(true);
         this.setVisible(false);
+        telaDeListarFuncionarios.toFront();
     }//GEN-LAST:event_btnListarFuncionariosActionPerformed
 
     private void btnCadastrarCurriculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarCurriculoActionPerformed
@@ -458,15 +391,7 @@ public class TelaHomescreenGestor extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_btnCadastrarCurriculoActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -483,10 +408,7 @@ public class TelaHomescreenGestor extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(TelaHomescreenGestor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
 
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
@@ -515,9 +437,7 @@ public class TelaHomescreenGestor extends javax.swing.JFrame {
     private javax.swing.JLabel lblInfoGestor;
     private javax.swing.JLabel lblLateral;
     private javax.swing.JLabel lblMenu;
-    private javax.swing.JPanel pnlCampo;
     private javax.swing.JPanel pnlContainer;
-    private javax.swing.JPanel pnlDivisoria;
     private javax.swing.JPanel pnlLateral;
     private javax.swing.JPanel pnlMenu;
     // End of variables declaration//GEN-END:variables

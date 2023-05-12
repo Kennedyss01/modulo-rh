@@ -37,9 +37,6 @@ public class ServiceDesconto implements IServiceDesconto {
          if (desconto == null) {
             throw new BusinessException(DESCONTO_NULL);
         }
-        if (repositoryDesconto.existsByNome(desconto.getNome())) {
-            throw new BusinessException(DESCONTO_JA_EXISTE);
-        }
         repositoryDesconto.save(desconto);
     }
 
@@ -48,7 +45,7 @@ public class ServiceDesconto implements IServiceDesconto {
           if (desconto == null) {
             throw new BusinessException(DESCONTO_NULL);
         }
-        if (repositoryDesconto.existsByNome(desconto.getNome()) == false) {
+        if (repositoryDesconto.existsById(desconto.getId()) == false) {
             throw new BusinessException(DESCONTO_NAO_EXISTE);
         }
         repositoryDesconto.delete(desconto);

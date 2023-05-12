@@ -371,7 +371,7 @@ public class TelaDeListarRegistroDePonto extends javax.swing.JFrame {
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         int linha = tblRegistros.getSelectedRow();
         Long id = (Long) tblRegistros.getValueAt(linha, 0);
-        RegistroDePonto registroDePonto = facade.findRegistroDePontoById(id);
+        RegistroDePonto registroDePonto = facade.findPontoById(id);
         telaEditarRegistroDePonto.passandoDados(registroDePonto);
         this.setVisible(false);
         telaEditarRegistroDePonto.setVisible(true);

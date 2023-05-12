@@ -27,6 +27,7 @@ public class TelaDeListarDescontos extends javax.swing.JFrame {
     Font fonteMaior;
     Font fonteNormal;
     
+    private List<Desconto> descontos;
     @Autowired
     private IFacade facade;
     @Autowired @Lazy
@@ -55,24 +56,27 @@ public class TelaDeListarDescontos extends javax.swing.JFrame {
         pnlLateral = new javax.swing.JPanel();
         lblModuloRH = new javax.swing.JLabel();
         btnInicio = new javax.swing.JButton();
-        pnlLogin = new javax.swing.JPanel();
-        lblAdicionaisExistentes = new javax.swing.JLabel();
+        pnlListaDescontos = new javax.swing.JPanel();
+        lblDescontosExistentes = new javax.swing.JLabel();
         btnCadastrar = new javax.swing.JButton();
         btnExcluir = new javax.swing.JButton();
         btnEditar = new javax.swing.JButton();
         pnlTextFields = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        scrScrollDescontos = new javax.swing.JScrollPane();
         tblDescontos = new javax.swing.JTable();
         btnBuscar = new javax.swing.JButton();
-        txtCPFDoFuncionario = new javax.swing.JTextField();
+        txtNomeDesconto = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Listar Descontos");
+        setMaximumSize(new java.awt.Dimension(1100, 670));
+        setMinimumSize(new java.awt.Dimension(1100, 670));
+        setResizable(false);
 
         pnlContainer.setBackground(new java.awt.Color(255, 255, 255));
         pnlContainer.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
-        pnlContainer.setMaximumSize(new java.awt.Dimension(900, 600));
-        pnlContainer.setMinimumSize(new java.awt.Dimension(900, 600));
+        pnlContainer.setMaximumSize(new java.awt.Dimension(1100, 670));
+        pnlContainer.setMinimumSize(new java.awt.Dimension(1100, 670));
         pnlContainer.setName(""); // NOI18N
 
         pnlLateral.setBackground(new java.awt.Color(26, 81, 107));
@@ -109,9 +113,9 @@ public class TelaDeListarDescontos extends javax.swing.JFrame {
                         .addGap(42, 42, 42)
                         .addComponent(lblModuloRH))
                     .addGroup(pnlLateralLayout.createSequentialGroup()
-                        .addGap(84, 84, 84)
+                        .addGap(80, 80, 80)
                         .addComponent(btnInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(99, Short.MAX_VALUE))
+                .addContainerGap(103, Short.MAX_VALUE))
         );
         pnlLateralLayout.setVerticalGroup(
             pnlLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -120,17 +124,20 @@ public class TelaDeListarDescontos extends javax.swing.JFrame {
                 .addComponent(lblModuloRH)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(41, 41, 41))
+                .addGap(70, 70, 70))
         );
 
-        pnlLogin.setBackground(new java.awt.Color(255, 255, 255));
-        pnlLogin.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 4, true));
-        pnlLogin.setMaximumSize(new java.awt.Dimension(388, 340));
-        pnlLogin.setPreferredSize(new java.awt.Dimension(388, 340));
+        pnlListaDescontos.setBackground(new java.awt.Color(255, 255, 255));
+        pnlListaDescontos.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 4, true));
+        pnlListaDescontos.setMaximumSize(new java.awt.Dimension(388, 340));
+        pnlListaDescontos.setPreferredSize(new java.awt.Dimension(388, 340));
+        pnlListaDescontos.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblAdicionaisExistentes.setFont(fonteMaior);
-        lblAdicionaisExistentes.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblAdicionaisExistentes.setText("Descontos Existentes");
+        lblDescontosExistentes.setFont(fonteMaior);
+        lblDescontosExistentes.setForeground(new java.awt.Color(0, 0, 0));
+        lblDescontosExistentes.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblDescontosExistentes.setText("Descontos Existentes");
+        pnlListaDescontos.add(lblDescontosExistentes, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, 500, 32));
 
         btnCadastrar.setBackground(new java.awt.Color(71, 19, 35));
         btnCadastrar.setFont(fonteNormal);
@@ -148,6 +155,7 @@ public class TelaDeListarDescontos extends javax.swing.JFrame {
                 btnCadastrarActionPerformed(evt);
             }
         });
+        pnlListaDescontos.add(btnCadastrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 520, 150, -1));
 
         btnExcluir.setBackground(new java.awt.Color(71, 19, 35));
         btnExcluir.setFont(fonteNormal);
@@ -165,6 +173,7 @@ public class TelaDeListarDescontos extends javax.swing.JFrame {
                 btnExcluirActionPerformed(evt);
             }
         });
+        pnlListaDescontos.add(btnExcluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 520, 150, -1));
 
         btnEditar.setBackground(new java.awt.Color(71, 19, 35));
         btnEditar.setFont(fonteNormal);
@@ -182,6 +191,7 @@ public class TelaDeListarDescontos extends javax.swing.JFrame {
                 btnEditarActionPerformed(evt);
             }
         });
+        pnlListaDescontos.add(btnEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 520, 150, -1));
 
         pnlTextFields.setBackground(new java.awt.Color(255, 255, 255));
         pnlTextFields.setMaximumSize(new java.awt.Dimension(360, 130));
@@ -199,9 +209,9 @@ public class TelaDeListarDescontos extends javax.swing.JFrame {
                 "ID", "Nome", "Valor", "Tipo"
             }
         ));
-        jScrollPane1.setViewportView(tblDescontos);
+        scrScrollDescontos.setViewportView(tblDescontos);
 
-        pnlTextFields.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 510, 350));
+        pnlTextFields.add(scrScrollDescontos, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 510, 350));
 
         btnBuscar.setBackground(new java.awt.Color(71, 19, 35));
         btnBuscar.setFont(fonteNormal);
@@ -219,54 +229,25 @@ public class TelaDeListarDescontos extends javax.swing.JFrame {
                 btnBuscarActionPerformed(evt);
             }
         });
-        pnlTextFields.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 10, 110, -1));
+        pnlTextFields.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 10, 110, -1));
 
-        txtCPFDoFuncionario.setText("CPF do funcionário");
-        txtCPFDoFuncionario.addFocusListener(new java.awt.event.FocusAdapter() {
+        txtNomeDesconto.setText("Buscar Desconto");
+        txtNomeDesconto.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                txtCPFDoFuncionarioFocusGained(evt);
+                txtNomeDescontoFocusGained(evt);
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
-                txtCPFDoFuncionarioFocusLost(evt);
+                txtNomeDescontoFocusLost(evt);
             }
         });
-        pnlTextFields.add(txtCPFDoFuncionario, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, 390, 40));
+        txtNomeDesconto.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtNomeDescontoKeyPressed(evt);
+            }
+        });
+        pnlTextFields.add(txtNomeDesconto, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 390, 40));
 
-        javax.swing.GroupLayout pnlLoginLayout = new javax.swing.GroupLayout(pnlLogin);
-        pnlLogin.setLayout(pnlLoginLayout);
-        pnlLoginLayout.setHorizontalGroup(
-            pnlLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlLoginLayout.createSequentialGroup()
-                .addGroup(pnlLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblAdicionaisExistentes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(pnlLoginLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(pnlLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(pnlTextFields, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(pnlLoginLayout.createSequentialGroup()
-                                .addGap(42, 42, 42)
-                                .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(28, 28, 28)
-                                .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
-                                .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(26, 26, 26)))))
-                .addContainerGap())
-        );
-        pnlLoginLayout.setVerticalGroup(
-            pnlLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlLoginLayout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addComponent(lblAdicionaisExistentes, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pnlTextFields, javax.swing.GroupLayout.DEFAULT_SIZE, 444, Short.MAX_VALUE)
-                .addGap(4, 4, 4)
-                .addGroup(pnlLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(36, 36, 36))
-        );
+        pnlListaDescontos.add(pnlTextFields, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 60, 560, 450));
 
         javax.swing.GroupLayout pnlContainerLayout = new javax.swing.GroupLayout(pnlContainer);
         pnlContainer.setLayout(pnlContainerLayout);
@@ -274,16 +255,17 @@ public class TelaDeListarDescontos extends javax.swing.JFrame {
             pnlContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlContainerLayout.createSequentialGroup()
                 .addComponent(pnlLateral, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pnlLogin, javax.swing.GroupLayout.DEFAULT_SIZE, 597, Short.MAX_VALUE))
+                .addGap(61, 61, 61)
+                .addComponent(pnlListaDescontos, javax.swing.GroupLayout.PREFERRED_SIZE, 671, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(71, Short.MAX_VALUE))
         );
         pnlContainerLayout.setVerticalGroup(
             pnlContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(pnlLateral, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlContainerLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(pnlLogin, javax.swing.GroupLayout.DEFAULT_SIZE, 584, Short.MAX_VALUE)
-                .addContainerGap())
+            .addGroup(pnlContainerLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(pnlListaDescontos, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(46, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -302,10 +284,10 @@ public class TelaDeListarDescontos extends javax.swing.JFrame {
 
     @PostConstruct
     public void exibirDados() {
-        List<Desconto> descontos = facade.getAllDescontos();
+        descontos = facade.getAllDescontos();
+        
         DefaultTableModel modelo = (DefaultTableModel) tblDescontos.getModel();
         modelo.setNumRows(0);
-      
         for (Desconto desconto: descontos) {
             modelo.addRow(new Object [] {desconto.getId(), desconto.getNome(), 
                 desconto.getDesconto(), desconto.getTipoDesconto()});
@@ -313,8 +295,29 @@ public class TelaDeListarDescontos extends javax.swing.JFrame {
         
     }
     
+    private void buscarDescontos(String busca) {
+        try {
+            if (descontos.isEmpty()) {
+                descontos = facade.getAllDescontos();
+            }
+            DefaultTableModel modelo = (DefaultTableModel) tblDescontos.getModel();
+            modelo.setNumRows(0);
+            
+            for (Desconto desconto: descontos) {
+                if (desconto.getNome().toLowerCase().contains(busca)) {
+                    modelo.addRow(new Object [] {desconto.getId(), desconto.getNome(), 
+                        desconto.getDesconto(), desconto.getTipoDesconto()});
+                }
+            }
+        } catch(Exception e) {
+               JOptionPane.showMessageDialog(null, "Erro ao buscar dados: " + e.getMessage(), 
+                    "Erro ao consultar no banco de dados!",JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
         telaCadastroDesconto.setVisible(true);
+        telaCadastroDesconto.toFront();
         this.setVisible(false);
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
@@ -336,6 +339,7 @@ public class TelaDeListarDescontos extends javax.swing.JFrame {
             Long id = (Long) tblDescontos.getValueAt(linha, 0);
             telaEditarDesconto.setDesconto(facade.findDescontoById(id));
             telaEditarDesconto.setVisible(true);
+            telaEditarDesconto.toFront();
             this.setVisible(false);
         } catch(Exception e) {
             JOptionPane.showMessageDialog(null, "Erro ao Excluir no banco: " + e.getMessage(), 
@@ -344,26 +348,31 @@ public class TelaDeListarDescontos extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        String busca = txtNomeDesconto.getText().trim().toLowerCase();
+        buscarDescontos(busca);
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioActionPerformed
         this.setVisible(false);
         telaHomescreenGestor.setVisible(true);
+        telaHomescreenGestor.toFront();
     }//GEN-LAST:event_btnInicioActionPerformed
 
-    private void txtCPFDoFuncionarioFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCPFDoFuncionarioFocusGained
-        if(txtCPFDoFuncionario.getText().equals("CPF do funcionário"))
-            txtCPFDoFuncionario.setText("");
-    }//GEN-LAST:event_txtCPFDoFuncionarioFocusGained
+    private void txtNomeDescontoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNomeDescontoFocusGained
+        if (txtNomeDesconto.getText().equals("Buscar Desconto"))
+            txtNomeDesconto.setText("");
+    }//GEN-LAST:event_txtNomeDescontoFocusGained
 
-    private void txtCPFDoFuncionarioFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCPFDoFuncionarioFocusLost
-        if(txtCPFDoFuncionario.getText().trim().isEmpty())
-            txtCPFDoFuncionario.setText("CPF do funcionário");
-    }//GEN-LAST:event_txtCPFDoFuncionarioFocusLost
+    private void txtNomeDescontoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNomeDescontoFocusLost
+        if (txtNomeDesconto.getText().trim().isEmpty())
+            txtNomeDesconto.setText("Buscar Desconto");
+    }//GEN-LAST:event_txtNomeDescontoFocusLost
 
-    /**
-     * @param args the command line arguments
-     */
+    private void txtNomeDescontoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNomeDescontoKeyPressed
+        String busca = txtNomeDesconto.getText().trim().toLowerCase();;
+        buscarDescontos(busca);
+    }//GEN-LAST:event_txtNomeDescontoKeyPressed
+
     public static void main(String args[]) {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -401,15 +410,15 @@ public class TelaDeListarDescontos extends javax.swing.JFrame {
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnInicio;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lblAdicionaisExistentes;
+    private javax.swing.JLabel lblDescontosExistentes;
     private javax.swing.JLabel lblModuloRH;
     private javax.swing.JPanel pnlContainer;
     private javax.swing.JPanel pnlLateral;
-    private javax.swing.JPanel pnlLogin;
+    private javax.swing.JPanel pnlListaDescontos;
     private javax.swing.JPanel pnlTextFields;
+    private javax.swing.JScrollPane scrScrollDescontos;
     private javax.swing.JTable tblDescontos;
-    private javax.swing.JTextField txtCPFDoFuncionario;
+    private javax.swing.JTextField txtNomeDesconto;
     // End of variables declaration//GEN-END:variables
 
 }
