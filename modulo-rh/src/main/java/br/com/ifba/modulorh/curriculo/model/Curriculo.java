@@ -37,5 +37,9 @@ public class Curriculo implements Serializable{
         this.formacaoAcademica = formacaoAcademica;
         this.experienciaProfissional = experienciaProfissional;
     }
+
+    public Curriculo get(int i) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
 }

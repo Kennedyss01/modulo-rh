@@ -64,5 +64,10 @@ public class ServiceCurriculo implements IServiceCurriculo{
     public Curriculo findByNome(String nome) {
         return repositoryCurriculo.findByNome(nome).get(0);
     }
+
+    @Override
+    public Curriculo findCurriculoById(Long id) {
+       return repositoryCurriculo.findCurriculoById(id).get(0);
+    }
     
 }

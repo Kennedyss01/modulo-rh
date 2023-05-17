@@ -4,8 +4,6 @@
  */
 package br.com.ifba.modulorh.curriculo.view;
 
-import br.com.ifba.modulorh.adicionais.view.*;
-import br.com.ifba.modulorh.adicionais.model.Adicional;
 import br.com.ifba.modulorh.curriculo.model.Curriculo;
 import br.com.ifba.modulorh.homescreen.TelaHomescreenGestor;
 import br.com.ifba.modulorh.infrastructure.service.IFacade;
@@ -201,13 +199,13 @@ public class TelaDeListarCurriculo extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "ID", "Nome", "Valor", "Tipo"
+                "ID", "Nome", "Vaga"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -333,7 +331,7 @@ public class TelaDeListarCurriculo extends javax.swing.JFrame {
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         int linha = jTable1.getSelectedRow();
         Long id = (Long) jTable1.getValueAt(linha, 0);
-        Adicional curriculo = facade.findById(id);
+        Curriculo curriculo = facade.findCurriculoById(id);
         telaEditarCurriculo.passandoDados(curriculo);
         this.setVisible(false);
         telaEditarCurriculo.setVisible(true);
@@ -422,11 +420,11 @@ public class TelaDeListarCurriculo extends javax.swing.JFrame {
     @PostConstruct
     public void exibirDados(){
         setLocationRelativeTo(null);
-        List<Adicional> lista = facade.getAllAdicional();
+        List<Curriculo> lista = facade.getAllCurriculo();
         DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
         modelo.setNumRows(0);
-        for(Adicional lis: lista){
-            modelo.addRow(new Object [] {lis.getId(), lis.getNome(), lis.getValorPercentual(), lis.getTipo()});
+        for(Curriculo lis: lista){
+            modelo.addRow(new Object [] {lis.getId(), lis.getNome(), lis.getVaga()});
         }
     }
 

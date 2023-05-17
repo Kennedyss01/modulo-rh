@@ -189,6 +189,11 @@ public class Facade implements IFacade {
     public Curriculo findByNome(String nome) {
         return serviceCurriculo.findByNome(nome);
     }
+    
+    @Override
+    public Curriculo findCurriculoById(Long id) {
+        return serviceCurriculo.findCurriculoById(id);
+    }
 
      //========================Registro de Ponto========================//
     @Autowired
@@ -218,5 +223,7 @@ public class Facade implements IFacade {
     public RegistroDePonto findRegistroDePontoById(Long id) {
         return serviceRegistroPonto.findById(id);
     }
+
+    
     
 }

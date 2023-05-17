@@ -4,8 +4,7 @@
  */
 package br.com.ifba.modulorh.curriculo.view;
 
-import br.com.ifba.modulorh.adicionais.view.*;
-import br.com.ifba.modulorh.adicionais.model.Adicional;
+import br.com.ifba.modulorh.curriculo.model.Curriculo;
 import br.com.ifba.modulorh.homescreen.TelaHomescreenGestor;
 import br.com.ifba.modulorh.infrastructure.service.IFacade;
 import java.awt.Font;
@@ -30,11 +29,11 @@ public class TelaEditarCurriculo extends javax.swing.JFrame {
     Font fonteMaior;
     Font fonteNormal;
     
-    private Adicional adicional;
+    private Curriculo curriculo;
     @Autowired
     private IFacade facade;
     @Autowired
-    private TelaDeListarCurriculo telaDeListarAdicionais;
+    private TelaDeListarCurriculo telaDeListarCurriculo;
     @Autowired @Lazy
     private TelaHomescreenGestor telaHomescreenGestor;
     
@@ -49,10 +48,15 @@ public class TelaEditarCurriculo extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }
 
-        public void passandoDados(Adicional adicional){
-        txtNome.setText(adicional.getNome());
-        txtValorFixoOuPercentual.setText(Float.toString(adicional.getValorPercentual()));
-        this.adicional = adicional;
+    public void passandoDados(Curriculo curriculo){
+        txtNome.setText(curriculo.getNome());
+        txtEndereco.setText(curriculo.getEndereco());
+        txtTelefone.setText(curriculo.getTelefone());
+        txtEmail.setText(curriculo.getEmail());
+        txtVaga.setText(curriculo.getVaga());
+        txtFormacaoAcademica.setText(curriculo.getFormacaoAcademica());
+        txtExperienciaProfissional.setText(curriculo.getExperienciaProfissional());
+        this.curriculo = curriculo;
     }
     
     /**
@@ -68,15 +72,17 @@ public class TelaEditarCurriculo extends javax.swing.JFrame {
         pnlLateral = new javax.swing.JPanel();
         lblModuloRH = new javax.swing.JLabel();
         btnInicio = new javax.swing.JButton();
-        pnlLogin = new javax.swing.JPanel();
-        lblEditarAdicional = new javax.swing.JLabel();
-        btnEditar = new javax.swing.JButton();
+        pnlEditarFuncionario = new javax.swing.JPanel();
+        lblEditarFuncionario = new javax.swing.JLabel();
         pnlTextFields = new javax.swing.JPanel();
+        txtExperienciaProfissional = new javax.swing.JTextField();
+        txtFormacaoAcademica = new javax.swing.JTextField();
+        txtVaga = new javax.swing.JTextField();
+        txtEmail = new javax.swing.JTextField();
+        txtTelefone = new javax.swing.JTextField();
+        txtEndereco = new javax.swing.JTextField();
         txtNome = new javax.swing.JTextField();
-        txtValorFixoOuPercentual = new javax.swing.JTextField();
-        chkPercentual = new javax.swing.JCheckBox();
-        chkValorFixo = new javax.swing.JCheckBox();
-        lblEscolhaTipoDeAdicional = new javax.swing.JLabel();
+        btnEditar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Editar Adicional");
@@ -130,19 +136,141 @@ public class TelaEditarCurriculo extends javax.swing.JFrame {
             .addGroup(pnlLateralLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(lblModuloRH)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 480, Short.MAX_VALUE)
                 .addComponent(btnInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40))
         );
 
-        pnlLogin.setBackground(new java.awt.Color(255, 255, 255));
-        pnlLogin.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 4, true));
-        pnlLogin.setMaximumSize(new java.awt.Dimension(388, 340));
-        pnlLogin.setPreferredSize(new java.awt.Dimension(388, 340));
+        pnlEditarFuncionario.setBackground(new java.awt.Color(255, 255, 255));
+        pnlEditarFuncionario.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 4, true));
+        pnlEditarFuncionario.setMaximumSize(new java.awt.Dimension(388, 340));
+        pnlEditarFuncionario.setPreferredSize(new java.awt.Dimension(388, 340));
 
-        lblEditarAdicional.setFont(fonteMaior);
-        lblEditarAdicional.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblEditarAdicional.setText("Editar Adicional");
+        lblEditarFuncionario.setFont(fonteMaior);
+        lblEditarFuncionario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblEditarFuncionario.setText("Editar Currículo");
+
+        pnlTextFields.setBackground(new java.awt.Color(255, 255, 255));
+        pnlTextFields.setMaximumSize(new java.awt.Dimension(360, 130));
+        pnlTextFields.setPreferredSize(new java.awt.Dimension(360, 130));
+        pnlTextFields.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        txtExperienciaProfissional.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txtExperienciaProfissional.setText("Experiência Profissional");
+        txtExperienciaProfissional.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        txtExperienciaProfissional.setMaximumSize(new java.awt.Dimension(320, 50));
+        txtExperienciaProfissional.setMinimumSize(new java.awt.Dimension(320, 50));
+        txtExperienciaProfissional.setPreferredSize(new java.awt.Dimension(320, 50));
+        txtExperienciaProfissional.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtExperienciaProfissionalFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtExperienciaProfissionalFocusLost(evt);
+            }
+        });
+        pnlTextFields.add(txtExperienciaProfissional, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, -1, 140));
+
+        txtFormacaoAcademica.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txtFormacaoAcademica.setText("Formação Acadêmica");
+        txtFormacaoAcademica.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        txtFormacaoAcademica.setMaximumSize(new java.awt.Dimension(320, 50));
+        txtFormacaoAcademica.setMinimumSize(new java.awt.Dimension(320, 50));
+        txtFormacaoAcademica.setPreferredSize(new java.awt.Dimension(320, 50));
+        txtFormacaoAcademica.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtFormacaoAcademicaFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtFormacaoAcademicaFocusLost(evt);
+            }
+        });
+        pnlTextFields.add(txtFormacaoAcademica, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, -1, 40));
+
+        txtVaga.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txtVaga.setText("Vaga");
+        txtVaga.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        txtVaga.setMaximumSize(new java.awt.Dimension(320, 50));
+        txtVaga.setMinimumSize(new java.awt.Dimension(320, 50));
+        txtVaga.setPreferredSize(new java.awt.Dimension(320, 50));
+        txtVaga.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtVagaFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtVagaFocusLost(evt);
+            }
+        });
+        pnlTextFields.add(txtVaga, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, -1, 40));
+
+        txtEmail.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txtEmail.setText("Email");
+        txtEmail.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        txtEmail.setMaximumSize(new java.awt.Dimension(320, 50));
+        txtEmail.setMinimumSize(new java.awt.Dimension(320, 50));
+        txtEmail.setPreferredSize(new java.awt.Dimension(320, 50));
+        txtEmail.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtEmailFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtEmailFocusLost(evt);
+            }
+        });
+        pnlTextFields.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, -1, 40));
+
+        txtTelefone.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txtTelefone.setText("Telefone");
+        txtTelefone.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        txtTelefone.setMaximumSize(new java.awt.Dimension(320, 50));
+        txtTelefone.setMinimumSize(new java.awt.Dimension(320, 50));
+        txtTelefone.setPreferredSize(new java.awt.Dimension(320, 50));
+        txtTelefone.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtTelefoneFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtTelefoneFocusLost(evt);
+            }
+        });
+        pnlTextFields.add(txtTelefone, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, -1, 40));
+
+        txtEndereco.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txtEndereco.setText("Endereço");
+        txtEndereco.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        txtEndereco.setMaximumSize(new java.awt.Dimension(320, 50));
+        txtEndereco.setMinimumSize(new java.awt.Dimension(320, 50));
+        txtEndereco.setPreferredSize(new java.awt.Dimension(320, 50));
+        txtEndereco.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtEnderecoFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtEnderecoFocusLost(evt);
+            }
+        });
+        txtEndereco.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtEnderecoActionPerformed(evt);
+            }
+        });
+        pnlTextFields.add(txtEndereco, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, -1, 40));
+
+        txtNome.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txtNome.setText("Nome");
+        txtNome.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        txtNome.setMaximumSize(new java.awt.Dimension(320, 50));
+        txtNome.setMinimumSize(new java.awt.Dimension(320, 50));
+        txtNome.setPreferredSize(new java.awt.Dimension(320, 50));
+        txtNome.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtNomeFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtNomeFocusLost(evt);
+            }
+        });
+        pnlTextFields.add(txtNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, -1, 40));
 
         btnEditar.setBackground(new java.awt.Color(71, 19, 35));
         btnEditar.setFont(fonteNormal);
@@ -161,90 +289,33 @@ public class TelaEditarCurriculo extends javax.swing.JFrame {
             }
         });
 
-        pnlTextFields.setBackground(new java.awt.Color(255, 255, 255));
-        pnlTextFields.setMaximumSize(new java.awt.Dimension(360, 130));
-        pnlTextFields.setPreferredSize(new java.awt.Dimension(360, 130));
-        pnlTextFields.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        txtNome.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        txtNome.setText("Nome");
-        txtNome.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        txtNome.setMaximumSize(new java.awt.Dimension(320, 50));
-        txtNome.setMinimumSize(new java.awt.Dimension(320, 50));
-        txtNome.setPreferredSize(new java.awt.Dimension(320, 50));
-        txtNome.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                txtNomeFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtNomeFocusLost(evt);
-            }
-        });
-        pnlTextFields.add(txtNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 310, 40));
-
-        txtValorFixoOuPercentual.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        txtValorFixoOuPercentual.setText("Valor Fixo ou Percentual");
-        txtValorFixoOuPercentual.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        txtValorFixoOuPercentual.setMaximumSize(new java.awt.Dimension(320, 50));
-        txtValorFixoOuPercentual.setMinimumSize(new java.awt.Dimension(320, 50));
-        txtValorFixoOuPercentual.setPreferredSize(new java.awt.Dimension(320, 50));
-        txtValorFixoOuPercentual.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                txtValorFixoOuPercentualFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtValorFixoOuPercentualFocusLost(evt);
-            }
-        });
-        pnlTextFields.add(txtValorFixoOuPercentual, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 310, 40));
-
-        chkPercentual.setText("Percentual");
-        chkPercentual.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                chkPercentualActionPerformed(evt);
-            }
-        });
-        pnlTextFields.add(chkPercentual, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 170, -1, -1));
-
-        chkValorFixo.setText("Valor Fixo");
-        chkValorFixo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                chkValorFixoActionPerformed(evt);
-            }
-        });
-        pnlTextFields.add(chkValorFixo, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 170, -1, -1));
-
-        lblEscolhaTipoDeAdicional.setText("Escolha o tipo de adicional:");
-        pnlTextFields.add(lblEscolhaTipoDeAdicional, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 140, -1, -1));
-
-        javax.swing.GroupLayout pnlLoginLayout = new javax.swing.GroupLayout(pnlLogin);
-        pnlLogin.setLayout(pnlLoginLayout);
-        pnlLoginLayout.setHorizontalGroup(
-            pnlLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlLoginLayout.createSequentialGroup()
-                .addGroup(pnlLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlLoginLayout.createSequentialGroup()
-                        .addGroup(pnlLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(pnlLoginLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(pnlTextFields, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(pnlLoginLayout.createSequentialGroup()
-                                .addGap(51, 51, 51)
-                                .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(lblEditarAdicional, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        javax.swing.GroupLayout pnlEditarFuncionarioLayout = new javax.swing.GroupLayout(pnlEditarFuncionario);
+        pnlEditarFuncionario.setLayout(pnlEditarFuncionarioLayout);
+        pnlEditarFuncionarioLayout.setHorizontalGroup(
+            pnlEditarFuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlEditarFuncionarioLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlEditarFuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblEditarFuncionario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(pnlEditarFuncionarioLayout.createSequentialGroup()
+                        .addComponent(pnlTextFields, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 8, Short.MAX_VALUE)))
                 .addContainerGap())
-        );
-        pnlLoginLayout.setVerticalGroup(
-            pnlLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlLoginLayout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addComponent(lblEditarAdicional, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pnlTextFields, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
+            .addGroup(pnlEditarFuncionarioLayout.createSequentialGroup()
+                .addGap(57, 57, 57)
                 .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(16, 16, 16))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        pnlEditarFuncionarioLayout.setVerticalGroup(
+            pnlEditarFuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlEditarFuncionarioLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblEditarFuncionario)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(pnlTextFields, javax.swing.GroupLayout.PREFERRED_SIZE, 454, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout pnlContainerLayout = new javax.swing.GroupLayout(pnlContainer);
@@ -253,17 +324,17 @@ public class TelaEditarCurriculo extends javax.swing.JFrame {
             pnlContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlContainerLayout.createSequentialGroup()
                 .addComponent(pnlLateral, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(108, 108, 108)
-                .addComponent(pnlLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(115, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 116, Short.MAX_VALUE)
+                .addComponent(pnlEditarFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(99, 99, 99))
         );
         pnlContainerLayout.setVerticalGroup(
             pnlContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(pnlLateral, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(pnlContainerLayout.createSequentialGroup()
-                .addGap(131, 131, 131)
-                .addComponent(pnlLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(131, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(pnlEditarFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 580, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -280,59 +351,101 @@ public class TelaEditarCurriculo extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-        float valor = Float.parseFloat(txtValorFixoOuPercentual.getText());
-        if(chkPercentual.isSelected()){
-            adicional.setTipo("Percentual");
-        }
-        if(chkValorFixo.isSelected()){
-            adicional.setTipo("Valor Fixo");
-        }
-        try{
-            adicional.setNome(txtNome.getText());
-            adicional.setValorPercentual(valor);
-            facade.updateAdicional(adicional);
-            telaDeListarAdicionais.exibirDados();
-            this.setVisible(false);
-            telaDeListarAdicionais.setVisible(true);
-        }catch (Exception e){
-            JOptionPane.showMessageDialog(null, "Erro ao Editar no banco: " + e.getMessage(), 
-                    "Erro ao Editar no banco de dados!",JOptionPane.ERROR_MESSAGE);
-        }
-    }//GEN-LAST:event_btnEditarActionPerformed
-
-    private void chkPercentualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkPercentualActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_chkPercentualActionPerformed
-
-    private void chkValorFixoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkValorFixoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_chkValorFixoActionPerformed
-
     private void btnInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioActionPerformed
         this.setVisible(false);
         telaHomescreenGestor.setVisible(true);
     }//GEN-LAST:event_btnInicioActionPerformed
 
-    private void txtValorFixoOuPercentualFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtValorFixoOuPercentualFocusGained
-        if(txtValorFixoOuPercentual.getText().equals("Valor Fixo ou Percentual"))
-            txtValorFixoOuPercentual.setText("");
-    }//GEN-LAST:event_txtValorFixoOuPercentualFocusGained
+    private void txtExperienciaProfissionalFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtExperienciaProfissionalFocusGained
+        if(txtExperienciaProfissional.getText().equals("Experiência Profissional"))
+        txtExperienciaProfissional.setText("");
+    }//GEN-LAST:event_txtExperienciaProfissionalFocusGained
 
-    private void txtValorFixoOuPercentualFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtValorFixoOuPercentualFocusLost
-        if(txtValorFixoOuPercentual.getText().trim().isEmpty())
-            txtValorFixoOuPercentual.setText("Valor fixo ou percentual");
-    }//GEN-LAST:event_txtValorFixoOuPercentualFocusLost
+    private void txtExperienciaProfissionalFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtExperienciaProfissionalFocusLost
+        if(txtExperienciaProfissional.getText().trim().isEmpty())
+        txtExperienciaProfissional.setText("Experiência Profissional");
+    }//GEN-LAST:event_txtExperienciaProfissionalFocusLost
+
+    private void txtFormacaoAcademicaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtFormacaoAcademicaFocusGained
+        if(txtFormacaoAcademica.getText().equals("Formação Acadêmica"))
+        txtFormacaoAcademica.setText("");
+    }//GEN-LAST:event_txtFormacaoAcademicaFocusGained
+
+    private void txtFormacaoAcademicaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtFormacaoAcademicaFocusLost
+        if(txtFormacaoAcademica.getText().trim().isEmpty())
+        txtFormacaoAcademica.setText("Formação Acadêmica");
+    }//GEN-LAST:event_txtFormacaoAcademicaFocusLost
+
+    private void txtVagaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtVagaFocusGained
+        if(txtVaga.getText().equals("Vaga"))
+        txtVaga.setText("");
+    }//GEN-LAST:event_txtVagaFocusGained
+
+    private void txtVagaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtVagaFocusLost
+        if(txtVaga.getText().trim().isEmpty())
+        txtVaga.setText("Vaga");
+    }//GEN-LAST:event_txtVagaFocusLost
+
+    private void txtEmailFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEmailFocusGained
+        if(txtEmail.getText().equals("Email"))
+        txtEmail.setText("");
+    }//GEN-LAST:event_txtEmailFocusGained
+
+    private void txtEmailFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEmailFocusLost
+        if(txtEmail.getText().trim().isEmpty())
+        txtEmail.setText("Email");
+    }//GEN-LAST:event_txtEmailFocusLost
+
+    private void txtTelefoneFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTelefoneFocusGained
+        if(txtTelefone.getText().equals("Telefone"))
+        txtTelefone.setText("");
+    }//GEN-LAST:event_txtTelefoneFocusGained
+
+    private void txtTelefoneFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTelefoneFocusLost
+        if(txtTelefone.getText().trim().isEmpty())
+        txtTelefone.setText("Telefone");
+    }//GEN-LAST:event_txtTelefoneFocusLost
+
+    private void txtEnderecoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEnderecoFocusGained
+        if(txtEndereco.getText().equals("Endereço"))
+        txtEndereco.setText("");
+    }//GEN-LAST:event_txtEnderecoFocusGained
+
+    private void txtEnderecoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEnderecoFocusLost
+        if(txtEndereco.getText().trim().isEmpty())
+        txtEndereco.setText("Endereço");
+    }//GEN-LAST:event_txtEnderecoFocusLost
 
     private void txtNomeFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNomeFocusGained
         if(txtNome.getText().equals("Nome"))
-            txtNome.setText("");
+        txtNome.setText("");
     }//GEN-LAST:event_txtNomeFocusGained
 
     private void txtNomeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNomeFocusLost
         if(txtNome.getText().trim().isEmpty())
-            txtNome.setText("Nome");
+        txtNome.setText("Nome");
     }//GEN-LAST:event_txtNomeFocusLost
+
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+        try{
+            Curriculo curriculoEditado = new Curriculo(txtNome.getText(), txtEndereco.getText(), txtTelefone.getText(), txtEmail.getText(),
+                txtVaga.getText(), txtFormacaoAcademica.getText(), txtExperienciaProfissional.getText());
+
+            curriculoEditado.setId(curriculo.getId());
+
+            facade.updateCurriculo(curriculoEditado);
+            telaDeListarCurriculo.exibirDados();
+            telaDeListarCurriculo.setVisible(true);
+            this.setVisible(false);
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(null, "Erro ao Editar no banco: " + e.getMessage(),
+                "Erro ao Editar no banco de dados!",JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnEditarActionPerformed
+
+    private void txtEnderecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEnderecoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtEnderecoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -384,16 +497,18 @@ public class TelaEditarCurriculo extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnInicio;
-    private javax.swing.JCheckBox chkPercentual;
-    private javax.swing.JCheckBox chkValorFixo;
-    private javax.swing.JLabel lblEditarAdicional;
-    private javax.swing.JLabel lblEscolhaTipoDeAdicional;
+    private javax.swing.JLabel lblEditarFuncionario;
     private javax.swing.JLabel lblModuloRH;
     private javax.swing.JPanel pnlContainer;
+    private javax.swing.JPanel pnlEditarFuncionario;
     private javax.swing.JPanel pnlLateral;
-    private javax.swing.JPanel pnlLogin;
     private javax.swing.JPanel pnlTextFields;
+    private javax.swing.JTextField txtEmail;
+    private javax.swing.JTextField txtEndereco;
+    private javax.swing.JTextField txtExperienciaProfissional;
+    private javax.swing.JTextField txtFormacaoAcademica;
     private javax.swing.JTextField txtNome;
-    private javax.swing.JTextField txtValorFixoOuPercentual;
+    private javax.swing.JTextField txtTelefone;
+    private javax.swing.JTextField txtVaga;
     // End of variables declaration//GEN-END:variables
 }

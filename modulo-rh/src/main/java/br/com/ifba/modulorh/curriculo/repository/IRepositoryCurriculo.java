@@ -10,5 +10,5 @@ public interface IRepositoryCurriculo extends JpaRepository<Curriculo, String>{
 
     List<Curriculo> findByNome(String nome);
     boolean existsByEmail(String email);
-    
+    Curriculo findCurriculoById(Long id);
 }

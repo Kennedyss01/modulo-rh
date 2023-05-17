@@ -52,6 +52,7 @@ public interface IFacade {
     void deleteCurriculo (Curriculo curriculo);
     List<Curriculo> getAllCurriculo();
     Curriculo findByNome(String nome);
+    Curriculo findCurriculoById (Long id);
     
      //========================Registo de Ponto========================//
     RegistroDePonto saveRegistroDePonto(RegistroDePonto registroDePonto);

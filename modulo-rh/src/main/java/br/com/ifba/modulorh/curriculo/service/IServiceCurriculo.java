@@ -14,5 +14,6 @@ public interface IServiceCurriculo {
     void deleteCurriculo (Curriculo curriculo);
     List<Curriculo> getAllCurriculo();
     Curriculo findByNome(String nome);
+    Curriculo findCurriculoById(Long id);
     
 }
