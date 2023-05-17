@@ -28,7 +28,7 @@ public class TelaCadastroRegistroDePonto extends javax.swing.JFrame {
      */
     @Autowired
     private IFacade facade;
-    private String cpf;
+    private Long idUsuario;
     @Autowired @Lazy
     private TelaDeListarRegistroDePonto telaListarRegistroDePonto;
     @Autowired @Lazy
@@ -53,8 +53,8 @@ public class TelaCadastroRegistroDePonto extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }
     
-    public void passandoDados(String cpf){
-        this.cpf = cpf;
+    public void passandoDados(Long id){
+        this.idUsuario = id;
     }
     
     private boolean validarCampos() {
@@ -435,7 +435,7 @@ public class TelaCadastroRegistroDePonto extends javax.swing.JFrame {
                 horaSaida = "---";
             }
             RegistroDePonto registroDePonto = new RegistroDePonto(
-                    data, presente, horaEntrada, horaSaida, cpf);
+                    data, presente, horaEntrada, horaSaida, this.idUsuario);
             try {
                 registroDePonto = facade.saveRegistroDePonto(registroDePonto);
                 this.setVisible(false);

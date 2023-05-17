@@ -215,13 +215,8 @@ public class Facade implements IFacade {
     }
 
     @Override
-    public RegistroDePonto findPontoById(Long id) {
+    public RegistroDePonto findRegistroDePontoById(Long id) {
         return serviceRegistroPonto.findById(id);
-    }
-
-    @Override
-    public List<RegistroDePonto> getAllRegistroDePontoByCpf(String cpf) {
-        return serviceRegistroPonto.getAllRegistroDePontoByCpf(cpf);
     }
     
 }

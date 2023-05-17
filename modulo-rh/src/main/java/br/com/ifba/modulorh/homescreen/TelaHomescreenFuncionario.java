@@ -33,7 +33,7 @@ public class TelaHomescreenFuncionario extends javax.swing.JFrame {
     @Autowired
     private TelaAlterarSenha telaAlterarSenha;
     private Funcionario funcionario;
-    private String cpf;
+    private Long idUsuario;
     
     ImageIcon icone = new ImageIcon("./src/main/resources/imagens/rh.png");
     Font fonteMaior;
@@ -53,7 +53,7 @@ public class TelaHomescreenFuncionario extends javax.swing.JFrame {
     public void definirFuncionario(Usuario usuario) {
         this.funcionario = facade.findFuncionarioByUsuarioId(usuario.getId());
         lblInfoFuncionario.setText("Usuário: " + funcionario.getNome());
-        this.cpf = this.funcionario.getCpf();
+        this.idUsuario = usuario.getId();
     }
     
     @SuppressWarnings("unchecked")
@@ -161,7 +161,6 @@ public class TelaHomescreenFuncionario extends javax.swing.JFrame {
         pnlMenu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblMenu.setFont(fonteMaior);
-        lblMenu.setForeground(new java.awt.Color(0, 0, 0));
         lblMenu.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblMenu.setText("Tela Inicial");
         pnlMenu.add(lblMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 10, 296, -1));
@@ -213,7 +212,8 @@ public class TelaHomescreenFuncionario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegistrarPontoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarPontoActionPerformed
-        telaDeListarRegistroDePonto.passandoDados(cpf);
+        telaDeListarRegistroDePonto.passandoDados(idUsuario);
+        telaDeListarRegistroDePonto.exibirDados();
         telaDeListarRegistroDePonto.setVisible(true);
         this.setVisible(false);
         telaDeListarRegistroDePonto.toFront();

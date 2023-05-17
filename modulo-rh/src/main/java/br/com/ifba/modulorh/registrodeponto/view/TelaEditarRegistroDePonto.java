@@ -28,8 +28,8 @@ public class TelaEditarRegistroDePonto extends javax.swing.JFrame {
      */
     @Autowired
     private IFacade facade;
-    private String cpf;
     private RegistroDePonto registroEditado;
+    private Long idUsuario;
     @Autowired @Lazy
     private TelaDeListarRegistroDePonto telaDeListarRegistroDePonto;
     @Autowired @Lazy
@@ -56,6 +56,7 @@ public class TelaEditarRegistroDePonto extends javax.swing.JFrame {
     
     public void passandoDados(RegistroDePonto registroDePonto){
         this.registroEditado = registroDePonto;
+        this.idUsuario = registroDePonto.getIdUsuario();
         txtData.setText(registroDePonto.getDataRegistro());
         if ("Presente".equals(registroDePonto.getPresente())) {
             chkSim.doClick();

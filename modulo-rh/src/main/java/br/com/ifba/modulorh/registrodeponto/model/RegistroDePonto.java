@@ -25,15 +25,15 @@ public class RegistroDePonto implements Serializable {
     private String presente;
     private String horaEntrada;
     private String horaSaida;
-    private String cpf;
+    private long idUsuario;
     
     public RegistroDePonto(String dataRegistro, String presente,
-            String horaEntrada, String horaSaida, String cpf) {
+            String horaEntrada, String horaSaida, Long id) {
         this.dataRegistro = dataRegistro;
         this.presente = presente;
         this.horaEntrada = horaEntrada;
         this.horaSaida = horaSaida;
-        this.cpf = cpf;
+        this.idUsuario = id;
     }
     
 }

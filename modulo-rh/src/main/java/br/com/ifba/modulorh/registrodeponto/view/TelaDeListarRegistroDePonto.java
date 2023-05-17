@@ -32,7 +32,7 @@ public class TelaDeListarRegistroDePonto extends javax.swing.JFrame {
     
     @Autowired
     private IFacade facade;
-    private String cpf;
+    private Long idUsuario;
     @Autowired
     private TelaCadastroRegistroDePonto telaCadastroRegistroDePonto;
     @Autowired
@@ -59,8 +59,21 @@ public class TelaDeListarRegistroDePonto extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }
     
-    public void passandoDados(String cpf){
-        this.cpf = cpf;
+    public void passandoDados(Long id){
+        this.idUsuario = id;
+    }
+    
+    public void exibirDados() {
+        setLocationRelativeTo(null);
+        List<RegistroDePonto> lista = facade.getAllRegistroDePonto();
+        DefaultTableModel modelo = (DefaultTableModel) tblRegistros.getModel();
+        modelo.setNumRows(0);
+        for(RegistroDePonto lis: lista){
+            if(lis.getIdUsuario() == idUsuario) {
+                modelo.addRow(new Object [] {lis.getId(), lis.getDataRegistro(),
+                    lis.getPresente(), lis.getHoraEntrada(), lis.getHoraSaida()});
+            }
+        }
     }
 
     /**
@@ -349,7 +362,7 @@ public class TelaDeListarRegistroDePonto extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
-        telaCadastroRegistroDePonto.passandoDados(cpf);
+        telaCadastroRegistroDePonto.passandoDados(idUsuario);
         telaCadastroRegistroDePonto.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnCadastrarActionPerformed
@@ -371,7 +384,7 @@ public class TelaDeListarRegistroDePonto extends javax.swing.JFrame {
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         int linha = tblRegistros.getSelectedRow();
         Long id = (Long) tblRegistros.getValueAt(linha, 0);
-        RegistroDePonto registroDePonto = facade.findPontoById(id);
+        RegistroDePonto registroDePonto = facade.findRegistroDePontoById(id);
         telaEditarRegistroDePonto.passandoDados(registroDePonto);
         this.setVisible(false);
         telaEditarRegistroDePonto.setVisible(true);
@@ -447,16 +460,5 @@ public class TelaDeListarRegistroDePonto extends javax.swing.JFrame {
     private javax.swing.JTable tblRegistros;
     // End of variables declaration//GEN-END:variables
     
-    @PostConstruct
-    public void exibirDados(){
-        setLocationRelativeTo(null);
-        List<RegistroDePonto> lista = facade.getAllRegistroDePontoByCpf(cpf);
-        DefaultTableModel modelo = (DefaultTableModel) tblRegistros.getModel();
-        modelo.setNumRows(0);
-        for(RegistroDePonto lis: lista){
-            modelo.addRow(new Object [] {lis.getId(), lis.getDataRegistro(),
-                lis.getPresente(), lis.getHoraEntrada(), lis.getHoraSaida()});
-        }
-    }
 }
 

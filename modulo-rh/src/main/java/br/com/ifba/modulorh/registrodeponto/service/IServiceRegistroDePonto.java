@@ -9,11 +9,10 @@ import java.util.List;
  */
 public interface IServiceRegistroDePonto {
     
-    RegistroDePonto saveRegistroDePonto(RegistroDePonto registroDePonto);
-    RegistroDePonto updateRegistroDePonto(RegistroDePonto registroDePonto);
-    void deleteRegistroDePonto(RegistroDePonto registroDePonto);
-    List<RegistroDePonto> getAllRegistroDePonto();
-    RegistroDePonto findById(Long id);
-    List<RegistroDePonto> getAllRegistroDePontoByCpf(String cpf);
+    public RegistroDePonto saveRegistroDePonto(RegistroDePonto registroDePonto);
+    public RegistroDePonto updateRegistroDePonto(RegistroDePonto registroDePonto);
+    public void deleteRegistroDePonto(RegistroDePonto registroDePonto);
+    public List<RegistroDePonto> getAllRegistroDePonto();
+    public RegistroDePonto findById(Long id);
     
 }

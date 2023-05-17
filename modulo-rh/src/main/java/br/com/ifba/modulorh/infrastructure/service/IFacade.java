@@ -58,7 +58,6 @@ public interface IFacade {
     RegistroDePonto updateRegistroDePonto(RegistroDePonto registroDePonto);
     void deleteRegistroDePonto(RegistroDePonto registroDePonto);
     List<RegistroDePonto> getAllRegistroDePonto();
-    RegistroDePonto findPontoById(Long id);
-    List<RegistroDePonto> getAllRegistroDePontoByCpf(String cpf);
+    RegistroDePonto findRegistroDePontoById(Long id);
     
 }

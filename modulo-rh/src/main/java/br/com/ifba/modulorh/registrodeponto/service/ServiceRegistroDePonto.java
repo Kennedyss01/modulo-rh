@@ -65,9 +65,4 @@ public class ServiceRegistroDePonto implements IServiceRegistroDePonto {
         return repositoryRegistroDePonto.getReferenceById(id);
     }
     
-    @Override
-    public List<RegistroDePonto> getAllRegistroDePontoByCpf(String cpf) {
-        return repositoryRegistroDePonto.findByCpf(cpf);
-    }
-    
 }
