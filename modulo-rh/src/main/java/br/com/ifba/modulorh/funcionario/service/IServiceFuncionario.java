@@ -17,5 +17,6 @@ public interface IServiceFuncionario {
     boolean existsByCpf(String cpf);
     boolean existsByEmail(String email);
     Funcionario findByUsuarioId(Long id);
+    Funcionario findByCpf(String cpf);
     
 }

@@ -13,6 +13,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import br.com.ifba.modulorh.funcionario.service.IServiceFuncionario;
+import br.com.ifba.modulorh.pagamentos.model.Pagamentos;
+import br.com.ifba.modulorh.pagamentos.service.IServicePagamentos;
 import br.com.ifba.modulorh.registrodeponto.model.RegistroDePonto;
 import br.com.ifba.modulorh.registrodeponto.service.IServiceRegistroDePonto;
 
@@ -99,6 +101,11 @@ public class Facade implements IFacade {
     @Override
     public Funcionario findFuncionarioByUsuarioId(Long id) {
         return serviceFuncionario.findByUsuarioId(id);
+    }
+    
+    @Override
+    public Funcionario findFuncionarioByCpf(String cpf) {
+        return serviceFuncionario.findByCpf(cpf);
     }
  
     //========================Adicional========================//
@@ -224,6 +231,33 @@ public class Facade implements IFacade {
         return serviceRegistroPonto.findById(id);
     }
 
+    //========================Pagamentos========================//
+    @Autowired
+    private IServicePagamentos servicePagamentos;
     
+    @Override
+    public Pagamentos savePagamento(Pagamentos pagamento) {
+        return servicePagamentos.savePagamento(pagamento);
+    }
+
+    @Override
+    public Pagamentos updatePagamento(Pagamentos pagamento) {
+        return servicePagamentos.updatePagamento(pagamento);
+    }
+
+    @Override
+    public void deletePagamento(Pagamentos pagamento) {
+        servicePagamentos.deletePagamento(pagamento);
+    }
+
+    @Override
+    public List<Pagamentos> getAllPagamentos() {
+        return servicePagamentos.getAllPagamentos();
+    }
+
+    @Override
+    public Pagamentos findPagamentoById(Long id) {
+        return servicePagamentos.findById(id);
+    }
     
 }

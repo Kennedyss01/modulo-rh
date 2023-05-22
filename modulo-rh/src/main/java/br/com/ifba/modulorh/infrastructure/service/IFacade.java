@@ -5,6 +5,7 @@ import br.com.ifba.modulorh.desconto.model.Desconto;
 import br.com.ifba.modulorh.funcionario.model.Funcionario;
 import br.com.ifba.modulorh.usuario.model.Usuario;
 import br.com.ifba.modulorh.curriculo.model.Curriculo;
+import br.com.ifba.modulorh.pagamentos.model.Pagamentos;
 import br.com.ifba.modulorh.registrodeponto.model.RegistroDePonto;
 import java.util.List;
 
@@ -31,6 +32,7 @@ public interface IFacade {
     boolean existsByCpf(String cpf);
     boolean existsByEmail(String email);
     Funcionario findFuncionarioByUsuarioId(Long id);
+    Funcionario findFuncionarioByCpf(String cpf);
     
     //========================Adicional========================//
     Adicional saveAdicional(Adicional adicional);
@@ -60,5 +62,12 @@ public interface IFacade {
     void deleteRegistroDePonto(RegistroDePonto registroDePonto);
     List<RegistroDePonto> getAllRegistroDePonto();
     RegistroDePonto findRegistroDePontoById(Long id);
+    
+    //========================Pagamentos========================//
+    Pagamentos savePagamento(Pagamentos pagamento);
+    Pagamentos updatePagamento(Pagamentos pagamento);
+    void deletePagamento(Pagamentos pagamento);
+    List<Pagamentos> getAllPagamentos();
+    Pagamentos findPagamentoById(Long id);
     
 }

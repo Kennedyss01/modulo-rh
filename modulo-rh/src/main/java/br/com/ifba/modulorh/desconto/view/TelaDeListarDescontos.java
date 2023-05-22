@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,7 @@ public class TelaDeListarDescontos extends javax.swing.JFrame {
 
     Font fonteMaior;
     Font fonteNormal;
+    Font fonteMenor;
     
     private List<Desconto> descontos;
     @Autowired
@@ -37,6 +39,8 @@ public class TelaDeListarDescontos extends javax.swing.JFrame {
     @Autowired @Lazy
     private TelaHomescreenGestor telaHomescreenGestor;
     
+    ImageIcon icone = new ImageIcon("./src/main/resources/imagens/rh.png");
+    
     public TelaDeListarDescontos() throws FontFormatException, IOException {
         this.fonteMaior = Font.createFont(Font.TRUETYPE_FONT,
                 new File("./src/main/resources/fontes/Poppins/Poppins-Bold.ttf"))
@@ -44,6 +48,9 @@ public class TelaDeListarDescontos extends javax.swing.JFrame {
         this.fonteNormal = Font.createFont(Font.TRUETYPE_FONT,
                 new File("./src/main/resources/fontes/Poppins/Poppins-Regular.ttf"))
                 .deriveFont(Font.PLAIN, 16);
+        this.fonteMenor = Font.createFont(Font.TRUETYPE_FONT,
+                new File("./src/main/resources/fontes/Poppins/Poppins-SemiBold.ttf"))
+                .deriveFont(Font.PLAIN, 14);
         initComponents();
         setLocationRelativeTo(null);
     }
@@ -69,6 +76,7 @@ public class TelaDeListarDescontos extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Listar Descontos");
+        setIconImage(icone.getImage());
         setMaximumSize(new java.awt.Dimension(1100, 670));
         setMinimumSize(new java.awt.Dimension(1100, 670));
         setResizable(false);
@@ -113,9 +121,9 @@ public class TelaDeListarDescontos extends javax.swing.JFrame {
                         .addGap(42, 42, 42)
                         .addComponent(lblModuloRH))
                     .addGroup(pnlLateralLayout.createSequentialGroup()
-                        .addGap(80, 80, 80)
+                        .addGap(89, 89, 89)
                         .addComponent(btnInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(103, Short.MAX_VALUE))
+                .addContainerGap(94, Short.MAX_VALUE))
         );
         pnlLateralLayout.setVerticalGroup(
             pnlLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -124,7 +132,7 @@ public class TelaDeListarDescontos extends javax.swing.JFrame {
                 .addComponent(lblModuloRH)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(70, 70, 70))
+                .addGap(49, 49, 49))
         );
 
         pnlListaDescontos.setBackground(new java.awt.Color(255, 255, 255));
@@ -134,10 +142,9 @@ public class TelaDeListarDescontos extends javax.swing.JFrame {
         pnlListaDescontos.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblDescontosExistentes.setFont(fonteMaior);
-        lblDescontosExistentes.setForeground(new java.awt.Color(0, 0, 0));
         lblDescontosExistentes.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblDescontosExistentes.setText("Descontos Existentes");
-        pnlListaDescontos.add(lblDescontosExistentes, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, 500, 32));
+        pnlListaDescontos.add(lblDescontosExistentes, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 650, 32));
 
         btnCadastrar.setBackground(new java.awt.Color(71, 19, 35));
         btnCadastrar.setFont(fonteNormal);
@@ -198,6 +205,7 @@ public class TelaDeListarDescontos extends javax.swing.JFrame {
         pnlTextFields.setPreferredSize(new java.awt.Dimension(360, 130));
         pnlTextFields.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        tblDescontos.setFont(fonteMenor);
         tblDescontos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},

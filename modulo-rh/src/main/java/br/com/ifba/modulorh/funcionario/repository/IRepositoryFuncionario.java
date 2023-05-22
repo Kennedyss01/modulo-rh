@@ -12,5 +12,6 @@ public interface IRepositoryFuncionario extends JpaRepository<Funcionario, Long>
     boolean existsByCpf(String cpf);
     boolean existsByEmail(String email);
     List<Funcionario> findByUsuarioId(Long id);
+    Funcionario findByCpf(String cpf);
     
 }

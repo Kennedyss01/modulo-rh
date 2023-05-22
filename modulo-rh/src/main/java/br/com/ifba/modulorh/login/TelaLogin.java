@@ -133,7 +133,6 @@ public class TelaLogin extends javax.swing.JFrame {
         pnlLogin.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblFazerLogin.setFont(fonteMaior);
-        lblFazerLogin.setForeground(new java.awt.Color(0, 0, 0));
         lblFazerLogin.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblFazerLogin.setText("Fazer Login");
         pnlLogin.add(lblFazerLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(4, 26, 380, -1));
@@ -158,7 +157,7 @@ public class TelaLogin extends javax.swing.JFrame {
         lblSenha.setText("Senha");
         pnlTextFields.add(lblSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 300, 30));
 
-        txtUsuario.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txtUsuario.setFont(fonteNormal);
         txtUsuario.setText("Usuário");
         txtUsuario.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
         txtUsuario.setMaximumSize(new java.awt.Dimension(320, 50));

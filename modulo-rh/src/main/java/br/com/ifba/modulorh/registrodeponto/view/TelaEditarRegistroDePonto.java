@@ -126,7 +126,6 @@ public class TelaEditarRegistroDePonto extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setIconImage(icone.getImage());
         setMinimumSize(new java.awt.Dimension(838, 600));
-        setPreferredSize(new java.awt.Dimension(838, 573));
         setResizable(false);
 
         pnlContainer.setBackground(new java.awt.Color(255, 255, 255));
@@ -492,6 +491,12 @@ public class TelaEditarRegistroDePonto extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(TelaEditarRegistroDePonto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 

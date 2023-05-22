@@ -9,6 +9,7 @@ import java.awt.FontFormatException;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
@@ -31,6 +32,8 @@ public class TelaEditarDesconto extends javax.swing.JFrame {
     private TelaDeListarDescontos telaDeListarDescontos;
     @Autowired @Lazy
     private TelaHomescreenGestor telaHomescreenGestor;
+    
+    ImageIcon icone = new ImageIcon("./src/main/resources/imagens/rh.png");
     
     public TelaEditarDesconto() throws FontFormatException, IOException {
         this.fonteMaior = Font.createFont(Font.TRUETYPE_FONT,
@@ -64,6 +67,7 @@ public class TelaEditarDesconto extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Editar Desconto");
+        setIconImage(icone.getImage());
         setMaximumSize(new java.awt.Dimension(1100, 670));
         setMinimumSize(new java.awt.Dimension(1100, 670));
         setResizable(false);
@@ -129,7 +133,6 @@ public class TelaEditarDesconto extends javax.swing.JFrame {
         pnlEditarDesconto.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblEditarDesconto.setFont(fonteMaior);
-        lblEditarDesconto.setForeground(new java.awt.Color(0, 0, 0));
         lblEditarDesconto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblEditarDesconto.setText("Editar Desconto");
         pnlEditarDesconto.add(lblEditarDesconto, new org.netbeans.lib.awtextra.AbsoluteConstraints(4, 18, 366, 32));
@@ -189,7 +192,7 @@ public class TelaEditarDesconto extends javax.swing.JFrame {
         });
         pnlTextFields.add(txtValorFixoOuPercentual, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 310, 40));
 
-        chkPercentual.setForeground(new java.awt.Color(0, 0, 0));
+        chkPercentual.setBackground(new java.awt.Color(255, 255, 255));
         chkPercentual.setText("Percentual");
         chkPercentual.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -198,7 +201,7 @@ public class TelaEditarDesconto extends javax.swing.JFrame {
         });
         pnlTextFields.add(chkPercentual, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 170, -1, -1));
 
-        chkValorFixo.setForeground(new java.awt.Color(0, 0, 0));
+        chkValorFixo.setBackground(new java.awt.Color(255, 255, 255));
         chkValorFixo.setText("Valor Fixo");
         chkValorFixo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -207,7 +210,6 @@ public class TelaEditarDesconto extends javax.swing.JFrame {
         });
         pnlTextFields.add(chkValorFixo, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 170, -1, -1));
 
-        lblEscolhaTipoDesconto.setForeground(new java.awt.Color(0, 0, 0));
         lblEscolhaTipoDesconto.setText("Escolha o tipo de desconto:");
         pnlTextFields.add(lblEscolhaTipoDesconto, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 140, -1, -1));
 

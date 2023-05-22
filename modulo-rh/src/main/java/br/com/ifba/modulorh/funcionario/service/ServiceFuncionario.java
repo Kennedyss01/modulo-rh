@@ -98,4 +98,9 @@ public class ServiceFuncionario implements IServiceFuncionario{
         return repositoryFuncionario.findByUsuarioId(id).get(0);
     }
     
+    @Override
+    public Funcionario findByCpf(String cpf) {
+        return repositoryFuncionario.findByCpf(cpf);
+    }
+    
 }
