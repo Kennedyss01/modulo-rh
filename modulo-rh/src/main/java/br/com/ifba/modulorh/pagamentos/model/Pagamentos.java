@@ -39,11 +39,14 @@ public class Pagamentos implements Serializable {
     private List<Desconto> descontos;
     
     public Pagamentos(String dtLancamento, String dtPagamento,
-            float salarioBase, Funcionario funcionario) {
+            float salarioBase, Funcionario funcionario,
+            List<Adicional> adicionais, List<Desconto> descontos) {
         this.dataLancamento = dtLancamento;
         this.dataPagamento = dtPagamento;
         this.salarioBase = salarioBase;
         this.funcionario = funcionario;
+        this.adicionais = adicionais;
+        this.descontos = descontos;
     }
     
 }

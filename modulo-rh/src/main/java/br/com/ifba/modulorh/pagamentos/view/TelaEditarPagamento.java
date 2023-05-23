@@ -1,5 +1,7 @@
 package br.com.ifba.modulorh.pagamentos.view;
 
+import br.com.ifba.modulorh.adicionais.model.Adicional;
+import br.com.ifba.modulorh.desconto.model.Desconto;
 import br.com.ifba.modulorh.funcionario.model.Funcionario;
 import br.com.ifba.modulorh.homescreen.TelaHomescreenGestor;
 import br.com.ifba.modulorh.infrastructure.service.IFacade;
@@ -8,6 +10,8 @@ import java.awt.Font;
 import java.awt.FontFormatException;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -59,8 +63,6 @@ public class TelaEditarPagamento extends javax.swing.JFrame {
         this.txtDataLancamento.setText(pgm.getDataLancamento());
         this.txtDataPagamento.setText(pgm.getDataPagamento());
         this.txtSalarioBase.setText(Float.toString(pgm.getSalarioBase()));
-        this.txtAdicionais.setText(pgm.getAdicionais().toString());
-        this.txtDescontos.setText(pgm.getDescontos().toString());
     }
     
     private boolean validarCampos() {
@@ -112,6 +114,72 @@ public class TelaEditarPagamento extends javax.swing.JFrame {
         txtDescontos.setText("");
     }
     
+    private boolean verificar(char a) {
+        if(a == '1' || a == '2' || a == '3' || a == '4'
+                 || a == '5' || a == '6' || a == '7'
+                 || a == '8' || a == '9' || a == '0'
+                 || a == ',') {
+            return true;
+        }
+        return false;
+    }
+    
+    private List<Adicional> obterAdicionais(String ids) {
+        char[] chars = ids.toCharArray();
+        String id = new String();
+        Adicional adc;
+        Long idAdc;
+        List<Adicional> lista = new ArrayList<>();
+        for (char ch : chars) {
+            if(verificar(ch) == false) {
+                JOptionPane.showMessageDialog(null, "Insira apenas números e vírgulas nos IDs!",
+                    "Digite os IDs corretamente!", JOptionPane.ERROR_MESSAGE);
+                lista = null;
+                return lista;
+            }
+            if (ch == ',') {
+                idAdc = Long.parseLong(id);
+                adc = facade.findById(idAdc);
+                lista.add(adc);
+                id = "";
+            } else {
+                id = id + ch;
+            }
+        }
+        idAdc = Long.parseLong(id);
+        adc = facade.findById(idAdc);
+        lista.add(adc);
+        return lista;
+    }
+    
+    private List<Desconto> obterDescontos(String ids) {
+        char[] chars = ids.toCharArray();
+        String id = new String();
+        Desconto dsc;
+        Long idDsc;
+        List<Desconto> lista = new ArrayList<>();
+        for (char ch : chars) {
+            if(verificar(ch) == false) {
+                JOptionPane.showMessageDialog(null, "Insira apenas números e vírgulas nos IDs!",
+                    "Digite os IDs corretamente!", JOptionPane.ERROR_MESSAGE);
+                lista = null;
+                return lista;
+            }
+            if (ch == ',') {
+                idDsc = Long.parseLong(id);
+                dsc = facade.findDescontoById(idDsc);
+                lista.add(dsc);
+                id = "";
+            } else {
+                id = id + ch;
+            }
+        }
+        idDsc = Long.parseLong(id);
+        dsc = facade.findDescontoById(idDsc);
+        lista.add(dsc);
+        return lista;
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -133,6 +201,7 @@ public class TelaEditarPagamento extends javax.swing.JFrame {
         btnEditar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Editar Pagamento");
         setIconImage(icone.getImage());
         setMinimumSize(new java.awt.Dimension(838, 600));
         setResizable(false);
@@ -450,10 +519,16 @@ public class TelaEditarPagamento extends javax.swing.JFrame {
             String descontos = txtDescontos.getText();
             Funcionario funcionario = facade.findFuncionarioByCpf(cpf);
             
+            List<Adicional> listaAdc = obterAdicionais(adicionais);
+            List<Desconto> listaDsc = obterDescontos(descontos);
+            
             Pagamentos pagamento = new Pagamentos(
-                    dataLancamento, dataPagamento, salarioBase, funcionario);
+                    dataLancamento, dataPagamento, salarioBase, funcionario,
+                    listaAdc, listaDsc);
+            pagamento.setId(this.pagamento.getId());
+            
             try {
-                pagamento = facade.savePagamento(pagamento);
+                pagamento = facade.updatePagamento(pagamento);
                 this.setVisible(false);
                 telaListarPagamentos.setVisible(true);
                 telaListarPagamentos.exibirDados();

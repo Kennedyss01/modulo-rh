@@ -1,6 +1,5 @@
 package br.com.ifba.modulorh.registrodeponto.view;
 
-import br.com.ifba.modulorh.funcionario.model.Funcionario;
 import br.com.ifba.modulorh.homescreen.TelaHomescreenFuncionario;
 import br.com.ifba.modulorh.infrastructure.service.IFacade;
 import br.com.ifba.modulorh.registrodeponto.model.RegistroDePonto;
@@ -124,6 +123,7 @@ public class TelaEditarRegistroDePonto extends javax.swing.JFrame {
         btnEditar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Editar Registro de Ponto");
         setIconImage(icone.getImage());
         setMinimumSize(new java.awt.Dimension(838, 600));
         setResizable(false);

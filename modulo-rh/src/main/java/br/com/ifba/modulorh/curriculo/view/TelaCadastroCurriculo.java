@@ -7,6 +7,13 @@ package br.com.ifba.modulorh.curriculo.view;
 import br.com.ifba.modulorh.curriculo.model.Curriculo;
 import br.com.ifba.modulorh.homescreen.TelaHomescreenGestor;
 import br.com.ifba.modulorh.infrastructure.service.IFacade;
+import java.awt.Font;
+import java.awt.FontFormatException;
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
@@ -23,11 +30,23 @@ public class TelaCadastroCurriculo extends javax.swing.JFrame {
     private Curriculo curriculo;
     @Autowired
     private IFacade facade;
+    
+    ImageIcon icone = new ImageIcon("./src/main/resources/imagens/rh.png");
+    Font fonteMaior;
+    Font fonteNormal;
+    
     /**
      * Creates new form TelaCadastroCurriculo
      */
-    public TelaCadastroCurriculo() {
+    public TelaCadastroCurriculo() throws FontFormatException, IOException {
+        this.fonteMaior = Font.createFont(Font.TRUETYPE_FONT,
+                new File("./src/main/resources/fontes/Poppins/Poppins-Bold.ttf"))
+                .deriveFont(Font.PLAIN, 28);
+        this.fonteNormal = Font.createFont(Font.TRUETYPE_FONT,
+                new File("./src/main/resources/fontes/Poppins/Poppins-Regular.ttf"))
+                .deriveFont(Font.PLAIN, 16);
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -57,6 +76,7 @@ public class TelaCadastroCurriculo extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro de Currículo");
+        setIconImage(icone.getImage());
         setMinimumSize(new java.awt.Dimension(912, 600));
         setResizable(false);
 
@@ -69,11 +89,12 @@ public class TelaCadastroCurriculo extends javax.swing.JFrame {
         pnlLateral.setBackground(new java.awt.Color(26, 81, 107));
         pnlLateral.setPreferredSize(new java.awt.Dimension(293, 595));
 
-        lblModuloRH.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        lblModuloRH.setFont(fonteMaior);
         lblModuloRH.setForeground(new java.awt.Color(255, 255, 255));
         lblModuloRH.setText("Módulo RH");
 
         btnInicio.setBackground(new java.awt.Color(26, 81, 107));
+        btnInicio.setFont(fonteNormal);
         btnInicio.setForeground(new java.awt.Color(255, 255, 255));
         btnInicio.setText("Inicio");
         btnInicio.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 2, true));
@@ -99,9 +120,9 @@ public class TelaCadastroCurriculo extends javax.swing.JFrame {
                         .addGap(43, 43, 43)
                         .addComponent(lblModuloRH))
                     .addGroup(pnlLateralLayout.createSequentialGroup()
-                        .addGap(79, 79, 79)
+                        .addGap(88, 88, 88)
                         .addComponent(btnInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(57, Short.MAX_VALUE))
+                .addContainerGap(95, Short.MAX_VALUE))
         );
         pnlLateralLayout.setVerticalGroup(
             pnlLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -110,7 +131,7 @@ public class TelaCadastroCurriculo extends javax.swing.JFrame {
                 .addComponent(lblModuloRH)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(54, 54, 54))
+                .addGap(47, 47, 47))
         );
 
         pnlCadastroCurriculo.setBackground(new java.awt.Color(255, 255, 255));
@@ -118,11 +139,12 @@ public class TelaCadastroCurriculo extends javax.swing.JFrame {
         pnlCadastroCurriculo.setMaximumSize(new java.awt.Dimension(388, 340));
         pnlCadastroCurriculo.setPreferredSize(new java.awt.Dimension(388, 340));
 
-        lblCadastroCurriculo.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        lblCadastroCurriculo.setFont(fonteMaior);
+        lblCadastroCurriculo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblCadastroCurriculo.setText("Cadastro de Currículo");
 
         btnCadastrar.setBackground(new java.awt.Color(71, 19, 35));
-        btnCadastrar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnCadastrar.setFont(fonteNormal);
         btnCadastrar.setForeground(new java.awt.Color(255, 255, 255));
         btnCadastrar.setText("Cadastrar");
         btnCadastrar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
@@ -262,15 +284,18 @@ public class TelaCadastroCurriculo extends javax.swing.JFrame {
             .addGroup(pnlCadastroCurriculoLayout.createSequentialGroup()
                 .addGroup(pnlCadastroCurriculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlCadastroCurriculoLayout.createSequentialGroup()
+                        .addGroup(pnlCadastroCurriculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pnlCadastroCurriculoLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(pnlTextFields, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(pnlCadastroCurriculoLayout.createSequentialGroup()
+                                .addGap(51, 51, 51)
+                                .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCadastroCurriculoLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(pnlTextFields, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnlCadastroCurriculoLayout.createSequentialGroup()
-                        .addGap(48, 48, 48)
-                        .addComponent(lblCadastroCurriculo))
-                    .addGroup(pnlCadastroCurriculoLayout.createSequentialGroup()
-                        .addGap(51, 51, 51)
-                        .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(lblCadastroCurriculo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         pnlCadastroCurriculoLayout.setVerticalGroup(
             pnlCadastroCurriculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -278,7 +303,7 @@ public class TelaCadastroCurriculo extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(lblCadastroCurriculo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pnlTextFields, javax.swing.GroupLayout.DEFAULT_SIZE, 470, Short.MAX_VALUE)
+                .addComponent(pnlTextFields, javax.swing.GroupLayout.DEFAULT_SIZE, 486, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12))
@@ -397,13 +422,14 @@ public class TelaCadastroCurriculo extends javax.swing.JFrame {
                 txtVaga.getText(), txtFormacaoAcademica.getText(), txtExperienciaProfissional.getText());
         
         
-         try{
+        try{
             facade.saveCurriculo(curriculo);
         }catch (Exception e){
             JOptionPane.showMessageDialog(null, "Erro ao salvar no banco: " + e.getMessage(), 
                     "Erro ao salvar no banco de dados!",JOptionPane.ERROR_MESSAGE);
         }
         this.setVisible(false);
+        this.telaHomescreenGestor.setVisible(true);
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     /**
@@ -436,7 +462,13 @@ public class TelaCadastroCurriculo extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaCadastroCurriculo().setVisible(true);
+                try {
+                    new TelaCadastroCurriculo().setVisible(true);
+                } catch (FontFormatException ex) {
+                    Logger.getLogger(TelaCadastroCurriculo.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IOException ex) {
+                    Logger.getLogger(TelaCadastroCurriculo.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

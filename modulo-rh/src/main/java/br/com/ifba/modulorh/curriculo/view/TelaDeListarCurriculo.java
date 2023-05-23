@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +40,8 @@ public class TelaDeListarCurriculo extends javax.swing.JFrame {
     private TelaEditarCurriculo telaEditarCurriculo;
     @Autowired @Lazy
     private TelaHomescreenGestor telaHomescreenGestor;
+    
+    ImageIcon icone = new ImageIcon("./src/main/resources/imagens/rh.png");
     
     public TelaDeListarCurriculo() throws FontFormatException, IOException {
         this.fonteMaior = Font.createFont(Font.TRUETYPE_FONT,
@@ -76,7 +79,8 @@ public class TelaDeListarCurriculo extends javax.swing.JFrame {
         txtNome = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Listar Adicionais");
+        setTitle("Listar Currículos");
+        setIconImage(icone.getImage());
 
         pnlContainer.setBackground(new java.awt.Color(255, 255, 255));
         pnlContainer.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
@@ -139,7 +143,7 @@ public class TelaDeListarCurriculo extends javax.swing.JFrame {
 
         lblCurriculosExistentes.setFont(fonteMaior);
         lblCurriculosExistentes.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblCurriculosExistentes.setText("Curriculos Existentes");
+        lblCurriculosExistentes.setText("Currículos Existentes");
 
         btnCadastrar.setBackground(new java.awt.Color(71, 19, 35));
         btnCadastrar.setFont(fonteNormal);

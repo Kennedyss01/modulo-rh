@@ -113,6 +113,7 @@ public class TelaCadastroRegistroDePonto extends javax.swing.JFrame {
         btnRegistrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Registro de Ponto");
         setIconImage(icone.getImage());
         setMinimumSize(new java.awt.Dimension(838, 600));
         setPreferredSize(new java.awt.Dimension(838, 600));

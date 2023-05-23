@@ -15,7 +15,6 @@ import java.io.IOException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.annotation.PostConstruct;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -101,7 +100,7 @@ public class TelaDeListarRegistroDePonto extends javax.swing.JFrame {
         lblRegistrosExistentes = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Listar Funcionários");
+        setTitle("Listar Registros de Ponto");
         setIconImage(icone.getImage());
         setMinimumSize(new java.awt.Dimension(912, 612));
 

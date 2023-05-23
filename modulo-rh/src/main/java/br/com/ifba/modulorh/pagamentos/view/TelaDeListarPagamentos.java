@@ -1,5 +1,7 @@
 package br.com.ifba.modulorh.pagamentos.view;
 
+import br.com.ifba.modulorh.adicionais.model.Adicional;
+import br.com.ifba.modulorh.desconto.model.Desconto;
 import br.com.ifba.modulorh.homescreen.TelaHomescreenGestor;
 import br.com.ifba.modulorh.infrastructure.service.IFacade;
 import br.com.ifba.modulorh.pagamentos.model.Pagamentos;
@@ -10,7 +12,6 @@ import java.io.IOException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.annotation.PostConstruct;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -53,6 +54,37 @@ public class TelaDeListarPagamentos extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }
 
+    public void exibirDados() {
+        setLocationRelativeTo(null);
+        List<Pagamentos> lista = facade.getAllPagamentos();
+        DefaultTableModel modelo = (DefaultTableModel) tblPagamentos.getModel();
+        modelo.setNumRows(0);
+        for (Pagamentos lis : lista) {
+            float somaAdc = somaAdicionais(lis.getAdicionais());
+            float somaDsc = somaDescontos(lis.getDescontos());
+            modelo.addRow(new Object[]{lis.getId(), lis.getFuncionario().getCpf(),
+                lis.getDataLancamento(), lis.getDataPagamento(),
+                lis.getSalarioBase(), Float.toString(somaAdc),
+                Float.toString(somaDsc)});
+        }
+    }
+    
+    private float somaAdicionais(List<Adicional> lista) {
+        float somaAdc = 0;
+        for (Adicional lis : lista) {
+            somaAdc = somaAdc + lis.getValorPercentual();
+        }
+        return somaAdc;
+    }
+    
+    private float somaDescontos(List<Desconto> lista) {
+        float somaDsc = 0;
+        for (Desconto lis : lista) {
+            somaDsc = somaDsc + lis.getDesconto();
+        }
+        return somaDsc;
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -78,7 +110,7 @@ public class TelaDeListarPagamentos extends javax.swing.JFrame {
         lblPagamentosExistentes = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Listar Funcionários");
+        setTitle("Listar Pagamentos");
         setIconImage(icone.getImage());
         setMinimumSize(new java.awt.Dimension(912, 612));
 
@@ -445,17 +477,4 @@ public class TelaDeListarPagamentos extends javax.swing.JFrame {
     private javax.swing.JTable tblPagamentos;
     // End of variables declaration//GEN-END:variables
 
-    @PostConstruct
-    public void exibirDados() {
-        setLocationRelativeTo(null);
-        List<Pagamentos> lista = facade.getAllPagamentos();
-        DefaultTableModel modelo = (DefaultTableModel) tblPagamentos.getModel();
-        modelo.setNumRows(0);
-        for (Pagamentos lis : lista) {
-            modelo.addRow(new Object[]{lis.getId(), lis.getFuncionario().getCpf(),
-                lis.getDataLancamento(), lis.getDataPagamento(),
-                lis.getSalarioBase(), lis.getAdicionais().toString(),
-                lis.getDescontos().toString()});
-        }
-    }
 }
