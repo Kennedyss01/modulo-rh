@@ -99,7 +99,7 @@ public class TelaHomescreenGestor extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Tela Inicial do Gestor");
         setIconImage(icone.getImage());
-        setMinimumSize(new java.awt.Dimension(1028, 599));
+        setMinimumSize(new java.awt.Dimension(1028, 645));
 
         pnlContainer.setBackground(new java.awt.Color(255, 255, 255));
         pnlContainer.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
@@ -108,7 +108,7 @@ public class TelaHomescreenGestor extends javax.swing.JFrame {
 
         lblLateral.setFont(fonteMaior);
         lblLateral.setForeground(new java.awt.Color(255, 255, 255));
-        lblLateral.setText("Módulo RH");
+        lblLateral.setText("MÓDULO RH");
 
         lblBemVindo.setFont(fonteNormal);
         lblBemVindo.setForeground(new java.awt.Color(255, 255, 255));
@@ -172,6 +172,7 @@ public class TelaHomescreenGestor extends javax.swing.JFrame {
         btnListarDescontos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/listar-descontos-32x32.png"))); // NOI18N
         btnListarDescontos.setText("LISTAR DESCONTOS");
         btnListarDescontos.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        btnListarDescontos.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnListarDescontos.setMaximumSize(new java.awt.Dimension(245, 64));
         btnListarDescontos.setMinimumSize(new java.awt.Dimension(245, 64));
         btnListarDescontos.setPreferredSize(new java.awt.Dimension(245, 64));
@@ -187,6 +188,7 @@ public class TelaHomescreenGestor extends javax.swing.JFrame {
         btnCadastrarFuncionario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/cadastrar-funcionario-32x32.png"))); // NOI18N
         btnCadastrarFuncionario.setText("CADASTRAR FUNCIONÁRIO");
         btnCadastrarFuncionario.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        btnCadastrarFuncionario.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnCadastrarFuncionario.setMaximumSize(new java.awt.Dimension(245, 64));
         btnCadastrarFuncionario.setMinimumSize(new java.awt.Dimension(245, 64));
         btnCadastrarFuncionario.setPreferredSize(new java.awt.Dimension(245, 64));
@@ -202,6 +204,7 @@ public class TelaHomescreenGestor extends javax.swing.JFrame {
         btnAvaliarPerformance.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/avaliar-performance-32x32.png"))); // NOI18N
         btnAvaliarPerformance.setText("AVALIAR PERFORMANCE");
         btnAvaliarPerformance.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        btnAvaliarPerformance.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnAvaliarPerformance.setMaximumSize(new java.awt.Dimension(245, 64));
         btnAvaliarPerformance.setMinimumSize(new java.awt.Dimension(245, 64));
         btnAvaliarPerformance.setPreferredSize(new java.awt.Dimension(245, 64));
@@ -217,6 +220,7 @@ public class TelaHomescreenGestor extends javax.swing.JFrame {
         btnImprimirRelatorioFuncionario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/imprimir-relatorio-funcionario-32x32.png"))); // NOI18N
         btnImprimirRelatorioFuncionario.setText("RELATÓRIO DE FUNCIONÁRIO");
         btnImprimirRelatorioFuncionario.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        btnImprimirRelatorioFuncionario.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnImprimirRelatorioFuncionario.setMaximumSize(new java.awt.Dimension(245, 64));
         btnImprimirRelatorioFuncionario.setMinimumSize(new java.awt.Dimension(245, 64));
         btnImprimirRelatorioFuncionario.setPreferredSize(new java.awt.Dimension(245, 64));
@@ -232,6 +236,7 @@ public class TelaHomescreenGestor extends javax.swing.JFrame {
         btnImprimirRelatorioAvaliacaoProdutividade.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/imprimir-relatorio-avaliacao-produtividade-32x32.png"))); // NOI18N
         btnImprimirRelatorioAvaliacaoProdutividade.setText("REL. DE AVAL. DE PRODUTIVIDADE");
         btnImprimirRelatorioAvaliacaoProdutividade.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        btnImprimirRelatorioAvaliacaoProdutividade.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnImprimirRelatorioAvaliacaoProdutividade.setMaximumSize(new java.awt.Dimension(245, 64));
         btnImprimirRelatorioAvaliacaoProdutividade.setMinimumSize(new java.awt.Dimension(245, 64));
         btnImprimirRelatorioAvaliacaoProdutividade.setPreferredSize(new java.awt.Dimension(245, 64));
@@ -247,6 +252,7 @@ public class TelaHomescreenGestor extends javax.swing.JFrame {
         btnImprimirRelatorioPonto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/imprimir-relatorio-ponto-32x32.png"))); // NOI18N
         btnImprimirRelatorioPonto.setText("RELATÓRIO DE PONTO");
         btnImprimirRelatorioPonto.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        btnImprimirRelatorioPonto.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnImprimirRelatorioPonto.setMaximumSize(new java.awt.Dimension(245, 64));
         btnImprimirRelatorioPonto.setMinimumSize(new java.awt.Dimension(245, 64));
         btnImprimirRelatorioPonto.setPreferredSize(new java.awt.Dimension(245, 64));
@@ -262,6 +268,7 @@ public class TelaHomescreenGestor extends javax.swing.JFrame {
         btnListarAdicionais.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/listar-adicionais-32x32.png"))); // NOI18N
         btnListarAdicionais.setText("LISTAR ADICIONAIS");
         btnListarAdicionais.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        btnListarAdicionais.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnListarAdicionais.setMaximumSize(new java.awt.Dimension(245, 64));
         btnListarAdicionais.setMinimumSize(new java.awt.Dimension(245, 64));
         btnListarAdicionais.setPreferredSize(new java.awt.Dimension(245, 64));
@@ -290,6 +297,7 @@ public class TelaHomescreenGestor extends javax.swing.JFrame {
         btnListarFuncionarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/listar-funcionarios-32x32.png"))); // NOI18N
         btnListarFuncionarios.setText("LISTAR FUNCIONÁRIOS");
         btnListarFuncionarios.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        btnListarFuncionarios.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnListarFuncionarios.setMaximumSize(new java.awt.Dimension(245, 64));
         btnListarFuncionarios.setMinimumSize(new java.awt.Dimension(245, 64));
         btnListarFuncionarios.setPreferredSize(new java.awt.Dimension(245, 64));
@@ -331,6 +339,7 @@ public class TelaHomescreenGestor extends javax.swing.JFrame {
         btnListarCurriculos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/listar-curriculos-32x32.png"))); // NOI18N
         btnListarCurriculos.setText("LISTAR CURRÍCULOS");
         btnListarCurriculos.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        btnListarCurriculos.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnListarCurriculos.setMaximumSize(new java.awt.Dimension(245, 64));
         btnListarCurriculos.setMinimumSize(new java.awt.Dimension(245, 64));
         btnListarCurriculos.setPreferredSize(new java.awt.Dimension(245, 64));
@@ -346,6 +355,7 @@ public class TelaHomescreenGestor extends javax.swing.JFrame {
         btnListarPagamentos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/listar-pagamentos-32x32.png"))); // NOI18N
         btnListarPagamentos.setText("LISTAR PAGAMENTOS");
         btnListarPagamentos.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        btnListarPagamentos.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnListarPagamentos.setMaximumSize(new java.awt.Dimension(245, 64));
         btnListarPagamentos.setMinimumSize(new java.awt.Dimension(245, 64));
         btnListarPagamentos.setPreferredSize(new java.awt.Dimension(245, 64));

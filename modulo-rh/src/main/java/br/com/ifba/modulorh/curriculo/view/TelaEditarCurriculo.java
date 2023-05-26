@@ -90,6 +90,7 @@ public class TelaEditarCurriculo extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Editar Currículo");
         setIconImage(icone.getImage());
+        setResizable(false);
 
         pnlContainer.setBackground(new java.awt.Color(255, 255, 255));
         pnlContainer.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
@@ -102,7 +103,7 @@ public class TelaEditarCurriculo extends javax.swing.JFrame {
 
         lblModuloRH.setFont(fonteMaior);
         lblModuloRH.setForeground(new java.awt.Color(255, 255, 255));
-        lblModuloRH.setText("Módulo RH");
+        lblModuloRH.setText("MÓDULO RH");
 
         btnInicio.setBackground(new java.awt.Color(26, 81, 107));
         btnInicio.setFont(fonteNormal);

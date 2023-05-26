@@ -55,7 +55,6 @@ public class TelaDeListarPagamentos extends javax.swing.JFrame {
     }
 
     public void exibirDados() {
-        setLocationRelativeTo(null);
         List<Pagamentos> lista = facade.getAllPagamentos();
         DefaultTableModel modelo = (DefaultTableModel) tblPagamentos.getModel();
         modelo.setNumRows(0);
@@ -85,6 +84,31 @@ public class TelaDeListarPagamentos extends javax.swing.JFrame {
         return somaDsc;
     }
     
+    private void buscarPagamentos(String busca) {
+        try {
+            if ("".equals(busca)) {
+                exibirDados();
+            } else {
+                List<Pagamentos> pagamentos = facade.getAllPagamentos();
+                DefaultTableModel modelo = (DefaultTableModel) tblPagamentos.getModel();
+                modelo.setNumRows(0);
+                for (Pagamentos pgm : pagamentos) {
+                    float somaAdc = somaAdicionais(pgm.getAdicionais());
+                    float somaDsc = somaDescontos(pgm.getDescontos());
+                    if (pgm.getFuncionario().getCpf().contains(busca)) {
+                        modelo.addRow(new Object[]{pgm.getId(), pgm.getFuncionario().getCpf(),
+                            pgm.getDataLancamento(), pgm.getDataPagamento(),
+                            pgm.getSalarioBase(), Float.toString(somaAdc),
+                            Float.toString(somaDsc)});
+                    }
+                }
+            }
+        } catch(Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro ao buscar dados!",
+                    "Erro ao consultar no banco de dados!", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -103,6 +127,8 @@ public class TelaDeListarPagamentos extends javax.swing.JFrame {
         pnlTabela = new javax.swing.JPanel();
         jScrollPane = new javax.swing.JScrollPane();
         tblPagamentos = new javax.swing.JTable();
+        txtBusca = new javax.swing.JTextField();
+        btnBuscar = new javax.swing.JButton();
         pnlBotoes = new javax.swing.JPanel();
         btnCadastrar = new javax.swing.JButton();
         btnEditar = new javax.swing.JButton();
@@ -112,7 +138,7 @@ public class TelaDeListarPagamentos extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Listar Pagamentos");
         setIconImage(icone.getImage());
-        setMinimumSize(new java.awt.Dimension(912, 612));
+        setMinimumSize(new java.awt.Dimension(1330, 640));
 
         pnlContainer.setBackground(new java.awt.Color(255, 255, 255));
         pnlContainer.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
@@ -126,7 +152,7 @@ public class TelaDeListarPagamentos extends javax.swing.JFrame {
 
         lblModuloRH.setFont(fonteMaior);
         lblModuloRH.setForeground(new java.awt.Color(255, 255, 255));
-        lblModuloRH.setText("Módulo RH");
+        lblModuloRH.setText("MÓDULO RH");
 
         btnInicio.setBackground(new java.awt.Color(26, 81, 107));
         btnInicio.setFont(fonteNormal);
@@ -183,7 +209,7 @@ public class TelaDeListarPagamentos extends javax.swing.JFrame {
         jScrollPane.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
         jScrollPane.setFont(fonteNormal);
         jScrollPane.setMinimumSize(new java.awt.Dimension(549, 427));
-        jScrollPane.setPreferredSize(new java.awt.Dimension(549, 427));
+        jScrollPane.setPreferredSize(new java.awt.Dimension(559, 427));
 
         tblPagamentos.setFont(fonteMenor);
         tblPagamentos.setModel(new javax.swing.table.DefaultTableModel(
@@ -202,21 +228,55 @@ public class TelaDeListarPagamentos extends javax.swing.JFrame {
         tblPagamentos.setPreferredSize(new java.awt.Dimension(559, 427));
         jScrollPane.setViewportView(tblPagamentos);
 
+        txtBusca.setText("Buscar por CPF do funcionário");
+        txtBusca.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtBuscaFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtBuscaFocusLost(evt);
+            }
+        });
+        txtBusca.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtBuscaKeyPressed(evt);
+            }
+        });
+
+        btnBuscar.setBackground(new java.awt.Color(71, 19, 35));
+        btnBuscar.setFont(fonteNormal);
+        btnBuscar.setForeground(new java.awt.Color(255, 255, 255));
+        btnBuscar.setText("Buscar");
+        btnBuscar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnlTabelaLayout = new javax.swing.GroupLayout(pnlTabela);
         pnlTabela.setLayout(pnlTabelaLayout);
         pnlTabelaLayout.setHorizontalGroup(
             pnlTabelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlTabelaLayout.createSequentialGroup()
+            .addGroup(pnlTabelaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 969, Short.MAX_VALUE)
+                .addGroup(pnlTabelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 969, Short.MAX_VALUE)
+                    .addGroup(pnlTabelaLayout.createSequentialGroup()
+                        .addComponent(txtBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 864, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         pnlTabelaLayout.setVerticalGroup(
             pnlTabelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlTabelaLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(20, 20, 20))
+                .addGroup(pnlTabelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 390, Short.MAX_VALUE)
+                .addGap(18, 18, 18))
         );
 
         pnlBotoes.setBackground(new java.awt.Color(255, 255, 255));
@@ -404,6 +464,28 @@ public class TelaDeListarPagamentos extends javax.swing.JFrame {
         telaHomescreenGestor.setVisible(true);
     }//GEN-LAST:event_btnInicioActionPerformed
 
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        String busca = txtBusca.getText().trim().toLowerCase();
+        buscarPagamentos(busca);
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void txtBuscaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtBuscaFocusGained
+        if (txtBusca.getText().equals("Buscar por CPF do funcionário")) {
+            txtBusca.setText("");
+        }
+    }//GEN-LAST:event_txtBuscaFocusGained
+
+    private void txtBuscaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtBuscaFocusLost
+        if (txtBusca.getText().trim().isEmpty()) {
+            txtBusca.setText("Buscar por CPF do funcionário");
+        }
+    }//GEN-LAST:event_txtBuscaFocusLost
+
+    private void txtBuscaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscaKeyPressed
+        String busca = txtBusca.getText().trim().toLowerCase();
+        buscarPagamentos(busca);
+    }//GEN-LAST:event_txtBuscaKeyPressed
+        
     /**
      * @param args the command line arguments
      */
@@ -461,6 +543,7 @@ public class TelaDeListarPagamentos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnCadastrar;
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnExcluir;
@@ -475,6 +558,7 @@ public class TelaDeListarPagamentos extends javax.swing.JFrame {
     private javax.swing.JPanel pnlRegistros;
     private javax.swing.JPanel pnlTabela;
     private javax.swing.JTable tblPagamentos;
+    private javax.swing.JTextField txtBusca;
     // End of variables declaration//GEN-END:variables
 
 }

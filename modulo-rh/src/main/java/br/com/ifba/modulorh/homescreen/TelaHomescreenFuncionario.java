@@ -87,7 +87,7 @@ public class TelaHomescreenFuncionario extends javax.swing.JFrame {
 
         lblLateral.setFont(fonteMaior);
         lblLateral.setForeground(new java.awt.Color(255, 255, 255));
-        lblLateral.setText("Módulo RH");
+        lblLateral.setText("MÓDULO RH");
 
         lblBemVindo.setFont(fonteNormal);
         lblBemVindo.setForeground(new java.awt.Color(255, 255, 255));
@@ -170,6 +170,7 @@ public class TelaHomescreenFuncionario extends javax.swing.JFrame {
         btnRegistrarPonto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/registrar-ponto-32x32.png"))); // NOI18N
         btnRegistrarPonto.setText("REGISTRAR PONTO");
         btnRegistrarPonto.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        btnRegistrarPonto.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnRegistrarPonto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRegistrarPontoActionPerformed(evt);

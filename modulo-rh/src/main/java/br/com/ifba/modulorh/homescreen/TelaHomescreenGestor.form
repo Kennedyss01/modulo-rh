@@ -8,7 +8,7 @@
       <Connection code="icone.getImage()" type="code"/>
     </Property>
     <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-      <Dimension value="[1028, 599]"/>
+      <Dimension value="[1028, 645]"/>
     </Property>
   </Properties>
   <SyntheticProperties>
@@ -122,7 +122,7 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="M&#xf3;dulo RH"/>
+                <Property name="text" type="java.lang.String" value="M&#xd3;DULO RH"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="lblBemVindo">
@@ -328,6 +328,7 @@
                         <LineBorder roundedCorners="true" thickness="2"/>
                       </Border>
                     </Property>
+                    <Property name="horizontalAlignment" type="int" value="2"/>
                     <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[245, 64]"/>
                     </Property>
@@ -362,6 +363,7 @@
                         <LineBorder roundedCorners="true" thickness="2"/>
                       </Border>
                     </Property>
+                    <Property name="horizontalAlignment" type="int" value="2"/>
                     <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[245, 64]"/>
                     </Property>
@@ -396,6 +398,7 @@
                         <LineBorder roundedCorners="true" thickness="2"/>
                       </Border>
                     </Property>
+                    <Property name="horizontalAlignment" type="int" value="2"/>
                     <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[245, 64]"/>
                     </Property>
@@ -430,6 +433,7 @@
                         <LineBorder roundedCorners="true" thickness="2"/>
                       </Border>
                     </Property>
+                    <Property name="horizontalAlignment" type="int" value="2"/>
                     <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[245, 64]"/>
                     </Property>
@@ -464,6 +468,7 @@
                         <LineBorder roundedCorners="true" thickness="2"/>
                       </Border>
                     </Property>
+                    <Property name="horizontalAlignment" type="int" value="2"/>
                     <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[245, 64]"/>
                     </Property>
@@ -498,6 +503,7 @@
                         <LineBorder roundedCorners="true" thickness="2"/>
                       </Border>
                     </Property>
+                    <Property name="horizontalAlignment" type="int" value="2"/>
                     <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[245, 64]"/>
                     </Property>
@@ -532,6 +538,7 @@
                         <LineBorder roundedCorners="true" thickness="2"/>
                       </Border>
                     </Property>
+                    <Property name="horizontalAlignment" type="int" value="2"/>
                     <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[245, 64]"/>
                     </Property>
@@ -586,6 +593,7 @@
                         <LineBorder roundedCorners="true" thickness="2"/>
                       </Border>
                     </Property>
+                    <Property name="horizontalAlignment" type="int" value="2"/>
                     <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[245, 64]"/>
                     </Property>
@@ -660,6 +668,7 @@
                         <LineBorder roundedCorners="true" thickness="2"/>
                       </Border>
                     </Property>
+                    <Property name="horizontalAlignment" type="int" value="2"/>
                     <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[245, 64]"/>
                     </Property>
@@ -694,6 +703,7 @@
                         <LineBorder roundedCorners="true" thickness="2"/>
                       </Border>
                     </Property>
+                    <Property name="horizontalAlignment" type="int" value="2"/>
                     <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[245, 64]"/>
                     </Property>

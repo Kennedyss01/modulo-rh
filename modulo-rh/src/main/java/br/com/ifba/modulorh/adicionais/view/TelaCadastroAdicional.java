@@ -13,6 +13,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
@@ -27,6 +28,7 @@ public class TelaCadastroAdicional extends javax.swing.JFrame {
 
     Font fonteMaior;
     Font fonteNormal;
+    ImageIcon icone = new ImageIcon("./src/main/resources/imagens/rh.png");
     
     @Autowired
     private IFacade facade;
@@ -72,6 +74,8 @@ public class TelaCadastroAdicional extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastrar Adicional");
+        setIconImage(icone.getImage());
+        setResizable(false);
 
         pnlContainer.setBackground(new java.awt.Color(255, 255, 255));
         pnlContainer.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
@@ -84,7 +88,7 @@ public class TelaCadastroAdicional extends javax.swing.JFrame {
 
         lblModuloRH.setFont(fonteMaior);
         lblModuloRH.setForeground(new java.awt.Color(255, 255, 255));
-        lblModuloRH.setText("Módulo RH");
+        lblModuloRH.setText("MÓDULO RH");
 
         btnInicio.setBackground(new java.awt.Color(26, 81, 107));
         btnInicio.setFont(fonteNormal);
@@ -190,6 +194,7 @@ public class TelaCadastroAdicional extends javax.swing.JFrame {
         });
         pnlTextFields.add(txtValorFixoOuPercentual, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 310, 40));
 
+        chkPercentual.setBackground(new java.awt.Color(255, 255, 255));
         chkPercentual.setText("Percentual");
         chkPercentual.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -198,6 +203,7 @@ public class TelaCadastroAdicional extends javax.swing.JFrame {
         });
         pnlTextFields.add(chkPercentual, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 170, -1, -1));
 
+        chkValorFixo.setBackground(new java.awt.Color(255, 255, 255));
         chkValorFixo.setText("Valor Fixo");
         chkValorFixo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

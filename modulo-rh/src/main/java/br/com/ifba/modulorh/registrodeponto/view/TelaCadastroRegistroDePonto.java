@@ -126,7 +126,7 @@ public class TelaCadastroRegistroDePonto extends javax.swing.JFrame {
 
         lblLateral.setFont(fonteMaior);
         lblLateral.setForeground(new java.awt.Color(255, 255, 255));
-        lblLateral.setText("Módulo RH");
+        lblLateral.setText("MÓDULO RH");
 
         btnInicio1.setBackground(new java.awt.Color(26, 81, 107));
         btnInicio1.setFont(fonteNormal);

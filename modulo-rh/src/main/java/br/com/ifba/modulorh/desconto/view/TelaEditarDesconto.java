@@ -83,7 +83,7 @@ public class TelaEditarDesconto extends javax.swing.JFrame {
 
         lblModuloRH.setFont(fonteMaior);
         lblModuloRH.setForeground(new java.awt.Color(255, 255, 255));
-        lblModuloRH.setText("Módulo RH");
+        lblModuloRH.setText("MÓDULO RH");
 
         btnInicio.setBackground(new java.awt.Color(26, 81, 107));
         btnInicio.setFont(fonteNormal);

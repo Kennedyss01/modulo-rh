@@ -57,37 +57,37 @@ public class TelaCadastroPagamento extends javax.swing.JFrame {
     }
     
     private boolean validarCampos() {
-        if (txtDataLancamento.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Insira a data de lançamento e tente novamente!",
-                    "Data de lançamento está vazia!", JOptionPane.ERROR_MESSAGE);
-            return false;
-        }
-        
-        if (txtDataPagamento.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Insira a data de pagamento e tente novamente!",
-                    "Data de pagamento está vazia!", JOptionPane.ERROR_MESSAGE);
-            return false;
-        }
-        
-        if (txtCpf.getText().isEmpty()) {
+        if (txtCpf.getText().isEmpty() || txtCpf.getText().equals("CPF do funcionário")) {
             JOptionPane.showMessageDialog(null, "Insira o CPF do funcionário e tente novamente!",
                     "CPF está vazio!", JOptionPane.ERROR_MESSAGE);
             return false;
         }
         
-        if (txtSalarioBase.getText().isEmpty()) {
+        if (txtDataLancamento.getText().isEmpty() || txtDataLancamento.getText().equals("Data do lançamento")) {
+            JOptionPane.showMessageDialog(null, "Insira a data de lançamento e tente novamente!",
+                    "Data de lançamento está vazia!", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        
+        if (txtDataPagamento.getText().isEmpty() || txtDataPagamento.getText().equals("Data do pagamento")) {
+            JOptionPane.showMessageDialog(null, "Insira a data de pagamento e tente novamente!",
+                    "Data de pagamento está vazia!", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        
+        if (txtSalarioBase.getText().isEmpty() || txtSalarioBase.getText().equals("Salário base")) {
             JOptionPane.showMessageDialog(null, "Insira o salário base e tente novamente!",
                     "Salário base está vazio!", JOptionPane.ERROR_MESSAGE);
             return false;
         }
         
-        if (txtAdicionais.getText().isEmpty()) {
+        if (txtAdicionais.getText().isEmpty() || txtAdicionais.getText().equals("IDs dos adicionais")) {
             JOptionPane.showMessageDialog(null, "Insira os adicionais e tente novamente!",
                     "Adicionais está vazio!", JOptionPane.ERROR_MESSAGE);
             return false;
         }
         
-        if (txtDescontos.getText().isEmpty()) {
+        if (txtDescontos.getText().isEmpty() || txtDescontos.getText().equals("IDs dos descontos")) {
             JOptionPane.showMessageDialog(null, "Insira os descontos e tente novamente!",
                     "Descontos está vazio!", JOptionPane.ERROR_MESSAGE);
             return false;
@@ -204,7 +204,7 @@ public class TelaCadastroPagamento extends javax.swing.JFrame {
 
         lblLateral.setFont(fonteMaior);
         lblLateral.setForeground(new java.awt.Color(255, 255, 255));
-        lblLateral.setText("Módulo RH");
+        lblLateral.setText("MÓDULO RH");
 
         btnInicio1.setBackground(new java.awt.Color(26, 81, 107));
         btnInicio1.setFont(fonteNormal);

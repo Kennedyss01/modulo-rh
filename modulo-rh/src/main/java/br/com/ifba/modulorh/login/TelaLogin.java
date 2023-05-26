@@ -107,7 +107,7 @@ public class TelaLogin extends javax.swing.JFrame {
 
         lblModuloRH.setFont(fonteMaior);
         lblModuloRH.setForeground(new java.awt.Color(255, 255, 255));
-        lblModuloRH.setText("Módulo RH");
+        lblModuloRH.setText("MÓDULO RH");
 
         javax.swing.GroupLayout pnlLateralLayout = new javax.swing.GroupLayout(pnlLateral);
         pnlLateral.setLayout(pnlLateralLayout);
@@ -116,7 +116,7 @@ public class TelaLogin extends javax.swing.JFrame {
             .addGroup(pnlLateralLayout.createSequentialGroup()
                 .addGap(42, 42, 42)
                 .addComponent(lblModuloRH)
-                .addContainerGap(190, Short.MAX_VALUE))
+                .addContainerGap(181, Short.MAX_VALUE))
         );
         pnlLateralLayout.setVerticalGroup(
             pnlLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

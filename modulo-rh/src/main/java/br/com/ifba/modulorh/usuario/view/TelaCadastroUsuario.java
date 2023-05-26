@@ -154,7 +154,7 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
 
         lblModuloRH.setFont(fonteMaior);
         lblModuloRH.setForeground(new java.awt.Color(255, 255, 255));
-        lblModuloRH.setText("Módulo RH");
+        lblModuloRH.setText("MÓDULO RH");
 
         btnInicio.setBackground(new java.awt.Color(26, 81, 107));
         btnInicio.setFont(fonteNormal);
@@ -204,13 +204,11 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
         pnlCadastroUsuario.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblCadastroDeUsuario.setFont(fonteMaior);
-        lblCadastroDeUsuario.setForeground(new java.awt.Color(0, 0, 0));
         lblCadastroDeUsuario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblCadastroDeUsuario.setText("Cadastro de Usuário");
         pnlCadastroUsuario.add(lblCadastroDeUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(4, 23, 380, -1));
 
         lblEscolhaCadastro.setFont(fonteNormal);
-        lblEscolhaCadastro.setForeground(new java.awt.Color(0, 0, 0));
         lblEscolhaCadastro.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblEscolhaCadastro.setText("Escolha o tipo de usuário:");
         pnlCadastroUsuario.add(lblEscolhaCadastro, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 291, 368, -1));
@@ -294,7 +292,6 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
 
         chkGestor.setBackground(new java.awt.Color(255, 255, 255));
         chkGestor.setFont(fonteNormal);
-        chkGestor.setForeground(new java.awt.Color(0, 0, 0));
         chkGestor.setText("Gestor");
         chkGestor.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         chkGestor.addActionListener(new java.awt.event.ActionListener() {
@@ -306,7 +303,6 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
 
         chkFuncionario.setBackground(new java.awt.Color(255, 255, 255));
         chkFuncionario.setFont(fonteNormal);
-        chkFuncionario.setForeground(new java.awt.Color(0, 0, 0));
         chkFuncionario.setText("Funcionário");
         chkFuncionario.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkFuncionario.addActionListener(new java.awt.event.ActionListener() {

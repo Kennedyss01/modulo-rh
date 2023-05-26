@@ -116,7 +116,7 @@ public class TelaAlterarSenha extends javax.swing.JFrame {
 
         lblModuloRH.setFont(fonteMaior);
         lblModuloRH.setForeground(new java.awt.Color(255, 255, 255));
-        lblModuloRH.setText("Módulo RH");
+        lblModuloRH.setText("MÓDULO RH");
 
         btnInicio.setBackground(new java.awt.Color(26, 81, 107));
         btnInicio.setFont(fonteNormal);
@@ -167,7 +167,6 @@ public class TelaAlterarSenha extends javax.swing.JFrame {
         pnlAlterarSenha.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblAlterarSenha.setFont(fonteMaior);
-        lblAlterarSenha.setForeground(new java.awt.Color(0, 0, 0));
         lblAlterarSenha.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblAlterarSenha.setText("Alterar Senha");
         pnlAlterarSenha.add(lblAlterarSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 368, -1));

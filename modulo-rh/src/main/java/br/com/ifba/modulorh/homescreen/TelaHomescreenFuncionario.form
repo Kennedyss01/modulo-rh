@@ -129,7 +129,7 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="M&#xf3;dulo RH"/>
+                <Property name="text" type="java.lang.String" value="M&#xd3;DULO RH"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="lblBemVindo">
@@ -323,6 +323,7 @@
                         <LineBorder roundedCorners="true" thickness="2"/>
                       </Border>
                     </Property>
+                    <Property name="horizontalAlignment" type="int" value="2"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRegistrarPontoActionPerformed"/>
