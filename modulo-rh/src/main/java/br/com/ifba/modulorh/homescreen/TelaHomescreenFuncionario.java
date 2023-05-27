@@ -3,6 +3,7 @@ package br.com.ifba.modulorh.homescreen;
 import br.com.ifba.modulorh.funcionario.model.Funcionario;
 import br.com.ifba.modulorh.infrastructure.service.IFacade;
 import br.com.ifba.modulorh.login.TelaLogin;
+import br.com.ifba.modulorh.registrodeponto.model.RegistroPonto;
 import br.com.ifba.modulorh.registrodeponto.view.TelaDeListarRegistroDePonto;
 import br.com.ifba.modulorh.usuario.model.Usuario;
 import br.com.ifba.modulorh.usuario.view.TelaAlterarSenha;
@@ -13,6 +14,7 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
@@ -26,14 +28,13 @@ public class TelaHomescreenFuncionario extends javax.swing.JFrame {
 
     @Autowired
     private IFacade facade;
-    @Autowired
-    private TelaDeListarRegistroDePonto telaDeListarRegistroDePonto;
+    @Autowired @Lazy
+    private TelaDeListarRegistroDePonto telaListarRegistroPonto;
     @Autowired @Lazy
     private TelaLogin telaLogin;
-    @Autowired
+    @Autowired @Lazy
     private TelaAlterarSenha telaAlterarSenha;
     private Funcionario funcionario;
-    private Long idUsuario;
     
     ImageIcon icone = new ImageIcon("./src/main/resources/imagens/rh.png");
     Font fonteMaior;
@@ -54,7 +55,6 @@ public class TelaHomescreenFuncionario extends javax.swing.JFrame {
     public void definirFuncionario(Usuario usuario) {
         this.funcionario = facade.findFuncionarioByUsuarioId(usuario.getId());
         lblInfoFuncionario.setText("Usuário: " + funcionario.getNome());
-        this.idUsuario = usuario.getId();
     }
     
     @SuppressWarnings("unchecked")
@@ -74,14 +74,19 @@ public class TelaHomescreenFuncionario extends javax.swing.JFrame {
         btnRegistrarPonto = new javax.swing.JButton();
         lblDivisoria = new javax.swing.JLabel();
         lblDivisoria1 = new javax.swing.JLabel();
+        btnListarPontos = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Tela Inicial do Funcionário");
         setIconImage(icone.getImage());
-        setMinimumSize(new java.awt.Dimension(881, 599));
+        setMaximumSize(new java.awt.Dimension(1100, 670));
+        setMinimumSize(new java.awt.Dimension(1100, 670));
+        setResizable(false);
 
         pnlContainer.setBackground(new java.awt.Color(255, 255, 255));
         pnlContainer.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        pnlContainer.setMaximumSize(new java.awt.Dimension(1100, 670));
+        pnlContainer.setMinimumSize(new java.awt.Dimension(1100, 670));
 
         pnlLateral.setBackground(new java.awt.Color(26, 81, 107));
 
@@ -144,13 +149,13 @@ public class TelaHomescreenFuncionario extends javax.swing.JFrame {
                 .addComponent(lblLateral)
                 .addGap(73, 73, 73)
                 .addComponent(lblBemVindo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 374, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblInfoFuncionario)
                 .addGap(18, 18, 18)
                 .addGroup(pnlLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnAlterarSenha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnSair, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE))
-                .addGap(33, 33, 33))
+                    .addComponent(btnSair, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(47, 47, 47))
         );
 
         pnlCampo.setBackground(new java.awt.Color(255, 255, 255));
@@ -181,6 +186,19 @@ public class TelaHomescreenFuncionario extends javax.swing.JFrame {
 
         lblDivisoria1.setBackground(new java.awt.Color(255, 255, 255));
 
+        btnListarPontos.setBackground(new java.awt.Color(71, 19, 35));
+        btnListarPontos.setFont(fonteNormal);
+        btnListarPontos.setForeground(new java.awt.Color(255, 255, 255));
+        btnListarPontos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/listar-pontos-32x32.png"))); // NOI18N
+        btnListarPontos.setText("LISTAR PONTOS");
+        btnListarPontos.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        btnListarPontos.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnListarPontos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnListarPontosActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnlMenuLayout = new javax.swing.GroupLayout(pnlMenu);
         pnlMenu.setLayout(pnlMenuLayout);
         pnlMenuLayout.setHorizontalGroup(
@@ -190,11 +208,13 @@ public class TelaHomescreenFuncionario extends javax.swing.JFrame {
                 .addGroup(pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(pnlMenuLayout.createSequentialGroup()
-                        .addComponent(lblDivisoria1, javax.swing.GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE)
+                        .addComponent(lblDivisoria1, javax.swing.GroupLayout.DEFAULT_SIZE, 243, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnRegistrarPonto, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnRegistrarPonto, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnListarPontos, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblDivisoria, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)))
+                        .addComponent(lblDivisoria, javax.swing.GroupLayout.DEFAULT_SIZE, 243, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         pnlMenuLayout.setVerticalGroup(
@@ -204,15 +224,17 @@ public class TelaHomescreenFuncionario extends javax.swing.JFrame {
                 .addComponent(lblMenu)
                 .addGroup(pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlMenuLayout.createSequentialGroup()
-                        .addGap(108, 108, 108)
-                        .addComponent(btnRegistrarPonto, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(pnlMenuLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblDivisoria1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblDivisoria1, javax.swing.GroupLayout.DEFAULT_SIZE, 475, Short.MAX_VALUE)
                             .addComponent(lblDivisoria, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap())))
+                        .addContainerGap())
+                    .addGroup(pnlMenuLayout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addComponent(btnRegistrarPonto, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnListarPontos, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         javax.swing.GroupLayout pnlCampoLayout = new javax.swing.GroupLayout(pnlCampo);
@@ -229,7 +251,7 @@ public class TelaHomescreenFuncionario extends javax.swing.JFrame {
             .addGroup(pnlCampoLayout.createSequentialGroup()
                 .addGap(68, 68, 68)
                 .addComponent(pnlMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout pnlContainerLayout = new javax.swing.GroupLayout(pnlContainer);
@@ -266,11 +288,13 @@ public class TelaHomescreenFuncionario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegistrarPontoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarPontoActionPerformed
-        // TODO add your handling code here:
-        telaDeListarRegistroDePonto.passandoDados(idUsuario);
-        telaDeListarRegistroDePonto.exibirDados();
-        telaDeListarRegistroDePonto.setVisible(true);
-        this.setVisible(false);
+       try {
+             RegistroPonto registro = new RegistroPonto(funcionario);
+             facade.saveRegistroDePonto(registro);
+        } catch(Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro ao salvar no banco: " + e.getMessage(), 
+                    "Erro ao salvar no banco de dados!",JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnRegistrarPontoActionPerformed
 
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
@@ -285,15 +309,18 @@ public class TelaHomescreenFuncionario extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_btnAlterarSenhaActionPerformed
 
+    private void btnListarPontosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarPontosActionPerformed
+        telaListarRegistroPonto.setVisible(true);
+        telaListarRegistroPonto.toFront();
+        telaListarRegistroPonto.setFuncionarioId(funcionario.getId());
+        telaListarRegistroPonto.exibirDados();
+        this.setVisible(false);
+    }//GEN-LAST:event_btnListarPontosActionPerformed
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -310,9 +337,7 @@ public class TelaHomescreenFuncionario extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(TelaHomescreenFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
 
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
@@ -328,6 +353,7 @@ public class TelaHomescreenFuncionario extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAlterarSenha;
+    private javax.swing.JButton btnListarPontos;
     private javax.swing.JButton btnRegistrarPonto;
     private javax.swing.JButton btnSair;
     private javax.swing.JLabel lblBemVindo;

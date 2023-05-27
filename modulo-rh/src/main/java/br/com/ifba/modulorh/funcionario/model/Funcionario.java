@@ -1,13 +1,16 @@
 package br.com.ifba.modulorh.funcionario.model;
 
+import br.com.ifba.modulorh.registrodeponto.model.RegistroPonto;
 import br.com.ifba.modulorh.usuario.model.Usuario;
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -35,6 +38,9 @@ public class Funcionario implements Serializable{
     
     @OneToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.REMOVE})
     private Usuario usuario;
+    
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "funcionario")
+    private List<RegistroPonto> pontos;
 
     public Funcionario(String nome, String dataDeNascimento, String cpf, String endereco, String telefone, 
     String email, float salario, String status, String dataDeEntrada) {
@@ -47,6 +53,12 @@ public class Funcionario implements Serializable{
         this.salario = salario;
         this.status = status;
         this.dataDeEntrada = dataDeEntrada;
+    }
+    
+    @Override
+    public String toString() {
+        return "nome: " + nome
+                + "\nUsuario: " + usuario.getLogin();
     }
     
 }

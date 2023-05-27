@@ -15,8 +15,8 @@ import org.springframework.stereotype.Controller;
 import br.com.ifba.modulorh.funcionario.service.IServiceFuncionario;
 import br.com.ifba.modulorh.pagamentos.model.Pagamentos;
 import br.com.ifba.modulorh.pagamentos.service.IServicePagamentos;
-import br.com.ifba.modulorh.registrodeponto.model.RegistroDePonto;
-import br.com.ifba.modulorh.registrodeponto.service.IServiceRegistroDePonto;
+import br.com.ifba.modulorh.registrodeponto.model.RegistroPonto;
+import br.com.ifba.modulorh.registrodeponto.service.IServiceRegistroPonto;
 
 /**
  *
@@ -204,33 +204,38 @@ public class Facade implements IFacade {
 
      //========================Registro de Ponto========================//
     @Autowired
-    private IServiceRegistroDePonto serviceRegistroPonto;
+    private IServiceRegistroPonto serviceRegistroPonto;
     
     @Override
-    public RegistroDePonto saveRegistroDePonto(RegistroDePonto registroDePonto) {
+    public RegistroPonto saveRegistroDePonto(RegistroPonto registroDePonto) {
         return serviceRegistroPonto.saveRegistroDePonto(registroDePonto);
     }
 
     @Override
-    public RegistroDePonto updateRegistroDePonto(RegistroDePonto registroDePonto) {
+    public RegistroPonto updateRegistroDePonto(RegistroPonto registroDePonto) {
         return serviceRegistroPonto.updateRegistroDePonto(registroDePonto);
     }
 
     @Override
-    public void deleteRegistroDePonto(RegistroDePonto registroDePonto) {
+    public void deleteRegistroDePonto(RegistroPonto registroDePonto) {
         serviceRegistroPonto.deleteRegistroDePonto(registroDePonto);
     }
 
     @Override
-    public List<RegistroDePonto> getAllRegistroDePonto() {
+    public List<RegistroPonto> getAllRegistroDePonto() {
         return serviceRegistroPonto.getAllRegistroDePonto();
     }
 
     @Override
-    public RegistroDePonto findRegistroDePontoById(Long id) {
+    public RegistroPonto findRegistroDePontoById(Long id) {
         return serviceRegistroPonto.findById(id);
     }
-
+    
+    @Override
+    public List<RegistroPonto> findRegistrosByFuncionarioId(Long id) {
+        return serviceRegistroPonto.findRegistrosByFuncionarioId(id);
+    }
+    
     //========================Pagamentos========================//
     @Autowired
     private IServicePagamentos servicePagamentos;
