@@ -246,6 +246,7 @@ public class TelaLogin extends javax.swing.JFrame {
             if (usuario.getTipo().equals("Funcionário")) {
                 homescreenFuncionario.setVisible(true);
                 homescreenFuncionario.definirFuncionario(usuario);
+                homescreenFuncionario.atualizarData();
                 homescreenFuncionario.toFront();
             } else {
                 homescreenGestor.setVisible(true);

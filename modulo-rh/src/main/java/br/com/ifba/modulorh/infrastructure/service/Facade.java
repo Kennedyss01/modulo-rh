@@ -15,8 +15,8 @@ import org.springframework.stereotype.Controller;
 import br.com.ifba.modulorh.funcionario.service.IServiceFuncionario;
 import br.com.ifba.modulorh.pagamentos.model.Pagamentos;
 import br.com.ifba.modulorh.pagamentos.service.IServicePagamentos;
-import br.com.ifba.modulorh.registrodeponto.model.RegistroPonto;
-import br.com.ifba.modulorh.registrodeponto.service.IServiceRegistroPonto;
+import br.com.ifba.modulorh.registroponto.model.RegistroPonto;
+import br.com.ifba.modulorh.registroponto.service.IServiceRegistroPonto;
 
 /**
  *
@@ -207,27 +207,27 @@ public class Facade implements IFacade {
     private IServiceRegistroPonto serviceRegistroPonto;
     
     @Override
-    public RegistroPonto saveRegistroDePonto(RegistroPonto registroDePonto) {
-        return serviceRegistroPonto.saveRegistroDePonto(registroDePonto);
+    public RegistroPonto saveRegistroPonto(RegistroPonto registroPonto) {
+        return serviceRegistroPonto.saveRegistroPonto(registroPonto);
     }
 
     @Override
-    public RegistroPonto updateRegistroDePonto(RegistroPonto registroDePonto) {
-        return serviceRegistroPonto.updateRegistroDePonto(registroDePonto);
+    public RegistroPonto updateRegistroPonto(RegistroPonto registroPonto) {
+        return serviceRegistroPonto.updateRegistroPonto(registroPonto);
     }
 
     @Override
-    public void deleteRegistroDePonto(RegistroPonto registroDePonto) {
-        serviceRegistroPonto.deleteRegistroDePonto(registroDePonto);
+    public void deleteRegistroPonto(Long id) {
+        serviceRegistroPonto.deleteRegistroPonto(id);
     }
 
     @Override
-    public List<RegistroPonto> getAllRegistroDePonto() {
-        return serviceRegistroPonto.getAllRegistroDePonto();
+    public List<RegistroPonto> getAllRegistrosPonto() {
+        return serviceRegistroPonto.getAllRegistrosPonto();
     }
 
     @Override
-    public RegistroPonto findRegistroDePontoById(Long id) {
+    public RegistroPonto findRegistroPontoById(Long id) {
         return serviceRegistroPonto.findById(id);
     }
     

@@ -1,4 +1,4 @@
-package br.com.ifba.modulorh.registrodeponto.model;
+package br.com.ifba.modulorh.registroponto.model;
 
 import br.com.ifba.modulorh.funcionario.model.Funcionario;
 import java.io.Serializable;

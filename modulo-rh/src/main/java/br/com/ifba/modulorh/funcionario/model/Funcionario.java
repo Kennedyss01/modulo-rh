@@ -1,6 +1,6 @@
 package br.com.ifba.modulorh.funcionario.model;
 
-import br.com.ifba.modulorh.registrodeponto.model.RegistroPonto;
+import br.com.ifba.modulorh.registroponto.model.RegistroPonto;
 import br.com.ifba.modulorh.usuario.model.Usuario;
 import java.io.Serializable;
 import java.util.List;
@@ -53,12 +53,6 @@ public class Funcionario implements Serializable{
         this.salario = salario;
         this.status = status;
         this.dataDeEntrada = dataDeEntrada;
-    }
-    
-    @Override
-    public String toString() {
-        return "nome: " + nome
-                + "\nUsuario: " + usuario.getLogin();
     }
     
 }

@@ -6,7 +6,7 @@ import br.com.ifba.modulorh.funcionario.model.Funcionario;
 import br.com.ifba.modulorh.usuario.model.Usuario;
 import br.com.ifba.modulorh.curriculo.model.Curriculo;
 import br.com.ifba.modulorh.pagamentos.model.Pagamentos;
-import br.com.ifba.modulorh.registrodeponto.model.RegistroPonto;
+import br.com.ifba.modulorh.registroponto.model.RegistroPonto;
 import java.util.List;
 
 /**
@@ -57,11 +57,11 @@ public interface IFacade {
     Curriculo findCurriculoById (Long id);
     
      //========================Registo de Ponto========================//
-    RegistroPonto saveRegistroDePonto(RegistroPonto registroDePonto);
-    RegistroPonto updateRegistroDePonto(RegistroPonto registroDePonto);
-    void deleteRegistroDePonto(RegistroPonto registroDePonto);
-    List<RegistroPonto> getAllRegistroDePonto();
-    RegistroPonto findRegistroDePontoById(Long id);
+    RegistroPonto saveRegistroPonto(RegistroPonto registroPonto);
+    RegistroPonto updateRegistroPonto(RegistroPonto registroPonto);
+    void deleteRegistroPonto(Long id);
+    List<RegistroPonto> getAllRegistrosPonto();
+    RegistroPonto findRegistroPontoById(Long id);
     List<RegistroPonto> findRegistrosByFuncionarioId(Long id);
     
     //========================Pagamentos========================//

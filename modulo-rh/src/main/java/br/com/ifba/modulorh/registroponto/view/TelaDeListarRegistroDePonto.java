@@ -1,11 +1,13 @@
 
-package br.com.ifba.modulorh.registrodeponto.view;
+package br.com.ifba.modulorh.registroponto.view;
 
+import br.com.ifba.modulorh.funcionario.model.Funcionario;
 import br.com.ifba.modulorh.homescreen.TelaHomescreenFuncionario;
 import br.com.ifba.modulorh.infrastructure.service.IFacade;
-import br.com.ifba.modulorh.registrodeponto.model.RegistroPonto;
+import br.com.ifba.modulorh.registroponto.model.RegistroPonto;
 import java.awt.Font;
 import java.awt.FontFormatException;
+import java.awt.HeadlessException;
 import java.io.File;
 import java.io.IOException;
 import java.time.format.DateTimeFormatter;
@@ -34,7 +36,7 @@ public class TelaDeListarRegistroDePonto extends javax.swing.JFrame {
     @Autowired @Lazy
     private TelaHomescreenFuncionario telaHomescreenFuncionario;
     private final DateTimeFormatter formatarData = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
-    private Long funcionarioId;
+    private Funcionario funcionario;
     
     ImageIcon icone = new ImageIcon("./src/main/resources/imagens/rh.png");
     Font fonteMaior;
@@ -55,8 +57,8 @@ public class TelaDeListarRegistroDePonto extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }
        
-    public void setFuncionarioId(Long id) {
-        this.funcionarioId = id;
+    public void setFuncionario(Funcionario funcionario) {
+        this.funcionario = funcionario;
     }
     
     private void definirLarguraColunas() {
@@ -73,18 +75,18 @@ public class TelaDeListarRegistroDePonto extends javax.swing.JFrame {
     
     public void exibirDados() {
         definirLarguraColunas();
-        List<RegistroPonto> pontos = facade.findRegistrosByFuncionarioId(funcionarioId);
+        List<RegistroPonto> pontos = facade.findRegistrosByFuncionarioId(funcionario.getId());
         
         DefaultTableModel modelo = (DefaultTableModel) tblPontos.getModel();
         
         modelo.setNumRows(0);
         for(RegistroPonto ponto : pontos) {
             String dataEntrada = formatarData.format(ponto.getEntrada());
-            String dataSaida = "00/00/0000 00:00:00";
+            String dataSaida =  formatarData.format(ponto.getSaida());
             String presente = "Ausente";
             
-            if (ponto.getSaida() != null) {
-                dataSaida = formatarData.format(ponto.getSaida());
+            if (dataSaida.equals("01/01/0001 00:00:00")) {
+                dataSaida = "";
             }
             
             if (ponto.isPresente()) {
@@ -291,8 +293,8 @@ public class TelaDeListarRegistroDePonto extends javax.swing.JFrame {
             .addGroup(pnlRegistrosLayout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addComponent(lblRegistrosExistentes, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(srcScroll, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(53, 53, 53)
+                .addComponent(srcScroll, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(pnlRegistrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -352,19 +354,24 @@ public class TelaDeListarRegistroDePonto extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
-         try{
-          
-            
-        } catch(Exception e) {
-            JOptionPane.showMessageDialog(null, "Erro ao Excluir no banco: " + e.getMessage(), 
-                    "Erro ao Excluir no banco de dados!",JOptionPane.ERROR_MESSAGE);
-        }        
+        try {
+             RegistroPonto registro = new RegistroPonto(funcionario);
+             facade.saveRegistroPonto(registro);
+             JOptionPane.showMessageDialog(null, "Ponto realizado com sucesso.", 
+                     "Ponto realizado!", JOptionPane.INFORMATION_MESSAGE);
+             exibirDados();
+        } catch(HeadlessException e) {
+            JOptionPane.showMessageDialog(null, "Erro ao salvar no banco: " + e.getMessage(), 
+                    "Erro ao salvar no banco de dados!",JOptionPane.ERROR_MESSAGE);
+        }      
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-        try{
-          
-            
+        try {
+             int linha = tblPontos.getSelectedRow();
+             Long id = (Long) tblPontos.getValueAt(linha, 0);
+             facade.deleteRegistroPonto(id);
+             exibirDados();
         } catch(Exception e) {
             JOptionPane.showMessageDialog(null, "Erro ao Excluir no banco: " + e.getMessage(), 
                     "Erro ao Excluir no banco de dados!",JOptionPane.ERROR_MESSAGE);
@@ -372,9 +379,17 @@ public class TelaDeListarRegistroDePonto extends javax.swing.JFrame {
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-        
-        this.setVisible(false);
-        telaEditarRegistroDePonto.setVisible(true);
+        try {
+            int linha = tblPontos.getSelectedRow();
+            Long id = (Long) tblPontos.getValueAt(linha, 0);
+            telaEditarRegistroDePonto.setRegistroPonto(facade.findRegistroPontoById(id));
+            this.setVisible(false);
+            telaEditarRegistroDePonto.setVisible(true);   
+            telaEditarRegistroDePonto.toFront();
+        } catch(Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro ao buscar no banco: " + e.getMessage(), 
+                    "Erro ao buscar no banco de dados!",JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioActionPerformed

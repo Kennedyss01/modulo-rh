@@ -1,6 +1,6 @@
-package br.com.ifba.modulorh.registrodeponto.repository;
+package br.com.ifba.modulorh.registroponto.repository;
 
-import br.com.ifba.modulorh.registrodeponto.model.RegistroPonto;
+import br.com.ifba.modulorh.registroponto.model.RegistroPonto;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;

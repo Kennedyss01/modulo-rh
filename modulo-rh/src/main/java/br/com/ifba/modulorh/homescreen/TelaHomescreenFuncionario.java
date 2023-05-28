@@ -3,14 +3,18 @@ package br.com.ifba.modulorh.homescreen;
 import br.com.ifba.modulorh.funcionario.model.Funcionario;
 import br.com.ifba.modulorh.infrastructure.service.IFacade;
 import br.com.ifba.modulorh.login.TelaLogin;
-import br.com.ifba.modulorh.registrodeponto.model.RegistroPonto;
-import br.com.ifba.modulorh.registrodeponto.view.TelaDeListarRegistroDePonto;
+import br.com.ifba.modulorh.registroponto.model.RegistroPonto;
+import br.com.ifba.modulorh.registroponto.view.TelaDeListarRegistroDePonto;
 import br.com.ifba.modulorh.usuario.model.Usuario;
 import br.com.ifba.modulorh.usuario.view.TelaAlterarSenha;
 import java.awt.Font;
 import java.awt.FontFormatException;
+import java.awt.HeadlessException;
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -75,6 +79,7 @@ public class TelaHomescreenFuncionario extends javax.swing.JFrame {
         lblDivisoria = new javax.swing.JLabel();
         lblDivisoria1 = new javax.swing.JLabel();
         btnListarPontos = new javax.swing.JButton();
+        lblData = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Tela Inicial do Funcionário");
@@ -199,6 +204,10 @@ public class TelaHomescreenFuncionario extends javax.swing.JFrame {
             }
         });
 
+        lblData.setFont(fonteNormal);
+        lblData.setForeground(new java.awt.Color(0, 0, 0));
+        lblData.setText("00/00/00000 00:00:00");
+
         javax.swing.GroupLayout pnlMenuLayout = new javax.swing.GroupLayout(pnlMenu);
         pnlMenu.setLayout(pnlMenuLayout);
         pnlMenuLayout.setHorizontalGroup(
@@ -210,10 +219,15 @@ public class TelaHomescreenFuncionario extends javax.swing.JFrame {
                     .addGroup(pnlMenuLayout.createSequentialGroup()
                         .addComponent(lblDivisoria1, javax.swing.GroupLayout.DEFAULT_SIZE, 243, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnRegistrarPonto, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnListarPontos, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pnlMenuLayout.createSequentialGroup()
+                                .addGroup(pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(btnRegistrarPonto, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnListarPontos, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlMenuLayout.createSequentialGroup()
+                                .addComponent(lblData, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(32, 32, 32)))
                         .addComponent(lblDivisoria, javax.swing.GroupLayout.DEFAULT_SIZE, 243, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -234,6 +248,8 @@ public class TelaHomescreenFuncionario extends javax.swing.JFrame {
                         .addComponent(btnRegistrarPonto, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnListarPontos, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(31, 31, 31)
+                        .addComponent(lblData, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
@@ -286,12 +302,32 @@ public class TelaHomescreenFuncionario extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+            
+    public void atualizarData() {
+        DateTimeFormatter formatarData = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+        new Thread() {
+            @Override
+            public void run() {
+                while(true) {
+                    try {
+                        TimeUnit.SECONDS.sleep(1);
+                        lblData.setText(formatarData.format(LocalDateTime.now()));
+                    } catch (InterruptedException e) {
+                         JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage(), 
+                        "Erro ao atualizar data!",JOptionPane.ERROR_MESSAGE);
+                    }
+                }
+            }
+        }.start();  
+    }
+    
     private void btnRegistrarPontoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarPontoActionPerformed
        try {
              RegistroPonto registro = new RegistroPonto(funcionario);
-             facade.saveRegistroDePonto(registro);
-        } catch(Exception e) {
+             facade.saveRegistroPonto(registro);
+             JOptionPane.showMessageDialog(null, "Ponto realizado com sucesso.", 
+                     "Ponto realizado!", JOptionPane.INFORMATION_MESSAGE);
+        } catch(HeadlessException e) {
             JOptionPane.showMessageDialog(null, "Erro ao salvar no banco: " + e.getMessage(), 
                     "Erro ao salvar no banco de dados!",JOptionPane.ERROR_MESSAGE);
         }
@@ -312,7 +348,7 @@ public class TelaHomescreenFuncionario extends javax.swing.JFrame {
     private void btnListarPontosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarPontosActionPerformed
         telaListarRegistroPonto.setVisible(true);
         telaListarRegistroPonto.toFront();
-        telaListarRegistroPonto.setFuncionarioId(funcionario.getId());
+        telaListarRegistroPonto.setFuncionario(funcionario);
         telaListarRegistroPonto.exibirDados();
         this.setVisible(false);
     }//GEN-LAST:event_btnListarPontosActionPerformed
@@ -357,6 +393,7 @@ public class TelaHomescreenFuncionario extends javax.swing.JFrame {
     private javax.swing.JButton btnRegistrarPonto;
     private javax.swing.JButton btnSair;
     private javax.swing.JLabel lblBemVindo;
+    private javax.swing.JLabel lblData;
     private javax.swing.JLabel lblDivisoria;
     private javax.swing.JLabel lblDivisoria1;
     private javax.swing.JLabel lblInfoFuncionario;
