@@ -10,6 +10,8 @@ import java.awt.FontFormatException;
 import java.awt.HeadlessException;
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.logging.Level;
@@ -35,7 +37,8 @@ public class TelaDeListarRegistroDePonto extends javax.swing.JFrame {
     private TelaEditarRegistroDePonto telaEditarRegistroDePonto;
     @Autowired @Lazy
     private TelaHomescreenFuncionario telaHomescreenFuncionario;
-    private final DateTimeFormatter formatarData = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+    private final DateTimeFormatter formatarDataHora = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+    private final DateTimeFormatter formatarData = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     private Funcionario funcionario;
     
     ImageIcon icone = new ImageIcon("./src/main/resources/imagens/rh.png");
@@ -78,24 +81,47 @@ public class TelaDeListarRegistroDePonto extends javax.swing.JFrame {
         List<RegistroPonto> pontos = facade.findRegistrosByFuncionarioId(funcionario.getId());
         
         DefaultTableModel modelo = (DefaultTableModel) tblPontos.getModel();
-        
         modelo.setNumRows(0);
-        for(RegistroPonto ponto : pontos) {
-            String dataEntrada = formatarData.format(ponto.getEntrada());
-            String dataSaida =  formatarData.format(ponto.getSaida());
-            String presente = "Ausente";
+        
+        for (RegistroPonto ponto : pontos) {
+            String dataEntrada = formatarDataHora.format(ponto.getEntrada());
+            String dataSaida =  formatarDataHora.format(ponto.getSaida());
+            String presente = ponto.isPresente() ? "Presente" : "Ausente";
             
             if (dataSaida.equals("01/01/0001 00:00:00")) {
                 dataSaida = "";
             }
             
-            if (ponto.isPresente()) {
-                presente = "Presente";
-            }
-            
             modelo.addRow(new Object [] {
                 ponto.getId(), presente, dataEntrada, dataSaida
             });
+        }
+    }
+    
+    public void exibirDadosFiltrando(LocalDate inicio, LocalDate fim) {
+        List<RegistroPonto> pontos = facade.findRegistrosByFuncionarioId(funcionario.getId());
+        
+        DefaultTableModel modelo = (DefaultTableModel) tblPontos.getModel();
+        modelo.setNumRows(0);
+        
+        for (RegistroPonto ponto : pontos) {
+            LocalDate entrada = LocalDate.parse(formatarData.format(ponto.getEntrada()), formatarData);
+            
+            if ((entrada.isEqual(inicio) || entrada.isAfter(inicio)) 
+                    && (entrada.equals(fim) || entrada.isBefore(fim))) {
+            
+                String dataEntrada = formatarDataHora.format(ponto.getEntrada());
+                String dataSaida =  formatarDataHora.format(ponto.getSaida());
+                String presente = ponto.isPresente() ? "Presente" : "Ausente";
+
+                if (dataSaida.equals("01/01/0001 00:00:00")) {
+                    dataSaida = "";
+                }
+                
+                modelo.addRow(new Object [] {
+                    ponto.getId(), presente, dataEntrada, dataSaida
+                });
+            }
         }
     }
 
@@ -115,6 +141,12 @@ public class TelaDeListarRegistroDePonto extends javax.swing.JFrame {
         btnCadastrar = new javax.swing.JButton();
         btnEditar = new javax.swing.JButton();
         btnExcluir = new javax.swing.JButton();
+        dtDataInicio = new com.toedter.calendar.JDateChooser();
+        dtDataFim = new com.toedter.calendar.JDateChooser();
+        btnFiltrar = new javax.swing.JButton();
+        btnRemoverFiltro = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Listar Registros de Ponto");
@@ -180,11 +212,13 @@ public class TelaDeListarRegistroDePonto extends javax.swing.JFrame {
         );
 
         pnlCampo.setBackground(new java.awt.Color(255, 255, 255));
+        pnlCampo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         pnlRegistros.setBackground(new java.awt.Color(255, 255, 255));
         pnlRegistros.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 4, true));
         pnlRegistros.setMinimumSize(new java.awt.Dimension(388, 340));
         pnlRegistros.setPreferredSize(new java.awt.Dimension(388, 340));
+        pnlRegistros.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         srcScroll.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
         srcScroll.setMinimumSize(new java.awt.Dimension(549, 427));
@@ -215,9 +249,13 @@ public class TelaDeListarRegistroDePonto extends javax.swing.JFrame {
         tblPontos.setPreferredSize(new java.awt.Dimension(698, 380));
         srcScroll.setViewportView(tblPontos);
 
+        pnlRegistros.add(srcScroll, new org.netbeans.lib.awtextra.AbsoluteConstraints(43, 116, 698, 380));
+
         lblRegistrosExistentes.setFont(fonteMaior);
+        lblRegistrosExistentes.setForeground(new java.awt.Color(0, 0, 0));
         lblRegistrosExistentes.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblRegistrosExistentes.setText("Registros de Ponto Existentes");
+        pnlRegistros.add(lblRegistrosExistentes, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 759, 24));
 
         btnCadastrar.setBackground(new java.awt.Color(71, 19, 35));
         btnCadastrar.setFont(fonteNormal);
@@ -234,6 +272,7 @@ public class TelaDeListarRegistroDePonto extends javax.swing.JFrame {
                 btnCadastrarActionPerformed(evt);
             }
         });
+        pnlRegistros.add(btnCadastrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(43, 514, 220, -1));
 
         btnEditar.setBackground(new java.awt.Color(71, 19, 35));
         btnEditar.setFont(fonteNormal);
@@ -250,6 +289,7 @@ public class TelaDeListarRegistroDePonto extends javax.swing.JFrame {
                 btnEditarActionPerformed(evt);
             }
         });
+        pnlRegistros.add(btnEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(281, 514, 220, -1));
 
         btnExcluir.setBackground(new java.awt.Color(71, 19, 35));
         btnExcluir.setFont(fonteNormal);
@@ -266,59 +306,41 @@ public class TelaDeListarRegistroDePonto extends javax.swing.JFrame {
                 btnExcluirActionPerformed(evt);
             }
         });
+        pnlRegistros.add(btnExcluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(519, 514, 222, -1));
+        pnlRegistros.add(dtDataInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 60, 120, 35));
+        pnlRegistros.add(dtDataFim, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 60, 120, 35));
 
-        javax.swing.GroupLayout pnlRegistrosLayout = new javax.swing.GroupLayout(pnlRegistros);
-        pnlRegistros.setLayout(pnlRegistrosLayout);
-        pnlRegistrosLayout.setHorizontalGroup(
-            pnlRegistrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlRegistrosLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pnlRegistrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblRegistrosExistentes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(pnlRegistrosLayout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addGroup(pnlRegistrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(srcScroll, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(pnlRegistrosLayout.createSequentialGroup()
-                                .addComponent(btnCadastrar, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnEditar, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnExcluir, javax.swing.GroupLayout.DEFAULT_SIZE, 222, Short.MAX_VALUE)))
-                        .addGap(28, 28, 28)))
-                .addContainerGap())
-        );
-        pnlRegistrosLayout.setVerticalGroup(
-            pnlRegistrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlRegistrosLayout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addComponent(lblRegistrosExistentes, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(53, 53, 53)
-                .addComponent(srcScroll, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(pnlRegistrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnExcluir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnCadastrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(74, 74, 74))
-        );
+        btnFiltrar.setBackground(new java.awt.Color(71, 19, 35));
+        btnFiltrar.setForeground(new java.awt.Color(255, 255, 255));
+        btnFiltrar.setText("Filtrar");
+        btnFiltrar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        btnFiltrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFiltrarActionPerformed(evt);
+            }
+        });
+        pnlRegistros.add(btnFiltrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 60, 102, 35));
 
-        javax.swing.GroupLayout pnlCampoLayout = new javax.swing.GroupLayout(pnlCampo);
-        pnlCampo.setLayout(pnlCampoLayout);
-        pnlCampoLayout.setHorizontalGroup(
-            pnlCampoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlCampoLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(pnlRegistros, javax.swing.GroupLayout.DEFAULT_SIZE, 779, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        pnlCampoLayout.setVerticalGroup(
-            pnlCampoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlCampoLayout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(pnlRegistros, javax.swing.GroupLayout.PREFERRED_SIZE, 580, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(50, Short.MAX_VALUE))
-        );
+        btnRemoverFiltro.setBackground(new java.awt.Color(71, 19, 35));
+        btnRemoverFiltro.setForeground(new java.awt.Color(255, 255, 255));
+        btnRemoverFiltro.setText("Remover Filtro");
+        btnRemoverFiltro.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        btnRemoverFiltro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRemoverFiltroActionPerformed(evt);
+            }
+        });
+        pnlRegistros.add(btnRemoverFiltro, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 60, 130, 35));
+
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel1.setText("Data de Início:");
+        pnlRegistros.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, -1, -1));
+
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel2.setText("Data Final:");
+        pnlRegistros.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 70, -1, -1));
+
+        pnlCampo.add(pnlRegistros, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 24, 779, 580));
 
         javax.swing.GroupLayout pnlContainerLayout = new javax.swing.GroupLayout(pnlContainer);
         pnlContainer.setLayout(pnlContainerLayout);
@@ -367,9 +389,17 @@ public class TelaDeListarRegistroDePonto extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+        int linha = tblPontos.getSelectedRow();
+        
+        if (linha == -1) {
+            JOptionPane.showMessageDialog(null, "Por favor, selecione uma linha e tente novamente.", 
+                    "Selecione uma linha da tabela!",JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        Long id = (Long) tblPontos.getValueAt(linha, 0);     
         try {
-             int linha = tblPontos.getSelectedRow();
-             Long id = (Long) tblPontos.getValueAt(linha, 0);
+            
              facade.deleteRegistroPonto(id);
              exibirDados();
         } catch(Exception e) {
@@ -379,9 +409,16 @@ public class TelaDeListarRegistroDePonto extends javax.swing.JFrame {
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+        int linha = tblPontos.getSelectedRow();
+        
+        if (linha == -1) {
+            JOptionPane.showMessageDialog(null, "Por favor, selecione uma linha e tente novamente.", 
+                    "Selecione uma linha da tabela!",JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        Long id = (Long) tblPontos.getValueAt(linha, 0);     
         try {
-            int linha = tblPontos.getSelectedRow();
-            Long id = (Long) tblPontos.getValueAt(linha, 0);
             telaEditarRegistroDePonto.setRegistroPonto(facade.findRegistroPontoById(id));
             this.setVisible(false);
             telaEditarRegistroDePonto.setVisible(true);   
@@ -392,11 +429,48 @@ public class TelaDeListarRegistroDePonto extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnEditarActionPerformed
 
+    private boolean validarDatas() {
+        if (dtDataInicio.getDate() == null) {
+            JOptionPane.showMessageDialog(null, "Por favor, informe uma data e tente novamente.", 
+                    "Data de início vazia!",JOptionPane.ERROR_MESSAGE);
+            return false;
+        }   
+        
+        if (dtDataFim.getDate() == null) {
+            JOptionPane.showMessageDialog(null, "Por favor, informe uma data e tente novamente.", 
+                    "Data final vazia!",JOptionPane.ERROR_MESSAGE);
+            return false;
+        }   
+        
+        if (dtDataFim.getDate().before(dtDataInicio.getDate())) {
+                JOptionPane.showMessageDialog(null, "Por favor, informe uma data final maior que a inicial.", 
+                        "Data final menor que a inicial!",JOptionPane.ERROR_MESSAGE);
+                return false;
+        }
+        
+        return true;
+    }
+    
     private void btnInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioActionPerformed
         this.setVisible(false);
         telaHomescreenFuncionario.setVisible(true);
         telaHomescreenFuncionario.toFront();
     }//GEN-LAST:event_btnInicioActionPerformed
+
+    private void btnFiltrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFiltrarActionPerformed
+         if (validarDatas()) {
+            SimpleDateFormat formatar = new SimpleDateFormat("dd/MM/yyyy");
+
+            LocalDate inicio = LocalDate.parse(formatar.format(dtDataInicio.getDate()), formatarData);
+            LocalDate fim = LocalDate.parse(formatar.format(dtDataFim.getDate()), formatarData);
+            
+            exibirDadosFiltrando(inicio, fim);
+         }
+    }//GEN-LAST:event_btnFiltrarActionPerformed
+
+    private void btnRemoverFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoverFiltroActionPerformed
+        exibirDados();
+    }//GEN-LAST:event_btnRemoverFiltroActionPerformed
 
     /**
      * @param args the command line arguments
@@ -436,7 +510,13 @@ public class TelaDeListarRegistroDePonto extends javax.swing.JFrame {
     private javax.swing.JButton btnCadastrar;
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnExcluir;
+    private javax.swing.JButton btnFiltrar;
     private javax.swing.JButton btnInicio;
+    private javax.swing.JButton btnRemoverFiltro;
+    private com.toedter.calendar.JDateChooser dtDataFim;
+    private com.toedter.calendar.JDateChooser dtDataInicio;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel lblModuloRH;
     private javax.swing.JLabel lblRegistrosExistentes;
     private javax.swing.JPanel pnlCampo;

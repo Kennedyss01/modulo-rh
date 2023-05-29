@@ -76,7 +76,7 @@ public class TelaEditarRegistroDePonto extends javax.swing.JFrame {
                          "A data de saída incorreta!", JOptionPane.INFORMATION_MESSAGE);
             return false;
         }
-        
+                
         return true;
     }
     
@@ -194,23 +194,23 @@ public class TelaEditarRegistroDePonto extends javax.swing.JFrame {
         txtDataEntrada.setFont(fonteNormal);
         txtDataEntrada.setForeground(new java.awt.Color(0, 0, 0));
         txtDataEntrada.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        pnlCampo.add(txtDataEntrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 110, 220, 30));
+        pnlCampo.add(txtDataEntrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 110, 250, 30));
 
         lblDataEntrada.setFont(fonteNormal);
         lblDataEntrada.setForeground(new java.awt.Color(0, 0, 0));
-        lblDataEntrada.setText("Data Entrada:");
-        pnlCampo.add(lblDataEntrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, -1, -1));
+        lblDataEntrada.setText("Data de Entrada:");
+        pnlCampo.add(lblDataEntrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 90, -1, -1));
 
         lblDataSaida.setFont(fonteNormal);
         lblDataSaida.setForeground(new java.awt.Color(0, 0, 0));
-        lblDataSaida.setText("Data Saída:");
-        pnlCampo.add(lblDataSaida, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, -1, -1));
+        lblDataSaida.setText("Data de Saída:");
+        pnlCampo.add(lblDataSaida, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 160, -1, -1));
 
         txtDataSaida.setBackground(new java.awt.Color(255, 255, 255));
         txtDataSaida.setFont(fonteNormal);
         txtDataSaida.setForeground(new java.awt.Color(0, 0, 0));
         txtDataSaida.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        pnlCampo.add(txtDataSaida, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 160, 220, 30));
+        pnlCampo.add(txtDataSaida, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 180, 250, 30));
 
         javax.swing.GroupLayout pnlContainerLayout = new javax.swing.GroupLayout(pnlContainer);
         pnlContainer.setLayout(pnlContainerLayout);
@@ -250,7 +250,13 @@ public class TelaEditarRegistroDePonto extends javax.swing.JFrame {
             try {
                     registroEditado.setEntrada(LocalDateTime.parse(txtDataEntrada.getText(), formatarData));
                     registroEditado.setSaida(LocalDateTime.parse(txtDataSaida.getText(), formatarData));
-
+                     
+                    if (registroEditado.getSaida().isBefore(registroEditado.getEntrada())) {
+                         JOptionPane.showMessageDialog(null, "A data de saída não pode ser menor que a de entrada.", 
+                         "Data de saída menor que a entrada!", JOptionPane.INFORMATION_MESSAGE);
+                        return;
+                    }
+                    
                     facade.updateRegistroPonto(registroEditado);
                     limparCampos();
 
