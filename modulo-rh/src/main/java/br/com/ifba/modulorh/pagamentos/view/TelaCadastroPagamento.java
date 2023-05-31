@@ -116,6 +116,12 @@ public class TelaCadastroPagamento extends javax.swing.JFrame {
     }
     
     private List<Adicional> obterAdicionais(String ids) {
+        char ultimo = ids.charAt(ids.length() - 1);
+        if (ultimo == ',') {
+            JOptionPane.showMessageDialog(null, "Por favor, termine os adicionais com um ID!",
+                    "Digite os IDs corretamente!", JOptionPane.ERROR_MESSAGE);
+            return null;
+        }
         char[] chars = ids.toCharArray();
         String id = new String();
         Adicional adc;
@@ -144,6 +150,12 @@ public class TelaCadastroPagamento extends javax.swing.JFrame {
     }
     
     private List<Desconto> obterDescontos(String ids) {
+        char ultimo = ids.charAt(ids.length() - 1);
+        if (ultimo == ',') {
+            JOptionPane.showMessageDialog(null, "Por favor, termine os descontos com um ID!",
+                    "Digite os IDs corretamente!", JOptionPane.ERROR_MESSAGE);
+            return null;
+        }
         char[] chars = ids.toCharArray();
         String id = new String();
         Desconto dsc;
@@ -512,6 +524,15 @@ public class TelaCadastroPagamento extends javax.swing.JFrame {
             
             List<Adicional> listaAdc = obterAdicionais(adicionais);
             List<Desconto> listaDsc = obterDescontos(descontos);
+            if (listaAdc == null || listaDsc == null) {
+                JOptionPane.showMessageDialog(null, "As alterações não foram salvas!",
+                        "Falha no preenchimento dos dados", JOptionPane.ERROR_MESSAGE);
+                this.setVisible(false);
+                telaListarPagamentos.setVisible(true);
+                telaListarPagamentos.exibirDados();
+                limparCampos();
+                return;
+            }
             
             Pagamentos pagamento = new Pagamentos(
                     dataLancamento, dataPagamento, salarioBase, funcionario,
