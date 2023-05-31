@@ -1,6 +1,7 @@
 package br.com.ifba.modulorh.homescreen;
 
 import br.com.ifba.modulorh.adicionais.view.TelaDeListarAdicionais;
+import br.com.ifba.modulorh.avaliacaoperformance.view.TelaListarAvaliacaoDePerformance;
 import br.com.ifba.modulorh.curriculo.view.TelaDeListarCurriculo;
 import br.com.ifba.modulorh.desconto.view.TelaDeListarDescontos;
 import br.com.ifba.modulorh.usuario.model.Usuario;
@@ -43,6 +44,8 @@ public class TelaHomescreenGestor extends javax.swing.JFrame {
     private TelaDeListarPagamentos telaDeListarPagamentos;
     @Autowired @Lazy
     private TelaLogin telaLogin;
+    @Autowired @Lazy
+    private TelaListarAvaliacaoDePerformance telaListarAvaliacaoDePerformance;
     private Usuario usuario;
     
     ImageIcon icone = new ImageIcon("./src/main/resources/imagens/rh.png");
@@ -89,12 +92,12 @@ public class TelaHomescreenGestor extends javax.swing.JFrame {
         btnImprimirRelatorioAvaliacaoProdutividade = new javax.swing.JButton();
         btnImprimirRelatorioPonto = new javax.swing.JButton();
         btnListarAdicionais = new javax.swing.JButton();
-        pnlDivisoria = new javax.swing.JPanel();
         btnListarFuncionarios = new javax.swing.JButton();
         pnlDivisoria1 = new javax.swing.JPanel();
         pnlDivisoria2 = new javax.swing.JPanel();
-        btnListarCurriculos = new javax.swing.JButton();
+        btnListarAvaliacaoPerformance = new javax.swing.JButton();
         btnListarPagamentos = new javax.swing.JButton();
+        btnListarCurriculos = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Tela Inicial do Gestor");
@@ -150,7 +153,7 @@ public class TelaHomescreenGestor extends javax.swing.JFrame {
                 .addComponent(lblLateral)
                 .addGap(73, 73, 73)
                 .addComponent(lblBemVindo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 420, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblInfoGestor)
                 .addGap(18, 18, 18)
                 .addComponent(btnSair, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -278,19 +281,6 @@ public class TelaHomescreenGestor extends javax.swing.JFrame {
             }
         });
 
-        pnlDivisoria.setBackground(new java.awt.Color(255, 255, 255));
-
-        javax.swing.GroupLayout pnlDivisoriaLayout = new javax.swing.GroupLayout(pnlDivisoria);
-        pnlDivisoria.setLayout(pnlDivisoriaLayout);
-        pnlDivisoriaLayout.setHorizontalGroup(
-            pnlDivisoriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 71, Short.MAX_VALUE)
-        );
-        pnlDivisoriaLayout.setVerticalGroup(
-            pnlDivisoriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 398, Short.MAX_VALUE)
-        );
-
         btnListarFuncionarios.setBackground(new java.awt.Color(71, 19, 35));
         btnListarFuncionarios.setFont(fonteMenor);
         btnListarFuncionarios.setForeground(new java.awt.Color(255, 255, 255));
@@ -333,19 +323,19 @@ public class TelaHomescreenGestor extends javax.swing.JFrame {
             .addGap(0, 364, Short.MAX_VALUE)
         );
 
-        btnListarCurriculos.setBackground(new java.awt.Color(71, 19, 35));
-        btnListarCurriculos.setFont(fonteMenor);
-        btnListarCurriculos.setForeground(new java.awt.Color(255, 255, 255));
-        btnListarCurriculos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/listar-curriculos-32x32.png"))); // NOI18N
-        btnListarCurriculos.setText("LISTAR CURRÍCULOS");
-        btnListarCurriculos.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        btnListarCurriculos.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        btnListarCurriculos.setMaximumSize(new java.awt.Dimension(245, 64));
-        btnListarCurriculos.setMinimumSize(new java.awt.Dimension(245, 64));
-        btnListarCurriculos.setPreferredSize(new java.awt.Dimension(245, 64));
-        btnListarCurriculos.addActionListener(new java.awt.event.ActionListener() {
+        btnListarAvaliacaoPerformance.setBackground(new java.awt.Color(71, 19, 35));
+        btnListarAvaliacaoPerformance.setFont(fonteMenor);
+        btnListarAvaliacaoPerformance.setForeground(new java.awt.Color(255, 255, 255));
+        btnListarAvaliacaoPerformance.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/listar-curriculos-32x32.png"))); // NOI18N
+        btnListarAvaliacaoPerformance.setText("LISTAR AVALIAÇÕES DE PERFORMANCE");
+        btnListarAvaliacaoPerformance.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        btnListarAvaliacaoPerformance.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnListarAvaliacaoPerformance.setMaximumSize(new java.awt.Dimension(245, 64));
+        btnListarAvaliacaoPerformance.setMinimumSize(new java.awt.Dimension(245, 64));
+        btnListarAvaliacaoPerformance.setPreferredSize(new java.awt.Dimension(245, 64));
+        btnListarAvaliacaoPerformance.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnListarCurriculosActionPerformed(evt);
+                btnListarAvaliacaoPerformanceActionPerformed(evt);
             }
         });
 
@@ -365,51 +355,78 @@ public class TelaHomescreenGestor extends javax.swing.JFrame {
             }
         });
 
+        btnListarCurriculos.setBackground(new java.awt.Color(71, 19, 35));
+        btnListarCurriculos.setFont(fonteMenor);
+        btnListarCurriculos.setForeground(new java.awt.Color(255, 255, 255));
+        btnListarCurriculos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/listar-curriculos-32x32.png"))); // NOI18N
+        btnListarCurriculos.setText("LISTAR CURRÍCULOS");
+        btnListarCurriculos.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        btnListarCurriculos.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnListarCurriculos.setMaximumSize(new java.awt.Dimension(245, 64));
+        btnListarCurriculos.setMinimumSize(new java.awt.Dimension(245, 64));
+        btnListarCurriculos.setPreferredSize(new java.awt.Dimension(245, 64));
+        btnListarCurriculos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnListarCurriculosActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnlMenuLayout = new javax.swing.GroupLayout(pnlMenu);
         pnlMenu.setLayout(pnlMenuLayout);
         pnlMenuLayout.setHorizontalGroup(
             pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlMenuLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(6, 6, 6)
+                .addComponent(lblMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 724, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(pnlMenuLayout.createSequentialGroup()
+                .addGap(83, 83, 83)
+                .addComponent(btnCadastrarFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(83, 83, 83)
+                .addComponent(btnListarFuncionarios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(pnlMenuLayout.createSequentialGroup()
+                .addGap(6, 6, 6)
+                .addComponent(pnlDivisoria1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40)
                 .addGroup(pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(pnlMenuLayout.createSequentialGroup()
                         .addGroup(pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(pnlMenuLayout.createSequentialGroup()
-                                .addComponent(pnlDivisoria1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
-                                .addGroup(pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(btnListarCurriculos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(btnImprimirRelatorioAvaliacaoProdutividade, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(btnAvaliarPerformance, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addComponent(btnListarAdicionais, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(pnlMenuLayout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(btnCadastrarFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(pnlDivisoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnImprimirRelatorioPonto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnListarPagamentos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnImprimirRelatorioFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnListarFuncionarios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnListarDescontos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
-                        .addComponent(pnlDivisoria2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                            .addComponent(btnAvaliarPerformance, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnImprimirRelatorioAvaliacaoProdutividade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnListarAdicionais, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnListarCurriculos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(83, 83, 83)
+                        .addGroup(pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnImprimirRelatorioFuncionario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnImprimirRelatorioPonto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnListarDescontos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnListarPagamentos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(btnListarAvaliacaoPerformance, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(49, 49, 49)
+                .addComponent(pnlDivisoria2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         pnlMenuLayout.setVerticalGroup(
             pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlMenuLayout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(lblMenu, javax.swing.GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(6, 6, 6)
+                .addComponent(lblMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnCadastrarFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnListarFuncionarios, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pnlDivisoria1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(pnlMenuLayout.createSequentialGroup()
-                        .addComponent(btnListarFuncionarios, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnAvaliarPerformance, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
+                        .addComponent(btnImprimirRelatorioAvaliacaoProdutividade, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnListarAdicionais, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnListarCurriculos, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnListarAvaliacaoPerformance, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnlMenuLayout.createSequentialGroup()
                         .addComponent(btnImprimirRelatorioFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnImprimirRelatorioPonto, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -417,21 +434,9 @@ public class TelaHomescreenGestor extends javax.swing.JFrame {
                         .addComponent(btnListarDescontos, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnListarPagamentos, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(pnlDivisoria1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(pnlDivisoria2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(pnlMenuLayout.createSequentialGroup()
-                            .addComponent(btnCadastrarFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(btnAvaliarPerformance, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(btnImprimirRelatorioAvaliacaoProdutividade, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(btnListarAdicionais, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(btnListarCurriculos, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(pnlDivisoria, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(pnlMenuLayout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addComponent(pnlDivisoria2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
 
         javax.swing.GroupLayout pnlCampoLayout = new javax.swing.GroupLayout(pnlCampo);
@@ -447,8 +452,8 @@ public class TelaHomescreenGestor extends javax.swing.JFrame {
             pnlCampoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlCampoLayout.createSequentialGroup()
                 .addGap(39, 39, 39)
-                .addComponent(pnlMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(38, 38, 38))
+                .addComponent(pnlMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(49, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout pnlContainerLayout = new javax.swing.GroupLayout(pnlContainer);
@@ -466,8 +471,8 @@ public class TelaHomescreenGestor extends javax.swing.JFrame {
             .addComponent(pnlLateral, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(pnlContainerLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(pnlCampo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(pnlCampo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -526,16 +531,21 @@ public class TelaHomescreenGestor extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_btnListarFuncionariosActionPerformed
 
-    private void btnListarCurriculosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarCurriculosActionPerformed
-        telaDeListarCurriculos.setVisible(true);
+    private void btnListarAvaliacaoPerformanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarAvaliacaoPerformanceActionPerformed
+        telaListarAvaliacaoDePerformance.setVisible(true);
         this.setVisible(false);
-    }//GEN-LAST:event_btnListarCurriculosActionPerformed
+    }//GEN-LAST:event_btnListarAvaliacaoPerformanceActionPerformed
 
     private void btnListarPagamentosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarPagamentosActionPerformed
         telaDeListarPagamentos.setVisible(true);
         telaDeListarPagamentos.exibirDados();
         this.setVisible(false);
     }//GEN-LAST:event_btnListarPagamentosActionPerformed
+
+    private void btnListarCurriculosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarCurriculosActionPerformed
+        telaDeListarCurriculos.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnListarCurriculosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -586,6 +596,7 @@ public class TelaHomescreenGestor extends javax.swing.JFrame {
     private javax.swing.JButton btnImprimirRelatorioFuncionario;
     private javax.swing.JButton btnImprimirRelatorioPonto;
     private javax.swing.JButton btnListarAdicionais;
+    private javax.swing.JButton btnListarAvaliacaoPerformance;
     private javax.swing.JButton btnListarCurriculos;
     private javax.swing.JButton btnListarDescontos;
     private javax.swing.JButton btnListarFuncionarios;
@@ -597,7 +608,6 @@ public class TelaHomescreenGestor extends javax.swing.JFrame {
     private javax.swing.JLabel lblMenu;
     private javax.swing.JPanel pnlCampo;
     private javax.swing.JPanel pnlContainer;
-    private javax.swing.JPanel pnlDivisoria;
     private javax.swing.JPanel pnlDivisoria1;
     private javax.swing.JPanel pnlDivisoria2;
     private javax.swing.JPanel pnlLateral;

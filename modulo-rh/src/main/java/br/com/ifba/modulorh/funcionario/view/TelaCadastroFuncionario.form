@@ -66,7 +66,7 @@
               <Group type="102" attributes="0">
                   <Component id="pnlLateral" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="123" max="-2" attributes="0"/>
-                  <Component id="pnlLogin" min="-2" pref="380" max="-2" attributes="0"/>
+                  <Component id="pnlCadastroDeFuncionario" min="-2" pref="380" max="-2" attributes="0"/>
                   <EmptySpace pref="112" max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -76,7 +76,7 @@
               <Component id="pnlLateral" alignment="0" pref="608" max="32767" attributes="0"/>
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
-                  <Component id="pnlLogin" min="-2" pref="576" max="-2" attributes="0"/>
+                  <Component id="pnlCadastroDeFuncionario" min="-2" pref="576" max="-2" attributes="0"/>
                   <EmptySpace pref="16" max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -178,7 +178,7 @@
             </Component>
           </SubComponents>
         </Container>
-        <Container class="javax.swing.JPanel" name="pnlLogin">
+        <Container class="javax.swing.JPanel" name="pnlCadastroDeFuncionario">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -216,7 +216,7 @@
                               </Group>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
-                          <Component id="lblFazerLogin" alignment="0" max="32767" attributes="0"/>
+                          <Component id="lblCadastroDeFuncionario" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -226,7 +226,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
-                      <Component id="lblFazerLogin" min="-2" pref="32" max="-2" attributes="0"/>
+                      <Component id="lblCadastroDeFuncionario" min="-2" pref="32" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="pnlTextFields" pref="458" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
@@ -237,7 +237,7 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JLabel" name="lblFazerLogin">
+            <Component class="javax.swing.JLabel" name="lblCadastroDeFuncionario">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                   <Connection code="fonteMaior" type="code"/>

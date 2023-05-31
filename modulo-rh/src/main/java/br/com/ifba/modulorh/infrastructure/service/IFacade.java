@@ -1,6 +1,7 @@
 package br.com.ifba.modulorh.infrastructure.service;
 
 import br.com.ifba.modulorh.adicionais.model.Adicional;
+import br.com.ifba.modulorh.avaliacaoperformance.model.AvaliacaoPerformance;
 import br.com.ifba.modulorh.desconto.model.Desconto;
 import br.com.ifba.modulorh.funcionario.model.Funcionario;
 import br.com.ifba.modulorh.usuario.model.Usuario;
@@ -71,4 +72,10 @@ public interface IFacade {
     List<Pagamentos> getAllPagamentos();
     Pagamentos findPagamentoById(Long id);
     
+    //========================Avaliação de Performance========================//
+    public AvaliacaoPerformance saveAvaliacaoPerformance(AvaliacaoPerformance avaliacaoPerformance);
+    public AvaliacaoPerformance updateAvaliacaoPerformance(AvaliacaoPerformance avaliacaoPerformance);
+    public void deleteAvaliacaoPerformance(AvaliacaoPerformance avaliacaoPerformance);
+    public List<AvaliacaoPerformance> getAllAvaliacaoPerformance();
+    public AvaliacaoPerformance findByAvaliacaoPerformanceId(Long id);
 }

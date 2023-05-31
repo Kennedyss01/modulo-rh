@@ -1,5 +1,6 @@
 package br.com.ifba.modulorh.funcionario.model;
 
+import br.com.ifba.modulorh.avaliacaoperformance.model.AvaliacaoPerformance;
 import br.com.ifba.modulorh.registroponto.model.RegistroPonto;
 import br.com.ifba.modulorh.usuario.model.Usuario;
 import java.io.Serializable;
@@ -41,6 +42,9 @@ public class Funcionario implements Serializable{
     
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "funcionario")
     private List<RegistroPonto> pontos;
+    
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "funcionario")
+    private List<AvaliacaoPerformance> avaliacaoPerformance;
 
     public Funcionario(String nome, String dataDeNascimento, String cpf, String endereco, String telefone, 
     String email, float salario, String status, String dataDeEntrada) {

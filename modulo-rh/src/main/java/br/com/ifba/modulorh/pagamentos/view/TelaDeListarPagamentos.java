@@ -237,6 +237,11 @@ public class TelaDeListarPagamentos extends javax.swing.JFrame {
                 txtBuscaFocusLost(evt);
             }
         });
+        txtBusca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtBuscaActionPerformed(evt);
+            }
+        });
         txtBusca.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtBuscaKeyPressed(evt);
@@ -485,6 +490,10 @@ public class TelaDeListarPagamentos extends javax.swing.JFrame {
         String busca = txtBusca.getText().trim().toLowerCase();
         buscarPagamentos(busca);
     }//GEN-LAST:event_txtBuscaKeyPressed
+
+    private void txtBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtBuscaActionPerformed
         
     /**
      * @param args the command line arguments

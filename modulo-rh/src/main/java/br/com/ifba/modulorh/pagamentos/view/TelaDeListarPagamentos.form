@@ -157,7 +157,7 @@
                   </Border>
                 </Property>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                  <Color id="Default Cursor"/>
+                  <Color id="Cursor Padr&#xe3;o"/>
                 </Property>
                 <Property name="focusPainted" type="boolean" value="false"/>
                 <Property name="focusable" type="boolean" value="false"/>
@@ -360,6 +360,7 @@
                       <Events>
                         <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtBuscaFocusGained"/>
                         <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtBuscaFocusLost"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtBuscaActionPerformed"/>
                         <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtBuscaKeyPressed"/>
                       </Events>
                     </Component>
@@ -443,7 +444,7 @@
                           </Border>
                         </Property>
                         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                          <Color id="Default Cursor"/>
+                          <Color id="Cursor Padr&#xe3;o"/>
                         </Property>
                         <Property name="focusPainted" type="boolean" value="false"/>
                         <Property name="focusable" type="boolean" value="false"/>
@@ -476,7 +477,7 @@
                           </Border>
                         </Property>
                         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                          <Color id="Default Cursor"/>
+                          <Color id="Cursor Padr&#xe3;o"/>
                         </Property>
                         <Property name="focusPainted" type="boolean" value="false"/>
                         <Property name="focusable" type="boolean" value="false"/>
@@ -509,7 +510,7 @@
                           </Border>
                         </Property>
                         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                          <Color id="Default Cursor"/>
+                          <Color id="Cursor Padr&#xe3;o"/>
                         </Property>
                         <Property name="focusPainted" type="boolean" value="false"/>
                         <Property name="focusable" type="boolean" value="false"/>

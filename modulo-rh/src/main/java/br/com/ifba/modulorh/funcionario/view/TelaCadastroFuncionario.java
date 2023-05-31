@@ -66,8 +66,8 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
         pnlLateral = new javax.swing.JPanel();
         lblModuloRH = new javax.swing.JLabel();
         btnInicio = new javax.swing.JButton();
-        pnlLogin = new javax.swing.JPanel();
-        lblFazerLogin = new javax.swing.JLabel();
+        pnlCadastroDeFuncionario = new javax.swing.JPanel();
+        lblCadastroDeFuncionario = new javax.swing.JLabel();
         btnCadastrar = new javax.swing.JButton();
         pnlTextFields = new javax.swing.JPanel();
         txtDataDeEntrada = new javax.swing.JTextField();
@@ -141,14 +141,14 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
                 .addGap(45, 45, 45))
         );
 
-        pnlLogin.setBackground(new java.awt.Color(255, 255, 255));
-        pnlLogin.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 4, true));
-        pnlLogin.setMaximumSize(new java.awt.Dimension(388, 340));
-        pnlLogin.setPreferredSize(new java.awt.Dimension(388, 340));
+        pnlCadastroDeFuncionario.setBackground(new java.awt.Color(255, 255, 255));
+        pnlCadastroDeFuncionario.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 4, true));
+        pnlCadastroDeFuncionario.setMaximumSize(new java.awt.Dimension(388, 340));
+        pnlCadastroDeFuncionario.setPreferredSize(new java.awt.Dimension(388, 340));
 
-        lblFazerLogin.setFont(fonteMaior);
-        lblFazerLogin.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblFazerLogin.setText("Cadastro de Funcionário");
+        lblCadastroDeFuncionario.setFont(fonteMaior);
+        lblCadastroDeFuncionario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblCadastroDeFuncionario.setText("Cadastro de Funcionário");
 
         btnCadastrar.setBackground(new java.awt.Color(71, 19, 35));
         btnCadastrar.setFont(fonteNormal);
@@ -316,29 +316,29 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
         });
         pnlTextFields.add(txtNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, -1, 40));
 
-        javax.swing.GroupLayout pnlLoginLayout = new javax.swing.GroupLayout(pnlLogin);
-        pnlLogin.setLayout(pnlLoginLayout);
-        pnlLoginLayout.setHorizontalGroup(
-            pnlLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlLoginLayout.createSequentialGroup()
-                .addGroup(pnlLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlLoginLayout.createSequentialGroup()
-                        .addGroup(pnlLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(pnlLoginLayout.createSequentialGroup()
+        javax.swing.GroupLayout pnlCadastroDeFuncionarioLayout = new javax.swing.GroupLayout(pnlCadastroDeFuncionario);
+        pnlCadastroDeFuncionario.setLayout(pnlCadastroDeFuncionarioLayout);
+        pnlCadastroDeFuncionarioLayout.setHorizontalGroup(
+            pnlCadastroDeFuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlCadastroDeFuncionarioLayout.createSequentialGroup()
+                .addGroup(pnlCadastroDeFuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlCadastroDeFuncionarioLayout.createSequentialGroup()
+                        .addGroup(pnlCadastroDeFuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pnlCadastroDeFuncionarioLayout.createSequentialGroup()
                                 .addContainerGap()
                                 .addComponent(pnlTextFields, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(pnlLoginLayout.createSequentialGroup()
+                            .addGroup(pnlCadastroDeFuncionarioLayout.createSequentialGroup()
                                 .addGap(51, 51, 51)
                                 .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(lblFazerLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(lblCadastroDeFuncionario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
-        pnlLoginLayout.setVerticalGroup(
-            pnlLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlLoginLayout.createSequentialGroup()
+        pnlCadastroDeFuncionarioLayout.setVerticalGroup(
+            pnlCadastroDeFuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlCadastroDeFuncionarioLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addComponent(lblFazerLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblCadastroDeFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnlTextFields, javax.swing.GroupLayout.DEFAULT_SIZE, 458, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -353,7 +353,7 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
             .addGroup(pnlContainerLayout.createSequentialGroup()
                 .addComponent(pnlLateral, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(123, 123, 123)
-                .addComponent(pnlLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pnlCadastroDeFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(112, Short.MAX_VALUE))
         );
         pnlContainerLayout.setVerticalGroup(
@@ -361,7 +361,7 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
             .addComponent(pnlLateral, javax.swing.GroupLayout.DEFAULT_SIZE, 608, Short.MAX_VALUE)
             .addGroup(pnlContainerLayout.createSequentialGroup()
                 .addGap(16, 16, 16)
-                .addComponent(pnlLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 576, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pnlCadastroDeFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 576, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(16, Short.MAX_VALUE))
         );
 
@@ -529,11 +529,11 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCadastrar;
     private javax.swing.JButton btnInicio;
-    private javax.swing.JLabel lblFazerLogin;
+    private javax.swing.JLabel lblCadastroDeFuncionario;
     private javax.swing.JLabel lblModuloRH;
+    private javax.swing.JPanel pnlCadastroDeFuncionario;
     private javax.swing.JPanel pnlContainer;
     private javax.swing.JPanel pnlLateral;
-    private javax.swing.JPanel pnlLogin;
     private javax.swing.JPanel pnlTextFields;
     private javax.swing.JTextField txtCpf;
     private javax.swing.JTextField txtDataDeEntrada;

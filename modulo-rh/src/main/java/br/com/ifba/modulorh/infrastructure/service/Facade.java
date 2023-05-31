@@ -2,6 +2,8 @@ package br.com.ifba.modulorh.infrastructure.service;
 
 import br.com.ifba.modulorh.adicionais.model.Adicional;
 import br.com.ifba.modulorh.adicionais.service.IServiceAdicional;
+import br.com.ifba.modulorh.avaliacaoperformance.model.AvaliacaoPerformance;
+import br.com.ifba.modulorh.avaliacaoperformance.service.IServiceAvaliacaoPerformance;
 import br.com.ifba.modulorh.curriculo.model.Curriculo;
 import br.com.ifba.modulorh.curriculo.service.IServiceCurriculo;
 import br.com.ifba.modulorh.desconto.model.Desconto;
@@ -263,6 +265,36 @@ public class Facade implements IFacade {
     @Override
     public Pagamentos findPagamentoById(Long id) {
         return servicePagamentos.findById(id);
+    }
+    
+        //========================Avaliação de Performance========================//
+    
+    @Autowired
+    private IServiceAvaliacaoPerformance serviceAvaliacaoPerformance;
+    
+    @Override
+    public AvaliacaoPerformance saveAvaliacaoPerformance(AvaliacaoPerformance avaliacaoPerformance) {
+        return serviceAvaliacaoPerformance.saveAvaliacaoPerformance(avaliacaoPerformance);
+    }
+
+    @Override
+    public AvaliacaoPerformance updateAvaliacaoPerformance(AvaliacaoPerformance avaliacaoPerformance) {
+        return serviceAvaliacaoPerformance.updateAvaliacaoPerformance(avaliacaoPerformance);
+    }
+
+    @Override
+    public void deleteAvaliacaoPerformance(AvaliacaoPerformance avaliacaoPerformance) {
+        serviceAvaliacaoPerformance.deleteAvaliacaoPerformance(avaliacaoPerformance);
+    }
+
+    @Override
+    public List<AvaliacaoPerformance> getAllAvaliacaoPerformance() {
+        return serviceAvaliacaoPerformance.getAllAvaliacaoPerformance();    
+    }
+    
+    @Override
+    public AvaliacaoPerformance findByAvaliacaoPerformanceId(Long id) {
+        return serviceAvaliacaoPerformance.findById(id);
     }
     
 }

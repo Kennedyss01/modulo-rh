@@ -68,8 +68,8 @@
               <Component id="pnlLateral" alignment="0" max="32767" attributes="0"/>
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="pnlCampo" max="32767" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="pnlCampo" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -104,7 +104,7 @@
                       <Component id="lblLateral" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
                       <Component id="lblBemVindo" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="420" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                       <Component id="lblInfoGestor" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="btnSair" min="-2" pref="28" max="-2" attributes="0"/>
@@ -191,10 +191,10 @@
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
-                      <Component id="pnlMenu" max="32767" attributes="0"/>
-                      <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                      <Component id="pnlMenu" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="49" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -218,82 +218,80 @@
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
+                          <Component id="lblMenu" min="-2" pref="724" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="83" pref="83" max="-2" attributes="0"/>
+                          <Component id="btnCadastrarFuncionario" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="83" pref="83" max="-2" attributes="0"/>
+                          <Component id="btnListarFuncionarios" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
+                          <Component id="pnlDivisoria1" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="40" pref="40" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="lblMenu" max="32767" attributes="0"/>
                               <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" attributes="0">
-                                          <Component id="pnlDivisoria1" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace pref="26" max="32767" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
-                                                  <Component id="btnListarCurriculos" alignment="0" max="32767" attributes="0"/>
-                                                  <Component id="btnImprimirRelatorioAvaliacaoProdutividade" alignment="0" max="32767" attributes="0"/>
-                                                  <Component id="btnAvaliarPerformance" alignment="0" max="32767" attributes="0"/>
-                                              </Group>
-                                              <Component id="btnListarAdicionais" alignment="1" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                      </Group>
-                                      <Group type="102" attributes="0">
-                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                          <Component id="btnCadastrarFuncionario" min="-2" max="-2" attributes="0"/>
-                                      </Group>
+                                      <Component id="btnAvaliarPerformance" min="-2" max="-2" attributes="0"/>
+                                      <Component id="btnImprimirRelatorioAvaliacaoProdutividade" min="-2" max="-2" attributes="0"/>
+                                      <Component id="btnListarAdicionais" min="-2" max="-2" attributes="0"/>
+                                      <Component id="btnListarCurriculos" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="pnlDivisoria" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="btnImprimirRelatorioPonto" min="-2" max="-2" attributes="0"/>
-                                      <Component id="btnListarPagamentos" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="btnImprimirRelatorioFuncionario" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="btnListarFuncionarios" min="-2" max="-2" attributes="0"/>
-                                      <Component id="btnListarDescontos" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="83" pref="83" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="btnImprimirRelatorioFuncionario" max="32767" attributes="0"/>
+                                      <Component id="btnImprimirRelatorioPonto" max="32767" attributes="0"/>
+                                      <Component id="btnListarDescontos" max="32767" attributes="0"/>
+                                      <Component id="btnListarPagamentos" max="32767" attributes="0"/>
                                   </Group>
-                                  <EmptySpace pref="37" max="32767" attributes="0"/>
-                                  <Component id="pnlDivisoria2" min="-2" max="-2" attributes="0"/>
                               </Group>
+                              <Component id="btnListarAvaliacaoPerformance" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
+                          <Component id="pnlDivisoria2" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-                          <Component id="lblMenu" pref="104" max="32767" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
+                          <Component id="lblMenu" min="-2" pref="69" max="-2" attributes="0"/>
+                          <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="btnCadastrarFuncionario" min="-2" pref="53" max="-2" attributes="0"/>
+                              <Component id="btnListarFuncionarios" min="-2" pref="53" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="pnlDivisoria1" alignment="1" min="-2" max="-2" attributes="0"/>
                               <Group type="102" attributes="0">
-                                  <Component id="btnListarFuncionarios" min="-2" pref="53" max="-2" attributes="0"/>
+                                  <Component id="btnAvaliarPerformance" min="-2" pref="53" max="-2" attributes="0"/>
+                                  <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
+                                  <Component id="btnImprimirRelatorioAvaliacaoProdutividade" min="-2" pref="53" max="-2" attributes="0"/>
+                                  <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
+                                  <Component id="btnListarAdicionais" min="-2" pref="53" max="-2" attributes="0"/>
+                                  <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
+                                  <Component id="btnListarCurriculos" min="-2" pref="53" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="btnListarAvaliacaoPerformance" min="-2" pref="53" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" attributes="0">
                                   <Component id="btnImprimirRelatorioFuncionario" min="-2" pref="53" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
                                   <Component id="btnImprimirRelatorioPonto" min="-2" pref="53" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
                                   <Component id="btnListarDescontos" min="-2" pref="53" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
                                   <Component id="btnListarPagamentos" min="-2" pref="53" max="-2" attributes="0"/>
                               </Group>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="pnlDivisoria1" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <EmptySpace min="17" pref="17" max="-2" attributes="0"/>
                                   <Component id="pnlDivisoria2" alignment="1" min="-2" max="-2" attributes="0"/>
-                                  <Group type="102" attributes="0">
-                                      <Component id="btnCadastrarFuncionario" min="-2" pref="53" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="btnAvaliarPerformance" min="-2" pref="53" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="btnImprimirRelatorioAvaliacaoProdutividade" min="-2" pref="53" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="btnListarAdicionais" min="-2" pref="53" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="btnListarCurriculos" min="-2" pref="53" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Component id="pnlDivisoria" alignment="1" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -553,26 +551,6 @@
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnListarAdicionaisActionPerformed"/>
                   </Events>
                 </Component>
-                <Container class="javax.swing.JPanel" name="pnlDivisoria">
-                  <Properties>
-                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                    </Property>
-                  </Properties>
-
-                  <Layout>
-                    <DimensionLayout dim="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <EmptySpace min="0" pref="71" max="32767" attributes="0"/>
-                      </Group>
-                    </DimensionLayout>
-                    <DimensionLayout dim="1">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <EmptySpace min="0" pref="398" max="32767" attributes="0"/>
-                      </Group>
-                    </DimensionLayout>
-                  </Layout>
-                </Container>
                 <Component class="javax.swing.JButton" name="btnListarFuncionarios">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -648,7 +626,7 @@
                     </DimensionLayout>
                   </Layout>
                 </Container>
-                <Component class="javax.swing.JButton" name="btnListarCurriculos">
+                <Component class="javax.swing.JButton" name="btnListarAvaliacaoPerformance">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="23" green="13" red="47" type="rgb"/>
@@ -662,7 +640,7 @@
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/imagens/listar-curriculos-32x32.png"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="LISTAR CURR&#xcd;CULOS"/>
+                    <Property name="text" type="java.lang.String" value="LISTAR AVALIA&#xc7;&#xd5;ES DE PERFORMANCE"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                         <LineBorder roundedCorners="true" thickness="2"/>
@@ -680,7 +658,7 @@
                     </Property>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnListarCurriculosActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnListarAvaliacaoPerformanceActionPerformed"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="btnListarPagamentos">
@@ -716,6 +694,41 @@
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnListarPagamentosActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JButton" name="btnListarCurriculos">
+                  <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="23" green="13" red="47" type="rgb"/>
+                    </Property>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="fonteMenor" type="code"/>
+                    </Property>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                    </Property>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/imagens/listar-curriculos-32x32.png"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="LISTAR CURR&#xcd;CULOS"/>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                        <LineBorder roundedCorners="true" thickness="2"/>
+                      </Border>
+                    </Property>
+                    <Property name="horizontalAlignment" type="int" value="2"/>
+                    <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                      <Dimension value="[245, 64]"/>
+                    </Property>
+                    <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                      <Dimension value="[245, 64]"/>
+                    </Property>
+                    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                      <Dimension value="[245, 64]"/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnListarCurriculosActionPerformed"/>
                   </Events>
                 </Component>
               </SubComponents>

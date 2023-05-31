@@ -305,9 +305,9 @@ public class TelaDeListarDescontos extends javax.swing.JFrame {
     
     private void buscarDescontos(String busca) {
         try {
-            if (descontos.isEmpty()) {
-                descontos = facade.getAllDescontos();
-            }
+
+            descontos = facade.getAllDescontos();
+            
             DefaultTableModel modelo = (DefaultTableModel) tblDescontos.getModel();
             modelo.setNumRows(0);
             
@@ -332,6 +332,11 @@ public class TelaDeListarDescontos extends javax.swing.JFrame {
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
         try {
             int linha = tblDescontos.getSelectedRow();
+            if(linha == -1){
+            JOptionPane.showMessageDialog(null, "Nenhuma linha da tabela selecionada: ",
+                "Nenhuma linha da tabela selecionada!",JOptionPane.ERROR_MESSAGE);
+            return ;
+            }
             Long id = (Long) tblDescontos.getValueAt(linha, 0);
             facade.deleteDesconto(facade.findDescontoById(id));
             exibirDados();
@@ -344,6 +349,11 @@ public class TelaDeListarDescontos extends javax.swing.JFrame {
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
          try {
             int linha = tblDescontos.getSelectedRow();
+            if(linha == -1){
+            JOptionPane.showMessageDialog(null, "Nenhuma linha da tabela selecionada: ",
+                "Nenhuma linha da tabela selecionada!",JOptionPane.ERROR_MESSAGE);
+            return ;
+            }
             Long id = (Long) tblDescontos.getValueAt(linha, 0);
             telaEditarDesconto.setDesconto(facade.findDescontoById(id));
             telaEditarDesconto.setVisible(true);

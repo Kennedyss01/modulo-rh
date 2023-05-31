@@ -2,20 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package br.com.ifba.modulorh.adicionais.view;
+package br.com.ifba.modulorh.avaliacaoperformance.view;
 
-import br.com.ifba.modulorh.adicionais.model.Adicional;
+import br.com.ifba.modulorh.avaliacaoperformance.model.AvaliacaoPerformance;
 import br.com.ifba.modulorh.homescreen.TelaHomescreenGestor;
 import br.com.ifba.modulorh.infrastructure.service.IFacade;
-import java.awt.Font;
-import java.awt.FontFormatException;
-import java.io.File;
-import java.io.IOException;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
-import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,29 +20,21 @@ import org.springframework.stereotype.Component;
  * @author Kaio
  */
 @Component
-public class TelaDeListarAdicionais extends javax.swing.JFrame {
+public class TelaListarAvaliacaoDePerformance extends javax.swing.JFrame {
 
-    Font fonteMaior;
-    Font fonteNormal;
-    ImageIcon icone = new ImageIcon("./src/main/resources/imagens/rh.png");
-    
     @Autowired
     private IFacade facade;
     @Autowired @Lazy
-    private TelaCadastroAdicional telaCadastroAdicional;
+    private TelaHomescreenGestor telaHomescreenGestor;    
     @Autowired @Lazy
-    private TelaEditarAdicionais telaEditarAdicionais;
+    private TelaCadastroAvaliacaoDePerformanceUm telaCadastroAvaliacaoDePerformanceUm;
     @Autowired @Lazy
-    private TelaHomescreenGestor telaHomescreenGestor;
-    private List<Adicional> adicionais;
-    
-    public TelaDeListarAdicionais() throws FontFormatException, IOException {
-        this.fonteMaior = Font.createFont(Font.TRUETYPE_FONT,
-                new File("./src/main/resources/fontes/Poppins/Poppins-Bold.ttf"))
-                .deriveFont(Font.PLAIN, 28);
-        this.fonteNormal = Font.createFont(Font.TRUETYPE_FONT,
-                new File("./src/main/resources/fontes/Poppins/Poppins-Regular.ttf"))
-                .deriveFont(Font.PLAIN, 16);
+    private TelaEditarAvaliacaoDePerformanceUm telaEditarAvaliacaoDePerformanceUm;
+    @Autowired @Lazy
+    private TelaExpandir telaExpandir;
+    private List<AvaliacaoPerformance> avaliacoes;
+            
+    public TelaListarAvaliacaoDePerformance() {
         initComponents();
         setLocationRelativeTo(null);
     }
@@ -67,21 +52,19 @@ public class TelaDeListarAdicionais extends javax.swing.JFrame {
         pnlLateral = new javax.swing.JPanel();
         lblModuloRH = new javax.swing.JLabel();
         btnInicio = new javax.swing.JButton();
-        pnlLogin = new javax.swing.JPanel();
-        lblAdicionaisExistentes = new javax.swing.JLabel();
+        pnlAvaliacoesDePerformance = new javax.swing.JPanel();
+        lblAvaliacoesDePerformanceExistentes = new javax.swing.JLabel();
         btnCadastrar = new javax.swing.JButton();
         btnExcluir = new javax.swing.JButton();
         btnEditar = new javax.swing.JButton();
         pnlTextFields = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblAdicionais = new javax.swing.JTable();
+        tblAvaliacoesDePerformance = new javax.swing.JTable();
         btnBuscar = new javax.swing.JButton();
-        txtNomeDoFuncionario = new javax.swing.JTextField();
+        txtAvaliacaoDePerformance = new javax.swing.JTextField();
+        btnExpandir = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Listar Adicionais");
-        setIconImage(icone.getImage());
-        setResizable(false);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         pnlContainer.setBackground(new java.awt.Color(255, 255, 255));
         pnlContainer.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
@@ -92,12 +75,10 @@ public class TelaDeListarAdicionais extends javax.swing.JFrame {
         pnlLateral.setBackground(new java.awt.Color(26, 81, 107));
         pnlLateral.setMinimumSize(new java.awt.Dimension(293, 595));
 
-        lblModuloRH.setFont(fonteMaior);
         lblModuloRH.setForeground(new java.awt.Color(255, 255, 255));
         lblModuloRH.setText("MÓDULO RH");
 
         btnInicio.setBackground(new java.awt.Color(26, 81, 107));
-        btnInicio.setFont(fonteNormal);
         btnInicio.setForeground(new java.awt.Color(255, 255, 255));
         btnInicio.setText("Inicio");
         btnInicio.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 2, true));
@@ -137,17 +118,15 @@ public class TelaDeListarAdicionais extends javax.swing.JFrame {
                 .addGap(41, 41, 41))
         );
 
-        pnlLogin.setBackground(new java.awt.Color(255, 255, 255));
-        pnlLogin.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 4, true));
-        pnlLogin.setMaximumSize(new java.awt.Dimension(388, 340));
-        pnlLogin.setPreferredSize(new java.awt.Dimension(388, 340));
+        pnlAvaliacoesDePerformance.setBackground(new java.awt.Color(255, 255, 255));
+        pnlAvaliacoesDePerformance.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 4, true));
+        pnlAvaliacoesDePerformance.setMaximumSize(new java.awt.Dimension(388, 340));
+        pnlAvaliacoesDePerformance.setPreferredSize(new java.awt.Dimension(388, 340));
 
-        lblAdicionaisExistentes.setFont(fonteMaior);
-        lblAdicionaisExistentes.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblAdicionaisExistentes.setText("Adicionais Existentes");
+        lblAvaliacoesDePerformanceExistentes.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblAvaliacoesDePerformanceExistentes.setText("Avaliações de performance Existentes");
 
         btnCadastrar.setBackground(new java.awt.Color(71, 19, 35));
-        btnCadastrar.setFont(fonteNormal);
         btnCadastrar.setForeground(new java.awt.Color(255, 255, 255));
         btnCadastrar.setText("Cadastrar");
         btnCadastrar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
@@ -164,7 +143,6 @@ public class TelaDeListarAdicionais extends javax.swing.JFrame {
         });
 
         btnExcluir.setBackground(new java.awt.Color(71, 19, 35));
-        btnExcluir.setFont(fonteNormal);
         btnExcluir.setForeground(new java.awt.Color(255, 255, 255));
         btnExcluir.setText("Excluir");
         btnExcluir.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
@@ -181,7 +159,6 @@ public class TelaDeListarAdicionais extends javax.swing.JFrame {
         });
 
         btnEditar.setBackground(new java.awt.Color(71, 19, 35));
-        btnEditar.setFont(fonteNormal);
         btnEditar.setForeground(new java.awt.Color(255, 255, 255));
         btnEditar.setText("Editar");
         btnEditar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
@@ -202,7 +179,7 @@ public class TelaDeListarAdicionais extends javax.swing.JFrame {
         pnlTextFields.setPreferredSize(new java.awt.Dimension(360, 130));
         pnlTextFields.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        tblAdicionais.setModel(new javax.swing.table.DefaultTableModel(
+        tblAvaliacoesDePerformance.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -210,15 +187,14 @@ public class TelaDeListarAdicionais extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "ID", "Nome", "Valor", "Tipo"
+                "ID", "Nome", "Nota Geral", "Data"
             }
         ));
-        jScrollPane1.setViewportView(tblAdicionais);
+        jScrollPane1.setViewportView(tblAvaliacoesDePerformance);
 
         pnlTextFields.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 510, 350));
 
         btnBuscar.setBackground(new java.awt.Color(71, 19, 35));
-        btnBuscar.setFont(fonteNormal);
         btnBuscar.setForeground(new java.awt.Color(255, 255, 255));
         btnBuscar.setText("Buscar");
         btnBuscar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
@@ -235,47 +211,66 @@ public class TelaDeListarAdicionais extends javax.swing.JFrame {
         });
         pnlTextFields.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 10, 110, -1));
 
-        txtNomeDoFuncionario.setText("Nome do funcionário");
-        txtNomeDoFuncionario.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtAvaliacaoDePerformance.setText("Nome do Funcionário");
+        txtAvaliacaoDePerformance.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtNomeDoFuncionarioKeyPressed(evt);
+                txtAvaliacaoDePerformanceKeyPressed(evt);
             }
         });
-        pnlTextFields.add(txtNomeDoFuncionario, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, 390, 40));
+        pnlTextFields.add(txtAvaliacaoDePerformance, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, 390, 40));
 
-        javax.swing.GroupLayout pnlLoginLayout = new javax.swing.GroupLayout(pnlLogin);
-        pnlLogin.setLayout(pnlLoginLayout);
-        pnlLoginLayout.setHorizontalGroup(
-            pnlLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlLoginLayout.createSequentialGroup()
-                .addGroup(pnlLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblAdicionaisExistentes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(pnlLoginLayout.createSequentialGroup()
+        btnExpandir.setBackground(new java.awt.Color(71, 19, 35));
+        btnExpandir.setForeground(new java.awt.Color(255, 255, 255));
+        btnExpandir.setText("Expandir");
+        btnExpandir.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        btnExpandir.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnExpandir.setFocusPainted(false);
+        btnExpandir.setFocusable(false);
+        btnExpandir.setMaximumSize(new java.awt.Dimension(266, 40));
+        btnExpandir.setMinimumSize(new java.awt.Dimension(266, 40));
+        btnExpandir.setPreferredSize(new java.awt.Dimension(266, 40));
+        btnExpandir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExpandirActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pnlAvaliacoesDePerformanceLayout = new javax.swing.GroupLayout(pnlAvaliacoesDePerformance);
+        pnlAvaliacoesDePerformance.setLayout(pnlAvaliacoesDePerformanceLayout);
+        pnlAvaliacoesDePerformanceLayout.setHorizontalGroup(
+            pnlAvaliacoesDePerformanceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlAvaliacoesDePerformanceLayout.createSequentialGroup()
+                .addGroup(pnlAvaliacoesDePerformanceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblAvaliacoesDePerformanceExistentes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(pnlAvaliacoesDePerformanceLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(pnlLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(pnlAvaliacoesDePerformanceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(pnlTextFields, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(pnlLoginLayout.createSequentialGroup()
+                            .addGroup(pnlAvaliacoesDePerformanceLayout.createSequentialGroup()
                                 .addGap(42, 42, 42)
-                                .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(28, 28, 28)
-                                .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
-                                .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(26, 26, 26)))))
+                                .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(37, 37, 37)
+                                .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                                .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(36, 36, 36)
+                                .addComponent(btnExpandir, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(20, 20, 20)))))
                 .addContainerGap())
         );
-        pnlLoginLayout.setVerticalGroup(
-            pnlLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlLoginLayout.createSequentialGroup()
+        pnlAvaliacoesDePerformanceLayout.setVerticalGroup(
+            pnlAvaliacoesDePerformanceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlAvaliacoesDePerformanceLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addComponent(lblAdicionaisExistentes, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblAvaliacoesDePerformanceExistentes, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pnlTextFields, javax.swing.GroupLayout.DEFAULT_SIZE, 444, Short.MAX_VALUE)
+                .addComponent(pnlTextFields, javax.swing.GroupLayout.DEFAULT_SIZE, 458, Short.MAX_VALUE)
                 .addGap(4, 4, 4)
-                .addGroup(pnlLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pnlAvaliacoesDePerformanceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnExpandir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(36, 36, 36))
         );
 
@@ -286,7 +281,7 @@ public class TelaDeListarAdicionais extends javax.swing.JFrame {
             .addGroup(pnlContainerLayout.createSequentialGroup()
                 .addComponent(pnlLateral, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pnlLogin, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
+                .addComponent(pnlAvaliacoesDePerformance, javax.swing.GroupLayout.DEFAULT_SIZE, 593, Short.MAX_VALUE)
                 .addContainerGap())
         );
         pnlContainerLayout.setVerticalGroup(
@@ -294,7 +289,7 @@ public class TelaDeListarAdicionais extends javax.swing.JFrame {
             .addComponent(pnlLateral, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlContainerLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(pnlLogin, javax.swing.GroupLayout.DEFAULT_SIZE, 584, Short.MAX_VALUE)
+                .addComponent(pnlAvaliacoesDePerformance, javax.swing.GroupLayout.DEFAULT_SIZE, 598, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -312,57 +307,80 @@ public class TelaDeListarAdicionais extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioActionPerformed
+        this.setVisible(false);
+        telaHomescreenGestor.setVisible(true);
+    }//GEN-LAST:event_btnInicioActionPerformed
+
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
         this.setVisible(false);
-        telaCadastroAdicional.setVisible(true);
+        telaCadastroAvaliacaoDePerformanceUm.setVisible(true);
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
         try{
-            int linha = tblAdicionais.getSelectedRow();
+            int linha = tblAvaliacoesDePerformance.getSelectedRow();
             if(linha == -1){
             JOptionPane.showMessageDialog(null, "Nenhuma linha da tabela selecionada: ",
                 "Nenhuma linha da tabela selecionada!",JOptionPane.ERROR_MESSAGE);
             return ;
             }
-            Adicional adicional = new Adicional();
-            Long id = (Long) tblAdicionais.getValueAt(linha, 0);
-            adicional.setId(id);
-            facade.deleteAdicional(adicional);
+            AvaliacaoPerformance avaliacaoPerformance = new AvaliacaoPerformance();
+            Long id = (Long) tblAvaliacoesDePerformance.getValueAt(linha, 0);
+            avaliacaoPerformance.setId(id);
+            facade.deleteAvaliacaoPerformance(avaliacaoPerformance);
             this.exibirDados();
         }catch(Exception e){
-            JOptionPane.showMessageDialog(null, "Erro ao Excluir no banco: " + e.getMessage(), 
-                    "Erro ao Excluir no banco de dados!",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Erro ao Excluir no banco: " + e.getMessage(),
+                "Erro ao Excluir no banco de dados!",JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-        int linha = tblAdicionais.getSelectedRow();
+        int linha = tblAvaliacoesDePerformance.getSelectedRow();
         if(linha == -1){
             JOptionPane.showMessageDialog(null, "Nenhuma linha da tabela selecionada: ",
                 "Nenhuma linha da tabela selecionada!",JOptionPane.ERROR_MESSAGE);
             return ;
         }
-        Long id = (Long) tblAdicionais.getValueAt(linha, 0);
-        Adicional adicional = facade.findById(id);
-        telaEditarAdicionais.passandoDados(adicional);
+        Long id = (Long) tblAvaliacoesDePerformance.getValueAt(linha, 0);
+        AvaliacaoPerformance avaliacaoPerformance = facade.findByAvaliacaoPerformanceId(id);
+        telaEditarAvaliacaoDePerformanceUm.passandoDados(avaliacaoPerformance);
         this.setVisible(false);
-        telaEditarAdicionais.setVisible(true);
+        telaEditarAvaliacaoDePerformanceUm.setVisible(true);
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnBuscarActionPerformed
 
-    private void btnInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioActionPerformed
-        this.setVisible(false);
-        telaHomescreenGestor.setVisible(true);
-    }//GEN-LAST:event_btnInicioActionPerformed
+    private void btnExpandirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExpandirActionPerformed
+        try{
+            int linha = tblAvaliacoesDePerformance.getSelectedRow();
+            
+            if(linha == -1){
+                JOptionPane.showMessageDialog(null, "Nenhuma linha da tabela selecionada: ",
+                "Nenhuma linha da tabela selecionada!",JOptionPane.ERROR_MESSAGE);
+                return ;
+            }
+            Long id = (Long) tblAvaliacoesDePerformance.getValueAt(linha, 0);
+            telaExpandir.setVisible(true);
+            AvaliacaoPerformance avaliacaoPerformance = facade.findByAvaliacaoPerformanceId(id);
+            telaExpandir.passandoDados(avaliacaoPerformance);
+            this.setVisible(false);
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Erro ao selecionar a linha da tabela: " + e.getMessage(),
+                "Erro ao selecionar o funcionario na tabela!",JOptionPane.ERROR_MESSAGE);
+        }
+        
+        
+        
+    }//GEN-LAST:event_btnExpandirActionPerformed
 
-    private void txtNomeDoFuncionarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNomeDoFuncionarioKeyPressed
-        String busca = txtNomeDoFuncionario.getText().trim().toLowerCase();
+    private void txtAvaliacaoDePerformanceKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAvaliacaoDePerformanceKeyPressed
+        String busca = txtAvaliacaoDePerformance.getText().trim().toLowerCase();;
         buscarAvaliacoes(busca);
-    }//GEN-LAST:event_txtNomeDoFuncionarioKeyPressed
+    }//GEN-LAST:event_txtAvaliacaoDePerformanceKeyPressed
 
     /**
      * @param args the command line arguments
@@ -381,26 +399,20 @@ public class TelaDeListarAdicionais extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaDeListarAdicionais.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaListarAvaliacaoDePerformance.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaDeListarAdicionais.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaListarAvaliacaoDePerformance.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaDeListarAdicionais.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaListarAvaliacaoDePerformance.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaDeListarAdicionais.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaListarAvaliacaoDePerformance.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                try {
-                    new TelaDeListarAdicionais().setVisible(true);
-                } catch (FontFormatException ex) {
-                    Logger.getLogger(TelaDeListarAdicionais.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (IOException ex) {
-                    Logger.getLogger(TelaDeListarAdicionais.class.getName()).log(Level.SEVERE, null, ex);
-                } 
+                new TelaListarAvaliacaoDePerformance().setVisible(true);
             }
         });
     }
@@ -410,49 +422,47 @@ public class TelaDeListarAdicionais extends javax.swing.JFrame {
     private javax.swing.JButton btnCadastrar;
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnExcluir;
+    private javax.swing.JButton btnExpandir;
     private javax.swing.JButton btnInicio;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lblAdicionaisExistentes;
+    private javax.swing.JLabel lblAvaliacoesDePerformanceExistentes;
     private javax.swing.JLabel lblModuloRH;
+    private javax.swing.JPanel pnlAvaliacoesDePerformance;
     private javax.swing.JPanel pnlContainer;
     private javax.swing.JPanel pnlLateral;
-    private javax.swing.JPanel pnlLogin;
     private javax.swing.JPanel pnlTextFields;
-    private javax.swing.JTable tblAdicionais;
-    private javax.swing.JTextField txtNomeDoFuncionario;
+    private javax.swing.JTable tblAvaliacoesDePerformance;
+    private javax.swing.JTextField txtAvaliacaoDePerformance;
     // End of variables declaration//GEN-END:variables
 
     @PostConstruct
     public void exibirDados(){
         setLocationRelativeTo(null);
-        List<Adicional> lista = facade.getAllAdicional();
-        DefaultTableModel modelo = (DefaultTableModel) tblAdicionais.getModel();
+        List<AvaliacaoPerformance> lista = facade.getAllAvaliacaoPerformance();
+        DefaultTableModel modelo = (DefaultTableModel) tblAvaliacoesDePerformance.getModel();
         modelo.setNumRows(0);
-        for(Adicional lis: lista){
-            modelo.addRow(new Object [] {lis.getId(), lis.getNome(), lis.getValorPercentual(), lis.getTipo()});
+        for(AvaliacaoPerformance lis: lista){
+            modelo.addRow(new Object [] {lis.getId(), lis.getNomeFuncionario(), lis.getNotaGeral(), lis.getDataDaAvaliacao()});
         }
     }
-
-    private void buscarAvaliacoes(String busca) {
-        try{
+    
+        private void buscarAvaliacoes(String busca) {
+        try {
             
-            adicionais = facade.getAllAdicional();
-            DefaultTableModel modelo = (DefaultTableModel) tblAdicionais.getModel();
+            avaliacoes = facade.getAllAvaliacaoPerformance();
+
+            DefaultTableModel modelo = (DefaultTableModel) tblAvaliacoesDePerformance.getModel();
             modelo.setNumRows(0);
             
-            for (Adicional adicional: adicionais) {
-                if (adicional.getNome().toLowerCase().contains(busca)) {
-                    modelo.addRow(new Object [] {adicional.getId(), adicional.getNome(), 
-                        adicional.getValorPercentual(), adicional.getTipo()});
+            for (AvaliacaoPerformance avaliacao: avaliacoes) {
+                if (avaliacao.getNomeFuncionario().toLowerCase().contains(busca)) {
+                    modelo.addRow(new Object [] {avaliacao.getId(), avaliacao.getNomeFuncionario(), 
+                        avaliacao.getNotaGeral(), avaliacao.getDataDaAvaliacao()});
                 }
             }
-        }catch(Exception e) {
+        } catch(Exception e) {
                JOptionPane.showMessageDialog(null, "Erro ao buscar dados: " + e.getMessage(), 
                     "Erro ao consultar no banco de dados!",JOptionPane.ERROR_MESSAGE);
         }
     }
-    
 }
-
-
-
