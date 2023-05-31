@@ -40,6 +40,7 @@ public class TelaDeListarCurriculo extends javax.swing.JFrame {
     private TelaEditarCurriculo telaEditarCurriculo;
     @Autowired @Lazy
     private TelaHomescreenGestor telaHomescreenGestor;
+    private List<Curriculo> curriculos;
     
     ImageIcon icone = new ImageIcon("./src/main/resources/imagens/rh.png");
     
@@ -52,6 +53,46 @@ public class TelaDeListarCurriculo extends javax.swing.JFrame {
                 .deriveFont(Font.PLAIN, 16);
         initComponents();
         setLocationRelativeTo(null);
+    }
+    
+    private void buscarCurriculoNome(String busca) {
+        try {
+
+            curriculos = facade.getAllCurriculo();
+            
+            DefaultTableModel modelo = (DefaultTableModel) tblCurriculos.getModel();
+            modelo.setNumRows(0);
+            
+            for (Curriculo curriculo: curriculos) {
+                if (curriculo.getNome().toLowerCase().contains(busca)) {
+                    modelo.addRow(new Object [] {curriculo.getId(), curriculo.getNome(), 
+                        curriculo.getVaga()});
+                }
+            }
+        } catch(Exception e) {
+               JOptionPane.showMessageDialog(null, "Erro ao buscar dados: " + e.getMessage(), 
+                    "Erro ao consultar no banco de dados!",JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    private void buscarCurriculoVaga(String busca) {
+        try {
+
+            curriculos = facade.getAllCurriculo();
+            
+            DefaultTableModel modelo = (DefaultTableModel) tblCurriculos.getModel();
+            modelo.setNumRows(0);
+            
+            for (Curriculo curriculo: curriculos) {
+                if (curriculo.getVaga().toLowerCase().contains(busca)) {
+                    modelo.addRow(new Object [] {curriculo.getId(), curriculo.getNome(), 
+                        curriculo.getVaga()});
+                }
+            }
+        } catch(Exception e) {
+               JOptionPane.showMessageDialog(null, "Erro ao buscar dados: " + e.getMessage(), 
+                    "Erro ao consultar no banco de dados!",JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     /**
@@ -74,9 +115,11 @@ public class TelaDeListarCurriculo extends javax.swing.JFrame {
         btnEditar = new javax.swing.JButton();
         pnlTextFields = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        btnBuscar = new javax.swing.JButton();
+        tblCurriculos = new javax.swing.JTable();
+        btnBuscarNome = new javax.swing.JButton();
         txtNome = new javax.swing.JTextField();
+        txtVaga = new javax.swing.JTextField();
+        btnBuscarVaga = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Listar Currículos");
@@ -202,7 +245,7 @@ public class TelaDeListarCurriculo extends javax.swing.JFrame {
         pnlTextFields.setPreferredSize(new java.awt.Dimension(360, 130));
         pnlTextFields.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblCurriculos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -213,27 +256,27 @@ public class TelaDeListarCurriculo extends javax.swing.JFrame {
                 "ID", "Nome", "Vaga"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblCurriculos);
 
-        pnlTextFields.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 510, 350));
+        pnlTextFields.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, 510, 310));
 
-        btnBuscar.setBackground(new java.awt.Color(71, 19, 35));
-        btnBuscar.setFont(fonteNormal);
-        btnBuscar.setForeground(new java.awt.Color(255, 255, 255));
-        btnBuscar.setText("Buscar");
-        btnBuscar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        btnBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnBuscar.setFocusPainted(false);
-        btnBuscar.setFocusable(false);
-        btnBuscar.setMaximumSize(new java.awt.Dimension(266, 40));
-        btnBuscar.setMinimumSize(new java.awt.Dimension(266, 40));
-        btnBuscar.setPreferredSize(new java.awt.Dimension(266, 40));
-        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+        btnBuscarNome.setBackground(new java.awt.Color(71, 19, 35));
+        btnBuscarNome.setFont(fonteNormal);
+        btnBuscarNome.setForeground(new java.awt.Color(255, 255, 255));
+        btnBuscarNome.setText("Buscar");
+        btnBuscarNome.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        btnBuscarNome.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnBuscarNome.setFocusPainted(false);
+        btnBuscarNome.setFocusable(false);
+        btnBuscarNome.setMaximumSize(new java.awt.Dimension(266, 40));
+        btnBuscarNome.setMinimumSize(new java.awt.Dimension(266, 40));
+        btnBuscarNome.setPreferredSize(new java.awt.Dimension(266, 40));
+        btnBuscarNome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscarActionPerformed(evt);
+                btnBuscarNomeActionPerformed(evt);
             }
         });
-        pnlTextFields.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 10, 110, -1));
+        pnlTextFields.add(btnBuscarNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 10, 110, -1));
 
         txtNome.setText("Nome");
         txtNome.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -245,6 +288,35 @@ public class TelaDeListarCurriculo extends javax.swing.JFrame {
             }
         });
         pnlTextFields.add(txtNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, 390, 40));
+
+        txtVaga.setText("Vaga");
+        txtVaga.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtVagaFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtVagaFocusLost(evt);
+            }
+        });
+        pnlTextFields.add(txtVaga, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, 390, 40));
+
+        btnBuscarVaga.setBackground(new java.awt.Color(71, 19, 35));
+        btnBuscarVaga.setFont(fonteNormal);
+        btnBuscarVaga.setForeground(new java.awt.Color(255, 255, 255));
+        btnBuscarVaga.setText("Buscar");
+        btnBuscarVaga.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        btnBuscarVaga.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnBuscarVaga.setFocusPainted(false);
+        btnBuscarVaga.setFocusable(false);
+        btnBuscarVaga.setMaximumSize(new java.awt.Dimension(266, 40));
+        btnBuscarVaga.setMinimumSize(new java.awt.Dimension(266, 40));
+        btnBuscarVaga.setPreferredSize(new java.awt.Dimension(266, 40));
+        btnBuscarVaga.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarVagaActionPerformed(evt);
+            }
+        });
+        pnlTextFields.add(btnBuscarVaga, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 60, 110, -1));
 
         javax.swing.GroupLayout pnlLoginLayout = new javax.swing.GroupLayout(pnlLogin);
         pnlLogin.setLayout(pnlLoginLayout);
@@ -323,8 +395,8 @@ public class TelaDeListarCurriculo extends javax.swing.JFrame {
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
         try{
             Curriculo curriculo = new Curriculo();
-            int linha = jTable1.getSelectedRow();
-            Long id = (Long) jTable1.getValueAt(linha, 0);
+            int linha = tblCurriculos.getSelectedRow();
+            Long id = (Long) tblCurriculos.getValueAt(linha, 0);
             curriculo.setId(id);
             facade.deleteCurriculo(curriculo);
             this.exibirDados();
@@ -335,17 +407,18 @@ public class TelaDeListarCurriculo extends javax.swing.JFrame {
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-        int linha = jTable1.getSelectedRow();
-        Long id = (Long) jTable1.getValueAt(linha, 0);
+        int linha = tblCurriculos.getSelectedRow();
+        Long id = (Long) tblCurriculos.getValueAt(linha, 0);
         Curriculo curriculo = facade.findCurriculoById(id);
         telaEditarCurriculo.passandoDados(curriculo);
         this.setVisible(false);
         telaEditarCurriculo.setVisible(true);
     }//GEN-LAST:event_btnEditarActionPerformed
 
-    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnBuscarActionPerformed
+    private void btnBuscarNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarNomeActionPerformed
+        String busca = txtNome.getText().trim().toLowerCase();
+        buscarCurriculoNome(busca);
+    }//GEN-LAST:event_btnBuscarNomeActionPerformed
 
     private void btnInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioActionPerformed
         this.setVisible(false);
@@ -361,6 +434,21 @@ public class TelaDeListarCurriculo extends javax.swing.JFrame {
         if(txtNome.getText().trim().isEmpty())
             txtNome.setText("Nome");
     }//GEN-LAST:event_txtNomeFocusLost
+
+    private void txtVagaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtVagaFocusGained
+        if(txtVaga.getText().equals("Vaga"))
+            txtVaga.setText("");
+    }//GEN-LAST:event_txtVagaFocusGained
+
+    private void txtVagaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtVagaFocusLost
+        if(txtVaga.getText().trim().isEmpty())
+            txtVaga.setText("Vaga");
+    }//GEN-LAST:event_txtVagaFocusLost
+
+    private void btnBuscarVagaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarVagaActionPerformed
+        String busca = txtVaga.getText().trim().toLowerCase();
+        buscarCurriculoVaga(busca);
+    }//GEN-LAST:event_btnBuscarVagaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -407,27 +495,29 @@ public class TelaDeListarCurriculo extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnBuscarNome;
+    private javax.swing.JButton btnBuscarVaga;
     private javax.swing.JButton btnCadastrar;
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnInicio;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblCurriculosExistentes;
     private javax.swing.JLabel lblModuloRH;
     private javax.swing.JPanel pnlContainer;
     private javax.swing.JPanel pnlLateral;
     private javax.swing.JPanel pnlLogin;
     private javax.swing.JPanel pnlTextFields;
+    private javax.swing.JTable tblCurriculos;
     private javax.swing.JTextField txtNome;
+    private javax.swing.JTextField txtVaga;
     // End of variables declaration//GEN-END:variables
 
     @PostConstruct
     public void exibirDados(){
         setLocationRelativeTo(null);
         List<Curriculo> lista = facade.getAllCurriculo();
-        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+        DefaultTableModel modelo = (DefaultTableModel) tblCurriculos.getModel();
         modelo.setNumRows(0);
         for(Curriculo lis: lista){
             modelo.addRow(new Object [] {lis.getId(), lis.getNome(), lis.getVaga()});

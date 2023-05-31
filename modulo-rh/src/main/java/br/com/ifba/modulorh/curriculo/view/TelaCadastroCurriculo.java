@@ -5,6 +5,7 @@
 package br.com.ifba.modulorh.curriculo.view;
 
 import br.com.ifba.modulorh.curriculo.model.Curriculo;
+import br.com.ifba.modulorh.experienciaprofissional.view.TelaCadastroExperienciaProfissional;
 import br.com.ifba.modulorh.homescreen.TelaHomescreenGestor;
 import br.com.ifba.modulorh.infrastructure.service.IFacade;
 import java.awt.Font;
@@ -27,6 +28,8 @@ import org.springframework.stereotype.Component;
 public class TelaCadastroCurriculo extends javax.swing.JFrame {
     @Autowired @Lazy
     private TelaHomescreenGestor telaHomescreenGestor;
+    @Autowired @Lazy
+    private TelaCadastroExperienciaProfissional telaCadastroExperienciaProfissional;
     private Curriculo curriculo;
     @Autowired
     private IFacade facade;
@@ -283,14 +286,12 @@ public class TelaCadastroCurriculo extends javax.swing.JFrame {
         pnlCadastroCurriculoLayout.setHorizontalGroup(
             pnlCadastroCurriculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlCadastroCurriculoLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(pnlCadastroCurriculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlCadastroCurriculoLayout.createSequentialGroup()
-                        .addContainerGap()
                         .addComponent(pnlTextFields, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCadastroCurriculoLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(lblCadastroCurriculo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(lblCadastroCurriculo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         pnlCadastroCurriculoLayout.setVerticalGroup(
@@ -299,7 +300,7 @@ public class TelaCadastroCurriculo extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(lblCadastroCurriculo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pnlTextFields, javax.swing.GroupLayout.DEFAULT_SIZE, 410, Short.MAX_VALUE)
+                .addComponent(pnlTextFields, javax.swing.GroupLayout.DEFAULT_SIZE, 443, Short.MAX_VALUE)
                 .addGap(21, 21, 21))
         );
 
@@ -309,16 +310,16 @@ public class TelaCadastroCurriculo extends javax.swing.JFrame {
             pnlContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlContainerLayout.createSequentialGroup()
                 .addComponent(pnlLateral, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 129, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 120, Short.MAX_VALUE)
                 .addComponent(pnlCadastroCurriculo, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(100, 100, 100))
+                .addGap(109, 109, 109))
         );
         pnlContainerLayout.setVerticalGroup(
             pnlContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(pnlLateral, javax.swing.GroupLayout.DEFAULT_SIZE, 596, Short.MAX_VALUE)
             .addGroup(pnlContainerLayout.createSequentialGroup()
-                .addGap(61, 61, 61)
-                .addComponent(pnlCadastroCurriculo, javax.swing.GroupLayout.PREFERRED_SIZE, 467, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(44, 44, 44)
+                .addComponent(pnlCadastroCurriculo, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -417,7 +418,8 @@ public class TelaCadastroCurriculo extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     private void btnCadastrar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrar1ActionPerformed
-        // TODO add your handling code here:
+        this.setVisible(false);
+        telaCadastroExperienciaProfissional.setVisible(true);
     }//GEN-LAST:event_btnCadastrar1ActionPerformed
 
     /**

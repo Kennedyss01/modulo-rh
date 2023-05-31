@@ -41,7 +41,7 @@ public class TelaCadastroExperienciaProfissional extends javax.swing.JFrame {
     public TelaCadastroExperienciaProfissional() throws FontFormatException, IOException {
         this.fonteMaior = Font.createFont(Font.TRUETYPE_FONT,
                 new File("./src/main/resources/fontes/Poppins/Poppins-Bold.ttf"))
-                .deriveFont(Font.PLAIN, 28);
+                .deriveFont(Font.PLAIN, 20);
         this.fonteNormal = Font.createFont(Font.TRUETYPE_FONT,
                 new File("./src/main/resources/fontes/Poppins/Poppins-Regular.ttf"))
                 .deriveFont(Font.PLAIN, 16);
@@ -63,12 +63,12 @@ public class TelaCadastroExperienciaProfissional extends javax.swing.JFrame {
         lblModuloRH = new javax.swing.JLabel();
         btnInicio = new javax.swing.JButton();
         pnlCadastroCurriculo = new javax.swing.JPanel();
-        lblCadastroCurriculo = new javax.swing.JLabel();
+        lblAdicionarExperienciaProfissional = new javax.swing.JLabel();
         pnlTextFields = new javax.swing.JPanel();
         txtCargo = new javax.swing.JTextField();
         txtEmpresa = new javax.swing.JTextField();
         txtPeriodo = new javax.swing.JTextField();
-        btnCadastrar = new javax.swing.JButton();
+        btnAdicionar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro de Currículo");
@@ -135,9 +135,9 @@ public class TelaCadastroExperienciaProfissional extends javax.swing.JFrame {
         pnlCadastroCurriculo.setMaximumSize(new java.awt.Dimension(388, 340));
         pnlCadastroCurriculo.setPreferredSize(new java.awt.Dimension(388, 340));
 
-        lblCadastroCurriculo.setFont(fonteMaior);
-        lblCadastroCurriculo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblCadastroCurriculo.setText("Inserir Experiência Profissional");
+        lblAdicionarExperienciaProfissional.setFont(fonteMaior);
+        lblAdicionarExperienciaProfissional.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblAdicionarExperienciaProfissional.setText("Adicionar Experiência Profissional");
 
         pnlTextFields.setBackground(new java.awt.Color(255, 255, 255));
         pnlTextFields.setMaximumSize(new java.awt.Dimension(360, 130));
@@ -192,23 +192,23 @@ public class TelaCadastroExperienciaProfissional extends javax.swing.JFrame {
         });
         pnlTextFields.add(txtPeriodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, -1, 40));
 
-        btnCadastrar.setBackground(new java.awt.Color(71, 19, 35));
-        btnCadastrar.setFont(fonteNormal);
-        btnCadastrar.setForeground(new java.awt.Color(255, 255, 255));
-        btnCadastrar.setText("Cadastrar ");
-        btnCadastrar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        btnCadastrar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnCadastrar.setFocusPainted(false);
-        btnCadastrar.setFocusable(false);
-        btnCadastrar.setMaximumSize(new java.awt.Dimension(266, 40));
-        btnCadastrar.setMinimumSize(new java.awt.Dimension(266, 40));
-        btnCadastrar.setPreferredSize(new java.awt.Dimension(266, 40));
-        btnCadastrar.addActionListener(new java.awt.event.ActionListener() {
+        btnAdicionar.setBackground(new java.awt.Color(71, 19, 35));
+        btnAdicionar.setFont(fonteNormal);
+        btnAdicionar.setForeground(new java.awt.Color(255, 255, 255));
+        btnAdicionar.setText("Adicionar");
+        btnAdicionar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        btnAdicionar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnAdicionar.setFocusPainted(false);
+        btnAdicionar.setFocusable(false);
+        btnAdicionar.setMaximumSize(new java.awt.Dimension(266, 40));
+        btnAdicionar.setMinimumSize(new java.awt.Dimension(266, 40));
+        btnAdicionar.setPreferredSize(new java.awt.Dimension(266, 40));
+        btnAdicionar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCadastrarActionPerformed(evt);
+                btnAdicionarActionPerformed(evt);
             }
         });
-        pnlTextFields.add(btnCadastrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 180, -1, 40));
+        pnlTextFields.add(btnAdicionar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 180, -1, 40));
 
         javax.swing.GroupLayout pnlCadastroCurriculoLayout = new javax.swing.GroupLayout(pnlCadastroCurriculo);
         pnlCadastroCurriculo.setLayout(pnlCadastroCurriculoLayout);
@@ -220,14 +220,14 @@ public class TelaCadastroExperienciaProfissional extends javax.swing.JFrame {
                     .addGroup(pnlCadastroCurriculoLayout.createSequentialGroup()
                         .addComponent(pnlTextFields, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(lblCadastroCurriculo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(lblAdicionarExperienciaProfissional, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         pnlCadastroCurriculoLayout.setVerticalGroup(
             pnlCadastroCurriculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlCadastroCurriculoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblCadastroCurriculo)
+                .addComponent(lblAdicionarExperienciaProfissional)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnlTextFields, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
                 .addGap(21, 21, 21))
@@ -301,7 +301,7 @@ public class TelaCadastroExperienciaProfissional extends javax.swing.JFrame {
         telaCadastroCurriculo.setVisible(true);
     }//GEN-LAST:event_btnInicioActionPerformed
 
-    private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
+    private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarActionPerformed
         //experienciaprofissional = new ExperienciaProfissional(txtCargo.getText(), txtEmpresa.getText(), txtPeriodo.getText());
         
         
@@ -313,7 +313,7 @@ public class TelaCadastroExperienciaProfissional extends javax.swing.JFrame {
         }
         this.setVisible(false);
         this.telaCadastroCurriculo.setVisible(true);
-    }//GEN-LAST:event_btnCadastrarActionPerformed
+    }//GEN-LAST:event_btnAdicionarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -358,9 +358,9 @@ public class TelaCadastroExperienciaProfissional extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCadastrar;
+    private javax.swing.JButton btnAdicionar;
     private javax.swing.JButton btnInicio;
-    private javax.swing.JLabel lblCadastroCurriculo;
+    private javax.swing.JLabel lblAdicionarExperienciaProfissional;
     private javax.swing.JLabel lblModuloRH;
     private javax.swing.JPanel pnlCadastroCurriculo;
     private javax.swing.JPanel pnlContainer;
