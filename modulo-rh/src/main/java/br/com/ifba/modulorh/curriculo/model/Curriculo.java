@@ -1,10 +1,14 @@
 package br.com.ifba.modulorh.curriculo.model;
 
+import br.com.ifba.modulorh.experienciaprofissional.model.ExperienciaProfissional;
 import java.io.Serializable;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -26,20 +30,17 @@ public class Curriculo implements Serializable{
     private String email;
     private String vaga;
     private String formacaoAcademica;
-    private String experienciaProfissional;
     
-    public Curriculo (String nome, String endereco, String telefone, String email, String vaga, String formacaoAcademica, String experienciaProfissional){
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "curriculo")
+    private List<ExperienciaProfissional> experienciaProfissional;
+    
+    public Curriculo (String nome, String endereco, String telefone, String email, String vaga, String formacaoAcademica){
         this.nome = nome;
         this.endereco = endereco;
         this.telefone = telefone;
         this.vaga = vaga;
         this.email = email;
         this.formacaoAcademica = formacaoAcademica;
-        this.experienciaProfissional = experienciaProfissional;
-    }
-
-    public Curriculo get(int i) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-    
+        //this.experienciaProfissional = experienciaProfissional;
+    }    
 }

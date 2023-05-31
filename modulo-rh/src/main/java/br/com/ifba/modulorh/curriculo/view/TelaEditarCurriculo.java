@@ -58,7 +58,6 @@ public class TelaEditarCurriculo extends javax.swing.JFrame {
         txtEmail.setText(curriculo.getEmail());
         txtVaga.setText(curriculo.getVaga());
         txtFormacaoAcademica.setText(curriculo.getFormacaoAcademica());
-        txtExperienciaProfissional.setText(curriculo.getExperienciaProfissional());
         this.curriculo = curriculo;
     }
     
@@ -78,7 +77,6 @@ public class TelaEditarCurriculo extends javax.swing.JFrame {
         pnlEditarFuncionario = new javax.swing.JPanel();
         lblEditarFuncionario = new javax.swing.JLabel();
         pnlTextFields = new javax.swing.JPanel();
-        txtExperienciaProfissional = new javax.swing.JTextField();
         txtFormacaoAcademica = new javax.swing.JTextField();
         txtVaga = new javax.swing.JTextField();
         txtEmail = new javax.swing.JTextField();
@@ -159,22 +157,6 @@ public class TelaEditarCurriculo extends javax.swing.JFrame {
         pnlTextFields.setMaximumSize(new java.awt.Dimension(360, 130));
         pnlTextFields.setPreferredSize(new java.awt.Dimension(360, 130));
         pnlTextFields.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        txtExperienciaProfissional.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        txtExperienciaProfissional.setText("Experiência Profissional");
-        txtExperienciaProfissional.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        txtExperienciaProfissional.setMaximumSize(new java.awt.Dimension(320, 50));
-        txtExperienciaProfissional.setMinimumSize(new java.awt.Dimension(320, 50));
-        txtExperienciaProfissional.setPreferredSize(new java.awt.Dimension(320, 50));
-        txtExperienciaProfissional.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                txtExperienciaProfissionalFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtExperienciaProfissionalFocusLost(evt);
-            }
-        });
-        pnlTextFields.add(txtExperienciaProfissional, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, -1, 140));
 
         txtFormacaoAcademica.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         txtFormacaoAcademica.setText("Formação Acadêmica");
@@ -293,6 +275,7 @@ public class TelaEditarCurriculo extends javax.swing.JFrame {
                 btnEditarActionPerformed(evt);
             }
         });
+        pnlTextFields.add(btnEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 340, -1, 40));
 
         javax.swing.GroupLayout pnlEditarFuncionarioLayout = new javax.swing.GroupLayout(pnlEditarFuncionario);
         pnlEditarFuncionario.setLayout(pnlEditarFuncionarioLayout);
@@ -306,10 +289,6 @@ public class TelaEditarCurriculo extends javax.swing.JFrame {
                         .addComponent(pnlTextFields, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 8, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(pnlEditarFuncionarioLayout.createSequentialGroup()
-                .addGap(57, 57, 57)
-                .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlEditarFuncionarioLayout.setVerticalGroup(
             pnlEditarFuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -318,9 +297,7 @@ public class TelaEditarCurriculo extends javax.swing.JFrame {
                 .addComponent(lblEditarFuncionario)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnlTextFields, javax.swing.GroupLayout.PREFERRED_SIZE, 454, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(90, 90, 90))
         );
 
         javax.swing.GroupLayout pnlContainerLayout = new javax.swing.GroupLayout(pnlContainer);
@@ -360,16 +337,6 @@ public class TelaEditarCurriculo extends javax.swing.JFrame {
         this.setVisible(false);
         telaHomescreenGestor.setVisible(true);
     }//GEN-LAST:event_btnInicioActionPerformed
-
-    private void txtExperienciaProfissionalFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtExperienciaProfissionalFocusGained
-        if(txtExperienciaProfissional.getText().equals("Experiência Profissional"))
-        txtExperienciaProfissional.setText("");
-    }//GEN-LAST:event_txtExperienciaProfissionalFocusGained
-
-    private void txtExperienciaProfissionalFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtExperienciaProfissionalFocusLost
-        if(txtExperienciaProfissional.getText().trim().isEmpty())
-        txtExperienciaProfissional.setText("Experiência Profissional");
-    }//GEN-LAST:event_txtExperienciaProfissionalFocusLost
 
     private void txtFormacaoAcademicaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtFormacaoAcademicaFocusGained
         if(txtFormacaoAcademica.getText().equals("Formação Acadêmica"))
@@ -434,7 +401,7 @@ public class TelaEditarCurriculo extends javax.swing.JFrame {
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         try{
             Curriculo curriculoEditado = new Curriculo(txtNome.getText(), txtEndereco.getText(), txtTelefone.getText(), txtEmail.getText(),
-                txtVaga.getText(), txtFormacaoAcademica.getText(), txtExperienciaProfissional.getText());
+                txtVaga.getText(), txtFormacaoAcademica.getText());
 
             curriculoEditado.setId(curriculo.getId());
 
@@ -510,7 +477,6 @@ public class TelaEditarCurriculo extends javax.swing.JFrame {
     private javax.swing.JPanel pnlTextFields;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtEndereco;
-    private javax.swing.JTextField txtExperienciaProfissional;
     private javax.swing.JTextField txtFormacaoAcademica;
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtTelefone;

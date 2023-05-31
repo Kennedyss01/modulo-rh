@@ -2,10 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package br.com.ifba.modulorh.curriculo.view;
+package br.com.ifba.modulorh.experienciaprofissional.view;
 
-import br.com.ifba.modulorh.curriculo.model.Curriculo;
-import br.com.ifba.modulorh.homescreen.TelaHomescreenGestor;
+import br.com.ifba.modulorh.curriculo.view.*;
+import br.com.ifba.modulorh.experienciaprofissional.model.ExperienciaProfissional;
 import br.com.ifba.modulorh.infrastructure.service.IFacade;
 import java.awt.Font;
 import java.awt.FontFormatException;
@@ -24,10 +24,10 @@ import org.springframework.stereotype.Component;
  * @author Gislaine
  */
 @Component
-public class TelaCadastroCurriculo extends javax.swing.JFrame {
+public class TelaCadastroExperienciaProfissional extends javax.swing.JFrame {
     @Autowired @Lazy
-    private TelaHomescreenGestor telaHomescreenGestor;
-    private Curriculo curriculo;
+    private TelaCadastroCurriculo telaCadastroCurriculo;
+    private ExperienciaProfissional experienciaprofissional;
     @Autowired
     private IFacade facade;
     
@@ -38,7 +38,7 @@ public class TelaCadastroCurriculo extends javax.swing.JFrame {
     /**
      * Creates new form TelaCadastroCurriculo
      */
-    public TelaCadastroCurriculo() throws FontFormatException, IOException {
+    public TelaCadastroExperienciaProfissional() throws FontFormatException, IOException {
         this.fonteMaior = Font.createFont(Font.TRUETYPE_FONT,
                 new File("./src/main/resources/fontes/Poppins/Poppins-Bold.ttf"))
                 .deriveFont(Font.PLAIN, 28);
@@ -65,13 +65,9 @@ public class TelaCadastroCurriculo extends javax.swing.JFrame {
         pnlCadastroCurriculo = new javax.swing.JPanel();
         lblCadastroCurriculo = new javax.swing.JLabel();
         pnlTextFields = new javax.swing.JPanel();
-        txtNome = new javax.swing.JTextField();
-        txtEndereco = new javax.swing.JTextField();
-        txtTelefone = new javax.swing.JTextField();
-        txtVaga = new javax.swing.JTextField();
-        txtFormacaoAcademica = new javax.swing.JTextField();
-        txtEmail = new javax.swing.JTextField();
-        btnCadastrar1 = new javax.swing.JButton();
+        txtCargo = new javax.swing.JTextField();
+        txtEmpresa = new javax.swing.JTextField();
+        txtPeriodo = new javax.swing.JTextField();
         btnCadastrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -141,129 +137,65 @@ public class TelaCadastroCurriculo extends javax.swing.JFrame {
 
         lblCadastroCurriculo.setFont(fonteMaior);
         lblCadastroCurriculo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblCadastroCurriculo.setText("Cadastro de Currículo");
+        lblCadastroCurriculo.setText("Inserir Experiência Profissional");
 
         pnlTextFields.setBackground(new java.awt.Color(255, 255, 255));
         pnlTextFields.setMaximumSize(new java.awt.Dimension(360, 130));
         pnlTextFields.setPreferredSize(new java.awt.Dimension(360, 130));
         pnlTextFields.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        txtNome.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        txtNome.setText("Nome");
-        txtNome.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        txtNome.setMaximumSize(new java.awt.Dimension(320, 50));
-        txtNome.setMinimumSize(new java.awt.Dimension(320, 50));
-        txtNome.setPreferredSize(new java.awt.Dimension(320, 50));
-        txtNome.addFocusListener(new java.awt.event.FocusAdapter() {
+        txtCargo.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txtCargo.setText("Cargo");
+        txtCargo.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        txtCargo.setMaximumSize(new java.awt.Dimension(320, 50));
+        txtCargo.setMinimumSize(new java.awt.Dimension(320, 50));
+        txtCargo.setPreferredSize(new java.awt.Dimension(320, 50));
+        txtCargo.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                txtNomeFocusGained(evt);
+                txtCargoFocusGained(evt);
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
-                txtNomeFocusLost(evt);
+                txtCargoFocusLost(evt);
             }
         });
-        pnlTextFields.add(txtNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, 40));
+        pnlTextFields.add(txtCargo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, 40));
 
-        txtEndereco.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        txtEndereco.setText("Endereço");
-        txtEndereco.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        txtEndereco.setMaximumSize(new java.awt.Dimension(320, 50));
-        txtEndereco.setMinimumSize(new java.awt.Dimension(320, 50));
-        txtEndereco.setPreferredSize(new java.awt.Dimension(320, 50));
-        txtEndereco.addFocusListener(new java.awt.event.FocusAdapter() {
+        txtEmpresa.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txtEmpresa.setText("Empresa");
+        txtEmpresa.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        txtEmpresa.setMaximumSize(new java.awt.Dimension(320, 50));
+        txtEmpresa.setMinimumSize(new java.awt.Dimension(320, 50));
+        txtEmpresa.setPreferredSize(new java.awt.Dimension(320, 50));
+        txtEmpresa.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                txtEnderecoFocusGained(evt);
+                txtEmpresaFocusGained(evt);
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
-                txtEnderecoFocusLost(evt);
+                txtEmpresaFocusLost(evt);
             }
         });
-        pnlTextFields.add(txtEndereco, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, 40));
+        pnlTextFields.add(txtEmpresa, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, 40));
 
-        txtTelefone.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        txtTelefone.setText("Telefone");
-        txtTelefone.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        txtTelefone.setMaximumSize(new java.awt.Dimension(320, 50));
-        txtTelefone.setMinimumSize(new java.awt.Dimension(320, 50));
-        txtTelefone.setPreferredSize(new java.awt.Dimension(320, 50));
-        txtTelefone.addFocusListener(new java.awt.event.FocusAdapter() {
+        txtPeriodo.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txtPeriodo.setText("Período");
+        txtPeriodo.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        txtPeriodo.setMaximumSize(new java.awt.Dimension(320, 50));
+        txtPeriodo.setMinimumSize(new java.awt.Dimension(320, 50));
+        txtPeriodo.setPreferredSize(new java.awt.Dimension(320, 50));
+        txtPeriodo.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                txtTelefoneFocusGained(evt);
+                txtPeriodoFocusGained(evt);
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
-                txtTelefoneFocusLost(evt);
+                txtPeriodoFocusLost(evt);
             }
         });
-        pnlTextFields.add(txtTelefone, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, -1, 40));
-
-        txtVaga.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        txtVaga.setText("Vaga");
-        txtVaga.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        txtVaga.setMaximumSize(new java.awt.Dimension(320, 50));
-        txtVaga.setMinimumSize(new java.awt.Dimension(320, 50));
-        txtVaga.setPreferredSize(new java.awt.Dimension(320, 50));
-        txtVaga.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                txtVagaFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtVagaFocusLost(evt);
-            }
-        });
-        pnlTextFields.add(txtVaga, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, -1, 40));
-
-        txtFormacaoAcademica.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        txtFormacaoAcademica.setText("Formação Acadêmica");
-        txtFormacaoAcademica.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        txtFormacaoAcademica.setMaximumSize(new java.awt.Dimension(320, 50));
-        txtFormacaoAcademica.setMinimumSize(new java.awt.Dimension(320, 50));
-        txtFormacaoAcademica.setPreferredSize(new java.awt.Dimension(320, 50));
-        txtFormacaoAcademica.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                txtFormacaoAcademicaFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtFormacaoAcademicaFocusLost(evt);
-            }
-        });
-        pnlTextFields.add(txtFormacaoAcademica, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, -1, 40));
-
-        txtEmail.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        txtEmail.setText("Email");
-        txtEmail.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        txtEmail.setMaximumSize(new java.awt.Dimension(320, 50));
-        txtEmail.setMinimumSize(new java.awt.Dimension(320, 50));
-        txtEmail.setPreferredSize(new java.awt.Dimension(320, 50));
-        txtEmail.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                txtEmailFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtEmailFocusLost(evt);
-            }
-        });
-        pnlTextFields.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, -1, 40));
-
-        btnCadastrar1.setFont(fonteNormal);
-        btnCadastrar1.setText("Inserir Experiência Profissional");
-        btnCadastrar1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        btnCadastrar1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnCadastrar1.setFocusPainted(false);
-        btnCadastrar1.setFocusable(false);
-        btnCadastrar1.setMaximumSize(new java.awt.Dimension(266, 40));
-        btnCadastrar1.setMinimumSize(new java.awt.Dimension(266, 40));
-        btnCadastrar1.setPreferredSize(new java.awt.Dimension(266, 40));
-        btnCadastrar1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCadastrar1ActionPerformed(evt);
-            }
-        });
-        pnlTextFields.add(btnCadastrar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 310, 320, 40));
+        pnlTextFields.add(txtPeriodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, -1, 40));
 
         btnCadastrar.setBackground(new java.awt.Color(71, 19, 35));
         btnCadastrar.setFont(fonteNormal);
         btnCadastrar.setForeground(new java.awt.Color(255, 255, 255));
-        btnCadastrar.setText("Cadastrar");
+        btnCadastrar.setText("Cadastrar ");
         btnCadastrar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
         btnCadastrar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnCadastrar.setFocusPainted(false);
@@ -276,21 +208,19 @@ public class TelaCadastroCurriculo extends javax.swing.JFrame {
                 btnCadastrarActionPerformed(evt);
             }
         });
-        pnlTextFields.add(btnCadastrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 370, -1, 40));
+        pnlTextFields.add(btnCadastrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 180, -1, 40));
 
         javax.swing.GroupLayout pnlCadastroCurriculoLayout = new javax.swing.GroupLayout(pnlCadastroCurriculo);
         pnlCadastroCurriculo.setLayout(pnlCadastroCurriculoLayout);
         pnlCadastroCurriculoLayout.setHorizontalGroup(
             pnlCadastroCurriculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlCadastroCurriculoLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(pnlCadastroCurriculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlCadastroCurriculoLayout.createSequentialGroup()
-                        .addContainerGap()
                         .addComponent(pnlTextFields, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCadastroCurriculoLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(lblCadastroCurriculo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(lblCadastroCurriculo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         pnlCadastroCurriculoLayout.setVerticalGroup(
@@ -299,7 +229,7 @@ public class TelaCadastroCurriculo extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(lblCadastroCurriculo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pnlTextFields, javax.swing.GroupLayout.DEFAULT_SIZE, 410, Short.MAX_VALUE)
+                .addComponent(pnlTextFields, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
                 .addGap(21, 21, 21))
         );
 
@@ -309,16 +239,16 @@ public class TelaCadastroCurriculo extends javax.swing.JFrame {
             pnlContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlContainerLayout.createSequentialGroup()
                 .addComponent(pnlLateral, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 129, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 134, Short.MAX_VALUE)
                 .addComponent(pnlCadastroCurriculo, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(100, 100, 100))
+                .addGap(95, 95, 95))
         );
         pnlContainerLayout.setVerticalGroup(
             pnlContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(pnlLateral, javax.swing.GroupLayout.DEFAULT_SIZE, 596, Short.MAX_VALUE)
             .addGroup(pnlContainerLayout.createSequentialGroup()
-                .addGap(61, 61, 61)
-                .addComponent(pnlCadastroCurriculo, javax.swing.GroupLayout.PREFERRED_SIZE, 467, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(130, 130, 130)
+                .addComponent(pnlCadastroCurriculo, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -336,89 +266,54 @@ public class TelaCadastroCurriculo extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtNomeFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNomeFocusGained
-        if(txtNome.getText().equals("Nome"))
-            txtNome.setText("");  
-    }//GEN-LAST:event_txtNomeFocusGained
+    private void txtCargoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCargoFocusGained
+        if(txtCargo.getText().equals("Cargo"))
+            txtCargo.setText("");  
+    }//GEN-LAST:event_txtCargoFocusGained
 
-    private void txtNomeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNomeFocusLost
-        if(txtNome.getText().trim().isEmpty())
-            txtNome.setText("Nome");
-    }//GEN-LAST:event_txtNomeFocusLost
+    private void txtCargoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCargoFocusLost
+        if(txtCargo.getText().trim().isEmpty())
+            txtCargo.setText("Cargo");
+    }//GEN-LAST:event_txtCargoFocusLost
 
-    private void txtEnderecoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEnderecoFocusGained
-        if(txtEndereco.getText().equals("Endereço"))
-            txtEndereco.setText("");
-    }//GEN-LAST:event_txtEnderecoFocusGained
+    private void txtEmpresaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEmpresaFocusGained
+        if(txtEmpresa.getText().equals("Empresa"))
+            txtEmpresa.setText("");
+    }//GEN-LAST:event_txtEmpresaFocusGained
 
-    private void txtEnderecoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEnderecoFocusLost
-        if(txtEndereco.getText().trim().isEmpty())
-            txtEndereco.setText("Endereço");
-    }//GEN-LAST:event_txtEnderecoFocusLost
+    private void txtEmpresaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEmpresaFocusLost
+        if(txtEmpresa.getText().trim().isEmpty())
+            txtEmpresa.setText("Empresa");
+    }//GEN-LAST:event_txtEmpresaFocusLost
 
-    private void txtTelefoneFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTelefoneFocusGained
-        if(txtTelefone.getText().equals("Telefone"))
-            txtTelefone.setText("");
-    }//GEN-LAST:event_txtTelefoneFocusGained
+    private void txtPeriodoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPeriodoFocusGained
+        if(txtPeriodo.getText().equals("Período"))
+            txtPeriodo.setText("");
+    }//GEN-LAST:event_txtPeriodoFocusGained
 
-    private void txtTelefoneFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTelefoneFocusLost
-        if(txtTelefone.getText().trim().isEmpty())
-            txtTelefone.setText("Telefone");
-    }//GEN-LAST:event_txtTelefoneFocusLost
-
-    private void txtEmailFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEmailFocusGained
-        if(txtEmail.getText().equals("Email"))
-            txtEmail.setText("");
-    }//GEN-LAST:event_txtEmailFocusGained
-
-    private void txtEmailFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEmailFocusLost
-        if(txtEmail.getText().trim().isEmpty())
-            txtEmail.setText("Email");
-    }//GEN-LAST:event_txtEmailFocusLost
-
-    private void txtVagaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtVagaFocusGained
-         if(txtVaga.getText().equals("Vaga"))
-            txtVaga.setText("");
-    }//GEN-LAST:event_txtVagaFocusGained
-
-    private void txtVagaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtVagaFocusLost
-        if(txtVaga.getText().trim().isEmpty())
-            txtVaga.setText("Vaga");
-    }//GEN-LAST:event_txtVagaFocusLost
-
-    private void txtFormacaoAcademicaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtFormacaoAcademicaFocusGained
-        if(txtFormacaoAcademica.getText().equals("Formação Acadêmica"))
-            txtFormacaoAcademica.setText("");
-    }//GEN-LAST:event_txtFormacaoAcademicaFocusGained
-
-    private void txtFormacaoAcademicaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtFormacaoAcademicaFocusLost
-        if(txtFormacaoAcademica.getText().trim().isEmpty())
-            txtFormacaoAcademica.setText("Formação Acadêmica");
-    }//GEN-LAST:event_txtFormacaoAcademicaFocusLost
+    private void txtPeriodoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPeriodoFocusLost
+        if(txtPeriodo.getText().trim().isEmpty())
+            txtPeriodo.setText("Período");
+    }//GEN-LAST:event_txtPeriodoFocusLost
 
     private void btnInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioActionPerformed
         this.setVisible(false);
-        telaHomescreenGestor.setVisible(true);
+        telaCadastroCurriculo.setVisible(true);
     }//GEN-LAST:event_btnInicioActionPerformed
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
-        curriculo = new Curriculo(txtNome.getText(), txtEndereco.getText(), txtTelefone.getText(), txtEmail.getText(), 
-                txtVaga.getText(), txtFormacaoAcademica.getText());
+        //experienciaprofissional = new ExperienciaProfissional(txtCargo.getText(), txtEmpresa.getText(), txtPeriodo.getText());
         
         
         try{
-            facade.saveCurriculo(curriculo);
+            facade.saveExperienciaProfissional(experienciaprofissional);
         }catch (Exception e){
             JOptionPane.showMessageDialog(null, "Erro ao salvar no banco: " + e.getMessage(), 
                     "Erro ao salvar no banco de dados!",JOptionPane.ERROR_MESSAGE);
         }
         this.setVisible(false);
-        this.telaHomescreenGestor.setVisible(true);
+        this.telaCadastroCurriculo.setVisible(true);
     }//GEN-LAST:event_btnCadastrarActionPerformed
-
-    private void btnCadastrar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrar1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnCadastrar1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -437,25 +332,26 @@ public class TelaCadastroCurriculo extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaCadastroCurriculo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaCadastroExperienciaProfissional.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaCadastroCurriculo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaCadastroExperienciaProfissional.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaCadastroCurriculo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaCadastroExperienciaProfissional.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaCadastroCurriculo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaCadastroExperienciaProfissional.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new TelaCadastroCurriculo().setVisible(true);
+                    new TelaCadastroExperienciaProfissional().setVisible(true);
                 } catch (FontFormatException ex) {
-                    Logger.getLogger(TelaCadastroCurriculo.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(TelaCadastroExperienciaProfissional.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (IOException ex) {
-                    Logger.getLogger(TelaCadastroCurriculo.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(TelaCadastroExperienciaProfissional.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });
@@ -463,7 +359,6 @@ public class TelaCadastroCurriculo extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCadastrar;
-    private javax.swing.JButton btnCadastrar1;
     private javax.swing.JButton btnInicio;
     private javax.swing.JLabel lblCadastroCurriculo;
     private javax.swing.JLabel lblModuloRH;
@@ -471,11 +366,8 @@ public class TelaCadastroCurriculo extends javax.swing.JFrame {
     private javax.swing.JPanel pnlContainer;
     private javax.swing.JPanel pnlLateral;
     private javax.swing.JPanel pnlTextFields;
-    private javax.swing.JTextField txtEmail;
-    private javax.swing.JTextField txtEndereco;
-    private javax.swing.JTextField txtFormacaoAcademica;
-    private javax.swing.JTextField txtNome;
-    private javax.swing.JTextField txtTelefone;
-    private javax.swing.JTextField txtVaga;
+    private javax.swing.JTextField txtCargo;
+    private javax.swing.JTextField txtEmpresa;
+    private javax.swing.JTextField txtPeriodo;
     // End of variables declaration//GEN-END:variables
 }
