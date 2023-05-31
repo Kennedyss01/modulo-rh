@@ -141,8 +141,6 @@ public class TelaDeListarRegistroDePonto extends javax.swing.JFrame {
         btnCadastrar = new javax.swing.JButton();
         btnEditar = new javax.swing.JButton();
         btnExcluir = new javax.swing.JButton();
-        dtDataInicio = new com.toedter.calendar.JDateChooser();
-        dtDataFim = new com.toedter.calendar.JDateChooser();
         btnFiltrar = new javax.swing.JButton();
         btnRemoverFiltro = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -151,7 +149,6 @@ public class TelaDeListarRegistroDePonto extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Listar Registros de Ponto");
         setIconImage(icone.getImage());
-        setMaximumSize(new java.awt.Dimension(1100, 670));
         setMinimumSize(new java.awt.Dimension(1100, 670));
         setResizable(false);
 
@@ -252,7 +249,6 @@ public class TelaDeListarRegistroDePonto extends javax.swing.JFrame {
         pnlRegistros.add(srcScroll, new org.netbeans.lib.awtextra.AbsoluteConstraints(43, 116, 698, 380));
 
         lblRegistrosExistentes.setFont(fonteMaior);
-        lblRegistrosExistentes.setForeground(new java.awt.Color(0, 0, 0));
         lblRegistrosExistentes.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblRegistrosExistentes.setText("Registros de Ponto Existentes");
         pnlRegistros.add(lblRegistrosExistentes, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 759, 24));
@@ -307,8 +303,6 @@ public class TelaDeListarRegistroDePonto extends javax.swing.JFrame {
             }
         });
         pnlRegistros.add(btnExcluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(519, 514, 222, -1));
-        pnlRegistros.add(dtDataInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 60, 120, 35));
-        pnlRegistros.add(dtDataFim, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 60, 120, 35));
 
         btnFiltrar.setBackground(new java.awt.Color(71, 19, 35));
         btnFiltrar.setForeground(new java.awt.Color(255, 255, 255));
@@ -332,11 +326,9 @@ public class TelaDeListarRegistroDePonto extends javax.swing.JFrame {
         });
         pnlRegistros.add(btnRemoverFiltro, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 60, 130, 35));
 
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Data de Início:");
         pnlRegistros.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, -1, -1));
 
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Data Final:");
         pnlRegistros.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 70, -1, -1));
 
@@ -513,8 +505,6 @@ public class TelaDeListarRegistroDePonto extends javax.swing.JFrame {
     private javax.swing.JButton btnFiltrar;
     private javax.swing.JButton btnInicio;
     private javax.swing.JButton btnRemoverFiltro;
-    private com.toedter.calendar.JDateChooser dtDataFim;
-    private com.toedter.calendar.JDateChooser dtDataInicio;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel lblModuloRH;

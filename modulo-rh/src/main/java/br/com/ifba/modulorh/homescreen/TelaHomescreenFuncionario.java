@@ -205,7 +205,6 @@ public class TelaHomescreenFuncionario extends javax.swing.JFrame {
         });
 
         lblData.setFont(fonteNormal);
-        lblData.setForeground(new java.awt.Color(0, 0, 0));
         lblData.setText("00/00/00000 00:00:00");
 
         javax.swing.GroupLayout pnlMenuLayout = new javax.swing.GroupLayout(pnlMenu);
