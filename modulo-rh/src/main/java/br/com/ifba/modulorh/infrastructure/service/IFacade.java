@@ -6,6 +6,7 @@ import br.com.ifba.modulorh.desconto.model.Desconto;
 import br.com.ifba.modulorh.funcionario.model.Funcionario;
 import br.com.ifba.modulorh.usuario.model.Usuario;
 import br.com.ifba.modulorh.curriculo.model.Curriculo;
+import br.com.ifba.modulorh.experienciaprofissional.model.ExperienciaProfissional;
 import br.com.ifba.modulorh.pagamentos.model.Pagamentos;
 import br.com.ifba.modulorh.registroponto.model.RegistroPonto;
 import java.util.List;
@@ -78,4 +79,11 @@ public interface IFacade {
     public void deleteAvaliacaoPerformance(AvaliacaoPerformance avaliacaoPerformance);
     public List<AvaliacaoPerformance> getAllAvaliacaoPerformance();
     public AvaliacaoPerformance findByAvaliacaoPerformanceId(Long id);
+    
+    //========================Experiencia Profissional========================//
+    ExperienciaProfissional saveExperienciaProfissional(ExperienciaProfissional experienciaprofissional);
+    ExperienciaProfissional updateExperienciaProfissional (ExperienciaProfissional experienciaprofissional);
+    void deleteExperienciaProfissional (ExperienciaProfissional experienciaprofissional);
+    List<ExperienciaProfissional> getAllExperienciaProfissional();
+    ExperienciaProfissional findExperienciaProfissionalById(Long id);
 }

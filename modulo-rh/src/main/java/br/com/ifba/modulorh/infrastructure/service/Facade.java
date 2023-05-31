@@ -8,6 +8,8 @@ import br.com.ifba.modulorh.curriculo.model.Curriculo;
 import br.com.ifba.modulorh.curriculo.service.IServiceCurriculo;
 import br.com.ifba.modulorh.desconto.model.Desconto;
 import br.com.ifba.modulorh.desconto.service.IServiceDesconto;
+import br.com.ifba.modulorh.experienciaprofissional.model.ExperienciaProfissional;
+import br.com.ifba.modulorh.experienciaprofissional.service.IServiceExperienciaProfissional;
 import br.com.ifba.modulorh.funcionario.model.Funcionario;
 import br.com.ifba.modulorh.usuario.model.Usuario;
 import br.com.ifba.modulorh.usuario.service.IServiceUsuario;
@@ -296,5 +298,36 @@ public class Facade implements IFacade {
     public AvaliacaoPerformance findByAvaliacaoPerformanceId(Long id) {
         return serviceAvaliacaoPerformance.findById(id);
     }
+    
+    //========================Experiencia Profissional========================//
+    
+    @Autowired
+    private IServiceExperienciaProfissional serviceExperienciaProfissional;
+
+    @Override
+    public ExperienciaProfissional saveExperienciaProfissional(ExperienciaProfissional experienciaprofissional) {
+       return serviceExperienciaProfissional.saveExperienciaProfissional(experienciaprofissional);
+    }
+
+    @Override
+    public ExperienciaProfissional updateExperienciaProfissional(ExperienciaProfissional experienciaprofissional) {
+        return serviceExperienciaProfissional.updateExperienciaProfissional(experienciaprofissional);
+    }
+
+    @Override
+    public void deleteExperienciaProfissional(ExperienciaProfissional experienciaprofissional) {
+         serviceExperienciaProfissional.deleteExperienciaProfissional(experienciaprofissional);
+    }
+
+    @Override
+    public List<ExperienciaProfissional> getAllExperienciaProfissional() {
+        return serviceExperienciaProfissional.getAllExperienciaProfissional(); 
+    }
+
+    @Override
+    public ExperienciaProfissional findExperienciaProfissionalById(Long id) {
+        return serviceExperienciaProfissional.findExperienciaProfissionalById(id);
+    }
+    
     
 }
