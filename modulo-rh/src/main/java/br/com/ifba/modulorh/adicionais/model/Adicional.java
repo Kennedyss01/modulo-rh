@@ -1,10 +1,13 @@
 package br.com.ifba.modulorh.adicionais.model;
 
+import br.com.ifba.modulorh.pagamentos.model.Pagamentos;
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -22,6 +25,9 @@ public class Adicional implements Serializable{
     private String nome;
     private float valorPercentual;
     private String tipo;
+    
+    @ManyToMany
+    private List<Pagamentos> pagamentos;
 
     public Adicional(String nome, float valorPercentual, String tipo) {
         this.nome = nome;
