@@ -102,6 +102,34 @@ public class TelaEditarPagamento extends javax.swing.JFrame {
             return false;
         }
         
+        char primeiro = txtAdicionais.getText().charAt(0);
+        if (primeiro == ',') {
+            JOptionPane.showMessageDialog(null, "Por favor, remova a vírgula no início dos adicionais!",
+                    "Digite os IDs corretamente!", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        
+        primeiro = txtDescontos.getText().charAt(0);
+        if (primeiro == ',') {
+            JOptionPane.showMessageDialog(null, "Por favor, remova a vírgula no início dos descontos!",
+                    "Digite os IDs corretamente!", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        
+        char ultimo = txtAdicionais.getText().charAt(txtAdicionais.getText().length() - 1);
+        if (ultimo == ',') {
+            JOptionPane.showMessageDialog(null, "Por favor, remova a vírgula no final dos adicionais!",
+                    "Digite os IDs corretamente!", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        
+        ultimo = txtDescontos.getText().charAt(txtDescontos.getText().length() - 1);
+        if (ultimo == ',') {
+            JOptionPane.showMessageDialog(null, "Por favor, remova a vírgula no final dos descontos!",
+                    "Digite os IDs corretamente!", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        
         return true;
     }
     
@@ -125,12 +153,6 @@ public class TelaEditarPagamento extends javax.swing.JFrame {
     }
     
     private List<Adicional> obterAdicionais(String ids) {
-        char ultimo = ids.charAt(ids.length() - 1);
-        if (ultimo == ',') {
-            JOptionPane.showMessageDialog(null, "Por favor, termine os adicionais com um ID!",
-                    "Digite os IDs corretamente!", JOptionPane.ERROR_MESSAGE);
-            return null;
-        }
         char[] chars = ids.toCharArray();
         String id = new String();
         Adicional adc;
@@ -140,12 +162,23 @@ public class TelaEditarPagamento extends javax.swing.JFrame {
             if(verificar(ch) == false) {
                 JOptionPane.showMessageDialog(null, "Insira apenas números e vírgulas nos IDs!",
                     "Digite os IDs corretamente!", JOptionPane.ERROR_MESSAGE);
-                lista = null;
-                return lista;
+                return null;
             }
             if (ch == ',') {
+                if ("".equals(id)) {
+                    JOptionPane.showMessageDialog(null, "Insira números separados por vírgulas corretamente!",
+                            "Digite os IDs corretamente!", JOptionPane.ERROR_MESSAGE);
+                    return null;
+                }
                 idAdc = Long.parseLong(id);
                 adc = facade.findById(idAdc);
+                for (Adicional ver : lista) {
+                    if (ver.getId() == idAdc) {
+                        JOptionPane.showMessageDialog(null, "Remova os IDs repetidos nos adicionais para continuar!",
+                                "Digite os IDs corretamente!", JOptionPane.ERROR_MESSAGE);
+                        return null;
+                    }
+                }
                 lista.add(adc);
                 id = "";
             } else {
@@ -154,17 +187,18 @@ public class TelaEditarPagamento extends javax.swing.JFrame {
         }
         idAdc = Long.parseLong(id);
         adc = facade.findById(idAdc);
+        for (Adicional ver : lista) {
+            if (ver.getId() == idAdc) {
+                JOptionPane.showMessageDialog(null, "Remova os IDs repetidos nos adicionais para continuar!",
+                        "Digite os IDs corretamente!", JOptionPane.ERROR_MESSAGE);
+                return null;
+            }
+        }
         lista.add(adc);
         return lista;
     }
     
     private List<Desconto> obterDescontos(String ids) {
-        char ultimo = ids.charAt(ids.length() - 1);
-        if (ultimo == ',') {
-            JOptionPane.showMessageDialog(null, "Por favor, termine os descontos com um ID!",
-                    "Digite os IDs corretamente!", JOptionPane.ERROR_MESSAGE);
-            return null;
-        }
         char[] chars = ids.toCharArray();
         String id = new String();
         Desconto dsc;
@@ -174,12 +208,23 @@ public class TelaEditarPagamento extends javax.swing.JFrame {
             if(verificar(ch) == false) {
                 JOptionPane.showMessageDialog(null, "Insira apenas números e vírgulas nos IDs!",
                     "Digite os IDs corretamente!", JOptionPane.ERROR_MESSAGE);
-                lista = null;
-                return lista;
+                return null;
             }
             if (ch == ',') {
+                if ("".equals(id)) {
+                    JOptionPane.showMessageDialog(null, "Insira números separados por vírgulas corretamente!",
+                            "Digite os IDs corretamente!", JOptionPane.ERROR_MESSAGE);
+                    return null;
+                }
                 idDsc = Long.parseLong(id);
                 dsc = facade.findDescontoById(idDsc);
+                for (Desconto ver : lista) {
+                    if (ver.getId() == idDsc) {
+                        JOptionPane.showMessageDialog(null, "Remova os IDs repetidos nos descontos para continuar!",
+                                "Digite os IDs corretamente!", JOptionPane.ERROR_MESSAGE);
+                        return null;
+                    }
+                }
                 lista.add(dsc);
                 id = "";
             } else {
@@ -188,6 +233,13 @@ public class TelaEditarPagamento extends javax.swing.JFrame {
         }
         idDsc = Long.parseLong(id);
         dsc = facade.findDescontoById(idDsc);
+        for (Desconto ver : lista) {
+            if (ver.getId() == idDsc) {
+                JOptionPane.showMessageDialog(null, "Remova os IDs repetidos nos descontos para continuar!",
+                        "Digite os IDs corretamente!", JOptionPane.ERROR_MESSAGE);
+                return null;
+            }
+        }
         lista.add(dsc);
         return lista;
     }
@@ -533,13 +585,13 @@ public class TelaEditarPagamento extends javax.swing.JFrame {
             
             List<Adicional> listaAdc = obterAdicionais(adicionais);
             List<Desconto> listaDsc = obterDescontos(descontos);
-            if (listaAdc == null || listaDsc == null) {
-                JOptionPane.showMessageDialog(null, "As alterações não foram salvas!",
-                        "Falha no preenchimento dos dados", JOptionPane.ERROR_MESSAGE);
-                this.setVisible(false);
-                telaListarPagamentos.setVisible(true);
-                telaListarPagamentos.exibirDados();
-                limparCampos();
+            
+            if (listaAdc == null) {
+                txtAdicionais.setText("");
+                return;
+            }
+            if (listaDsc == null) {
+                txtDescontos.setText("");
                 return;
             }
             
