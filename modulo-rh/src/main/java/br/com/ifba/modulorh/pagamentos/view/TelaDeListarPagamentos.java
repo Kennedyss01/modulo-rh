@@ -34,6 +34,7 @@ public class TelaDeListarPagamentos extends javax.swing.JFrame {
     private TelaEditarPagamento telaEditarPagamento;
     @Autowired @Lazy
     private TelaHomescreenGestor telaHomescreenGestor;
+    private  List<Pagamentos> pagamentos;
     
     ImageIcon icone = new ImageIcon("./src/main/resources/imagens/rh.png");
     Font fonteMaior;
@@ -55,52 +56,60 @@ public class TelaDeListarPagamentos extends javax.swing.JFrame {
     }
 
     public void exibirDados() {
-        List<Pagamentos> lista = facade.getAllPagamentos();
+        pagamentos = facade.getAllPagamentos();
+        
         DefaultTableModel modelo = (DefaultTableModel) tblPagamentos.getModel();
         modelo.setNumRows(0);
-        for (Pagamentos lis : lista) {
-            float somaAdc = somaAdicionais(lis.getAdicionais());
-            float somaDsc = somaDescontos(lis.getDescontos());
-            modelo.addRow(new Object[]{lis.getId(), lis.getFuncionario().getCpf(),
-                lis.getDataLancamento(), lis.getDataPagamento(),
-                lis.getSalarioBase(), Float.toString(somaAdc),
-                Float.toString(somaDsc)});
+        
+        for (Pagamentos pag : pagamentos) {
+            float somaAdicionais = somaAdicionais(pag.getSalarioBase(), pag.getAdicionais());
+            float somaDescontos = somaDescontos(pag.getSalarioBase(), pag.getDescontos());
+            
+            modelo.addRow(new Object[]{pag.getId(), pag.getFuncionario().getNome(),
+                pag.getDataLancamento(), pag.getDataPagamento(),
+                pag.getSalarioBase(), somaAdicionais, somaDescontos, pag.getSalarioFinal()});
         }
     }
     
-    private float somaAdicionais(List<Adicional> lista) {
+    private float somaAdicionais(float salario, List<Adicional> adicionais) {
         float somaAdc = 0;
-        for (Adicional lis : lista) {
-            somaAdc = somaAdc + lis.getValorPercentual();
+        for (Adicional add : adicionais) {
+            if (add.getTipo().equalsIgnoreCase("Percentual")) {
+                somaAdc += (add.getValorPercentual() / 100) * salario; 
+            } else {
+                somaAdc += add.getValorPercentual();
+            }
         }
         return somaAdc;
     }
     
-    private float somaDescontos(List<Desconto> lista) {
+    private float somaDescontos(float salario, List<Desconto> descontos) {
         float somaDsc = 0;
-        for (Desconto lis : lista) {
-            somaDsc = somaDsc + lis.getDesconto();
+        for (Desconto desc : descontos) {
+            if (desc.getTipoDesconto().equalsIgnoreCase("Percentual")) {
+                somaDsc += (desc.getDesconto() / 100) * salario; 
+            } else {
+                somaDsc += desc.getDesconto(); 
+            }
         }
         return somaDsc;
     }
     
-    private void buscarPagamentos(String busca) {
+    private void buscarPagamentos(String nomeFuncionario) {
         try {
-            if ("".equals(busca)) {
-                exibirDados();
-            } else {
-                List<Pagamentos> pagamentos = facade.getAllPagamentos();
-                DefaultTableModel modelo = (DefaultTableModel) tblPagamentos.getModel();
-                modelo.setNumRows(0);
-                for (Pagamentos pgm : pagamentos) {
-                    float somaAdc = somaAdicionais(pgm.getAdicionais());
-                    float somaDsc = somaDescontos(pgm.getDescontos());
-                    if (pgm.getFuncionario().getCpf().contains(busca)) {
-                        modelo.addRow(new Object[]{pgm.getId(), pgm.getFuncionario().getCpf(),
-                            pgm.getDataLancamento(), pgm.getDataPagamento(),
-                            pgm.getSalarioBase(), Float.toString(somaAdc),
-                            Float.toString(somaDsc)});
-                    }
+            pagamentos = facade.getAllPagamentos();
+        
+            DefaultTableModel modelo = (DefaultTableModel) tblPagamentos.getModel();
+            modelo.setNumRows(0);
+
+            for (Pagamentos pag : pagamentos) {
+                if (pag.getFuncionario().getNome().toLowerCase().contains(nomeFuncionario)) {
+                    float somaAdicionais = somaAdicionais(pag.getSalarioBase(), pag.getAdicionais());
+                    float somaDescontos = somaDescontos(pag.getSalarioBase(), pag.getDescontos());
+
+                    modelo.addRow(new Object[]{pag.getId(), pag.getFuncionario().getNome(),
+                        pag.getDataLancamento(), pag.getDataPagamento(),
+                        pag.getSalarioBase(), somaAdicionais, somaDescontos, pag.getSalarioFinal()});
                 }
             }
         } catch(Exception e) {
@@ -108,12 +117,7 @@ public class TelaDeListarPagamentos extends javax.swing.JFrame {
                     "Erro ao consultar no banco de dados!", JOptionPane.ERROR_MESSAGE);
         }
     }
-    
-    /**
-     * This method is called from within the constructor to initialize the form.
-     * WARNING: Do NOT modify this code. The content of this method is always
-     * regenerated by the Form Editor.
-     */
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -214,13 +218,13 @@ public class TelaDeListarPagamentos extends javax.swing.JFrame {
         tblPagamentos.setFont(fonteMenor);
         tblPagamentos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "CPF do funcionário", "Data do lançamento", "Data do pagamento", "Salário base", "Adicionais", "Descontos"
+                "ID", "Nome", "Lançamento", "Pagamento", "Salário Base", "Adicionais", "Descontos", "Salário Final"
             }
         ));
         tblPagamentos.setMaximumSize(new java.awt.Dimension(2147483647, 2147483647));
@@ -228,7 +232,7 @@ public class TelaDeListarPagamentos extends javax.swing.JFrame {
         tblPagamentos.setPreferredSize(new java.awt.Dimension(559, 427));
         jScrollPane.setViewportView(tblPagamentos);
 
-        txtBusca.setText("Buscar por CPF do funcionário");
+        txtBusca.setText("Buscar por nome do funcionário");
         txtBusca.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 txtBuscaFocusGained(evt);
@@ -438,6 +442,7 @@ public class TelaDeListarPagamentos extends javax.swing.JFrame {
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
         telaCadastroPagamento.setVisible(true);
+        telaCadastroPagamento.preencherDados();
         this.setVisible(false);
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
@@ -459,7 +464,8 @@ public class TelaDeListarPagamentos extends javax.swing.JFrame {
         int linha = tblPagamentos.getSelectedRow();
         Long id = (Long) tblPagamentos.getValueAt(linha, 0);
         Pagamentos pagamento = facade.findPagamentoById(id);
-        telaEditarPagamento.passandoDados(pagamento);
+        telaEditarPagamento.preencherDados();
+        telaEditarPagamento.setDados(pagamento);
         this.setVisible(false);
         telaEditarPagamento.setVisible(true);
     }//GEN-LAST:event_btnEditarActionPerformed
@@ -492,7 +498,8 @@ public class TelaDeListarPagamentos extends javax.swing.JFrame {
     }//GEN-LAST:event_txtBuscaKeyPressed
 
     private void txtBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscaActionPerformed
-        // TODO add your handling code here:
+        String busca = txtBusca.getText().trim().toLowerCase();
+        buscarPagamentos(busca);
     }//GEN-LAST:event_txtBuscaActionPerformed
         
     /**

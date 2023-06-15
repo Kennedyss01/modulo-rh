@@ -26,7 +26,7 @@ public class Adicional implements Serializable{
     private float valorPercentual;
     private String tipo;
     
-    @ManyToMany
+    @ManyToMany(mappedBy = "adicionais")
     private List<Pagamentos> pagamentos;
 
     public Adicional(String nome, float valorPercentual, String tipo) {

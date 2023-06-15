@@ -330,14 +330,15 @@
                               <Connection code="fonteMenor" type="code"/>
                             </Property>
                             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                              <Table columnCount="7" rowCount="4">
+                              <Table columnCount="8" rowCount="4">
                                 <Column editable="true" title="ID" type="java.lang.Object"/>
-                                <Column editable="true" title="CPF do funcion&#xe1;rio" type="java.lang.Object"/>
-                                <Column editable="true" title="Data do lan&#xe7;amento" type="java.lang.Object"/>
-                                <Column editable="true" title="Data do pagamento" type="java.lang.Object"/>
-                                <Column editable="true" title="Sal&#xe1;rio base" type="java.lang.Object"/>
+                                <Column editable="true" title="Nome" type="java.lang.Object"/>
+                                <Column editable="true" title="Lan&#xe7;amento" type="java.lang.Object"/>
+                                <Column editable="true" title="Pagamento" type="java.lang.Object"/>
+                                <Column editable="true" title="Sal&#xe1;rio Base" type="java.lang.Object"/>
                                 <Column editable="true" title="Adicionais" type="java.lang.Object"/>
                                 <Column editable="true" title="Descontos" type="java.lang.Object"/>
+                                <Column editable="true" title="Sal&#xe1;rio Final" type="java.lang.Object"/>
                               </Table>
                             </Property>
                             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -355,7 +356,7 @@
                     </Container>
                     <Component class="javax.swing.JTextField" name="txtBusca">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Buscar por CPF do funcion&#xe1;rio"/>
+                        <Property name="text" type="java.lang.String" value="Buscar por nome do funcion&#xe1;rio"/>
                       </Properties>
                       <Events>
                         <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtBuscaFocusGained"/>

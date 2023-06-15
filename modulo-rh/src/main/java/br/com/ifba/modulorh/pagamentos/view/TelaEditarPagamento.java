@@ -10,33 +10,41 @@ import java.awt.Font;
 import java.awt.FontFormatException;
 import java.io.File;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 /**
  *
- * @author Lucas Nogueira
+ * @author Jonas Dias
+ * @author Kaior Fernandes
  */
 @Component
 public class TelaEditarPagamento extends javax.swing.JFrame {
 
-    /**
-     * Creates new form TelaCadastroRegistroDePonto
-     */
     @Autowired
     private IFacade facade;
     @Autowired @Lazy
     private TelaDeListarPagamentos telaListarPagamentos;
     @Autowired @Lazy
     private TelaHomescreenGestor telaHomescreenGestor;
-    private Pagamentos pagamento;
+    private List<Funcionario> funcionarios;
+    private Long pagamentoId;
+    private final List<Adicional> adicionaisSelecionados = new ArrayList<>();
+    private final List<Desconto> descontosSelecionados = new ArrayList<>();
+    private final SimpleDateFormat formatarData = new SimpleDateFormat("dd/MM/yyyy");
     
     ImageIcon icone = new ImageIcon("./src/main/resources/imagens/rh.png");
     Font fonteMaior;
@@ -53,195 +61,99 @@ public class TelaEditarPagamento extends javax.swing.JFrame {
         this.fonteMenor = Font.createFont(Font.TRUETYPE_FONT,
                 new File("./src/main/resources/fontes/Poppins/Poppins-SemiBold.ttf"))
                 .deriveFont(Font.PLAIN, 14);
+        
         initComponents();
         setLocationRelativeTo(null);
     }
     
-    public void passandoDados(Pagamentos pgm) {
-        this.pagamento = pgm;
-        this.txtCpf.setText(pgm.getFuncionario().getCpf());
-        this.txtDataLancamento.setText(pgm.getDataLancamento());
-        this.txtDataPagamento.setText(pgm.getDataPagamento());
-        this.txtSalarioBase.setText(Float.toString(pgm.getSalarioBase()));
+    public void setDados(Pagamentos pagamento) {
+        try {
+            DefaultComboBoxModel modelFuncionarios = (DefaultComboBoxModel) cbxFuncionario.getModel();
+            modelFuncionarios.setSelectedItem(pagamento.getFuncionario().getNome());
+            
+            Date dtLancamento = formatarData.parse(pagamento.getDataLancamento());
+            Date dtPagamento = formatarData.parse(pagamento.getDataPagamento());
+            
+            dtDataLancamento.setDate(dtLancamento);
+            dtDataPagamento.setDate(dtPagamento);
+            
+            this.pagamentoId = pagamento.getId();
+        } catch (ParseException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+    
+    public void preencherDados() {
+        DefaultComboBoxModel modelFuncionarios = (DefaultComboBoxModel) cbxFuncionario.getModel();
+        DefaultTableModel modelAdiconais = (DefaultTableModel) tblAdicionais.getModel();
+        DefaultTableModel modelDescontos = (DefaultTableModel) tblDescontos.getModel();
+        
+         try {
+                funcionarios = facade.getAllFuncionario();
+                List<Adicional> adicionais = facade.getAllAdicional();
+                List<Desconto> descontos = facade.getAllDescontos();
+                
+                modelFuncionarios.removeAllElements();
+                modelAdiconais.setNumRows(0);
+                modelDescontos.setNumRows(0);
+                
+                for (Funcionario funcionario : funcionarios) {
+                    modelFuncionarios.addElement(funcionario.getNome());
+                }
+                
+                for (Adicional adicional : adicionais) {
+                    modelAdiconais.addRow(new Object[]{adicional.getId(), 
+                        adicional.getNome(), adicional.getValorPercentual()});
+                }
+                
+                for (Desconto desconto : descontos) {
+                    modelDescontos.addRow(new Object[]{desconto.getId(), 
+                        desconto.getNome(), desconto.getDesconto()});
+                }
+                
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Erro ao buscar no banco: " + e.getMessage(),
+                        "Erro ao buscar no banco de dados!", JOptionPane.ERROR_MESSAGE);
+            }
+    }
+    
+    private void getAdicionaisDescontos() {
+        adicionaisSelecionados.clear();
+        descontosSelecionados.clear();
+        
+        int[] linhasAdicionais = tblAdicionais.getSelectedRows();
+        int[] linhasDescontos = tblDescontos.getSelectedRows();
+        
+        for (int linha : linhasAdicionais) {
+            Long id = (long) tblAdicionais.getValueAt(linha, 0);
+            adicionaisSelecionados.add(facade.findById(id));
+        }
+        
+        for (int linha : linhasDescontos) {
+            Long id = (long) tblDescontos.getValueAt(linha, 0);
+            descontosSelecionados.add(facade.findDescontoById(id));
+        }
+        
     }
     
     private boolean validarCampos() {
-        if (txtCpf.getText().isEmpty() || txtCpf.getText().equals("CPF do funcionário")) {
-            JOptionPane.showMessageDialog(null, "Insira o CPF do funcionário e tente novamente!",
-                    "CPF está vazio!", JOptionPane.ERROR_MESSAGE);
+        DefaultComboBoxModel modelFuncionarios = (DefaultComboBoxModel) cbxFuncionario.getModel();
+        if (modelFuncionarios.getSelectedItem() == null) {
+            JOptionPane.showMessageDialog(null, "Selecione o funcionário.",
+                        "Funcionário não selecionado!", JOptionPane.ERROR_MESSAGE);
             return false;
         }
-        
-        if (txtDataLancamento.getText().isEmpty() || txtDataLancamento.getText().equals("Data do lançamento")) {
-            JOptionPane.showMessageDialog(null, "Insira a data de lançamento e tente novamente!",
-                    "Data de lançamento está vazia!", JOptionPane.ERROR_MESSAGE);
+        if (dtDataLancamento.getDate() == null) {
+            JOptionPane.showMessageDialog(null, "Informe a data de lançamento.",
+                        "Informe a data de lançamento!", JOptionPane.ERROR_MESSAGE);
             return false;
         }
-        
-        if (txtDataPagamento.getText().isEmpty() || txtDataPagamento.getText().equals("Data do pagamento")) {
-            JOptionPane.showMessageDialog(null, "Insira a data de pagamento e tente novamente!",
-                    "Data de pagamento está vazia!", JOptionPane.ERROR_MESSAGE);
+        if (dtDataPagamento.getDate() == null) {
+            JOptionPane.showMessageDialog(null, "Informe a data de pagamento.",
+                        "Informe a data de pagamento!", JOptionPane.ERROR_MESSAGE);
             return false;
         }
-        
-        if (txtSalarioBase.getText().isEmpty() || txtSalarioBase.getText().equals("Salário base")) {
-            JOptionPane.showMessageDialog(null, "Insira o salário base e tente novamente!",
-                    "Salário base está vazio!", JOptionPane.ERROR_MESSAGE);
-            return false;
-        }
-        
-        if (txtAdicionais.getText().isEmpty() || txtAdicionais.getText().equals("IDs dos adicionais")) {
-            JOptionPane.showMessageDialog(null, "Insira os adicionais e tente novamente!",
-                    "Adicionais está vazio!", JOptionPane.ERROR_MESSAGE);
-            return false;
-        }
-        
-        if (txtDescontos.getText().isEmpty() || txtDescontos.getText().equals("IDs dos descontos")) {
-            JOptionPane.showMessageDialog(null, "Insira os descontos e tente novamente!",
-                    "Descontos está vazio!", JOptionPane.ERROR_MESSAGE);
-            return false;
-        }
-        
-        char primeiro = txtAdicionais.getText().charAt(0);
-        if (primeiro == ',') {
-            JOptionPane.showMessageDialog(null, "Por favor, remova a vírgula no início dos adicionais!",
-                    "Digite os IDs corretamente!", JOptionPane.ERROR_MESSAGE);
-            return false;
-        }
-        
-        primeiro = txtDescontos.getText().charAt(0);
-        if (primeiro == ',') {
-            JOptionPane.showMessageDialog(null, "Por favor, remova a vírgula no início dos descontos!",
-                    "Digite os IDs corretamente!", JOptionPane.ERROR_MESSAGE);
-            return false;
-        }
-        
-        char ultimo = txtAdicionais.getText().charAt(txtAdicionais.getText().length() - 1);
-        if (ultimo == ',') {
-            JOptionPane.showMessageDialog(null, "Por favor, remova a vírgula no final dos adicionais!",
-                    "Digite os IDs corretamente!", JOptionPane.ERROR_MESSAGE);
-            return false;
-        }
-        
-        ultimo = txtDescontos.getText().charAt(txtDescontos.getText().length() - 1);
-        if (ultimo == ',') {
-            JOptionPane.showMessageDialog(null, "Por favor, remova a vírgula no final dos descontos!",
-                    "Digite os IDs corretamente!", JOptionPane.ERROR_MESSAGE);
-            return false;
-        }
-        
         return true;
-    }
-    
-    private void limparCampos() {
-        txtDataLancamento.setText("");
-        txtDataPagamento.setText("");
-        txtCpf.setText("");
-        txtSalarioBase.setText("");
-        txtAdicionais.setText("");
-        txtDescontos.setText("");
-    }
-    
-    private boolean verificar(char a) {
-        if(a == '1' || a == '2' || a == '3' || a == '4'
-                 || a == '5' || a == '6' || a == '7'
-                 || a == '8' || a == '9' || a == '0'
-                 || a == ',') {
-            return true;
-        }
-        return false;
-    }
-    
-    private List<Adicional> obterAdicionais(String ids) {
-        char[] chars = ids.toCharArray();
-        String id = new String();
-        Adicional adc;
-        Long idAdc;
-        List<Adicional> lista = new ArrayList<>();
-        for (char ch : chars) {
-            if(verificar(ch) == false) {
-                JOptionPane.showMessageDialog(null, "Insira apenas números e vírgulas nos IDs!",
-                    "Digite os IDs corretamente!", JOptionPane.ERROR_MESSAGE);
-                return null;
-            }
-            if (ch == ',') {
-                if ("".equals(id)) {
-                    JOptionPane.showMessageDialog(null, "Insira números separados por vírgulas corretamente!",
-                            "Digite os IDs corretamente!", JOptionPane.ERROR_MESSAGE);
-                    return null;
-                }
-                idAdc = Long.parseLong(id);
-                adc = facade.findById(idAdc);
-                for (Adicional ver : lista) {
-                    if (ver.getId() == idAdc) {
-                        JOptionPane.showMessageDialog(null, "Remova os IDs repetidos nos adicionais para continuar!",
-                                "Digite os IDs corretamente!", JOptionPane.ERROR_MESSAGE);
-                        return null;
-                    }
-                }
-                lista.add(adc);
-                id = "";
-            } else {
-                id = id + ch;
-            }
-        }
-        idAdc = Long.parseLong(id);
-        adc = facade.findById(idAdc);
-        for (Adicional ver : lista) {
-            if (ver.getId() == idAdc) {
-                JOptionPane.showMessageDialog(null, "Remova os IDs repetidos nos adicionais para continuar!",
-                        "Digite os IDs corretamente!", JOptionPane.ERROR_MESSAGE);
-                return null;
-            }
-        }
-        lista.add(adc);
-        return lista;
-    }
-    
-    private List<Desconto> obterDescontos(String ids) {
-        char[] chars = ids.toCharArray();
-        String id = new String();
-        Desconto dsc;
-        Long idDsc;
-        List<Desconto> lista = new ArrayList<>();
-        for (char ch : chars) {
-            if(verificar(ch) == false) {
-                JOptionPane.showMessageDialog(null, "Insira apenas números e vírgulas nos IDs!",
-                    "Digite os IDs corretamente!", JOptionPane.ERROR_MESSAGE);
-                return null;
-            }
-            if (ch == ',') {
-                if ("".equals(id)) {
-                    JOptionPane.showMessageDialog(null, "Insira números separados por vírgulas corretamente!",
-                            "Digite os IDs corretamente!", JOptionPane.ERROR_MESSAGE);
-                    return null;
-                }
-                idDsc = Long.parseLong(id);
-                dsc = facade.findDescontoById(idDsc);
-                for (Desconto ver : lista) {
-                    if (ver.getId() == idDsc) {
-                        JOptionPane.showMessageDialog(null, "Remova os IDs repetidos nos descontos para continuar!",
-                                "Digite os IDs corretamente!", JOptionPane.ERROR_MESSAGE);
-                        return null;
-                    }
-                }
-                lista.add(dsc);
-                id = "";
-            } else {
-                id = id + ch;
-            }
-        }
-        idDsc = Long.parseLong(id);
-        dsc = facade.findDescontoById(idDsc);
-        for (Desconto ver : lista) {
-            if (ver.getId() == idDsc) {
-                JOptionPane.showMessageDialog(null, "Remova os IDs repetidos nos descontos para continuar!",
-                        "Digite os IDs corretamente!", JOptionPane.ERROR_MESSAGE);
-                return null;
-            }
-        }
-        lista.add(dsc);
-        return lista;
     }
     
     @SuppressWarnings("unchecked")
@@ -251,27 +163,40 @@ public class TelaEditarPagamento extends javax.swing.JFrame {
         pnlContainer = new javax.swing.JPanel();
         pnlLateral = new javax.swing.JPanel();
         lblLateral = new javax.swing.JLabel();
-        btnInicio1 = new javax.swing.JButton();
-        pnlCampo = new javax.swing.JPanel();
-        pnlMenu = new javax.swing.JPanel();
-        lblMenu = new javax.swing.JLabel();
+        btnInicio = new javax.swing.JButton();
+        pnlPagamentos = new javax.swing.JTabbedPane();
+        pnlContainerPagamentos = new javax.swing.JPanel();
         pnlTextFields = new javax.swing.JPanel();
-        txtDataLancamento = new javax.swing.JTextField();
-        txtDataPagamento = new javax.swing.JTextField();
-        txtCpf = new javax.swing.JTextField();
-        txtSalarioBase = new javax.swing.JTextField();
-        txtAdicionais = new javax.swing.JTextField();
-        txtDescontos = new javax.swing.JTextField();
         btnEditar = new javax.swing.JButton();
+        cbxFuncionario = new javax.swing.JComboBox<>();
+        dtDataLancamento = new com.toedter.calendar.JDateChooser();
+        dtDataPagamento = new com.toedter.calendar.JDateChooser();
+        lblFuncionario = new javax.swing.JLabel();
+        lblDataLancamento = new javax.swing.JLabel();
+        lblDataPagamento = new javax.swing.JLabel();
+        btnAddDdd = new javax.swing.JButton();
+        lblMenu = new javax.swing.JLabel();
+        pnlContainerAddDdd = new javax.swing.JPanel();
+        lblAdicionais = new javax.swing.JLabel();
+        lblDescontos = new javax.swing.JLabel();
+        btnFinalizar = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tblDescontos = new javax.swing.JTable();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        tblAdicionais = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Editar Pagamento");
+        setTitle("Cadastro de Pagamento");
         setIconImage(icone.getImage());
-        setMinimumSize(new java.awt.Dimension(838, 600));
+        setMinimumSize(new java.awt.Dimension(1100, 670));
         setResizable(false);
 
         pnlContainer.setBackground(new java.awt.Color(255, 255, 255));
         pnlContainer.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        pnlContainer.setMaximumSize(new java.awt.Dimension(1100, 670));
+        pnlContainer.setMinimumSize(new java.awt.Dimension(1100, 670));
+        pnlContainer.setPreferredSize(new java.awt.Dimension(1100, 670));
 
         pnlLateral.setBackground(new java.awt.Color(26, 81, 107));
 
@@ -279,20 +204,20 @@ public class TelaEditarPagamento extends javax.swing.JFrame {
         lblLateral.setForeground(new java.awt.Color(255, 255, 255));
         lblLateral.setText("MÓDULO RH");
 
-        btnInicio1.setBackground(new java.awt.Color(26, 81, 107));
-        btnInicio1.setFont(fonteNormal);
-        btnInicio1.setForeground(new java.awt.Color(255, 255, 255));
-        btnInicio1.setText("Inicio");
-        btnInicio1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 2, true));
-        btnInicio1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnInicio1.setFocusPainted(false);
-        btnInicio1.setFocusable(false);
-        btnInicio1.setMaximumSize(new java.awt.Dimension(266, 40));
-        btnInicio1.setMinimumSize(new java.awt.Dimension(266, 40));
-        btnInicio1.setPreferredSize(new java.awt.Dimension(266, 40));
-        btnInicio1.addActionListener(new java.awt.event.ActionListener() {
+        btnInicio.setBackground(new java.awt.Color(26, 81, 107));
+        btnInicio.setFont(fonteNormal);
+        btnInicio.setForeground(new java.awt.Color(255, 255, 255));
+        btnInicio.setText("Inicio");
+        btnInicio.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 2, true));
+        btnInicio.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnInicio.setFocusPainted(false);
+        btnInicio.setFocusable(false);
+        btnInicio.setMaximumSize(new java.awt.Dimension(266, 40));
+        btnInicio.setMinimumSize(new java.awt.Dimension(266, 40));
+        btnInicio.setPreferredSize(new java.awt.Dimension(266, 40));
+        btnInicio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnInicio1ActionPerformed(evt);
+                btnInicioActionPerformed(evt);
             }
         });
 
@@ -307,7 +232,7 @@ public class TelaEditarPagamento extends javax.swing.JFrame {
                         .addComponent(lblLateral))
                     .addGroup(pnlLateralLayout.createSequentialGroup()
                         .addGap(86, 86, 86)
-                        .addComponent(btnInicio1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(86, Short.MAX_VALUE))
         );
         pnlLateralLayout.setVerticalGroup(
@@ -315,136 +240,20 @@ public class TelaEditarPagamento extends javax.swing.JFrame {
             .addGroup(pnlLateralLayout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(lblLateral)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnInicio1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 548, Short.MAX_VALUE)
+                .addComponent(btnInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(41, 41, 41))
         );
 
-        pnlCampo.setBackground(new java.awt.Color(255, 255, 255));
-
-        pnlMenu.setBackground(new java.awt.Color(255, 255, 255));
-        pnlMenu.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(244, 244, 244), 4, true));
-        pnlMenu.setMinimumSize(new java.awt.Dimension(516, 426));
-
-        lblMenu.setFont(fonteMaior);
-        lblMenu.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblMenu.setText("Editar Pagamento");
+        pnlContainerPagamentos.setBackground(new java.awt.Color(255, 255, 255));
+        pnlContainerPagamentos.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        pnlContainerPagamentos.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         pnlTextFields.setBackground(new java.awt.Color(255, 255, 255));
+        pnlTextFields.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
         pnlTextFields.setMaximumSize(new java.awt.Dimension(360, 130));
         pnlTextFields.setPreferredSize(new java.awt.Dimension(360, 130));
         pnlTextFields.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        txtDataLancamento.setFont(fonteNormal);
-        txtDataLancamento.setText("Data do lançamento");
-        txtDataLancamento.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        txtDataLancamento.setMaximumSize(new java.awt.Dimension(320, 50));
-        txtDataLancamento.setMinimumSize(new java.awt.Dimension(320, 50));
-        txtDataLancamento.setPreferredSize(new java.awt.Dimension(320, 50));
-        txtDataLancamento.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                txtDataLancamentoFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtDataLancamentoFocusLost(evt);
-            }
-        });
-        txtDataLancamento.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDataLancamentoActionPerformed(evt);
-            }
-        });
-        pnlTextFields.add(txtDataLancamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 320, -1));
-
-        txtDataPagamento.setFont(fonteNormal);
-        txtDataPagamento.setText("Data do pagamento");
-        txtDataPagamento.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        txtDataPagamento.setMaximumSize(new java.awt.Dimension(320, 50));
-        txtDataPagamento.setMinimumSize(new java.awt.Dimension(320, 50));
-        txtDataPagamento.setPreferredSize(new java.awt.Dimension(320, 50));
-        txtDataPagamento.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                txtDataPagamentoFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtDataPagamentoFocusLost(evt);
-            }
-        });
-        txtDataPagamento.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDataPagamentoActionPerformed(evt);
-            }
-        });
-        pnlTextFields.add(txtDataPagamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 320, -1));
-
-        txtCpf.setFont(fonteNormal);
-        txtCpf.setText("CPF do funcionário");
-        txtCpf.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        txtCpf.setMaximumSize(new java.awt.Dimension(320, 50));
-        txtCpf.setMinimumSize(new java.awt.Dimension(320, 50));
-        txtCpf.setPreferredSize(new java.awt.Dimension(320, 50));
-        txtCpf.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                txtCpfFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtCpfFocusLost(evt);
-            }
-        });
-        txtCpf.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCpfActionPerformed(evt);
-            }
-        });
-        pnlTextFields.add(txtCpf, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 320, -1));
-
-        txtSalarioBase.setFont(fonteNormal);
-        txtSalarioBase.setText("Salário base");
-        txtSalarioBase.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        txtSalarioBase.setMaximumSize(new java.awt.Dimension(320, 50));
-        txtSalarioBase.setMinimumSize(new java.awt.Dimension(320, 50));
-        txtSalarioBase.setPreferredSize(new java.awt.Dimension(320, 50));
-        txtSalarioBase.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                txtSalarioBaseFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtSalarioBaseFocusLost(evt);
-            }
-        });
-        pnlTextFields.add(txtSalarioBase, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, 320, -1));
-
-        txtAdicionais.setFont(fonteNormal);
-        txtAdicionais.setText("IDs dos adicionais");
-        txtAdicionais.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        txtAdicionais.setMaximumSize(new java.awt.Dimension(320, 50));
-        txtAdicionais.setMinimumSize(new java.awt.Dimension(320, 50));
-        txtAdicionais.setPreferredSize(new java.awt.Dimension(320, 50));
-        txtAdicionais.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                txtAdicionaisFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtAdicionaisFocusLost(evt);
-            }
-        });
-        pnlTextFields.add(txtAdicionais, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 320, -1));
-
-        txtDescontos.setFont(fonteNormal);
-        txtDescontos.setText("IDs dos descontos");
-        txtDescontos.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        txtDescontos.setMaximumSize(new java.awt.Dimension(320, 50));
-        txtDescontos.setMinimumSize(new java.awt.Dimension(320, 50));
-        txtDescontos.setPreferredSize(new java.awt.Dimension(320, 50));
-        txtDescontos.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                txtDescontosFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtDescontosFocusLost(evt);
-            }
-        });
-        pnlTextFields.add(txtDescontos, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, 320, -1));
 
         btnEditar.setBackground(new java.awt.Color(71, 19, 35));
         btnEditar.setFont(fonteNormal);
@@ -462,47 +271,106 @@ public class TelaEditarPagamento extends javax.swing.JFrame {
                 btnEditarActionPerformed(evt);
             }
         });
-        pnlTextFields.add(btnEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 360, -1, -1));
+        pnlTextFields.add(btnEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 340, -1, -1));
+        pnlTextFields.add(cbxFuncionario, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 320, 40));
+        pnlTextFields.add(dtDataLancamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 320, 40));
+        pnlTextFields.add(dtDataPagamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 320, 40));
 
-        javax.swing.GroupLayout pnlMenuLayout = new javax.swing.GroupLayout(pnlMenu);
-        pnlMenu.setLayout(pnlMenuLayout);
-        pnlMenuLayout.setHorizontalGroup(
-            pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlMenuLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(pnlMenuLayout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addComponent(pnlTextFields, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        pnlMenuLayout.setVerticalGroup(
-            pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlMenuLayout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(lblMenu)
-                .addGap(18, 18, 18)
-                .addComponent(pnlTextFields, javax.swing.GroupLayout.PREFERRED_SIZE, 408, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(14, Short.MAX_VALUE))
-        );
+        lblFuncionario.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblFuncionario.setForeground(new java.awt.Color(0, 0, 0));
+        lblFuncionario.setText("Funcionário:");
+        pnlTextFields.add(lblFuncionario, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, -1, -1));
 
-        javax.swing.GroupLayout pnlCampoLayout = new javax.swing.GroupLayout(pnlCampo);
-        pnlCampo.setLayout(pnlCampoLayout);
-        pnlCampoLayout.setHorizontalGroup(
-            pnlCampoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCampoLayout.createSequentialGroup()
-                .addContainerGap(47, Short.MAX_VALUE)
-                .addComponent(pnlMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 443, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38))
-        );
-        pnlCampoLayout.setVerticalGroup(
-            pnlCampoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCampoLayout.createSequentialGroup()
-                .addContainerGap(39, Short.MAX_VALUE)
-                .addComponent(pnlMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34))
-        );
+        lblDataLancamento.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblDataLancamento.setForeground(new java.awt.Color(0, 0, 0));
+        lblDataLancamento.setText("Data de Lançamento:");
+        pnlTextFields.add(lblDataLancamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, -1, -1));
+
+        lblDataPagamento.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblDataPagamento.setForeground(new java.awt.Color(0, 0, 0));
+        lblDataPagamento.setText("Data do Pagamento:");
+        pnlTextFields.add(lblDataPagamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, -1, -1));
+
+        btnAddDdd.setBackground(new java.awt.Color(71, 19, 35));
+        btnAddDdd.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnAddDdd.setForeground(new java.awt.Color(255, 255, 255));
+        btnAddDdd.setText("ADICIONAIS/DESCONTOS");
+        btnAddDdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddDddActionPerformed(evt);
+            }
+        });
+        pnlTextFields.add(btnAddDdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 260, 200, 40));
+
+        lblMenu.setFont(fonteMenor);
+        lblMenu.setForeground(new java.awt.Color(0, 0, 0));
+        lblMenu.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblMenu.setText("Cadastrar Pagamento");
+        pnlTextFields.add(lblMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 10, -1, -1));
+
+        pnlContainerPagamentos.add(pnlTextFields, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 10, -1, 408));
+
+        pnlPagamentos.addTab("Pagamentos", pnlContainerPagamentos);
+
+        pnlContainerAddDdd.setBackground(new java.awt.Color(255, 255, 255));
+        pnlContainerAddDdd.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblAdicionais.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblAdicionais.setForeground(new java.awt.Color(0, 0, 0));
+        lblAdicionais.setText("ADICIONAIS");
+        pnlContainerAddDdd.add(lblAdicionais, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 40, -1, -1));
+
+        lblDescontos.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblDescontos.setForeground(new java.awt.Color(0, 0, 0));
+        lblDescontos.setText("DESCONTOS");
+        pnlContainerAddDdd.add(lblDescontos, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 40, -1, -1));
+
+        btnFinalizar.setBackground(new java.awt.Color(71, 19, 35));
+        btnFinalizar.setForeground(new java.awt.Color(255, 255, 255));
+        btnFinalizar.setText("FINALIZAR");
+        btnFinalizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFinalizarActionPerformed(evt);
+            }
+        });
+        pnlContainerAddDdd.add(btnFinalizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 360, 160, 40));
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel1.setText("SELECIONE OS ADICIONAIS E DESCONTOS DO PAGAMENTO");
+        pnlContainerAddDdd.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 10, -1, -1));
+
+        tblDescontos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "ID", "Desconto", "Valor/Percentual"
+            }
+        ));
+        jScrollPane3.setViewportView(tblDescontos);
+
+        pnlContainerAddDdd.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 60, 300, 280));
+
+        tblAdicionais.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "ID", "Adicional", "Valor/Percentual"
+            }
+        ));
+        jScrollPane4.setViewportView(tblAdicionais);
+
+        pnlContainerAddDdd.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 300, 280));
+
+        pnlPagamentos.addTab("Adicionais/Descontos", pnlContainerAddDdd);
 
         javax.swing.GroupLayout pnlContainerLayout = new javax.swing.GroupLayout(pnlContainer);
         pnlContainer.setLayout(pnlContainerLayout);
@@ -510,17 +378,17 @@ public class TelaEditarPagamento extends javax.swing.JFrame {
             pnlContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlContainerLayout.createSequentialGroup()
                 .addComponent(pnlLateral, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(pnlCampo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
+                .addComponent(pnlPagamentos, javax.swing.GroupLayout.PREFERRED_SIZE, 676, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(48, 48, 48))
         );
         pnlContainerLayout.setVerticalGroup(
             pnlContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(pnlLateral, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(pnlContainerLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(pnlCampo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(78, 78, 78)
+                .addComponent(pnlPagamentos, javax.swing.GroupLayout.PREFERRED_SIZE, 472, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -537,75 +405,38 @@ public class TelaEditarPagamento extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtSalarioBaseFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtSalarioBaseFocusGained
-        if (txtSalarioBase.getText().equals("Salário base")) {
-            txtSalarioBase.setText("");
-        }
-    }//GEN-LAST:event_txtSalarioBaseFocusGained
-
-    private void txtSalarioBaseFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtSalarioBaseFocusLost
-        if (txtSalarioBase.getText().trim().isEmpty()) {
-            txtSalarioBase.setText("Salário base");
-        }
-    }//GEN-LAST:event_txtSalarioBaseFocusLost
-
-    private void txtDataLancamentoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDataLancamentoFocusGained
-        if(txtDataLancamento.getText().equals("Data do lançamento"))
-            txtDataLancamento.setText("");
-    }//GEN-LAST:event_txtDataLancamentoFocusGained
-
-    private void txtDataLancamentoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDataLancamentoFocusLost
-        if(txtDataLancamento.getText().trim().isEmpty())
-            txtDataLancamento.setText("Data do lançamento");
-    }//GEN-LAST:event_txtDataLancamentoFocusLost
-
-    private void txtCpfFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCpfFocusGained
-        if(txtCpf.getText().equals("CPF do funcionário"))
-            txtCpf.setText("");
-    }//GEN-LAST:event_txtCpfFocusGained
-
-    private void txtCpfFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCpfFocusLost
-        if(txtCpf.getText().trim().isEmpty())
-            txtCpf.setText("CPF do funcionário");
-    }//GEN-LAST:event_txtCpfFocusLost
-
-    private void txtCpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCpfActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCpfActionPerformed
-
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         if (validarCampos()) {
-            String dataLancamento = txtDataLancamento.getText();
-            String dataPagamento = txtDataPagamento.getText();
-            String cpf = txtCpf.getText();
-            float salarioBase = Float.parseFloat(txtSalarioBase.getText());
-            String adicionais = txtAdicionais.getText();
-            String descontos = txtDescontos.getText();
-            Funcionario funcionario = facade.findFuncionarioByCpf(cpf);
             
-            List<Adicional> listaAdc = obterAdicionais(adicionais);
-            List<Desconto> listaDsc = obterDescontos(descontos);
+            String nomeSelecionado =  String.valueOf(cbxFuncionario.getSelectedItem());
+            Optional<Funcionario> funcionarioEncontrado = funcionarios.stream().filter(funcionario -> {
+                return funcionario.getNome().equalsIgnoreCase(nomeSelecionado);
+            }).findFirst();
             
-            if (listaAdc == null) {
-                txtAdicionais.setText("");
-                return;
-            }
-            if (listaDsc == null) {
-                txtDescontos.setText("");
+            if (funcionarioEncontrado.isPresent() == false) {
+                 JOptionPane.showMessageDialog(null, "Selecione o funcionário.",
+                        "Funcionário não selecionado!", JOptionPane.ERROR_MESSAGE);
                 return;
             }
             
-            Pagamentos pagamento = new Pagamentos(
-                    dataLancamento, dataPagamento, salarioBase, funcionario,
-                    listaAdc, listaDsc);
-            pagamento.setId(this.pagamento.getId());
+            getAdicionaisDescontos();
             
             try {
-                pagamento = facade.updatePagamento(pagamento);
+                String dataLancamento = formatarData.format(dtDataLancamento.getDate());
+                String dataPagamento = formatarData.format(dtDataPagamento.getDate());
+                
+                Pagamentos pagamento = new Pagamentos(dataLancamento, dataPagamento, 
+                        funcionarioEncontrado.get().getSalario(), funcionarioEncontrado.get());
+                
+                pagamento.setId(pagamentoId);
+                
+                pagamento.calcularAdicionais(adicionaisSelecionados);
+                pagamento.calcularDescontos(descontosSelecionados);
+                
+                facade.updatePagamento(pagamento);
                 this.setVisible(false);
                 telaListarPagamentos.setVisible(true);
                 telaListarPagamentos.exibirDados();
-                limparCampos();
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Erro ao salvar no banco: " + e.getMessage(),
                         "Erro ao salvar no banco de dados!", JOptionPane.ERROR_MESSAGE);
@@ -613,58 +444,23 @@ public class TelaEditarPagamento extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnEditarActionPerformed
 
-    private void btnInicio1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicio1ActionPerformed
+    private void btnInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioActionPerformed
         this.setVisible(false);
         telaHomescreenGestor.setVisible(true);
-    }//GEN-LAST:event_btnInicio1ActionPerformed
+    }//GEN-LAST:event_btnInicioActionPerformed
 
-    private void txtDataLancamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDataLancamentoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDataLancamentoActionPerformed
+    private void btnAddDddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddDddActionPerformed
+        pnlPagamentos.setSelectedIndex(1);
+    }//GEN-LAST:event_btnAddDddActionPerformed
 
-    private void txtDataPagamentoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDataPagamentoFocusGained
-        if(txtDataPagamento.getText().equals("Data do pagamento"))
-            txtDataPagamento.setText("");
-    }//GEN-LAST:event_txtDataPagamentoFocusGained
-
-    private void txtDataPagamentoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDataPagamentoFocusLost
-        if(txtDataPagamento.getText().trim().isEmpty())
-            txtDataPagamento.setText("Data do pagamento");
-    }//GEN-LAST:event_txtDataPagamentoFocusLost
-
-    private void txtDataPagamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDataPagamentoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDataPagamentoActionPerformed
-
-    private void txtAdicionaisFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtAdicionaisFocusGained
-        if(txtAdicionais.getText().equals("IDs dos adicionais"))
-            txtAdicionais.setText("");
-    }//GEN-LAST:event_txtAdicionaisFocusGained
-
-    private void txtAdicionaisFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtAdicionaisFocusLost
-        if(txtAdicionais.getText().trim().isEmpty())
-            txtAdicionais.setText("IDs dos adicionais");
-    }//GEN-LAST:event_txtAdicionaisFocusLost
-
-    private void txtDescontosFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDescontosFocusGained
-        if(txtDescontos.getText().equals("IDs dos descontos"))
-            txtDescontos.setText("");
-    }//GEN-LAST:event_txtDescontosFocusGained
-
-    private void txtDescontosFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDescontosFocusLost
-        if(txtDescontos.getText().trim().isEmpty())
-            txtDescontos.setText("IDs dos descontos");
-    }//GEN-LAST:event_txtDescontosFocusLost
+    private void btnFinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarActionPerformed
+        pnlPagamentos.setSelectedIndex(0);
+    }//GEN-LAST:event_btnFinalizarActionPerformed
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -681,12 +477,7 @@ public class TelaEditarPagamento extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(TelaEditarPagamento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
 
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
@@ -701,20 +492,30 @@ public class TelaEditarPagamento extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAddDdd;
     private javax.swing.JButton btnEditar;
-    private javax.swing.JButton btnInicio1;
+    private javax.swing.JButton btnFinalizar;
+    private javax.swing.JButton btnInicio;
+    private javax.swing.JComboBox<String> cbxFuncionario;
+    private com.toedter.calendar.JDateChooser dtDataLancamento;
+    private com.toedter.calendar.JDateChooser dtDataPagamento;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JLabel lblAdicionais;
+    private javax.swing.JLabel lblDataLancamento;
+    private javax.swing.JLabel lblDataPagamento;
+    private javax.swing.JLabel lblDescontos;
+    private javax.swing.JLabel lblFuncionario;
     private javax.swing.JLabel lblLateral;
     private javax.swing.JLabel lblMenu;
-    private javax.swing.JPanel pnlCampo;
     private javax.swing.JPanel pnlContainer;
+    private javax.swing.JPanel pnlContainerAddDdd;
+    private javax.swing.JPanel pnlContainerPagamentos;
     private javax.swing.JPanel pnlLateral;
-    private javax.swing.JPanel pnlMenu;
+    private javax.swing.JTabbedPane pnlPagamentos;
     private javax.swing.JPanel pnlTextFields;
-    private javax.swing.JTextField txtAdicionais;
-    private javax.swing.JTextField txtCpf;
-    private javax.swing.JTextField txtDataLancamento;
-    private javax.swing.JTextField txtDataPagamento;
-    private javax.swing.JTextField txtDescontos;
-    private javax.swing.JTextField txtSalarioBase;
+    private javax.swing.JTable tblAdicionais;
+    private javax.swing.JTable tblDescontos;
     // End of variables declaration//GEN-END:variables
 }

@@ -28,7 +28,7 @@ public class Desconto implements Serializable {
     private float desconto;
     private String tipoDesconto;
     
-    @ManyToMany
+    @ManyToMany(mappedBy = "descontos")
     private List<Pagamentos> pagamentos;
     
     public Desconto(String nome, float desconto, String tipoDesconto) {
