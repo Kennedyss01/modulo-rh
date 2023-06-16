@@ -142,7 +142,7 @@ public class TelaCadastroPagamento extends javax.swing.JFrame {
         pnlContainer = new javax.swing.JPanel();
         pnlLateral = new javax.swing.JPanel();
         lblLateral = new javax.swing.JLabel();
-        btnInicio1 = new javax.swing.JButton();
+        btnInicio = new javax.swing.JButton();
         pnlPagamentos = new javax.swing.JTabbedPane();
         pnlContainerPagamentos = new javax.swing.JPanel();
         pnlTextFields = new javax.swing.JPanel();
@@ -158,7 +158,7 @@ public class TelaCadastroPagamento extends javax.swing.JFrame {
         pnlContainerAddDdd = new javax.swing.JPanel();
         lblAdicionais = new javax.swing.JLabel();
         lblDescontos = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnFinalizar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tblDescontos = new javax.swing.JTable();
@@ -184,20 +184,20 @@ public class TelaCadastroPagamento extends javax.swing.JFrame {
         lblLateral.setForeground(new java.awt.Color(255, 255, 255));
         lblLateral.setText("MÓDULO RH");
 
-        btnInicio1.setBackground(new java.awt.Color(26, 81, 107));
-        btnInicio1.setFont(fonteNormal);
-        btnInicio1.setForeground(new java.awt.Color(255, 255, 255));
-        btnInicio1.setText("Inicio");
-        btnInicio1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 2, true));
-        btnInicio1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnInicio1.setFocusPainted(false);
-        btnInicio1.setFocusable(false);
-        btnInicio1.setMaximumSize(new java.awt.Dimension(266, 40));
-        btnInicio1.setMinimumSize(new java.awt.Dimension(266, 40));
-        btnInicio1.setPreferredSize(new java.awt.Dimension(266, 40));
-        btnInicio1.addActionListener(new java.awt.event.ActionListener() {
+        btnInicio.setBackground(new java.awt.Color(26, 81, 107));
+        btnInicio.setFont(fonteNormal);
+        btnInicio.setForeground(new java.awt.Color(255, 255, 255));
+        btnInicio.setText("Inicio");
+        btnInicio.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 2, true));
+        btnInicio.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnInicio.setFocusPainted(false);
+        btnInicio.setFocusable(false);
+        btnInicio.setMaximumSize(new java.awt.Dimension(266, 40));
+        btnInicio.setMinimumSize(new java.awt.Dimension(266, 40));
+        btnInicio.setPreferredSize(new java.awt.Dimension(266, 40));
+        btnInicio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnInicio1ActionPerformed(evt);
+                btnInicioActionPerformed(evt);
             }
         });
 
@@ -212,7 +212,7 @@ public class TelaCadastroPagamento extends javax.swing.JFrame {
                         .addComponent(lblLateral))
                     .addGroup(pnlLateralLayout.createSequentialGroup()
                         .addGap(86, 86, 86)
-                        .addComponent(btnInicio1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(86, Short.MAX_VALUE))
         );
         pnlLateralLayout.setVerticalGroup(
@@ -221,7 +221,7 @@ public class TelaCadastroPagamento extends javax.swing.JFrame {
                 .addGap(21, 21, 21)
                 .addComponent(lblLateral)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 548, Short.MAX_VALUE)
-                .addComponent(btnInicio1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(41, 41, 41))
         );
 
@@ -290,7 +290,7 @@ public class TelaCadastroPagamento extends javax.swing.JFrame {
 
         pnlContainerPagamentos.add(pnlTextFields, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 10, -1, 408));
 
-        pnlPagamentos.addTab("Pagamentos", pnlContainerPagamentos);
+        pnlPagamentos.addTab("Pagamento", pnlContainerPagamentos);
 
         pnlContainerAddDdd.setBackground(new java.awt.Color(255, 255, 255));
         pnlContainerAddDdd.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -305,15 +305,15 @@ public class TelaCadastroPagamento extends javax.swing.JFrame {
         lblDescontos.setText("DESCONTOS");
         pnlContainerAddDdd.add(lblDescontos, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 40, -1, -1));
 
-        jButton1.setBackground(new java.awt.Color(71, 19, 35));
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("FINALIZAR");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnFinalizar.setBackground(new java.awt.Color(71, 19, 35));
+        btnFinalizar.setForeground(new java.awt.Color(255, 255, 255));
+        btnFinalizar.setText("FINALIZAR");
+        btnFinalizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnFinalizarActionPerformed(evt);
             }
         });
-        pnlContainerAddDdd.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 360, 160, 40));
+        pnlContainerAddDdd.add(btnFinalizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 360, 160, 40));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
@@ -422,18 +422,18 @@ public class TelaCadastroPagamento extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
-    private void btnInicio1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicio1ActionPerformed
+    private void btnInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioActionPerformed
         this.setVisible(false);
         telaHomescreenGestor.setVisible(true);
-    }//GEN-LAST:event_btnInicio1ActionPerformed
+    }//GEN-LAST:event_btnInicioActionPerformed
 
     private void btnAddDddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddDddActionPerformed
         pnlPagamentos.setSelectedIndex(1);
     }//GEN-LAST:event_btnAddDddActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnFinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarActionPerformed
         pnlPagamentos.setSelectedIndex(0);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnFinalizarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -472,11 +472,11 @@ public class TelaCadastroPagamento extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddDdd;
     private javax.swing.JButton btnCadastrar;
-    private javax.swing.JButton btnInicio1;
+    private javax.swing.JButton btnFinalizar;
+    private javax.swing.JButton btnInicio;
     private javax.swing.JComboBox<String> cbxFuncionario;
     private com.toedter.calendar.JDateChooser dtDataLancamento;
     private com.toedter.calendar.JDateChooser dtDataPagamento;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;

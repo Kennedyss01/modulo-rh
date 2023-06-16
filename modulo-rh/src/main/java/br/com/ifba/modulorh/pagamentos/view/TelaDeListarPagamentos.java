@@ -126,10 +126,10 @@ public class TelaDeListarPagamentos extends javax.swing.JFrame {
         pnlLateral = new javax.swing.JPanel();
         lblModuloRH = new javax.swing.JLabel();
         btnInicio = new javax.swing.JButton();
-        pnlCampo = new javax.swing.JPanel();
+        pnlPagamentos = new javax.swing.JPanel();
         pnlRegistros = new javax.swing.JPanel();
         pnlTabela = new javax.swing.JPanel();
-        jScrollPane = new javax.swing.JScrollPane();
+        srcScrollPagamentos = new javax.swing.JScrollPane();
         tblPagamentos = new javax.swing.JTable();
         txtBusca = new javax.swing.JTextField();
         btnBuscar = new javax.swing.JButton();
@@ -199,7 +199,7 @@ public class TelaDeListarPagamentos extends javax.swing.JFrame {
                 .addGap(42, 42, 42))
         );
 
-        pnlCampo.setBackground(new java.awt.Color(255, 255, 255));
+        pnlPagamentos.setBackground(new java.awt.Color(255, 255, 255));
 
         pnlRegistros.setBackground(new java.awt.Color(255, 255, 255));
         pnlRegistros.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 4, true));
@@ -210,10 +210,10 @@ public class TelaDeListarPagamentos extends javax.swing.JFrame {
         pnlTabela.setMinimumSize(new java.awt.Dimension(360, 130));
         pnlTabela.setPreferredSize(new java.awt.Dimension(360, 130));
 
-        jScrollPane.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
-        jScrollPane.setFont(fonteNormal);
-        jScrollPane.setMinimumSize(new java.awt.Dimension(549, 427));
-        jScrollPane.setPreferredSize(new java.awt.Dimension(559, 427));
+        srcScrollPagamentos.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        srcScrollPagamentos.setFont(fonteNormal);
+        srcScrollPagamentos.setMinimumSize(new java.awt.Dimension(549, 427));
+        srcScrollPagamentos.setPreferredSize(new java.awt.Dimension(559, 427));
 
         tblPagamentos.setFont(fonteMenor);
         tblPagamentos.setModel(new javax.swing.table.DefaultTableModel(
@@ -226,13 +226,21 @@ public class TelaDeListarPagamentos extends javax.swing.JFrame {
             new String [] {
                 "ID", "Nome", "Lançamento", "Pagamento", "Salário Base", "Adicionais", "Descontos", "Salário Final"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tblPagamentos.setMaximumSize(new java.awt.Dimension(2147483647, 2147483647));
         tblPagamentos.setMinimumSize(new java.awt.Dimension(559, 427));
         tblPagamentos.setPreferredSize(new java.awt.Dimension(559, 427));
-        jScrollPane.setViewportView(tblPagamentos);
+        srcScrollPagamentos.setViewportView(tblPagamentos);
 
-        txtBusca.setText("Buscar por nome do funcionário");
+        txtBusca.setText("Filtrar por nome do funcionário");
         txtBusca.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 txtBuscaFocusGained(evt);
@@ -257,11 +265,6 @@ public class TelaDeListarPagamentos extends javax.swing.JFrame {
         btnBuscar.setForeground(new java.awt.Color(255, 255, 255));
         btnBuscar.setText("Buscar");
         btnBuscar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscarActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout pnlTabelaLayout = new javax.swing.GroupLayout(pnlTabela);
         pnlTabela.setLayout(pnlTabelaLayout);
@@ -270,11 +273,11 @@ public class TelaDeListarPagamentos extends javax.swing.JFrame {
             .addGroup(pnlTabelaLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnlTabelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 969, Short.MAX_VALUE)
+                    .addComponent(srcScrollPagamentos, javax.swing.GroupLayout.DEFAULT_SIZE, 969, Short.MAX_VALUE)
                     .addGroup(pnlTabelaLayout.createSequentialGroup()
-                        .addComponent(txtBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 864, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(txtBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 788, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         pnlTabelaLayout.setVerticalGroup(
@@ -284,7 +287,7 @@ public class TelaDeListarPagamentos extends javax.swing.JFrame {
                     .addComponent(txtBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 390, Short.MAX_VALUE)
+                .addComponent(srcScrollPagamentos, javax.swing.GroupLayout.PREFERRED_SIZE, 390, Short.MAX_VALUE)
                 .addGap(18, 18, 18))
         );
 
@@ -345,11 +348,11 @@ public class TelaDeListarPagamentos extends javax.swing.JFrame {
             pnlBotoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlBotoesLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnCadastrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(51, 51, 51)
-                .addComponent(btnEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(46, 46, 46)
-                .addComponent(btnExcluir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(71, 71, 71)
+                .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         pnlBotoesLayout.setVerticalGroup(
@@ -390,18 +393,18 @@ public class TelaDeListarPagamentos extends javax.swing.JFrame {
                 .addGap(15, 15, 15))
         );
 
-        javax.swing.GroupLayout pnlCampoLayout = new javax.swing.GroupLayout(pnlCampo);
-        pnlCampo.setLayout(pnlCampoLayout);
-        pnlCampoLayout.setHorizontalGroup(
-            pnlCampoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlCampoLayout.createSequentialGroup()
+        javax.swing.GroupLayout pnlPagamentosLayout = new javax.swing.GroupLayout(pnlPagamentos);
+        pnlPagamentos.setLayout(pnlPagamentosLayout);
+        pnlPagamentosLayout.setHorizontalGroup(
+            pnlPagamentosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlPagamentosLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(pnlRegistros, javax.swing.GroupLayout.DEFAULT_SIZE, 1001, Short.MAX_VALUE)
                 .addContainerGap())
         );
-        pnlCampoLayout.setVerticalGroup(
-            pnlCampoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlCampoLayout.createSequentialGroup()
+        pnlPagamentosLayout.setVerticalGroup(
+            pnlPagamentosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlPagamentosLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(pnlRegistros, javax.swing.GroupLayout.DEFAULT_SIZE, 584, Short.MAX_VALUE)
                 .addContainerGap())
@@ -414,7 +417,7 @@ public class TelaDeListarPagamentos extends javax.swing.JFrame {
             .addGroup(pnlContainerLayout.createSequentialGroup()
                 .addComponent(pnlLateral, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pnlCampo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(pnlPagamentos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         pnlContainerLayout.setVerticalGroup(
@@ -422,7 +425,7 @@ public class TelaDeListarPagamentos extends javax.swing.JFrame {
             .addComponent(pnlLateral, javax.swing.GroupLayout.DEFAULT_SIZE, 608, Short.MAX_VALUE)
             .addGroup(pnlContainerLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(pnlCampo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(pnlPagamentos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -475,20 +478,15 @@ public class TelaDeListarPagamentos extends javax.swing.JFrame {
         telaHomescreenGestor.setVisible(true);
     }//GEN-LAST:event_btnInicioActionPerformed
 
-    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        String busca = txtBusca.getText().trim().toLowerCase();
-        buscarPagamentos(busca);
-    }//GEN-LAST:event_btnBuscarActionPerformed
-
     private void txtBuscaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtBuscaFocusGained
-        if (txtBusca.getText().equals("Buscar por CPF do funcionário")) {
+        if (txtBusca.getText().equals("Filtrar por nome do funcionário")) {
             txtBusca.setText("");
         }
     }//GEN-LAST:event_txtBuscaFocusGained
 
     private void txtBuscaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtBuscaFocusLost
         if (txtBusca.getText().trim().isEmpty()) {
-            txtBusca.setText("Buscar por CPF do funcionário");
+            txtBusca.setText("Filtrar por nome do funcionário");
         }
     }//GEN-LAST:event_txtBuscaFocusLost
 
@@ -564,15 +562,15 @@ public class TelaDeListarPagamentos extends javax.swing.JFrame {
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnInicio;
-    private javax.swing.JScrollPane jScrollPane;
     private javax.swing.JLabel lblModuloRH;
     private javax.swing.JLabel lblPagamentosExistentes;
     private javax.swing.JPanel pnlBotoes;
-    private javax.swing.JPanel pnlCampo;
     private javax.swing.JPanel pnlContainer;
     private javax.swing.JPanel pnlLateral;
+    private javax.swing.JPanel pnlPagamentos;
     private javax.swing.JPanel pnlRegistros;
     private javax.swing.JPanel pnlTabela;
+    private javax.swing.JScrollPane srcScrollPagamentos;
     private javax.swing.JTable tblPagamentos;
     private javax.swing.JTextField txtBusca;
     // End of variables declaration//GEN-END:variables

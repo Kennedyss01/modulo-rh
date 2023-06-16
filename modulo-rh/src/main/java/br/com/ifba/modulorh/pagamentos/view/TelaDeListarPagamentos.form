@@ -65,7 +65,7 @@
               <Group type="102" attributes="0">
                   <Component id="pnlLateral" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="pnlCampo" max="32767" attributes="0"/>
+                  <Component id="pnlPagamentos" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -75,7 +75,7 @@
               <Component id="pnlLateral" alignment="0" pref="608" max="32767" attributes="0"/>
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="pnlCampo" max="32767" attributes="0"/>
+                  <Component id="pnlPagamentos" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -177,7 +177,7 @@
             </Component>
           </SubComponents>
         </Container>
-        <Container class="javax.swing.JPanel" name="pnlCampo">
+        <Container class="javax.swing.JPanel" name="pnlPagamentos">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -273,11 +273,11 @@
                           <Group type="102" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jScrollPane" pref="969" max="32767" attributes="0"/>
+                                  <Component id="srcScrollPagamentos" pref="969" max="32767" attributes="0"/>
                                   <Group type="102" attributes="0">
-                                      <Component id="txtBusca" min="-2" pref="864" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="btnBuscar" max="32767" attributes="0"/>
+                                      <Component id="txtBusca" min="-2" pref="788" max="-2" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
+                                      <Component id="btnBuscar" min="-2" pref="155" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
@@ -292,14 +292,14 @@
                                   <Component id="btnBuscar" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jScrollPane" pref="390" max="32767" attributes="0"/>
+                              <Component id="srcScrollPagamentos" pref="390" max="32767" attributes="0"/>
                               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
                   </Layout>
                   <SubComponents>
-                    <Container class="javax.swing.JScrollPane" name="jScrollPane">
+                    <Container class="javax.swing.JScrollPane" name="srcScrollPagamentos">
                       <Properties>
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                           <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
@@ -331,14 +331,14 @@
                             </Property>
                             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                               <Table columnCount="8" rowCount="4">
-                                <Column editable="true" title="ID" type="java.lang.Object"/>
-                                <Column editable="true" title="Nome" type="java.lang.Object"/>
-                                <Column editable="true" title="Lan&#xe7;amento" type="java.lang.Object"/>
-                                <Column editable="true" title="Pagamento" type="java.lang.Object"/>
-                                <Column editable="true" title="Sal&#xe1;rio Base" type="java.lang.Object"/>
-                                <Column editable="true" title="Adicionais" type="java.lang.Object"/>
-                                <Column editable="true" title="Descontos" type="java.lang.Object"/>
-                                <Column editable="true" title="Sal&#xe1;rio Final" type="java.lang.Object"/>
+                                <Column editable="false" title="ID" type="java.lang.Object"/>
+                                <Column editable="false" title="Nome" type="java.lang.Object"/>
+                                <Column editable="false" title="Lan&#xe7;amento" type="java.lang.Object"/>
+                                <Column editable="false" title="Pagamento" type="java.lang.Object"/>
+                                <Column editable="false" title="Sal&#xe1;rio Base" type="java.lang.Object"/>
+                                <Column editable="false" title="Adicionais" type="java.lang.Object"/>
+                                <Column editable="false" title="Descontos" type="java.lang.Object"/>
+                                <Column editable="false" title="Sal&#xe1;rio Final" type="java.lang.Object"/>
                               </Table>
                             </Property>
                             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -356,7 +356,7 @@
                     </Container>
                     <Component class="javax.swing.JTextField" name="txtBusca">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Buscar por nome do funcion&#xe1;rio"/>
+                        <Property name="text" type="java.lang.String" value="Filtrar por nome do funcion&#xe1;rio"/>
                       </Properties>
                       <Events>
                         <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtBuscaFocusGained"/>
@@ -383,9 +383,6 @@
                           </Border>
                         </Property>
                       </Properties>
-                      <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBuscarActionPerformed"/>
-                      </Events>
                     </Component>
                   </SubComponents>
                 </Container>
@@ -404,11 +401,11 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="btnCadastrar" max="32767" attributes="0"/>
-                              <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
-                              <Component id="btnEditar" max="32767" attributes="0"/>
-                              <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
-                              <Component id="btnExcluir" max="32767" attributes="0"/>
+                              <Component id="btnCadastrar" min="-2" pref="270" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="71" max="-2" attributes="0"/>
+                              <Component id="btnEditar" min="-2" pref="270" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="btnExcluir" min="-2" pref="270" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>

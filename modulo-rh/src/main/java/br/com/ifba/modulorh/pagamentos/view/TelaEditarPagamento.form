@@ -191,8 +191,8 @@
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-                  <JTabbedPaneConstraints tabName="Pagamentos">
-                    <Property name="tabTitle" type="java.lang.String" value="Pagamentos"/>
+                  <JTabbedPaneConstraints tabName="Pagamento">
+                    <Property name="tabTitle" type="java.lang.String" value="Pagamento"/>
                   </JTabbedPaneConstraints>
                 </Constraint>
               </Constraints>
@@ -372,11 +372,11 @@
                           <Color blue="0" green="0" red="0" type="rgb"/>
                         </Property>
                         <Property name="horizontalAlignment" type="int" value="0"/>
-                        <Property name="text" type="java.lang.String" value="Cadastrar Pagamento"/>
+                        <Property name="text" type="java.lang.String" value="Editar Pagamento"/>
                       </Properties>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                          <AbsoluteConstraints x="110" y="10" width="-1" height="-1"/>
+                          <AbsoluteConstraints x="130" y="10" width="-1" height="-1"/>
                         </Constraint>
                       </Constraints>
                     </Component>

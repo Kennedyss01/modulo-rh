@@ -305,12 +305,12 @@ public class TelaEditarPagamento extends javax.swing.JFrame {
         lblMenu.setFont(fonteMenor);
         lblMenu.setForeground(new java.awt.Color(0, 0, 0));
         lblMenu.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblMenu.setText("Cadastrar Pagamento");
-        pnlTextFields.add(lblMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 10, -1, -1));
+        lblMenu.setText("Editar Pagamento");
+        pnlTextFields.add(lblMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 10, -1, -1));
 
         pnlContainerPagamentos.add(pnlTextFields, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 10, -1, 408));
 
-        pnlPagamentos.addTab("Pagamentos", pnlContainerPagamentos);
+        pnlPagamentos.addTab("Pagamento", pnlContainerPagamentos);
 
         pnlContainerAddDdd.setBackground(new java.awt.Color(255, 255, 255));
         pnlContainerAddDdd.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
