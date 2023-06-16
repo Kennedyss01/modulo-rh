@@ -87,6 +87,16 @@ public class TelaCadastroCurriculo extends javax.swing.JFrame {
         DefaultTableModel modelo = (DefaultTableModel) tblExperiencias.getModel();
         modelo.setNumRows(0);
     }
+    
+    public void limparCampos() {
+        txtNome.setText("");
+        txtEndereco.setText("");
+        txtTelefone.setText("");
+        txtEmail.setText("");
+        txtVaga.setText("");
+        txtFormacaoAcademica.setText("");
+        
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -556,11 +566,10 @@ public class TelaCadastroCurriculo extends javax.swing.JFrame {
     private void btnEditarExperienciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarExperienciaActionPerformed
         int linha = tblExperiencias.getSelectedRow();
         Long id = (Long) tblExperiencias.getValueAt(linha, 0);
-        DefaultTableModel modelo = (DefaultTableModel) tblExperiencias.getModel();
-        ExperienciaProfissional expRemover = facade.findExperienciaProfissionalById(id);
-        listaExperiencias.remove(expRemover);
-        facade.deleteExperienciaProfissional(expRemover);
-        modelo.removeRow(linha);
+        ExperienciaProfissional expPro = facade.findExperienciaProfissionalById(id);
+        this.setVisible(false);
+        telaEditarExperienciaProfissional.setVisible(true);
+        telaEditarExperienciaProfissional.preencherDados(expPro, linha, 1);
     }//GEN-LAST:event_btnEditarExperienciaActionPerformed
 
     private void btnRemoverExperienciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoverExperienciaActionPerformed

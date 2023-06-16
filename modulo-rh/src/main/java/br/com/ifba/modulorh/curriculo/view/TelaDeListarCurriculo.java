@@ -78,8 +78,9 @@ public class TelaDeListarCurriculo extends javax.swing.JFrame {
             
             for (Curriculo curriculo: curriculos) {
                 if (curriculo.getNome().toLowerCase().contains(busca)) {
-                    modelo.addRow(new Object [] {curriculo.getId(), curriculo.getNome(), 
-                        curriculo.getVaga()});
+                    modelo.addRow(new Object[]{curriculo.getId(), curriculo.getNome(),
+                        curriculo.getEndereco(), curriculo.getTelefone(), curriculo.getEmail(),
+                        curriculo.getVaga(), curriculo.getFormacaoAcademica()});
                 }
             }
         } catch(Exception e) {
@@ -98,8 +99,9 @@ public class TelaDeListarCurriculo extends javax.swing.JFrame {
             
             for (Curriculo curriculo: curriculos) {
                 if (curriculo.getVaga().toLowerCase().contains(busca)) {
-                    modelo.addRow(new Object [] {curriculo.getId(), curriculo.getNome(), 
-                        curriculo.getVaga()});
+                    modelo.addRow(new Object[]{curriculo.getId(), curriculo.getNome(),
+                        curriculo.getEndereco(), curriculo.getTelefone(), curriculo.getEmail(),
+                        curriculo.getVaga(), curriculo.getFormacaoAcademica()});
                 }
             }
         } catch(Exception e) {
@@ -404,15 +406,16 @@ public class TelaDeListarCurriculo extends javax.swing.JFrame {
         this.setVisible(false);
         telaCadastroCurriculo.setVisible(true);
         this.telaCadastroCurriculo.limparExperiencias();
+        this.telaCadastroCurriculo.limparCampos();
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
         try{
-            Curriculo curriculo = new Curriculo();
+            Curriculo curriculoExcluir = new Curriculo();
             int linha = tblCurriculos.getSelectedRow();
             Long id = (Long) tblCurriculos.getValueAt(linha, 0);
-            curriculo.setId(id);
-            facade.deleteCurriculo(curriculo);
+            curriculoExcluir = facade.findCurriculoById(id);
+            facade.deleteCurriculo(curriculoExcluir);
             this.atualizarTabela();
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, "Erro ao Excluir no banco: " + e.getMessage(), 

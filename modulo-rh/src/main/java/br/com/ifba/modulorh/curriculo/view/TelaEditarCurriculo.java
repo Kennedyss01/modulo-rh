@@ -99,6 +99,7 @@ public class TelaEditarCurriculo extends javax.swing.JFrame {
         tblExperiencias.setValueAt(expPro.getCargo(), linhaEditar, 1);
         tblExperiencias.setValueAt(expPro.getEmpresa(), linhaEditar, 2);
         tblExperiencias.setValueAt(expPro.getPeriodo(), linhaEditar, 3);
+        listaExperiencias.add(expPro);
     }
     
     /**
@@ -589,6 +590,8 @@ public class TelaEditarCurriculo extends javax.swing.JFrame {
         this.setVisible(false);
         telaEditarExperienciaProfissional.setVisible(true);
         telaEditarExperienciaProfissional.preencherDados(expPro, linha, 2);
+        listaExperiencias.remove(expPro);
+        
     }//GEN-LAST:event_btnEditarExperienciaActionPerformed
 
     private void btnRemoverExperienciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoverExperienciaActionPerformed

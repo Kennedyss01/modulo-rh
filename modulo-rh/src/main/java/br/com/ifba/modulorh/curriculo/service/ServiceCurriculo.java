@@ -52,7 +52,7 @@ public class ServiceCurriculo implements IServiceCurriculo{
         if(this.repositoryCurriculo.existsById(curriculo.getEmail()) == false) {
             throw new BusinessException(CURRICULO_NAO_EXISTE);   
         }
-        repositoryCurriculo.delete(repositoryCurriculo.getReferenceById(curriculo.getEmail()));
+        repositoryCurriculo.delete(curriculo);
     }
 
     @Override
