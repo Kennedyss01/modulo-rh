@@ -465,6 +465,11 @@ public class TelaDeListarPagamentos extends javax.swing.JFrame {
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         int linha = tblPagamentos.getSelectedRow();
+        if(linha == -1){
+            JOptionPane.showMessageDialog(null, "Nenhuma linha da tabela selecionada! ",
+                "Nenhuma linha da tabela selecionada!",JOptionPane.ERROR_MESSAGE);
+            return ;
+        }
         Long id = (Long) tblPagamentos.getValueAt(linha, 0);
         Pagamentos pagamento = facade.findPagamentoById(id);
         telaEditarPagamento.preencherDados();

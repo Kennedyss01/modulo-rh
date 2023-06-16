@@ -47,6 +47,7 @@ public class TelaEditarAvaliacaoDePerformanceDois extends javax.swing.JFrame {
         pnlLateral = new javax.swing.JPanel();
         lblModuloRH = new javax.swing.JLabel();
         btnInicio = new javax.swing.JButton();
+        btnVoltar = new javax.swing.JButton();
         pnlEditarAvaliacaoDePerformance = new javax.swing.JPanel();
         lblEditarAvaliacaoDePerformance = new javax.swing.JLabel();
         btnEditar = new javax.swing.JButton();
@@ -90,6 +91,22 @@ public class TelaEditarAvaliacaoDePerformanceDois extends javax.swing.JFrame {
             }
         });
 
+        btnVoltar.setBackground(new java.awt.Color(26, 81, 107));
+        btnVoltar.setForeground(new java.awt.Color(255, 255, 255));
+        btnVoltar.setText("Voltar");
+        btnVoltar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 2, true));
+        btnVoltar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnVoltar.setFocusPainted(false);
+        btnVoltar.setFocusable(false);
+        btnVoltar.setMaximumSize(new java.awt.Dimension(266, 40));
+        btnVoltar.setMinimumSize(new java.awt.Dimension(266, 40));
+        btnVoltar.setPreferredSize(new java.awt.Dimension(266, 40));
+        btnVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVoltarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnlLateralLayout = new javax.swing.GroupLayout(pnlLateral);
         pnlLateral.setLayout(pnlLateralLayout);
         pnlLateralLayout.setHorizontalGroup(
@@ -100,18 +117,22 @@ public class TelaEditarAvaliacaoDePerformanceDois extends javax.swing.JFrame {
                         .addGap(42, 42, 42)
                         .addComponent(lblModuloRH))
                     .addGroup(pnlLateralLayout.createSequentialGroup()
-                        .addGap(81, 81, 81)
-                        .addComponent(btnInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(102, Short.MAX_VALUE))
+                        .addGap(29, 29, 29)
+                        .addComponent(btnInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
         pnlLateralLayout.setVerticalGroup(
             pnlLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlLateralLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(lblModuloRH)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 475, Short.MAX_VALUE)
-                .addComponent(btnInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(pnlLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(38, 38, 38))
         );
 
         pnlEditarAvaliacaoDePerformance.setBackground(new java.awt.Color(255, 255, 255));
@@ -148,28 +169,28 @@ public class TelaEditarAvaliacaoDePerformanceDois extends javax.swing.JFrame {
         lblAssiduidade.setText("Assiduidade");
         pnlTextFields.add(lblAssiduidade, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
 
-        cbbEditarValoresAssiduidade.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ruim", "Regular", "Bom", "Otimo" }));
+        cbbEditarValoresAssiduidade.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Péssimo", "Ruim", "Regular", "Bom", "Otimo" }));
         pnlTextFields.add(cbbEditarValoresAssiduidade, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 320, 30));
 
         lblCompromisso.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblCompromisso.setText("Compromisso");
         pnlTextFields.add(lblCompromisso, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, -1, -1));
 
-        cbbEditarValoresCompromisso.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ruim", "Regular", "Bom", "Otimo" }));
+        cbbEditarValoresCompromisso.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Péssimo", "Ruim", "Regular", "Bom", "Otimo" }));
         pnlTextFields.add(cbbEditarValoresCompromisso, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 320, 30));
 
         lblColaboracaoEmGrupo.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblColaboracaoEmGrupo.setText("Colaboração em Grupo");
         pnlTextFields.add(lblColaboracaoEmGrupo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, -1, -1));
 
-        cbbEditarValoresColaboracaoEmGrupo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ruim", "Regular", "Bom", "Otimo" }));
+        cbbEditarValoresColaboracaoEmGrupo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Péssimo", "Ruim", "Regular", "Bom", "Otimo" }));
         pnlTextFields.add(cbbEditarValoresColaboracaoEmGrupo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, 320, 30));
 
         lblDesempenho.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblDesempenho.setText("Desempenho");
         pnlTextFields.add(lblDesempenho, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, -1, -1));
 
-        cbbEditarValoresDesempenho.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ruim", "Regular", "Bom", "Otimo" }));
+        cbbEditarValoresDesempenho.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Péssimo", "Ruim", "Regular", "Bom", "Otimo" }));
         pnlTextFields.add(cbbEditarValoresDesempenho, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 310, 320, 30));
 
         javax.swing.GroupLayout pnlEditarAvaliacaoDePerformanceLayout = new javax.swing.GroupLayout(pnlEditarAvaliacaoDePerformance);
@@ -208,9 +229,9 @@ public class TelaEditarAvaliacaoDePerformanceDois extends javax.swing.JFrame {
             pnlContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlContainerLayout.createSequentialGroup()
                 .addComponent(pnlLateral, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(123, 123, 123)
+                .addGap(224, 224, 224)
                 .addComponent(pnlEditarAvaliacaoDePerformance, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(100, Short.MAX_VALUE))
+                .addContainerGap(0, Short.MAX_VALUE))
         );
         pnlContainerLayout.setVerticalGroup(
             pnlContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -218,7 +239,7 @@ public class TelaEditarAvaliacaoDePerformanceDois extends javax.swing.JFrame {
             .addGroup(pnlContainerLayout.createSequentialGroup()
                 .addGap(44, 44, 44)
                 .addComponent(pnlEditarAvaliacaoDePerformance, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(52, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -242,16 +263,19 @@ public class TelaEditarAvaliacaoDePerformanceDois extends javax.swing.JFrame {
     public float verificaNota(String valor){
         float nota = 0;
         
-        if(valor.equals("Ruim")){
+        if(valor.equals("Péssimo")){
             nota = 2;
         }
-        if(valor.equals("Regular")){
+        if(valor.equals("Ruim")){
             nota = 4;
         }
-        if(valor.equals("Bom")){
-            nota = 7;
+        if(valor.equals("Regular")){
+            nota = 6;
         }
-        if(valor.equals("Otimo")){
+        if(valor.equals("Bom")){
+            nota = 10;
+        }
+         if(valor.equals("Otimo")){
             nota = 10;
         }
         
@@ -288,6 +312,11 @@ public class TelaEditarAvaliacaoDePerformanceDois extends javax.swing.JFrame {
                     "Erro ao salvar no banco de dados!",JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnEditarActionPerformed
+
+    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
+        this.setVisible(false);
+        telaEditarAvaliacaoDePerformanceUm.setVisible(true);
+    }//GEN-LAST:event_btnVoltarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -327,6 +356,7 @@ public class TelaEditarAvaliacaoDePerformanceDois extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnInicio;
+    private javax.swing.JButton btnVoltar;
     private javax.swing.JComboBox<String> cbbEditarValoresAssiduidade;
     private javax.swing.JComboBox<String> cbbEditarValoresColaboracaoEmGrupo;
     private javax.swing.JComboBox<String> cbbEditarValoresCompromisso;

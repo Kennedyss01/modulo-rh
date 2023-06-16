@@ -31,6 +31,8 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
     private Funcionario funcionario;
     @Autowired @Lazy
     private TelaHomescreenGestor telaHomescreenGestor;
+    @Autowired @Lazy
+    private TelaDeListarFuncionarios telaDeListarFuncionarios;
     
     ImageIcon icone = new ImageIcon("./src/main/resources/imagens/rh.png");
     Font fonteMaior;
@@ -66,6 +68,7 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
         pnlLateral = new javax.swing.JPanel();
         lblModuloRH = new javax.swing.JLabel();
         btnInicio = new javax.swing.JButton();
+        btnVoltar = new javax.swing.JButton();
         pnlCadastroDeFuncionario = new javax.swing.JPanel();
         lblCadastroDeFuncionario = new javax.swing.JLabel();
         btnCadastrar = new javax.swing.JButton();
@@ -117,6 +120,23 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
             }
         });
 
+        btnVoltar.setBackground(new java.awt.Color(26, 81, 107));
+        btnVoltar.setFont(fonteNormal);
+        btnVoltar.setForeground(new java.awt.Color(255, 255, 255));
+        btnVoltar.setText("Voltar");
+        btnVoltar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 2, true));
+        btnVoltar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnVoltar.setFocusPainted(false);
+        btnVoltar.setFocusable(false);
+        btnVoltar.setMaximumSize(new java.awt.Dimension(266, 40));
+        btnVoltar.setMinimumSize(new java.awt.Dimension(266, 40));
+        btnVoltar.setPreferredSize(new java.awt.Dimension(266, 40));
+        btnVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVoltarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnlLateralLayout = new javax.swing.GroupLayout(pnlLateral);
         pnlLateral.setLayout(pnlLateralLayout);
         pnlLateralLayout.setHorizontalGroup(
@@ -127,9 +147,11 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
                         .addGap(42, 42, 42)
                         .addComponent(lblModuloRH))
                     .addGroup(pnlLateralLayout.createSequentialGroup()
-                        .addGap(81, 81, 81)
-                        .addComponent(btnInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(102, Short.MAX_VALUE))
+                        .addGap(31, 31, 31)
+                        .addComponent(btnInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         pnlLateralLayout.setVerticalGroup(
             pnlLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -137,8 +159,10 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
                 .addGap(20, 20, 20)
                 .addComponent(lblModuloRH)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45))
+                .addGroup(pnlLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(43, 43, 43))
         );
 
         pnlCadastroDeFuncionario.setBackground(new java.awt.Color(255, 255, 255));
@@ -485,6 +509,11 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
             txtNome.setText("Nome");
     }//GEN-LAST:event_txtNomeFocusLost
 
+    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
+        this.setVisible(false);
+        telaDeListarFuncionarios.setVisible(true);
+    }//GEN-LAST:event_btnVoltarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -529,6 +558,7 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCadastrar;
     private javax.swing.JButton btnInicio;
+    private javax.swing.JButton btnVoltar;
     private javax.swing.JLabel lblCadastroDeFuncionario;
     private javax.swing.JLabel lblModuloRH;
     private javax.swing.JPanel pnlCadastroDeFuncionario;

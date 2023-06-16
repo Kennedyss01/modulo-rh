@@ -93,6 +93,7 @@ public class TelaEditarRegistroDePonto extends javax.swing.JFrame {
         pnlLateral = new javax.swing.JPanel();
         lblLateral = new javax.swing.JLabel();
         btnInicio = new javax.swing.JButton();
+        btnVoltar = new javax.swing.JButton();
         pnlCampo = new javax.swing.JPanel();
         lblMenu = new javax.swing.JLabel();
         btnEditar = new javax.swing.JButton();
@@ -137,6 +138,23 @@ public class TelaEditarRegistroDePonto extends javax.swing.JFrame {
             }
         });
 
+        btnVoltar.setBackground(new java.awt.Color(26, 81, 107));
+        btnVoltar.setFont(fonteNormal);
+        btnVoltar.setForeground(new java.awt.Color(255, 255, 255));
+        btnVoltar.setText("Voltar");
+        btnVoltar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 2, true));
+        btnVoltar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnVoltar.setFocusPainted(false);
+        btnVoltar.setFocusable(false);
+        btnVoltar.setMaximumSize(new java.awt.Dimension(266, 40));
+        btnVoltar.setMinimumSize(new java.awt.Dimension(266, 40));
+        btnVoltar.setPreferredSize(new java.awt.Dimension(266, 40));
+        btnVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVoltarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnlLateralLayout = new javax.swing.GroupLayout(pnlLateral);
         pnlLateral.setLayout(pnlLateralLayout);
         pnlLateralLayout.setHorizontalGroup(
@@ -147,9 +165,11 @@ public class TelaEditarRegistroDePonto extends javax.swing.JFrame {
                         .addGap(42, 42, 42)
                         .addComponent(lblLateral))
                     .addGroup(pnlLateralLayout.createSequentialGroup()
-                        .addGap(84, 84, 84)
-                        .addComponent(btnInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(88, Short.MAX_VALUE))
+                        .addGap(29, 29, 29)
+                        .addComponent(btnInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
         pnlLateralLayout.setVerticalGroup(
             pnlLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -157,8 +177,10 @@ public class TelaEditarRegistroDePonto extends javax.swing.JFrame {
                 .addGap(21, 21, 21)
                 .addComponent(lblLateral)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(77, 77, 77))
+                .addGroup(pnlLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(70, 70, 70))
         );
 
         pnlCampo.setBackground(new java.awt.Color(255, 255, 255));
@@ -167,7 +189,6 @@ public class TelaEditarRegistroDePonto extends javax.swing.JFrame {
         pnlCampo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblMenu.setFont(fonteMaior);
-        lblMenu.setForeground(new java.awt.Color(0, 0, 0));
         lblMenu.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblMenu.setText("Editar Registro de Ponto");
         pnlCampo.add(lblMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 400, -1));
@@ -190,25 +211,19 @@ public class TelaEditarRegistroDePonto extends javax.swing.JFrame {
         });
         pnlCampo.add(btnEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 270, -1, -1));
 
-        txtDataEntrada.setBackground(new java.awt.Color(255, 255, 255));
         txtDataEntrada.setFont(fonteNormal);
-        txtDataEntrada.setForeground(new java.awt.Color(0, 0, 0));
         txtDataEntrada.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         pnlCampo.add(txtDataEntrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 110, 250, 30));
 
         lblDataEntrada.setFont(fonteNormal);
-        lblDataEntrada.setForeground(new java.awt.Color(0, 0, 0));
         lblDataEntrada.setText("Data de Entrada:");
         pnlCampo.add(lblDataEntrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 90, -1, -1));
 
         lblDataSaida.setFont(fonteNormal);
-        lblDataSaida.setForeground(new java.awt.Color(0, 0, 0));
         lblDataSaida.setText("Data de Saída:");
         pnlCampo.add(lblDataSaida, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 160, -1, -1));
 
-        txtDataSaida.setBackground(new java.awt.Color(255, 255, 255));
         txtDataSaida.setFont(fonteNormal);
-        txtDataSaida.setForeground(new java.awt.Color(0, 0, 0));
         txtDataSaida.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         pnlCampo.add(txtDataSaida, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 180, 250, 30));
 
@@ -280,6 +295,11 @@ public class TelaEditarRegistroDePonto extends javax.swing.JFrame {
         telaHomescreenFuncionario.toFront();
     }//GEN-LAST:event_btnInicioActionPerformed
 
+    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
+        this.setVisible(false);
+        telaDeListarRegistroDePonto.setVisible(true);
+    }//GEN-LAST:event_btnVoltarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -316,6 +336,7 @@ public class TelaEditarRegistroDePonto extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnInicio;
+    private javax.swing.JButton btnVoltar;
     private javax.swing.JLabel lblDataEntrada;
     private javax.swing.JLabel lblDataSaida;
     private javax.swing.JLabel lblLateral;

@@ -44,6 +44,7 @@ public class TelaEditarAvaliacaoDePerformanceUm extends javax.swing.JFrame {
         pnlLateral = new javax.swing.JPanel();
         lblModuloRH = new javax.swing.JLabel();
         btnInicio = new javax.swing.JButton();
+        btnVoltar = new javax.swing.JButton();
         pnlEditarAvaliacaoDePerformance = new javax.swing.JPanel();
         lbEditarAvaliacaoDePerformance = new javax.swing.JLabel();
         btnProximo = new javax.swing.JButton();
@@ -86,6 +87,22 @@ public class TelaEditarAvaliacaoDePerformanceUm extends javax.swing.JFrame {
             }
         });
 
+        btnVoltar.setBackground(new java.awt.Color(26, 81, 107));
+        btnVoltar.setForeground(new java.awt.Color(255, 255, 255));
+        btnVoltar.setText("Voltar");
+        btnVoltar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 2, true));
+        btnVoltar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnVoltar.setFocusPainted(false);
+        btnVoltar.setFocusable(false);
+        btnVoltar.setMaximumSize(new java.awt.Dimension(266, 40));
+        btnVoltar.setMinimumSize(new java.awt.Dimension(266, 40));
+        btnVoltar.setPreferredSize(new java.awt.Dimension(266, 40));
+        btnVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVoltarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnlLateralLayout = new javax.swing.GroupLayout(pnlLateral);
         pnlLateral.setLayout(pnlLateralLayout);
         pnlLateralLayout.setHorizontalGroup(
@@ -96,9 +113,11 @@ public class TelaEditarAvaliacaoDePerformanceUm extends javax.swing.JFrame {
                         .addGap(42, 42, 42)
                         .addComponent(lblModuloRH))
                     .addGroup(pnlLateralLayout.createSequentialGroup()
-                        .addGap(81, 81, 81)
-                        .addComponent(btnInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(102, Short.MAX_VALUE))
+                        .addGap(33, 33, 33)
+                        .addComponent(btnInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
         pnlLateralLayout.setVerticalGroup(
             pnlLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -106,8 +125,10 @@ public class TelaEditarAvaliacaoDePerformanceUm extends javax.swing.JFrame {
                 .addGap(20, 20, 20)
                 .addComponent(lblModuloRH)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45))
+                .addGroup(pnlLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(44, 44, 44))
         );
 
         pnlEditarAvaliacaoDePerformance.setBackground(new java.awt.Color(255, 255, 255));
@@ -289,6 +310,11 @@ public class TelaEditarAvaliacaoDePerformanceUm extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnProximoActionPerformed
 
+    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
+        this.setVisible(false);
+        telaListarAvaliacaoDePerformance.setVisible(true);
+    }//GEN-LAST:event_btnVoltarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -327,6 +353,7 @@ public class TelaEditarAvaliacaoDePerformanceUm extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnInicio;
     private javax.swing.JButton btnProximo;
+    private javax.swing.JButton btnVoltar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbEditarAvaliacaoDePerformance;
     private javax.swing.JLabel lblDataDeAvaliacao;

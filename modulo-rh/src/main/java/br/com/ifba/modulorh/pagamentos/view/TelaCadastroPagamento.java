@@ -143,6 +143,7 @@ public class TelaCadastroPagamento extends javax.swing.JFrame {
         pnlLateral = new javax.swing.JPanel();
         lblLateral = new javax.swing.JLabel();
         btnInicio = new javax.swing.JButton();
+        btnVoltar = new javax.swing.JButton();
         pnlPagamentos = new javax.swing.JTabbedPane();
         pnlContainerPagamentos = new javax.swing.JPanel();
         pnlTextFields = new javax.swing.JPanel();
@@ -201,6 +202,23 @@ public class TelaCadastroPagamento extends javax.swing.JFrame {
             }
         });
 
+        btnVoltar.setBackground(new java.awt.Color(26, 81, 107));
+        btnVoltar.setFont(fonteNormal);
+        btnVoltar.setForeground(new java.awt.Color(255, 255, 255));
+        btnVoltar.setText("Voltar");
+        btnVoltar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 2, true));
+        btnVoltar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnVoltar.setFocusPainted(false);
+        btnVoltar.setFocusable(false);
+        btnVoltar.setMaximumSize(new java.awt.Dimension(266, 40));
+        btnVoltar.setMinimumSize(new java.awt.Dimension(266, 40));
+        btnVoltar.setPreferredSize(new java.awt.Dimension(266, 40));
+        btnVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVoltarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnlLateralLayout = new javax.swing.GroupLayout(pnlLateral);
         pnlLateral.setLayout(pnlLateralLayout);
         pnlLateralLayout.setHorizontalGroup(
@@ -211,18 +229,22 @@ public class TelaCadastroPagamento extends javax.swing.JFrame {
                         .addGap(42, 42, 42)
                         .addComponent(lblLateral))
                     .addGroup(pnlLateralLayout.createSequentialGroup()
-                        .addGap(86, 86, 86)
-                        .addComponent(btnInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(86, Short.MAX_VALUE))
+                        .addGap(25, 25, 25)
+                        .addComponent(btnInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
         pnlLateralLayout.setVerticalGroup(
             pnlLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlLateralLayout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(lblLateral)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 548, Short.MAX_VALUE)
-                .addComponent(btnInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(41, 41, 41))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(pnlLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(38, 38, 38))
         );
 
         pnlContainerPagamentos.setBackground(new java.awt.Color(255, 255, 255));
@@ -257,17 +279,14 @@ public class TelaCadastroPagamento extends javax.swing.JFrame {
         pnlTextFields.add(dtDataPagamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 320, 40));
 
         lblFuncionario.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        lblFuncionario.setForeground(new java.awt.Color(0, 0, 0));
         lblFuncionario.setText("Funcionário:");
         pnlTextFields.add(lblFuncionario, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, -1, -1));
 
         lblDataLancamento.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        lblDataLancamento.setForeground(new java.awt.Color(0, 0, 0));
         lblDataLancamento.setText("Data de Lançamento:");
         pnlTextFields.add(lblDataLancamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, -1, -1));
 
         lblDataPagamento.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        lblDataPagamento.setForeground(new java.awt.Color(0, 0, 0));
         lblDataPagamento.setText("Data do Pagamento:");
         pnlTextFields.add(lblDataPagamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, -1, -1));
 
@@ -283,7 +302,6 @@ public class TelaCadastroPagamento extends javax.swing.JFrame {
         pnlTextFields.add(btnAddDdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 260, 200, 40));
 
         lblMenu.setFont(fonteMenor);
-        lblMenu.setForeground(new java.awt.Color(0, 0, 0));
         lblMenu.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblMenu.setText("Cadastrar Pagamento");
         pnlTextFields.add(lblMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 10, -1, -1));
@@ -296,12 +314,10 @@ public class TelaCadastroPagamento extends javax.swing.JFrame {
         pnlContainerAddDdd.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblAdicionais.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        lblAdicionais.setForeground(new java.awt.Color(0, 0, 0));
         lblAdicionais.setText("ADICIONAIS");
         pnlContainerAddDdd.add(lblAdicionais, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 40, -1, -1));
 
         lblDescontos.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        lblDescontos.setForeground(new java.awt.Color(0, 0, 0));
         lblDescontos.setText("DESCONTOS");
         pnlContainerAddDdd.add(lblDescontos, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 40, -1, -1));
 
@@ -316,7 +332,6 @@ public class TelaCadastroPagamento extends javax.swing.JFrame {
         pnlContainerAddDdd.add(btnFinalizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 360, 160, 40));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("SELECIONE OS ADICIONAIS E DESCONTOS DO PAGAMENTO");
         pnlContainerAddDdd.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 10, -1, -1));
 
@@ -368,7 +383,7 @@ public class TelaCadastroPagamento extends javax.swing.JFrame {
             .addGroup(pnlContainerLayout.createSequentialGroup()
                 .addGap(78, 78, 78)
                 .addComponent(pnlPagamentos, javax.swing.GroupLayout.PREFERRED_SIZE, 472, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(116, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -435,6 +450,11 @@ public class TelaCadastroPagamento extends javax.swing.JFrame {
         pnlPagamentos.setSelectedIndex(0);
     }//GEN-LAST:event_btnFinalizarActionPerformed
 
+    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
+        this.setVisible(false);
+        telaListarPagamentos.setVisible(true);
+    }//GEN-LAST:event_btnVoltarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -474,6 +494,7 @@ public class TelaCadastroPagamento extends javax.swing.JFrame {
     private javax.swing.JButton btnCadastrar;
     private javax.swing.JButton btnFinalizar;
     private javax.swing.JButton btnInicio;
+    private javax.swing.JButton btnVoltar;
     private javax.swing.JComboBox<String> cbxFuncionario;
     private com.toedter.calendar.JDateChooser dtDataLancamento;
     private com.toedter.calendar.JDateChooser dtDataPagamento;

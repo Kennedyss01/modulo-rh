@@ -43,6 +43,7 @@ public class TelaCadastroAvaliacaoDePerformanceDois extends javax.swing.JFrame {
         pnlLateral = new javax.swing.JPanel();
         lblModuloRH = new javax.swing.JLabel();
         btnInicio = new javax.swing.JButton();
+        btnVoltar = new javax.swing.JButton();
         pnlCadastroDeAvaliacaoDePerformance = new javax.swing.JPanel();
         lblCadastroDeAvaliacaoDePerformance = new javax.swing.JLabel();
         btnCadastrar = new javax.swing.JButton();
@@ -86,6 +87,22 @@ public class TelaCadastroAvaliacaoDePerformanceDois extends javax.swing.JFrame {
             }
         });
 
+        btnVoltar.setBackground(new java.awt.Color(26, 81, 107));
+        btnVoltar.setForeground(new java.awt.Color(255, 255, 255));
+        btnVoltar.setText("Voltar");
+        btnVoltar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 2, true));
+        btnVoltar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnVoltar.setFocusPainted(false);
+        btnVoltar.setFocusable(false);
+        btnVoltar.setMaximumSize(new java.awt.Dimension(266, 40));
+        btnVoltar.setMinimumSize(new java.awt.Dimension(266, 40));
+        btnVoltar.setPreferredSize(new java.awt.Dimension(266, 40));
+        btnVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVoltarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnlLateralLayout = new javax.swing.GroupLayout(pnlLateral);
         pnlLateral.setLayout(pnlLateralLayout);
         pnlLateralLayout.setHorizontalGroup(
@@ -96,9 +113,11 @@ public class TelaCadastroAvaliacaoDePerformanceDois extends javax.swing.JFrame {
                         .addGap(42, 42, 42)
                         .addComponent(lblModuloRH))
                     .addGroup(pnlLateralLayout.createSequentialGroup()
-                        .addGap(81, 81, 81)
-                        .addComponent(btnInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(102, Short.MAX_VALUE))
+                        .addGap(29, 29, 29)
+                        .addComponent(btnInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
         pnlLateralLayout.setVerticalGroup(
             pnlLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -106,7 +125,9 @@ public class TelaCadastroAvaliacaoDePerformanceDois extends javax.swing.JFrame {
                 .addGap(20, 20, 20)
                 .addComponent(lblModuloRH)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 475, Short.MAX_VALUE)
-                .addComponent(btnInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(pnlLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(45, 45, 45))
         );
 
@@ -144,28 +165,28 @@ public class TelaCadastroAvaliacaoDePerformanceDois extends javax.swing.JFrame {
         lblAssiduidade.setText("Assiduidade");
         pnlTextFields.add(lblAssiduidade, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
 
-        cbbValoresAssiduidade.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ruim", "Regular", "Bom", "Otimo" }));
+        cbbValoresAssiduidade.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Péssimo", "Ruim", "Regular", "Bom", "Otimo" }));
         pnlTextFields.add(cbbValoresAssiduidade, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 320, 30));
 
         lblCompromisso.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblCompromisso.setText("Compromisso");
         pnlTextFields.add(lblCompromisso, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, -1, -1));
 
-        cbbValoresCompromisso.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ruim", "Regular", "Bom", "Otimo" }));
+        cbbValoresCompromisso.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Péssimo", "Ruim", "Regular", "Bom", "Otimo" }));
         pnlTextFields.add(cbbValoresCompromisso, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 320, 30));
 
         lblColaboracaoEmGrupo.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblColaboracaoEmGrupo.setText("Colaboração em Grupo");
         pnlTextFields.add(lblColaboracaoEmGrupo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, -1, -1));
 
-        cbbValoresColaboracaoEmGrupo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ruim", "Regular", "Bom", "Otimo" }));
+        cbbValoresColaboracaoEmGrupo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Péssimo", "Ruim", "Regular", "Bom", "Otimo" }));
         pnlTextFields.add(cbbValoresColaboracaoEmGrupo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, 320, 30));
 
         lblDesempenho.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblDesempenho.setText("Desempenho");
         pnlTextFields.add(lblDesempenho, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, -1, -1));
 
-        cbbValoresDesempenho.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ruim", "Regular", "Bom", "Otimo" }));
+        cbbValoresDesempenho.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Péssimo", "Ruim", "Regular", "Bom", "Otimo" }));
         pnlTextFields.add(cbbValoresDesempenho, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 310, 320, 30));
 
         javax.swing.GroupLayout pnlCadastroDeAvaliacaoDePerformanceLayout = new javax.swing.GroupLayout(pnlCadastroDeAvaliacaoDePerformance);
@@ -243,14 +264,17 @@ public class TelaCadastroAvaliacaoDePerformanceDois extends javax.swing.JFrame {
     public float verificaNota(String valor){
         float nota = 0;
         
-        if(valor.equals("Ruim")){
+        if(valor.equals("Péssimo")){
             nota = 2;
         }
-        if(valor.equals("Regular")){
+        if(valor.equals("Ruim")){
             nota = 4;
         }
+        if(valor.equals("Regular")){
+            nota = 6;
+        }
         if(valor.equals("Bom")){
-            nota = 7;
+            nota = 8;
         }
         if(valor.equals("Otimo")){
             nota = 10;
@@ -285,6 +309,11 @@ public class TelaCadastroAvaliacaoDePerformanceDois extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_btnCadastrarActionPerformed
+
+    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
+        this.setVisible(false);
+        telaCadastroAvaliacaoDePerformanceUm.setVisible(true);
+    }//GEN-LAST:event_btnVoltarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -324,6 +353,7 @@ public class TelaCadastroAvaliacaoDePerformanceDois extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCadastrar;
     private javax.swing.JButton btnInicio;
+    private javax.swing.JButton btnVoltar;
     private javax.swing.JComboBox<String> cbbValoresAssiduidade;
     private javax.swing.JComboBox<String> cbbValoresColaboracaoEmGrupo;
     private javax.swing.JComboBox<String> cbbValoresCompromisso;
