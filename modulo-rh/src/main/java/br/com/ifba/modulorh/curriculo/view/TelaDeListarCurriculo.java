@@ -55,6 +55,19 @@ public class TelaDeListarCurriculo extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }
     
+    public void atualizarTabela() {
+        curriculos = facade.getAllCurriculo();
+        
+        DefaultTableModel modelo = (DefaultTableModel) tblCurriculos.getModel();
+        modelo.setNumRows(0);
+        
+        for (Curriculo crc : curriculos) {
+            modelo.addRow(new Object[]{crc.getId(), crc.getNome(),
+                crc.getEndereco(), crc.getTelefone(), crc.getEmail(),
+                crc.getVaga(), crc.getFormacaoAcademica()});
+        }
+    }
+    
     private void buscarCurriculoNome(String busca) {
         try {
 
@@ -65,8 +78,9 @@ public class TelaDeListarCurriculo extends javax.swing.JFrame {
             
             for (Curriculo curriculo: curriculos) {
                 if (curriculo.getNome().toLowerCase().contains(busca)) {
-                    modelo.addRow(new Object [] {curriculo.getId(), curriculo.getNome(), 
-                        curriculo.getVaga()});
+                    modelo.addRow(new Object[]{curriculo.getId(), curriculo.getNome(),
+                        curriculo.getEndereco(), curriculo.getTelefone(), curriculo.getEmail(),
+                        curriculo.getVaga(), curriculo.getFormacaoAcademica()});
                 }
             }
         } catch(Exception e) {
@@ -85,8 +99,9 @@ public class TelaDeListarCurriculo extends javax.swing.JFrame {
             
             for (Curriculo curriculo: curriculos) {
                 if (curriculo.getVaga().toLowerCase().contains(busca)) {
-                    modelo.addRow(new Object [] {curriculo.getId(), curriculo.getNome(), 
-                        curriculo.getVaga()});
+                    modelo.addRow(new Object[]{curriculo.getId(), curriculo.getNome(),
+                        curriculo.getEndereco(), curriculo.getTelefone(), curriculo.getEmail(),
+                        curriculo.getVaga(), curriculo.getFormacaoAcademica()});
                 }
             }
         } catch(Exception e) {
@@ -247,18 +262,18 @@ public class TelaDeListarCurriculo extends javax.swing.JFrame {
 
         tblCurriculos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Nome", "Vaga"
+                "ID", "Nome", "Endereço", "Telefone", "E-mail", "Vaga", "Formação acadêmica"
             }
         ));
         jScrollPane1.setViewportView(tblCurriculos);
 
-        pnlTextFields.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, 510, 310));
+        pnlTextFields.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, 930, 310));
 
         btnBuscarNome.setBackground(new java.awt.Color(71, 19, 35));
         btnBuscarNome.setFont(fonteNormal);
@@ -276,7 +291,7 @@ public class TelaDeListarCurriculo extends javax.swing.JFrame {
                 btnBuscarNomeActionPerformed(evt);
             }
         });
-        pnlTextFields.add(btnBuscarNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 10, 110, -1));
+        pnlTextFields.add(btnBuscarNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 10, 110, -1));
 
         txtNome.setText("Nome");
         txtNome.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -287,7 +302,7 @@ public class TelaDeListarCurriculo extends javax.swing.JFrame {
                 txtNomeFocusLost(evt);
             }
         });
-        pnlTextFields.add(txtNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, 390, 40));
+        pnlTextFields.add(txtNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, 800, 40));
 
         txtVaga.setText("Vaga");
         txtVaga.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -298,7 +313,7 @@ public class TelaDeListarCurriculo extends javax.swing.JFrame {
                 txtVagaFocusLost(evt);
             }
         });
-        pnlTextFields.add(txtVaga, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, 390, 40));
+        pnlTextFields.add(txtVaga, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, 800, 40));
 
         btnBuscarVaga.setBackground(new java.awt.Color(71, 19, 35));
         btnBuscarVaga.setFont(fonteNormal);
@@ -316,7 +331,7 @@ public class TelaDeListarCurriculo extends javax.swing.JFrame {
                 btnBuscarVagaActionPerformed(evt);
             }
         });
-        pnlTextFields.add(btnBuscarVaga, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 60, 110, -1));
+        pnlTextFields.add(btnBuscarVaga, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 60, 110, -1));
 
         javax.swing.GroupLayout pnlLoginLayout = new javax.swing.GroupLayout(pnlLogin);
         pnlLogin.setLayout(pnlLoginLayout);
@@ -331,11 +346,11 @@ public class TelaDeListarCurriculo extends javax.swing.JFrame {
                             .addComponent(pnlTextFields, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(pnlLoginLayout.createSequentialGroup()
                                 .addGap(42, 42, 42)
-                                .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(28, 28, 28)
-                                .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
-                                .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 136, Short.MAX_VALUE)
+                                .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(116, 116, 116)
+                                .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(26, 26, 26)))))
                 .addContainerGap())
         );
@@ -361,7 +376,7 @@ public class TelaDeListarCurriculo extends javax.swing.JFrame {
             .addGroup(pnlContainerLayout.createSequentialGroup()
                 .addComponent(pnlLateral, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pnlLogin, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
+                .addComponent(pnlLogin, javax.swing.GroupLayout.DEFAULT_SIZE, 1015, Short.MAX_VALUE)
                 .addContainerGap())
         );
         pnlContainerLayout.setVerticalGroup(
@@ -390,16 +405,18 @@ public class TelaDeListarCurriculo extends javax.swing.JFrame {
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
         this.setVisible(false);
         telaCadastroCurriculo.setVisible(true);
+        this.telaCadastroCurriculo.limparExperiencias();
+        this.telaCadastroCurriculo.limparCampos();
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
         try{
-            Curriculo curriculo = new Curriculo();
+            Curriculo curriculoExcluir = new Curriculo();
             int linha = tblCurriculos.getSelectedRow();
             Long id = (Long) tblCurriculos.getValueAt(linha, 0);
-            curriculo.setId(id);
-            facade.deleteCurriculo(curriculo);
-            this.exibirDados();
+            curriculoExcluir = facade.findCurriculoById(id);
+            facade.deleteCurriculo(curriculoExcluir);
+            this.atualizarTabela();
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, "Erro ao Excluir no banco: " + e.getMessage(), 
                     "Erro ao Excluir no banco de dados!",JOptionPane.ERROR_MESSAGE);
@@ -408,16 +425,11 @@ public class TelaDeListarCurriculo extends javax.swing.JFrame {
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         int linha = tblCurriculos.getSelectedRow();
-        if(linha == -1){
-            JOptionPane.showMessageDialog(null, "Nenhuma linha da tabela selecionada! ",
-                "Nenhuma linha da tabela selecionada!",JOptionPane.ERROR_MESSAGE);
-            return ;
-        }
         Long id = (Long) tblCurriculos.getValueAt(linha, 0);
         Curriculo curriculo = facade.findCurriculoById(id);
-        telaEditarCurriculo.passandoDados(curriculo);
         this.setVisible(false);
         telaEditarCurriculo.setVisible(true);
+        telaEditarCurriculo.passandoDados(curriculo);
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnBuscarNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarNomeActionPerformed
@@ -518,16 +530,6 @@ public class TelaDeListarCurriculo extends javax.swing.JFrame {
     private javax.swing.JTextField txtVaga;
     // End of variables declaration//GEN-END:variables
 
-    @PostConstruct
-    public void exibirDados(){
-        setLocationRelativeTo(null);
-        List<Curriculo> lista = facade.getAllCurriculo();
-        DefaultTableModel modelo = (DefaultTableModel) tblCurriculos.getModel();
-        modelo.setNumRows(0);
-        for(Curriculo lis: lista){
-            modelo.addRow(new Object [] {lis.getId(), lis.getNome(), lis.getVaga()});
-        }
-    }
 
 }
 

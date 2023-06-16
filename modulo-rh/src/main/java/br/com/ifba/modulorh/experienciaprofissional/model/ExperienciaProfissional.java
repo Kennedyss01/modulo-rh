@@ -35,11 +35,10 @@ public class ExperienciaProfissional implements Serializable {
     @JoinColumn(name = "curriculo_id")
     private Curriculo curriculo;
 
-    public ExperienciaProfissional(String cargo, String empresa, String periodo, Curriculo curriculo) {
+    public ExperienciaProfissional(String cargo, String empresa, String periodo) {
         this.cargo = cargo;
         this.empresa = empresa;
         this.periodo = periodo;
-        this.curriculo = curriculo;
     }
 }
 

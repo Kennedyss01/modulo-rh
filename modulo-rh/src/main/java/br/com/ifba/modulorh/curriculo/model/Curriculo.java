@@ -42,5 +42,6 @@ public class Curriculo implements Serializable{
         this.email = email;
         this.formacaoAcademica = formacaoAcademica;
         //this.experienciaProfissional = experienciaProfissional;
-    }    
+    }
+    
 }

@@ -5,17 +5,22 @@
 package br.com.ifba.modulorh.curriculo.view;
 
 import br.com.ifba.modulorh.curriculo.model.Curriculo;
+import br.com.ifba.modulorh.experienciaprofissional.model.ExperienciaProfissional;
 import br.com.ifba.modulorh.experienciaprofissional.view.TelaCadastroExperienciaProfissional;
+import br.com.ifba.modulorh.experienciaprofissional.view.TelaEditarExperienciaProfissional;
 import br.com.ifba.modulorh.homescreen.TelaHomescreenGestor;
 import br.com.ifba.modulorh.infrastructure.service.IFacade;
 import java.awt.Font;
 import java.awt.FontFormatException;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
@@ -29,16 +34,21 @@ public class TelaCadastroCurriculo extends javax.swing.JFrame {
     @Autowired @Lazy
     private TelaHomescreenGestor telaHomescreenGestor;
     @Autowired @Lazy
+    private TelaDeListarCurriculo telaListarCurriculos;
+    @Autowired @Lazy
     private TelaCadastroExperienciaProfissional telaCadastroExperienciaProfissional;
+    @Autowired @Lazy
+    private TelaEditarExperienciaProfissional telaEditarExperienciaProfissional;
     private Curriculo curriculo;
+    private List<ExperienciaProfissional> listaExperiencias;
     @Autowired
     private IFacade facade;
-    @Autowired @Lazy
-    private TelaDeListarCurriculo telaDeListarCurriculo;
+    private List<Long> idsRemover;
     
     ImageIcon icone = new ImageIcon("./src/main/resources/imagens/rh.png");
     Font fonteMaior;
     Font fonteNormal;
+    Font fonteMenor;
     
     /**
      * Creates new form TelaCadastroCurriculo
@@ -50,8 +60,42 @@ public class TelaCadastroCurriculo extends javax.swing.JFrame {
         this.fonteNormal = Font.createFont(Font.TRUETYPE_FONT,
                 new File("./src/main/resources/fontes/Poppins/Poppins-Regular.ttf"))
                 .deriveFont(Font.PLAIN, 16);
+        this.fonteMenor = Font.createFont(Font.TRUETYPE_FONT,
+                new File("./src/main/resources/fontes/Poppins/Poppins-SemiBold.ttf"))
+                .deriveFont(Font.PLAIN, 14);
         initComponents();
         setLocationRelativeTo(null);
+        this.listaExperiencias = new ArrayList<>();
+        this.idsRemover = new ArrayList<>();
+    }
+    
+    public void addExperiencia(ExperienciaProfissional expPro) {
+        DefaultTableModel modelo = (DefaultTableModel) tblExperiencias.getModel();
+        modelo.addRow(new Object[]{expPro.getId(), expPro.getCargo(),
+            expPro.getEmpresa(), expPro.getPeriodo()});
+        this.listaExperiencias.add(expPro);
+    }
+    
+    public void editarExperiencia(ExperienciaProfissional expPro, int linhaEditar) {
+        tblExperiencias.setValueAt(expPro.getId(), linhaEditar, 0);
+        tblExperiencias.setValueAt(expPro.getCargo(), linhaEditar, 1);
+        tblExperiencias.setValueAt(expPro.getEmpresa(), linhaEditar, 2);
+        tblExperiencias.setValueAt(expPro.getPeriodo(), linhaEditar, 3);
+    }
+    
+    public void limparExperiencias() {
+        DefaultTableModel modelo = (DefaultTableModel) tblExperiencias.getModel();
+        modelo.setNumRows(0);
+    }
+    
+    public void limparCampos() {
+        txtNome.setText("");
+        txtEndereco.setText("");
+        txtTelefone.setText("");
+        txtEmail.setText("");
+        txtVaga.setText("");
+        txtFormacaoAcademica.setText("");
+        
     }
 
     /**
@@ -77,8 +121,13 @@ public class TelaCadastroCurriculo extends javax.swing.JFrame {
         txtVaga = new javax.swing.JTextField();
         txtFormacaoAcademica = new javax.swing.JTextField();
         txtEmail = new javax.swing.JTextField();
-        btnCadastrar1 = new javax.swing.JButton();
+        btnRemoverExperiencia = new javax.swing.JButton();
+        btnEditarExperiencia = new javax.swing.JButton();
+        btnInserirExperiencia = new javax.swing.JButton();
         btnCadastrar = new javax.swing.JButton();
+        jScrollPane = new javax.swing.JScrollPane();
+        tblExperiencias = new javax.swing.JTable();
+        lblExperiencias = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro de Currículo");
@@ -143,22 +192,22 @@ public class TelaCadastroCurriculo extends javax.swing.JFrame {
                         .addGap(43, 43, 43)
                         .addComponent(lblModuloRH))
                     .addGroup(pnlLateralLayout.createSequentialGroup()
-                        .addGap(33, 33, 33)
+                        .addGap(31, 31, 31)
                         .addComponent(btnInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(btnVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
         pnlLateralLayout.setVerticalGroup(
             pnlLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlLateralLayout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(lblModuloRH)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 560, Short.MAX_VALUE)
                 .addGroup(pnlLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(39, 39, 39))
+                .addGap(47, 47, 47))
         );
 
         pnlCadastroCurriculo.setBackground(new java.awt.Color(255, 255, 255));
@@ -271,21 +320,53 @@ public class TelaCadastroCurriculo extends javax.swing.JFrame {
         });
         pnlTextFields.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, -1, 40));
 
-        btnCadastrar1.setFont(fonteNormal);
-        btnCadastrar1.setText("Inserir Experiência Profissional");
-        btnCadastrar1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        btnCadastrar1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnCadastrar1.setFocusPainted(false);
-        btnCadastrar1.setFocusable(false);
-        btnCadastrar1.setMaximumSize(new java.awt.Dimension(266, 40));
-        btnCadastrar1.setMinimumSize(new java.awt.Dimension(266, 40));
-        btnCadastrar1.setPreferredSize(new java.awt.Dimension(266, 40));
-        btnCadastrar1.addActionListener(new java.awt.event.ActionListener() {
+        btnRemoverExperiencia.setFont(fonteMenor);
+        btnRemoverExperiencia.setText("REMOVER");
+        btnRemoverExperiencia.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        btnRemoverExperiencia.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnRemoverExperiencia.setFocusPainted(false);
+        btnRemoverExperiencia.setFocusable(false);
+        btnRemoverExperiencia.setMaximumSize(new java.awt.Dimension(266, 40));
+        btnRemoverExperiencia.setMinimumSize(new java.awt.Dimension(266, 40));
+        btnRemoverExperiencia.setPreferredSize(new java.awt.Dimension(266, 40));
+        btnRemoverExperiencia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCadastrar1ActionPerformed(evt);
+                btnRemoverExperienciaActionPerformed(evt);
             }
         });
-        pnlTextFields.add(btnCadastrar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 310, 320, 40));
+        pnlTextFields.add(btnRemoverExperiencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 460, 100, 40));
+
+        btnEditarExperiencia.setFont(fonteMenor);
+        btnEditarExperiencia.setText("EDITAR");
+        btnEditarExperiencia.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        btnEditarExperiencia.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnEditarExperiencia.setFocusPainted(false);
+        btnEditarExperiencia.setFocusable(false);
+        btnEditarExperiencia.setMaximumSize(new java.awt.Dimension(266, 40));
+        btnEditarExperiencia.setMinimumSize(new java.awt.Dimension(266, 40));
+        btnEditarExperiencia.setPreferredSize(new java.awt.Dimension(266, 40));
+        btnEditarExperiencia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarExperienciaActionPerformed(evt);
+            }
+        });
+        pnlTextFields.add(btnEditarExperiencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 460, 100, 40));
+
+        btnInserirExperiencia.setFont(fonteMenor);
+        btnInserirExperiencia.setText("INSERIR");
+        btnInserirExperiencia.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        btnInserirExperiencia.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnInserirExperiencia.setFocusPainted(false);
+        btnInserirExperiencia.setFocusable(false);
+        btnInserirExperiencia.setMaximumSize(new java.awt.Dimension(266, 40));
+        btnInserirExperiencia.setMinimumSize(new java.awt.Dimension(266, 40));
+        btnInserirExperiencia.setPreferredSize(new java.awt.Dimension(266, 40));
+        btnInserirExperiencia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInserirExperienciaActionPerformed(evt);
+            }
+        });
+        pnlTextFields.add(btnInserirExperiencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 460, 100, 40));
 
         btnCadastrar.setBackground(new java.awt.Color(71, 19, 35));
         btnCadastrar.setFont(fonteNormal);
@@ -303,7 +384,36 @@ public class TelaCadastroCurriculo extends javax.swing.JFrame {
                 btnCadastrarActionPerformed(evt);
             }
         });
-        pnlTextFields.add(btnCadastrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 370, -1, 40));
+        pnlTextFields.add(btnCadastrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 510, -1, 40));
+
+        jScrollPane.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        jScrollPane.setFont(fonteNormal);
+        jScrollPane.setMinimumSize(new java.awt.Dimension(549, 427));
+        jScrollPane.setPreferredSize(new java.awt.Dimension(559, 427));
+
+        tblExperiencias.setFont(fonteMenor);
+        tblExperiencias.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "ID", "Cargo", "Empresa", "Período"
+            }
+        ));
+        tblExperiencias.setMaximumSize(new java.awt.Dimension(2147483647, 2147483647));
+        tblExperiencias.setMinimumSize(new java.awt.Dimension(559, 427));
+        tblExperiencias.setPreferredSize(new java.awt.Dimension(559, 427));
+        jScrollPane.setViewportView(tblExperiencias);
+
+        pnlTextFields.add(jScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 330, 320, 120));
+
+        lblExperiencias.setFont(fonteMenor);
+        lblExperiencias.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblExperiencias.setText("Experiências Profissionais");
+        pnlTextFields.add(lblExperiencias, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 310, 320, -1));
 
         javax.swing.GroupLayout pnlCadastroCurriculoLayout = new javax.swing.GroupLayout(pnlCadastroCurriculo);
         pnlCadastroCurriculo.setLayout(pnlCadastroCurriculoLayout);
@@ -324,8 +434,8 @@ public class TelaCadastroCurriculo extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(lblCadastroCurriculo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pnlTextFields, javax.swing.GroupLayout.DEFAULT_SIZE, 443, Short.MAX_VALUE)
-                .addGap(21, 21, 21))
+                .addComponent(pnlTextFields, javax.swing.GroupLayout.DEFAULT_SIZE, 585, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout pnlContainerLayout = new javax.swing.GroupLayout(pnlContainer);
@@ -340,11 +450,11 @@ public class TelaCadastroCurriculo extends javax.swing.JFrame {
         );
         pnlContainerLayout.setVerticalGroup(
             pnlContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlLateral, javax.swing.GroupLayout.DEFAULT_SIZE, 596, Short.MAX_VALUE)
+            .addComponent(pnlLateral, javax.swing.GroupLayout.DEFAULT_SIZE, 684, Short.MAX_VALUE)
             .addGroup(pnlContainerLayout.createSequentialGroup()
-                .addGap(44, 44, 44)
-                .addComponent(pnlCadastroCurriculo, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(52, Short.MAX_VALUE))
+                .addGap(29, 29, 29)
+                .addComponent(pnlCadastroCurriculo, javax.swing.GroupLayout.PREFERRED_SIZE, 627, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -355,7 +465,7 @@ public class TelaCadastroCurriculo extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(pnlContainer, javax.swing.GroupLayout.DEFAULT_SIZE, 688, Short.MAX_VALUE)
         );
 
         pack();
@@ -427,29 +537,55 @@ public class TelaCadastroCurriculo extends javax.swing.JFrame {
     }//GEN-LAST:event_btnInicioActionPerformed
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
-        curriculo = new Curriculo(txtNome.getText(), txtEndereco.getText(), txtTelefone.getText(), txtEmail.getText(), 
+        curriculo = new Curriculo(txtNome.getText(), txtEndereco.getText(),
+                txtTelefone.getText(), txtEmail.getText(), 
                 txtVaga.getText(), txtFormacaoAcademica.getText());
-        
-        
         try{
             facade.saveCurriculo(curriculo);
+            for (ExperienciaProfissional exp: listaExperiencias) {
+                exp.setCurriculo(curriculo);
+                if (idsRemover.contains(exp.getId()) == false) {
+                    facade.updateExperienciaProfissional(exp);
+                }
+            }
         }catch (Exception e){
             JOptionPane.showMessageDialog(null, "Erro ao salvar no banco: " + e.getMessage(), 
                     "Erro ao salvar no banco de dados!",JOptionPane.ERROR_MESSAGE);
         }
         this.setVisible(false);
-        this.telaHomescreenGestor.setVisible(true);
+        this.telaListarCurriculos.setVisible(true);
+        this.telaListarCurriculos.atualizarTabela();
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
-    private void btnCadastrar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrar1ActionPerformed
+    private void btnInserirExperienciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInserirExperienciaActionPerformed
         this.setVisible(false);
+        telaCadastroExperienciaProfissional.tipoTela(1);
         telaCadastroExperienciaProfissional.setVisible(true);
-    }//GEN-LAST:event_btnCadastrar1ActionPerformed
+    }//GEN-LAST:event_btnInserirExperienciaActionPerformed
+
+    private void btnEditarExperienciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarExperienciaActionPerformed
+        int linha = tblExperiencias.getSelectedRow();
+        Long id = (Long) tblExperiencias.getValueAt(linha, 0);
+        ExperienciaProfissional expPro = facade.findExperienciaProfissionalById(id);
+        this.setVisible(false);
+        telaEditarExperienciaProfissional.setVisible(true);
+        telaEditarExperienciaProfissional.preencherDados(expPro, linha, 1);
+    }//GEN-LAST:event_btnEditarExperienciaActionPerformed
+
+    private void btnRemoverExperienciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoverExperienciaActionPerformed
+        int linha = tblExperiencias.getSelectedRow();
+        Long id = (Long) tblExperiencias.getValueAt(linha, 0);
+        DefaultTableModel modelo = (DefaultTableModel) tblExperiencias.getModel();
+        ExperienciaProfissional expRemover = facade.findExperienciaProfissionalById(id);
+        facade.deleteExperienciaProfissional(expRemover);
+        modelo.removeRow(linha);
+        this.idsRemover.add(id);
+        listaExperiencias.remove(expRemover);
+    }//GEN-LAST:event_btnRemoverExperienciaActionPerformed
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
         this.setVisible(false);
-        telaDeListarCurriculo.setVisible(true);
-                     
+        telaListarCurriculos.setVisible(true);
     }//GEN-LAST:event_btnVoltarActionPerformed
 
     /**
@@ -495,15 +631,20 @@ public class TelaCadastroCurriculo extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCadastrar;
-    private javax.swing.JButton btnCadastrar1;
+    private javax.swing.JButton btnEditarExperiencia;
     private javax.swing.JButton btnInicio;
+    private javax.swing.JButton btnInserirExperiencia;
+    private javax.swing.JButton btnRemoverExperiencia;
     private javax.swing.JButton btnVoltar;
+    private javax.swing.JScrollPane jScrollPane;
     private javax.swing.JLabel lblCadastroCurriculo;
+    private javax.swing.JLabel lblExperiencias;
     private javax.swing.JLabel lblModuloRH;
     private javax.swing.JPanel pnlCadastroCurriculo;
     private javax.swing.JPanel pnlContainer;
     private javax.swing.JPanel pnlLateral;
     private javax.swing.JPanel pnlTextFields;
+    private javax.swing.JTable tblExperiencias;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtEndereco;
     private javax.swing.JTextField txtFormacaoAcademica;
