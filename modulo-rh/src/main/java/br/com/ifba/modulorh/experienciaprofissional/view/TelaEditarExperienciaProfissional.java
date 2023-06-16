@@ -6,6 +6,7 @@ package br.com.ifba.modulorh.experienciaprofissional.view;
 
 import br.com.ifba.modulorh.curriculo.view.*;
 import br.com.ifba.modulorh.experienciaprofissional.model.ExperienciaProfissional;
+import br.com.ifba.modulorh.homescreen.TelaHomescreenGestor;
 import br.com.ifba.modulorh.infrastructure.service.IFacade;
 import java.awt.Font;
 import java.awt.FontFormatException;
@@ -24,7 +25,9 @@ import org.springframework.stereotype.Component;
  * @author Gislaine
  */
 @Component
-public class TelaCadastroExperienciaProfissional extends javax.swing.JFrame {
+public class TelaEditarExperienciaProfissional extends javax.swing.JFrame {
+    @Autowired @Lazy
+    private TelaHomescreenGestor telaHomescreenGestor;
     @Autowired @Lazy
     private TelaCadastroCurriculo telaCadastroCurriculo;
     @Autowired @Lazy
@@ -33,6 +36,7 @@ public class TelaCadastroExperienciaProfissional extends javax.swing.JFrame {
     @Autowired
     private IFacade facade;
     private int tipoTela;
+    private int linhaEditar;
     
     ImageIcon icone = new ImageIcon("./src/main/resources/imagens/rh.png");
     Font fonteMaior;
@@ -41,7 +45,7 @@ public class TelaCadastroExperienciaProfissional extends javax.swing.JFrame {
     /**
      * Creates new form TelaCadastroCurriculo
      */
-    public TelaCadastroExperienciaProfissional() throws FontFormatException, IOException {
+    public TelaEditarExperienciaProfissional() throws FontFormatException, IOException {
         this.fonteMaior = Font.createFont(Font.TRUETYPE_FONT,
                 new File("./src/main/resources/fontes/Poppins/Poppins-Bold.ttf"))
                 .deriveFont(Font.PLAIN, 20);
@@ -52,8 +56,19 @@ public class TelaCadastroExperienciaProfissional extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }
     
-    public void tipoTela(int tipo) {
+    public void preencherDados(ExperienciaProfissional expPro, int linha, int tipo) {
         this.tipoTela = tipo;
+        this.linhaEditar = linha;
+        this.experienciaProfissional = expPro;
+        txtCargo.setText(expPro.getCargo());
+        txtEmpresa.setText(expPro.getEmpresa());
+        txtPeriodo.setText(expPro.getPeriodo());
+    }
+    
+    public void limparDados() {
+        txtCargo.setText("");
+        txtEmpresa.setText("");
+        txtPeriodo.setText("");
     }
 
     /**
@@ -69,14 +84,14 @@ public class TelaCadastroExperienciaProfissional extends javax.swing.JFrame {
         pnlLateral = new javax.swing.JPanel();
         lblModuloRH = new javax.swing.JLabel();
         btnInicio = new javax.swing.JButton();
-        btnVoltar = new javax.swing.JButton();
+        btnVoltar1 = new javax.swing.JButton();
         pnlCadastroCurriculo = new javax.swing.JPanel();
-        lblAdicionarExperienciaProfissional = new javax.swing.JLabel();
+        lblEditarExperienciaProfissional = new javax.swing.JLabel();
         pnlTextFields = new javax.swing.JPanel();
         txtCargo = new javax.swing.JTextField();
         txtEmpresa = new javax.swing.JTextField();
         txtPeriodo = new javax.swing.JTextField();
-        btnAdicionar = new javax.swing.JButton();
+        btnEditar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro de Currículo");
@@ -114,20 +129,20 @@ public class TelaCadastroExperienciaProfissional extends javax.swing.JFrame {
             }
         });
 
-        btnVoltar.setBackground(new java.awt.Color(26, 81, 107));
-        btnVoltar.setFont(fonteNormal);
-        btnVoltar.setForeground(new java.awt.Color(255, 255, 255));
-        btnVoltar.setText("Voltar");
-        btnVoltar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 2, true));
-        btnVoltar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnVoltar.setFocusPainted(false);
-        btnVoltar.setFocusable(false);
-        btnVoltar.setMaximumSize(new java.awt.Dimension(266, 40));
-        btnVoltar.setMinimumSize(new java.awt.Dimension(266, 40));
-        btnVoltar.setPreferredSize(new java.awt.Dimension(266, 40));
-        btnVoltar.addActionListener(new java.awt.event.ActionListener() {
+        btnVoltar1.setBackground(new java.awt.Color(26, 81, 107));
+        btnVoltar1.setFont(fonteNormal);
+        btnVoltar1.setForeground(new java.awt.Color(255, 255, 255));
+        btnVoltar1.setText("Voltar");
+        btnVoltar1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 2, true));
+        btnVoltar1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnVoltar1.setFocusPainted(false);
+        btnVoltar1.setFocusable(false);
+        btnVoltar1.setMaximumSize(new java.awt.Dimension(266, 40));
+        btnVoltar1.setMinimumSize(new java.awt.Dimension(266, 40));
+        btnVoltar1.setPreferredSize(new java.awt.Dimension(266, 40));
+        btnVoltar1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVoltarActionPerformed(evt);
+                btnVoltar1ActionPerformed(evt);
             }
         });
 
@@ -144,7 +159,7 @@ public class TelaCadastroExperienciaProfissional extends javax.swing.JFrame {
                         .addGap(31, 31, 31)
                         .addComponent(btnInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btnVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnVoltar1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(24, Short.MAX_VALUE))
         );
         pnlLateralLayout.setVerticalGroup(
@@ -152,11 +167,11 @@ public class TelaCadastroExperienciaProfissional extends javax.swing.JFrame {
             .addGroup(pnlLateralLayout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(lblModuloRH)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 472, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(pnlLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(47, 47, 47))
+                    .addComponent(btnVoltar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(45, 45, 45))
         );
 
         pnlCadastroCurriculo.setBackground(new java.awt.Color(255, 255, 255));
@@ -164,9 +179,9 @@ public class TelaCadastroExperienciaProfissional extends javax.swing.JFrame {
         pnlCadastroCurriculo.setMaximumSize(new java.awt.Dimension(388, 340));
         pnlCadastroCurriculo.setPreferredSize(new java.awt.Dimension(388, 340));
 
-        lblAdicionarExperienciaProfissional.setFont(fonteMaior);
-        lblAdicionarExperienciaProfissional.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblAdicionarExperienciaProfissional.setText("Adicionar Experiência Profissional");
+        lblEditarExperienciaProfissional.setFont(fonteMaior);
+        lblEditarExperienciaProfissional.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblEditarExperienciaProfissional.setText("Editar Experiência Profissional");
 
         pnlTextFields.setBackground(new java.awt.Color(255, 255, 255));
         pnlTextFields.setMaximumSize(new java.awt.Dimension(360, 130));
@@ -221,23 +236,23 @@ public class TelaCadastroExperienciaProfissional extends javax.swing.JFrame {
         });
         pnlTextFields.add(txtPeriodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, -1, 40));
 
-        btnAdicionar.setBackground(new java.awt.Color(71, 19, 35));
-        btnAdicionar.setFont(fonteNormal);
-        btnAdicionar.setForeground(new java.awt.Color(255, 255, 255));
-        btnAdicionar.setText("Adicionar");
-        btnAdicionar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        btnAdicionar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnAdicionar.setFocusPainted(false);
-        btnAdicionar.setFocusable(false);
-        btnAdicionar.setMaximumSize(new java.awt.Dimension(266, 40));
-        btnAdicionar.setMinimumSize(new java.awt.Dimension(266, 40));
-        btnAdicionar.setPreferredSize(new java.awt.Dimension(266, 40));
-        btnAdicionar.addActionListener(new java.awt.event.ActionListener() {
+        btnEditar.setBackground(new java.awt.Color(71, 19, 35));
+        btnEditar.setFont(fonteNormal);
+        btnEditar.setForeground(new java.awt.Color(255, 255, 255));
+        btnEditar.setText("Editar");
+        btnEditar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        btnEditar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnEditar.setFocusPainted(false);
+        btnEditar.setFocusable(false);
+        btnEditar.setMaximumSize(new java.awt.Dimension(266, 40));
+        btnEditar.setMinimumSize(new java.awt.Dimension(266, 40));
+        btnEditar.setPreferredSize(new java.awt.Dimension(266, 40));
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAdicionarActionPerformed(evt);
+                btnEditarActionPerformed(evt);
             }
         });
-        pnlTextFields.add(btnAdicionar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 180, -1, 40));
+        pnlTextFields.add(btnEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 180, -1, 40));
 
         javax.swing.GroupLayout pnlCadastroCurriculoLayout = new javax.swing.GroupLayout(pnlCadastroCurriculo);
         pnlCadastroCurriculo.setLayout(pnlCadastroCurriculoLayout);
@@ -249,14 +264,14 @@ public class TelaCadastroExperienciaProfissional extends javax.swing.JFrame {
                     .addGroup(pnlCadastroCurriculoLayout.createSequentialGroup()
                         .addComponent(pnlTextFields, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(lblAdicionarExperienciaProfissional, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(lblEditarExperienciaProfissional, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         pnlCadastroCurriculoLayout.setVerticalGroup(
             pnlCadastroCurriculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlCadastroCurriculoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblAdicionarExperienciaProfissional)
+                .addComponent(lblEditarExperienciaProfissional)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnlTextFields, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
                 .addGap(21, 21, 21))
@@ -278,7 +293,7 @@ public class TelaCadastroExperienciaProfissional extends javax.swing.JFrame {
             .addGroup(pnlContainerLayout.createSequentialGroup()
                 .addGap(130, 130, 130)
                 .addComponent(pnlCadastroCurriculo, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(159, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -327,31 +342,31 @@ public class TelaCadastroExperienciaProfissional extends javax.swing.JFrame {
 
     private void btnInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioActionPerformed
         this.setVisible(false);
-        telaCadastroCurriculo.setVisible(true);
+        telaHomescreenGestor.setVisible(true);
     }//GEN-LAST:event_btnInicioActionPerformed
 
-    private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarActionPerformed
-        experienciaProfissional = new ExperienciaProfissional(
-                txtCargo.getText(), txtEmpresa.getText(), txtPeriodo.getText());
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+        this.experienciaProfissional.setCargo(txtCargo.getText());
+        this.experienciaProfissional.setEmpresa(txtEmpresa.getText());
+        this.experienciaProfissional.setPeriodo(txtPeriodo.getText());
         try {
-            facade.saveExperienciaProfissional(experienciaProfissional);
+            facade.updateExperienciaProfissional(experienciaProfissional);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Erro ao salvar no banco: " + e.getMessage(),
                     "Erro ao salvar no banco de dados!", JOptionPane.ERROR_MESSAGE);
         }
         this.setVisible(false);
         if (tipoTela == 1) {
-            this.telaCadastroCurriculo.addExperiencia(experienciaProfissional);
+            this.telaCadastroCurriculo.editarExperiencia(experienciaProfissional, linhaEditar);
             this.telaCadastroCurriculo.setVisible(true);
         }
         if (tipoTela == 2) {
-            this.telaEditarCurriculo.addExperiencia(experienciaProfissional);
+            this.telaEditarCurriculo.editarExperiencia(experienciaProfissional, linhaEditar);
             this.telaEditarCurriculo.setVisible(true);
         }
-        
-    }//GEN-LAST:event_btnAdicionarActionPerformed
+    }//GEN-LAST:event_btnEditarActionPerformed
 
-    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
+    private void btnVoltar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltar1ActionPerformed
         this.setVisible(false);
         if (tipoTela == 1) {
             this.telaCadastroCurriculo.setVisible(true);
@@ -359,7 +374,7 @@ public class TelaCadastroExperienciaProfissional extends javax.swing.JFrame {
         if (tipoTela == 2) {
             this.telaEditarCurriculo.setVisible(true);
         }
-    }//GEN-LAST:event_btnVoltarActionPerformed
+    }//GEN-LAST:event_btnVoltar1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -378,14 +393,16 @@ public class TelaCadastroExperienciaProfissional extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaCadastroExperienciaProfissional.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaEditarExperienciaProfissional.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaCadastroExperienciaProfissional.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaEditarExperienciaProfissional.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaCadastroExperienciaProfissional.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaEditarExperienciaProfissional.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaCadastroExperienciaProfissional.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaEditarExperienciaProfissional.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
@@ -393,21 +410,22 @@ public class TelaCadastroExperienciaProfissional extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new TelaCadastroExperienciaProfissional().setVisible(true);
+                    new TelaEditarExperienciaProfissional().setVisible(true);
                 } catch (FontFormatException ex) {
-                    Logger.getLogger(TelaCadastroExperienciaProfissional.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(TelaEditarExperienciaProfissional.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (IOException ex) {
-                    Logger.getLogger(TelaCadastroExperienciaProfissional.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(TelaEditarExperienciaProfissional.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAdicionar;
+    private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnInicio;
     private javax.swing.JButton btnVoltar;
-    private javax.swing.JLabel lblAdicionarExperienciaProfissional;
+    private javax.swing.JButton btnVoltar1;
+    private javax.swing.JLabel lblEditarExperienciaProfissional;
     private javax.swing.JLabel lblModuloRH;
     private javax.swing.JPanel pnlCadastroCurriculo;
     private javax.swing.JPanel pnlContainer;

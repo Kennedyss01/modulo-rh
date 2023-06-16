@@ -54,7 +54,7 @@ public class ServiceExperienciaProfissional implements IServiceExperienciaProfis
         if(this.repositoryExperienciaProfissional.existsById(experienciaprofissional.getId()) == false) {
             throw new BusinessException(EXPERIENCIA_PROFISSIONAL_NAO_EXISTE);   
         }
-        repositoryExperienciaProfissional.delete(repositoryExperienciaProfissional.getReferenceById(experienciaprofissional.getCargo()));
+        repositoryExperienciaProfissional.delete(experienciaprofissional);
     }
 
     @Override
