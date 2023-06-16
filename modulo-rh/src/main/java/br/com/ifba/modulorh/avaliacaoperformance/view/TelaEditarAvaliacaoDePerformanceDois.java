@@ -273,7 +273,7 @@ public class TelaEditarAvaliacaoDePerformanceDois extends javax.swing.JFrame {
             nota = 6;
         }
         if(valor.equals("Bom")){
-            nota = 10;
+            nota = 8;
         }
          if(valor.equals("Otimo")){
             nota = 10;
